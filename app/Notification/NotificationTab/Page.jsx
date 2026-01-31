@@ -1,0 +1,243 @@
+"use client";
+import React, { useState } from "react";
+import SearchIconGray from "../../../components/assets/images/SearchIconGray.svg";
+import Image from "next/image";
+import Commondropdown from "../../../components/common/Commondropdown";
+import Copyicon from "../../../components/assets/images/CopyIcon.svg";
+import CustomDateRangePicker from "../../../components/common/CustomDateRangePicker";
+import CommonTable from "../../../components/common/CommonTable";
+import ArrowUpwhite from "../../../components/assets/images/ArrowUpwhite.svg";
+import DoubleArrowDown from "../../../components/assets/images/DoubleArrowDown.svg";
+import user1 from "../../../components/assets/images/User1.svg";
+import user2 from "../../../components/assets/images/User2.svg";
+import user3 from "../../../components/assets/images/User3.svg";
+
+const mockData = [
+  {
+    dateTime: "17/01/2025, 10:00 PM",
+    customer: { name: "Amy Diaz", email: "testing@gmail.com", avatar: user1 },
+    eventType: "Churn Risk",
+    message: "Churn risk increased to High. Last active 18 days ago.",
+    priority: "High",
+    actionLabel: "View Profile"
+  },
+  {
+    dateTime: "16/01/2025, 09:30 AM",
+    customer: { name: "Natalia González", email: "testing@gmail.com", avatar: user2 },
+    eventType: "Signup Abandonment",
+    message: "Filled 70% of signup form but did not complete. Resume link available.",
+    priority: "Medium",
+    actionLabel: "Send Reminder"
+  },
+  {
+    dateTime: "18/01/2025, 11:15 AM",
+    customer: { name: "Jennifer Hernandez", email: "testing@gmail.com", avatar: user3 },
+    eventType: "Payment Failure",
+    message: "Payment for Annual Plan £1200 failed 2 times. Next retry in 24 hrs.",
+    priority: "High",
+    actionLabel: "Retry Payment"
+  },
+  {
+    dateTime: "15/01/2025, 02:00 PM",
+    customer: { name: "Zula Adebayo", email: "testing@gmail.com", avatar: user1 },
+    eventType: "Status",
+    message: "Status changed from Pending → Verified by CSM.",
+    priority: "Low",
+    actionLabel: "View History"
+  },
+  {
+    dateTime: "14/01/2025, 04:45 PM",
+    customer: { name: "Zula Adebayo", email: "testing@gmail.com", avatar: user2 },
+    eventType: "Renewal Pending",
+    message: "Contract renewal overdue by 5 days. Usage report available.",
+    priority: "Lowest",
+    actionLabel: "Contact Now"
+  },
+  {
+    dateTime: "19/01/2025, 08:00 AM",
+    customer: { name: "Zula Adebayo", email: "testing@gmail.com", avatar: user3 },
+    eventType: "Churn Risk",
+    message: "Churn risk increased to High. Last active 18 days ago.",
+    priority: "Critical",
+    actionLabel: "View Profile"
+  },
+  {
+    dateTime: "12/01/2025, 01:20 PM",
+    customer: { name: "Zula Adebayo", email: "testing@gmail.com", avatar: user1 },
+    eventType: "Signup Abandonment",
+    message: "Filled 70% of signup form but did not complete. Resume link available.",
+    priority: "Low",
+    actionLabel: "Send Reminder"
+  },
+  {
+    dateTime: "20/01/2025, 10:00 AM",
+    customer: { name: "Zula Adebayo", email: "testing@gmail.com", avatar: user2 },
+    eventType: "Payment Failure",
+    message: "Payment for Annual Plan £1200 failed 2 times. Next retry in 24 hrs.",
+    priority: "Medium",
+    actionLabel: "Retry Payment"
+  }
+];
+
+const priorityColors = {
+  Critical: "bg-[#D32F2F] text-white",     // Custom Red
+  High: "bg-[#F57C00] text-white",         // Custom Orange
+  Medium: "bg-[#FBC02D] text-white",       // Custom Yellow
+  Low: "bg-[#388E3C] text-white",          // Custom Green
+  Lowest: "bg-[#1976D2] text-white",       // Custom Blue
+};
+
+function Page() {
+  const [priority, setPriority] = useState("All");
+  const [Status, setStatus] = useState("Unread / Read");
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
+
+  const priorityOptions = ["All", "High", "Medium", "Low"];
+  const statuaOptions = ["Unread / Read", "Unread", "Read"];
+
+  const columns = [
+    {
+      header: "Date/Time",
+      accessor: "dateTime",
+      sortable: true,
+      sortValue: (row) => {
+        const dateString = row.dateTime;
+        if (!dateString) return 0;
+        // Parse "17/01/2025, 10:00 PM"
+        const [datePart, timePart] = dateString.split(', ');
+        const [day, month, year] = datePart.split('/');
+        let [time, modifier] = timePart.split(' ');
+        let [hours, minutes] = time.split(':');
+
+        if (modifier === 'PM' && hours !== '12') hours = parseInt(hours, 10) + 12;
+        if (modifier === 'AM' && hours === '12') hours = 0;
+
+        return new Date(year, month - 1, day, hours, minutes).getTime();
+      }
+    },
+    {
+      header: "Customer",
+      accessor: "customer",
+      sortable: true,
+      sortValue: (row) => row.customer.name, // Sort by Name
+      render: (row) => (
+        <div className="flex items-center gap-3">
+          {/* Placeholder for Avatar if Image fails or is static */}
+          <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden shrink-0">
+            <Image src={row.customer.avatar} width={32} height={32} alt={row.customer.name} />
+          </div>
+          <div className="flex flex-col text-left">
+            <span className="text-[14px] font-semibold text-[#1A2232]">{row.customer.name}</span>
+            <span className="text-[12px] font-normal tracking-[-0.006em] text-[#404040]">{row.customer.email}</span>
+          </div>
+        </div>
+      ),
+    },
+    { header: "Event Type", accessor: "eventType", sortable: true },
+    { header: "Message", accessor: "message", sortable: true, render: (row) => <span className="truncate max-w-xs block" title={row.message}>{row.message}</span> },
+    {
+      header: "Priority",
+      accessor: "priority",
+      sortable: true,
+      sortValue: (row) => {
+        // Custom Rank for Priority
+        const ranks = { "Critical": 0, "High": 1, "Medium": 2, "Low": 3, "Lowest": 4 };
+        return ranks[row.priority] ?? 99;
+      },
+      render: (row) => (
+        <span
+          className={`flex items-center justify-center w-25 h-7.5 gap-2.5 rounded-[100px] py-1.5 px-1.5 font-semibold text-[14px] leading-[1.6] ${priorityColors[row.priority] || "bg-gray-100 text-gray-700"
+            }`}
+        >
+          {row.priority === "Critical" && (
+            <Image src={DoubleArrowDown} alt="critical" width={10} height={10} className="brightness-0 invert rotate-180" />
+          )}
+          {(row.priority === "High" || row.priority === "Low") && (
+            <Image src={ArrowUpwhite} alt="up" width={10} height={10} className="brightness-0 invert" />
+          )}
+          {(row.priority === "Medium" || row.priority === "Lowest") && (
+            <Image src={DoubleArrowDown} alt="down" width={10} height={10} className="brightness-0 invert" />
+          )}
+          {row.priority}
+        </span>
+      ),
+    },
+    {
+      header: "Action",
+      render: (row) => (
+        <button className="flex items-center justify-center w-34.75 h-7.5 border border-[#D0D5DD] bg-white text-[#414651] text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+          {row.actionLabel || "View Profile"}
+        </button>
+      ),
+    },
+  ];
+
+  return (
+    <div className="text-black">
+      <div>
+        <h1 className="text-lg md:text-xl font-semibold mt-7.5">
+          Notifications List
+        </h1>
+      </div>
+      <div className="mt-6 w-full grid grid-cols-1 min-[800px]:grid-cols-[45%_1fr] lg:grid-cols-2 2xl:flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-2 xl:gap-4">
+        <div className="w-full relative lg:max-w-60 xl:max-w-93">
+          <input
+            type="text"
+            placeholder=" Email / ID"
+            className="w-full focus:border-black border text-base border-black/16 outline-0 p-4 py-3.5 pr-12 rounded-lg"
+          />
+          <div className="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-4">
+            <Image src={SearchIconGray} alt="media" width={20} height={20} />
+          </div>
+        </div>
+
+
+        <div className="flex max-[800px]:flex-col gap-4 sm:gap-6 w-full md:w-auto md:justify-end">
+          <div className="flex max-[800px]:flex-col min-[800px]:items-center gap-2">
+            <p className="text-sm font-medium">Priority</p>
+            <Commondropdown
+              options={priorityOptions}
+              value={priority}
+              onChange={setPriority}
+              className="max-[800px]:w-full w-30 xl:w-40"
+            />
+          </div>
+          <div className="flex max-[800px]:flex-col min-[800px]:items-center gap-2">
+            <p className="text-sm font-medium">Status</p>
+            <Commondropdown
+              options={statuaOptions}
+              value={Status}
+              onChange={setStatus}
+              className="max-[800px]:w-full w-33 xl:w-40 whitespace-nowrap"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 w-full md:w-auto max-[800px]:justify-between">
+          <div className="w-full md:max-w-65">
+            <CustomDateRangePicker
+              startDate={startDate}
+              endDate={endDate}
+              onChange={(update) => setDateRange(update)}
+            />
+          </div>
+          <div className="group border border-[#D5D7DA] p-3.75 rounded-lg cursor-pointer shrink-0 hover:bg-[var(--color-main)] hover:text-white transition-colors">
+            <Image src={Copyicon} alt="media" width={24} height={24} className="min-w-6 group-hover:brightness-0 group-hover:invert transition-colors" />
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6">
+        <CommonTable
+          columns={columns}
+          data={mockData}
+          selectable={true}
+          onSelectionChange={(selected) => console.log("Selected:", selected)}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default Page;
