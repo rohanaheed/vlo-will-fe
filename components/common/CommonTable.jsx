@@ -183,7 +183,7 @@ function CommonTable({ columns, data, selectable = false, onSelectionChange }) {
                                     {columns.map((col, colIndex) => (
                                         <td key={colIndex} className="p-4 text-[14px] font-medium leading-[20px] tracking-[-0.006em] text-[#404040] align-middle text-left">
                                             {col.render
-                                                ? col.render(row)
+                                                ? col.render(row, rowIndex)
                                                 : row[col.accessor]}
                                         </td>
                                     ))}

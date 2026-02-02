@@ -1,9 +1,9 @@
 "use client"
 import React, { useState, useRef, useEffect } from 'react'
-import FillArrowDown from '../../components/assets/images/FillArrowDown.svg'
+import FillArrowDown from '../../components/assets/images/ChevronLeftBlack.svg'
 import Image from 'next/image'
 
-function Commondropdown({ options, value, onChange, placeholder = "Select", className, dropdownClassName, direction = "down", iconClassName }) {
+function Commondropdown({ options, value, onChange, placeholder = "Select", className, dropdownClassName }) {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
 
@@ -23,9 +23,9 @@ function Commondropdown({ options, value, onChange, placeholder = "Select", clas
     <div className={`relative ${className}`} ref={dropdownRef}>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className={`border w-full text-black border-[#D5D7DA] rounded-lg px-3.5 py-4 flex items-center justify-between cursor-pointer ${className}`}
+        className={`${className} border w-full text-black border-[#D5D7DA] flex gap-2 bg-white rounded-lg px-3.5 py-2.25 flex items-center justify-between cursor-pointer`}
       >
-        <span className={`text-sm ${value ? "text-inherit" : "text-[#717680]"}`}>
+        <span className={`text-sm ${value ? "text-[#181D27]" : "text-[#717680]"}`}>
           {value ? (typeof value === 'object' ? value.label : value) : placeholder}
         </span>
         <Image
@@ -33,12 +33,12 @@ function Commondropdown({ options, value, onChange, placeholder = "Select", clas
           alt='arrow'
           width={20}
           height={20}
-          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""} ${iconClassName}`}
+          className={`transition-transform duration-200 ${isOpen ? "rotate-90" : "-rotate-90"}`}
         />
       </div>
 
       {isOpen && (
-        <div className={`${dropdownClassName} absolute ${direction === 'up' ? 'bottom-full mb-1' : 'top-full mt-1'} left-0 right-0 bg-white border border-[#D5D7DA] rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto`}>
+        <div className={`${dropdownClassName} absolute top-full w-full whitespace-nowrap left-0 right-0 mt-1 bg-white border border-[#D5D7DA] rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto`}>
           {options && options.length > 0 ? (
             options.map((option, index) => (
               <div

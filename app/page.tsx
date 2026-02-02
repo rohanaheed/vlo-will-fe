@@ -1,10 +1,11 @@
 import Image from "next/image";
-import Header from "../components/common/Header";
+import Dashboard from "./dashboard/page";
+
 export default function Home() {
   return (
-    <div className="bg-[#eaeaea] h-screen w-screen">
+    <div className="bg-[#eaeaea] h-[calc(100vh-88px)]">
       <main className="h-full">
-        <Header title={""}/>
+        <Dashboard />
       </main>
     </div>
   );
