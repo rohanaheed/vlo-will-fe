@@ -13,6 +13,7 @@ import AllUser from './alluser/page'
 import NinetyDaysRecycleBin from './recyclebin/page'
 import Draft from './draft/page'
 import UserDetail from './UserDetail/page'
+
 function UserManagement() {
     const back = () => {
         setSelectedUser("usermanagement")
@@ -100,6 +101,7 @@ function UserManagement() {
                 {isTab === "AllUser" && <AllUser setSelectedUser={setSelectedUser} />}
                 {isTab === "90DaysRecycleBin" && <NinetyDaysRecycleBin setSelectedUser={setSelectedUser}/>}
                 {isTab === "Draft" && <Draft setSelectedUser={setSelectedUser}/>}
+            
                 </>
                 )}
                 {selectedUser === "userdetail" && <UserDetail back={back} />}
