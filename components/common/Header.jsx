@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
 import Logo from "../../components/assets/images/LawNestLogo.svg"
 import Menuicon from "../../components/assets/images/MenuIcon.svg"
@@ -13,12 +13,25 @@ import Setting from "../../components/assets/images/SettingIcon.svg"
 import Add from "../../components/assets/images/AddIcon.svg"
 import User from "../assets/images/User.svg"
 import ChevronDown from "../assets/images/CheveronDownGray.svg"
-function Header({title}) {
+import DashboardIcon from "../assets/images/DashboardIcon.svg"
+import SliderUser from "../assets/images/SliderUser.svg"
+function Header({ title }) {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
     const sidebarRef = useRef(null)
+    const Sliderdata = [{ title: "Dashboard", icon: DashboardIcon, path: "/" },
+    { title: "User Management", icon: SliderUser, path: "/user-management" }
 
+    ]
     const [currentDate, setCurrentDate] = useState(null)
+    const pathname = usePathname()
+    const [activeLink, setActiveLink] = useState(pathname) // Initialize with pathname
+
+    useEffect(() => {
+        if (pathname) {
+            setActiveLink(pathname)
+        }
+    }, [pathname])
 
     useEffect(() => {
         const updateDate = () => setCurrentDate(new Date())
@@ -47,68 +60,81 @@ function Header({title}) {
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [isOpen])
-  return (
-    <div className='fixed top-0 left-0 right-0 w-full z-10'>
-      <div className="fixed top-0 left-0 right-0 w-full z-10 border-b border-black/16">
-       <div className='flex lg:ml-75 lg:w-[calc(100%-300px)] justify-between items-center bg-white text-black px-6 py-3'>
-        <div className='flex items-center gap-4 '>
-            <button className='lg:hidden max-md:hidden cursor-pointer' onClick={()=>setIsOpen(!isOpen)}>
-            <Image src={Menuicon} width={24} height={24} alt="media" />
-            </button>
-            <div>
-            <h1 className='text-sm font-bold'>{title} </h1>
+    return (
+        <div className='fixed top-0 left-0 right-0 w-full z-10'>
+            <div className="fixed top-0 left-0 right-0 w-full z-10 border-b border-black/16">
+                <div className='flex max-md:py-3 lg:ml-75 lg:w-[calc(100%-300px)] justify-between items-center bg-white text-black px-6 py-3'>
+                    <div className='flex items-center gap-4 '>
+                        <button className='lg:hidden max-md:hidden cursor-pointer' onClick={() => setIsOpen(!isOpen)}>
+                            <Image src={Menuicon} width={24} height={24} alt="media" />
+                        </button>
+                        <div>
+                            <h1 className='text-sm font-bold'>{title} </h1>
+                        </div>
+                    </div>
+                    <div className='max-xl:hidden'>
+                        <h1 className='text-sm font-bold'>{formatDate(currentDate)}</h1>
+                    </div>
+                    <div className='flex items-center gap-3 max-md:hidden'>
+                        <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
+                            <Image src={Searchicon} width={16} height={16} alt="media" />
+                        </div>
+                        <div onClick={() => router.push('/Notification')} className='relative cursor-pointer rounded-full h-8 w-8 bg-[var(--color-main)] flex items-center justify-center'>
+                            <Image src={Bell} width={16} height={16} alt="media" />
+                            <span className='bg-[#FF0000] h-4.5 w-4.5 text-[10px] absolute top-0 right-0 translate-x-1 font-bold rounded-full p-0.5 flex justify-center items-center text-white'>
+                                12
+                            </span>
+                        </div>
+                        <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
+                            <Image src={Phone} width={14} height={16} alt="media" />
+                        </div>
+                        <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
+                            <Image src={Mail} width={16} height={16} alt="media" />
+                        </div>
+                        <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
+                            <Image src={Setting} width={16} height={16} alt="media" />
+                        </div>
+                        <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
+                            <Image src={Add} width={16} height={16} alt="media" />
+                        </div>
+                        <div className='flex items-center gap-2 cursor-pointer'>
+                            <Image src={User} width={40} height={40} alt="media" />
+                            <p className='text-xs '>Admin Abdul Wahab</p>
+                            <Image src={ChevronDown} width={16} height={16} alt="media" />
+                        </div>
+                    </div>
+                    <button className='md:hidden cursor-pointer' onClick={() => setIsOpen(!isOpen)}>
+                        <Image src={Menuicon} width={24} height={24} alt="media" />
+                    </button>
+                </div>
             </div>
-        </div>
-        <div className='max-xl:hidden'>
-            <h1 className='text-sm font-bold'>{formatDate(currentDate)}</h1>
-        </div>
-        <div className='flex items-center gap-3 max-md:hidden'>
-            <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
-                <Image src={Searchicon} width={16} height={16} alt="media" />
-            </div>
-            <div onClick={()=>router.push('/Notification')} className='relative cursor-pointer rounded-full h-8 w-8 bg-[var(--color-main)] flex items-center justify-center'>
-                <Image src={Bell} width={16} height={16} alt="media" />
-                <span className='bg-[#FF0000] h-4.5 w-4.5 text-[10px] absolute top-0 right-0 translate-x-1 font-bold rounded-full p-0.5 flex justify-center items-center text-white'>
-                    12
-                </span>
-            </div>
-            <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
-                <Image src={Phone} width={14} height={16} alt="media" />
-            </div>
-            <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
-                <Image src={Mail} width={16} height={16} alt="media" />
-            </div>
-            <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
-                <Image src={Setting} width={16} height={16} alt="media" />
-            </div>
-            <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
-                <Image src={Add} width={16} height={16} alt="media" />
-            </div>
-            <div className='flex items-center gap-2 cursor-pointer'>
-                <Image src={User} width={40} height={40} alt="media" />
-                <p className='text-xs '>Admin Abdul Wahab</p>
-                <Image src={ChevronDown} width={16} height={16} alt="media" />
-            </div>
-        </div>
-        <button className='md:hidden cursor-pointer' onClick={()=>setIsOpen(!isOpen)}>
-            <Image src={Menuicon} width={24} height={24} alt="media" />
-            </button>
-        </div>
-      </div>
-      {/* Overlay (does not slide) */}
-      <div
-        className={`fixed inset-0  z-10 transition-opacity duration-300 ${isOpen ? 'opacity-100 bg-white/5 backdrop-blur-lg pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-        onClick={() => setIsOpen(false)}
-      />
+            {/* Overlay (does not slide) */}
+            <div
+                className={`fixed inset-0  z-10 transition-opacity duration-300 ${isOpen ? 'opacity-100 bg-white/5 backdrop-blur-lg pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                onClick={() => setIsOpen(false)}
+            />
 
-      {/* Sidebar (slides independently) */}
-      <div ref={sidebarRef} className={`fixed z-11 p-4 left-0 top-0 bottom-0 h-screen w-75 transform transition-transform duration-300 bg-[var(--color-main)] ${isOpen ? 'max-lg:translate-x-0' : 'max-lg:-translate-x-full'}`}>
-        <div className='p-4'>
-            <Image src={Logo} width={212} height={56} alt='media'/>
+            {/* Sidebar (slides independently) */}
+            <div ref={sidebarRef} className={`fixed z-11 p-4 left-0 top-0 bottom-0 h-screen w-75 transform transition-transform duration-300 bg-[var(--color-main)] ${isOpen ? 'max-lg:translate-x-0' : 'max-lg:-translate-x-full'}`}>
+                <div className='p-4 '>
+                    <Image src={Logo} width={212} height={56} alt='media' />
+                    <div className='mt-5 flex flex-col gap-2'>
+                        {Sliderdata.map((item, index) => (
+                            <div
+                                onClick={() => {
+                                    setActiveLink(item.path)
+                                    router.push(item.path)
+                                }}
+                                key={index} className={`flex group transition-all duration-300 hover:bg-white hover:text-[var(--color-main)] p-4 py-2 flex items-center gap-2 rounded-lg items-center gap-2 cursor-pointer ${activeLink === item.path ? 'bg-white text-[var(--color-main)]' : 'text-white'}`}>
+                                <Image src={item.icon} width={24} height={24} alt="media" className={`group-hover:invert-1 group-hover:brightness-100 transition-all duration-300 ${activeLink === item.path ? 'text-[var(--color-main)]' : 'invert brightness-0'}`} />
+                                <p className={`text-sm font-bold ${activeLink === item.path ? 'text-[var(--color-main)] font-bold' : ''}`}>{item.title}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default Header
