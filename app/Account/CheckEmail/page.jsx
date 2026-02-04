@@ -39,13 +39,13 @@ function Page() {
             <button onClick={()=>router.push("/Account/VerficationOtp")} className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5">
               Open email app
             </button>
-            <div className="mt-8">
+            <div className="mt-8 flex justify-center gap-1">
               <p className="text-sm text-[#535862] text-center">
                 Didn’t receive the email?
               </p>
 
               <button
-                className="text-[var(--color-main)] flex items-center justify-center w-full gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
+                className="text-[var(--color-main)] flex items-center justify-center gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
                 onClick={() => router.push("/Account/ForgetPassword")}
               >
                 Click to resend
@@ -54,7 +54,7 @@ function Page() {
             <div className="flex w-full justify-between mt-8">
               <button
                 className="text-[var(--color-main)] flex items-center justify-center w-full gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
-                onClick={() => router.push("/Account/Signup")}
+                onClick={() => router.push("/Account/login")}
               >
                 <Image src={ArrowLeft} alt="media" width={20} height={20} />
                 <p>Back to log in</p>

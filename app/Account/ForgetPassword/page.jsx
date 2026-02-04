@@ -27,14 +27,14 @@ function Page() {
                         <h1 className='text-lg md:text-[30px] text-center font-semibold text-[#181D27] mt-6'>Forgot password?</h1>
                         <p className='text-sm md:text-base text-[#535862] text-center mt-3'>No worries, we’ll send you reset instructions.</p>
                         <div className='flex flex-col mt-5'>
-                            <label htmlFor="password" className='text-[#414651] text-xs md:text-sm font-medium '>Password<span className='text-[#FF383C]'>*</span></label>
-                            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} id='password' placeholder='Enter your password' className='border outline-0 focus:border-black text-black border-[#D5D7DA] mt-1.5 placeholder:text-[#717680] rounded-md px-3.5 py-2' />
+                            <label htmlFor="password" className='text-[#414651] text-xs md:text-sm font-medium '>Email<span className='text-[#FF383C]'>*</span></label>
+                            <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} id='email' placeholder='Enter your email' className='border outline-0 focus:border-black text-black border-[#D5D7DA] mt-1.5 placeholder:text-[#717680] rounded-md px-3.5 py-2' />
                         </div>
                         <button onClick={()=>router.push("/Account/CheckEmail")} className='bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5'>
                             Reset password
                         </button>
                         <div className='flex w-full justify-between mt-8'>
-                            <button className='text-[var(--color-main)] flex items-center justify-center w-full gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/Account/Signup")}>
+                            <button className='text-[var(--color-main)] flex items-center justify-center w-full gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/Account/login")}>
                                 <Image src={ArrowLeft} alt='media' width={20} height={20}/>
                                 <p>Back to log in</p>
                             </button>

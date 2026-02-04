@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import FillArrowDown from '../../components/assets/images/ChevronLeftBlack.svg'
 import Image from 'next/image'
 
-function Commondropdown({ options, value, onChange, placeholder = "Select", className, dropdownClassName }) {
+function Commondropdown({ options, imageClassName, arrowClassName, buttonClassName, value, onChange, placeholder = "Select", className, dropdownClassName }) {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
 
@@ -23,17 +23,22 @@ function Commondropdown({ options, value, onChange, placeholder = "Select", clas
     <div className={`relative ${className}`} ref={dropdownRef}>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className={`${className} border w-full text-black border-[#D5D7DA] flex gap-2 bg-white rounded-lg px-3.5 py-2.25 flex items-center justify-between cursor-pointer`}
+        className={`${className} border w-full border-[#D5D7DA] gap-2 bg-white rounded-lg px-3.5 py-2.25 flex items-center justify-between cursor-pointer`}
       >
-        <span className={`text-sm ${value ? "text-[#181D27]" : "text-[#717680]"}`}>
-          {value ? (typeof value === 'object' ? value.label : value) : placeholder}
-        </span>
+        <div className="flex items-center gap-2">
+          {value && typeof value === 'object' && value.icon && (
+            <Image src={value.icon} alt="icon" width={20} height={20} className={`${imageClassName} rounded-full object-cover`} />
+          )}
+          <span className={`text-sm ${value ? "" : "text-[#717680]"}`}>
+            {value ? (typeof value === 'object' ? value.label : value) : placeholder}
+          </span>
+        </div>
         <Image
           src={FillArrowDown}
           alt='arrow'
           width={20}
           height={20}
-          className={`transition-transform duration-200 ${isOpen ? "rotate-90" : "-rotate-90"}`}
+          className={`transition-transform duration-200 ${isOpen ? "rotate-90" : "-rotate-90"} ${arrowClassName}`}
         />
       </div>
 
@@ -47,8 +52,12 @@ function Commondropdown({ options, value, onChange, placeholder = "Select", clas
                   onChange(option)
                   setIsOpen(false)
                 }}
-                className='px-3.5 py-2.5 text-sm text-[#181D27] hover:bg-gray-50 cursor-pointer transition-colors'
+                style={option.value === value.value ? { color: "#000000" } : {}}
+                className={`${buttonClassName} px-3.5 py-2.5 text-sm hover:bg-zinc-200 cursor-pointer transition-colors flex items-center gap-2 ${option.value === value.value ? "bg-zinc-200 !text-black" : ""}`}
               >
+                {typeof option === 'object' && option.icon && (
+                  <Image src={option.icon} alt="icon" width={20} height={20} className={`${imageClassName} rounded-full object-cover`} />
+                )}
                 {typeof option === 'object' ? option.label : option}
               </div>
             ))

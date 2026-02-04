@@ -36,7 +36,7 @@ function Page() {
             <div className="flex w-full justify-between mt-8">
               <button
                 className="text-[var(--color-main)] flex items-center justify-center w-full gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
-                onClick={() => router.push("/Account/Signup")}
+                onClick={() => router.push("/Account/login")}
               >
                 <Image src={ArrowLeft} alt="media" width={20} height={20} />
                 <p>Back to log in</p>

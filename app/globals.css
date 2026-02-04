@@ -11,6 +11,7 @@
 
 @theme inline {
   --color-main: #003366;
+  --color-text-5: #535862;
 }
 
 @media (prefers-color-scheme: dark) {
