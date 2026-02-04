@@ -204,7 +204,7 @@ function UserHeader() {
                         </button>
                     </div>
                     <div className='max-sm:hidden'>
-                        <button type="button" onClick={() => router.push("/Account/signup")} className='flex py-2.5 transition-all duration-300 px-4 bg-main hover:bg-main/85 cursor-pointer rounded-lg text-white font-semibold items-center gap-2 cursor-pointer relative'>
+                        <button type="button" onClick={() => router.push("/auth/signup")} className='flex py-2.5 transition-all duration-300 px-4 bg-main hover:bg-main/85 cursor-pointer rounded-lg text-white font-semibold items-center gap-2 cursor-pointer relative'>
                             Sign Up
                         </button>
                     </div>
@@ -349,12 +349,17 @@ function UserHeader() {
                                 </button>
                             </div>
                             <div className='sm:hidden'>
-                                <button type="button" className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
+                                <button
+                                onClick={() => router.push("/auth/login")}
+                                 type="button" className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
                                     <p className='text-base font-normal font-semibold'>Login</p>
                                 </button>
                             </div>
                             <div className='sm:hidden'>
-                                <button type="button" className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
+
+                                <button type="button" 
+                                onClick={() => router.push("/auth/signup")}
+                                className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
                                     <p className='text-base font-normal font-semibold'>Sign Up</p>
                                 </button>
                             </div>
