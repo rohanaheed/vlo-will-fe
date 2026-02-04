@@ -22,7 +22,6 @@ function Page() {
                     <form action="" onSubmit={(e) => e.preventDefault()} className='flex flex-col'>
                         <div className='shadow border border-[#E9EAEB] rounded-lg p-3 justify-center inline-flex mx-auto'>
                             <Image src={key} width={28} height={28} alt='media'/>
-                                
                         </div>
                         <h1 className='text-lg md:text-[30px] text-center font-semibold text-[#181D27] mt-6'>Forgot password?</h1>
                         <p className='text-sm md:text-base text-[#535862] text-center mt-3'>No worries, we’ll send you reset instructions.</p>

@@ -1,14 +1,16 @@
 "use client"
 import React, { useState } from 'react'
-import Logo from "../../components/assets/images/Logo.svg"
+import Logo from "../../../components/assets/images/Logo.svg"
 import Image from 'next/image'
-import sliderbg from "../../components/assets/images/SliderBg1.png"
-import Slider from '../../components/common/slider'
+import sliderbg from "../../../components/assets/images/SliderBg1.png"
+import Slider from '../../../components/common/slider'
 import { useRouter } from 'next/navigation'
 import { Formik, Form, Field } from "formik";
 import * as EmailValidator from "email-validator"; // used when validating with a self-implemented approach
 import * as Yup from "yup"; // used when validating with a pre-built solution
 import { ErrorMessage } from "formik";
+import Loader from '../../../components/common/Loader'
+import { loginApi } from '../../services/authService'
 
 const validationSchema = Yup.object({
     email: Yup.string()
@@ -23,8 +25,6 @@ const validationSchema = Yup.object({
 
 function Page() {
     const router = useRouter()
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
 
     return (
         <div className='flex h-screen w-full overflow-hidden'>
@@ -35,10 +35,27 @@ function Page() {
                     <Formik
                         initialValues={{ email: "", password: "" }}
                         validationSchema={validationSchema}
-                        onSubmit={(values) => {
+                        onSubmit={async (values, { setSubmitting, setFieldError }) => {
+                            try {
+                                const res = await loginApi(values);
 
-                            console.log(values);
+                                // Example response:
+                                // { token: "abc123", user: {...} }
 
+                                localStorage.setItem("token", res.token);
+
+                                router.push("/dashboard");
+                            } catch (error) {
+                                console.log("abc", error, error.message)
+                                // API error handling
+                                if (error.response?.data?.error.message) {
+                                    setFieldError("email", error.response?.data?.error.message);
+                                } else {
+                                    alert("Something went wrong");
+                                }
+                            } finally {
+                                setSubmitting(false);
+                            }
                         }}
                     >
                         {props => {
@@ -105,9 +122,18 @@ function Page() {
                                             Forgot password
                                         </button>
                                     </div>
-                                    <button type="submit" className='bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-8 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5'>
-                                        Sign in
+                                    <button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className={`w-full mt-8 p-2.5 rounded-lg font-semibold text-white ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-[var(--color-main)] hover:bg-[var(--color-main)]/85"}`}
+                                    >
+                                        {isSubmitting ? (
+                                           <Loader />
+                                        ) : (
+                                            "Sign in"
+                                        )}
                                     </button>
+
                                 </Form>
                             );
                         }}
