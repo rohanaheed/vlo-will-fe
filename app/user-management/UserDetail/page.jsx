@@ -6,6 +6,8 @@ import ArrowBack from '../../../components/assets/images/ArrowBack.svg'
 import UserIcon from '../../../components/assets/images/UserIcon.svg'
 import Overview from './overview/page'
 import Subscription from './Subscription/Page'
+import Invoice from './Invoice/page'
+import CreditNotes from './CreditNotes/page'
 import Image from 'next/image'
 function UserDetail({ back }) {
     const [isTab, setIsTab] = useState("Overview")
@@ -42,6 +44,8 @@ function UserDetail({ back }) {
             <div className="border border-black/16 rounded-xl p-3 md:p-4 mt-6">
                 {isTab === "Overview" && <Overview />}
                 {isTab === "Subscription" && <Subscription />}
+                {isTab === "Invoices" && <Invoice />}
+                {isTab === "Credit Notes" && <CreditNotes />}
             </div>
         </div>
     )

@@ -6,8 +6,12 @@ import CommonTable from '@/components/common/CommonTable'
 import visaIcon from '@/components/assets/images/Visa.svg'
 import stripeIcon from '@/components/assets/images/Stripe.svg'
 import dabitCardIcon from '@/components/assets/images/DabitCard.svg'
+import calenderIcon from '@/components/assets/images/CalendarIcon.svg'
+import { useRef } from 'react'
 
 function Page() {
+
+    const dateInputRef = useRef(null)
 
     const columns = [
         {
@@ -228,19 +232,32 @@ function Page() {
                 </div>
             </div>
             <div className='flex md:flex-row flex-col md:items-center gap-2 mb-4'>
-                <div className="w-full relative lg:max-w-60 xl:max-w-93">
+                <div className="w-full relative">
                     <input
                         type="text"
-                        placeholder=" Email / ID"
+                        placeholder=" Search"
                         className="w-full focus:border-black border text-base border-black/16 outline-0 p-4 py-3 pr-12 rounded-lg"
                     />
                     <div className="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-4">
                         <Image src={searchIcon} alt="media" width={20} height={20} />
                     </div>
                 </div>
-                <div>
-                    <input type="date" name="" id="" className='w-full text-[#404040] focus:border-black border text-base border-black/16 outline-0 p-4 py-3 rounded-lg' />
-                </div>
+                 <div className="relative flex items-center">
+                                    <div
+                                        className="absolute top-1/2 -translate-y-1/2 left-4 cursor-pointer"
+                                        onClick={() => dateInputRef.current?.showPicker()}
+                                    >
+                                        <Image src={calenderIcon} alt="calendar" width={20} height={20} />
+                                    </div>
+                                    <input
+                                        type="date"
+                                        ref={dateInputRef}
+                                        name=""
+                                        id=""
+                                        className='w-full text-[#404040] focus:border-black border text-base border-black/16 outline-0 py-2.75 pt-3.25 pr-0 pl-14 rounded-lg [&::-webkit-calendar-picker-indicator]:hidden text-center'
+                                        style={{ colorScheme: 'light' }}
+                                    />
+                                </div>
                 <div className="group inline-block self-end border border-[#D5D7DA] p-3 rounded-lg cursor-pointer hover:bg-[var(--color-main)] hover:text-white transition-colors">
                     <Image src={copyIcon} alt="media" width={24} height={24} className="min-w-6 group-hover:brightness-0 group-hover:invert transition-colors" />
                 </div>
