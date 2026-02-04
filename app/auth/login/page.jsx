@@ -1,16 +1,16 @@
 "use client"
 import React, { useState } from 'react'
-import Logo from "../../components/assets/images/Logo.svg"
+import Logo from "../../../components/assets/images/Logo.svg"
 import Image from 'next/image'
-import sliderbg from "../../components/assets/images/SliderBg1.png"
-import Slider from '../../components/common/slider'
+import sliderbg from "../../../components/assets/images/SliderBg1.png"
+import Slider from '../../../components/common/slider'
 import { useRouter } from 'next/navigation'
 import { Formik, Form, Field } from "formik";
 import * as EmailValidator from "email-validator"; // used when validating with a self-implemented approach
 import * as Yup from "yup"; // used when validating with a pre-built solution
 import { ErrorMessage } from "formik";
-import Loader from '../../components/common/Loader'
-import { loginApi } from '../services/authService'
+import Loader from '../../../components/common/Loader'
+import { loginApi } from '../../services/authService'
 
 const validationSchema = Yup.object({
     email: Yup.string()
