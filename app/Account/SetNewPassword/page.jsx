@@ -55,7 +55,7 @@ function Page() {
                             </div>
                         </div>
 
-                        <button onClick={() => router.push("/auth/reset-password")} className='bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5'>
+                        <button onClick={() => router.push("/Account/PasswordReset")} className='bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5'>
                             Reset password
                         </button>
                         <div className='flex w-full justify-between mt-8'>

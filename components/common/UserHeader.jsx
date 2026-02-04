@@ -199,10 +199,10 @@ function UserHeader() {
                         />
                     </div>
                     <div className='max-sm:hidden'>
-                        <button type="button" onClick={() => router.push("/Account/login")} className='flex py-2.5 transition-all duration-300 px-4 text-main hover:bg-main hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer relative'>
+                        <button type="button" onClick={() => router.push("/auth/login")} className='flex py-2.5 transition-all duration-300 px-4 text-main hover:bg-main hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer relative'>
                             Login
                         </button>
-                </div>
+                    </div>
                     <div className='max-sm:hidden'>
                         <button type="button" onClick={() => router.push("/Account/signup")} className='flex py-2.5 transition-all duration-300 px-4 bg-main hover:bg-main/85 cursor-pointer rounded-lg text-white font-semibold items-center gap-2 cursor-pointer relative'>
                             Sign Up

@@ -82,14 +82,14 @@ function Page() {
               </p>
 
               <button
-              onClick={() => router.push("/auth/forgot-password")}
+                onClick={() => router.push("/Account/ForgetPassword")}
                 className="text-[var(--color-main)] flex items-center justify-center w-full gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
               >
                 Click here to send it again.
               </button>
             </div>
             <p className="text-sm text-[#FF0000]">Resend code in 30s</p>
-            <button onClick={() => router.push("/auth/new-password")} className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5">
+            <button onClick={() => router.push("/Account/SetNewPassword")} className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5">
               Verify
             </button>
 

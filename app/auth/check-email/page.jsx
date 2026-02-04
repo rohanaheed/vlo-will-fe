@@ -36,7 +36,7 @@ function Page() {
             <p className="text-sm md:text-base text-[#535862] text-center mt-3">
               olivia@untitledui.com{" "}
             </p>
-            <button onClick={()=>router.push("/Account/VerficationOtp")} className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5">
+            <button onClick={() => router.push("/auth/verfication-otp")} className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5">
               Open email app
             </button>
             <div className="mt-8 flex justify-center gap-1">
@@ -54,7 +54,7 @@ function Page() {
             <div className="flex w-full justify-between mt-8">
               <button
                 className="text-[var(--color-main)] flex items-center justify-center w-full gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
-                onClick={() => router.push("/Account/login")}
+                onClick={() => router.push("/auth/login")}
               >
                 <Image src={ArrowLeft} alt="media" width={20} height={20} />
                 <p>Back to log in</p>

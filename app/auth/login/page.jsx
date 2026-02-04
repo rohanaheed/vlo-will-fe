@@ -11,6 +11,7 @@ import * as Yup from "yup"; // used when validating with a pre-built solution
 import { ErrorMessage } from "formik";
 import Loader from '../../../components/common/Loader'
 import { loginApi } from '../../services/authService'
+import GoogleIcon from "../../../components/assets/images/GoogleIcon.svg"
 
 const validationSchema = Yup.object({
     email: Yup.string()
@@ -118,14 +119,14 @@ function Page() {
                                             <input type="checkbox" id='check' className='cursor-pointer' />
                                             <label htmlFor="check" className=' cursor-pointer text-[#414651] text-sm font-medium'>Remember me for 30 days</label>
                                         </div>
-                                        <button className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/Account/ForgetPassword")}>
+                                        <button className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/forgot-password")}>
                                             Forgot password
                                         </button>
                                     </div>
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className={`w-full mt-8 p-2.5 rounded-lg font-semibold text-white ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-[var(--color-main)] hover:bg-[var(--color-main)]/85"}`}
+                                        className={`w-full mt-8 p-2.5 rounded-lg font-semibold text-white cursor-pointer ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-[var(--color-main)] hover:bg-[var(--color-main)]/85"}`}
                                     >
                                         {isSubmitting ? (
                                            <Loader />
@@ -133,6 +134,16 @@ function Page() {
                                             "Sign in"
                                         )}
                                     </button>
+                                    <div className='flex items-center gap-2 mt-4 border border-[#D5D7DA] rounded-lg p-2.5 cursor-pointer flex justify-center items-center hover:bg-zinc-100 transition'>
+                                                                <Image src={GoogleIcon} width={20} height={20} alt="google" />
+                                                                <p className='text-[#414651] font-semibold'>Sign in with Google</p>
+                                                            </div>
+                                                            <div className='flex items-center justify-center gap-2 mt-4'>
+                                                                <p className='text-[#414651] text-sm'>Don't have an account?</p>
+                                                                <button className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/signup")}>
+                                                                    Sign up
+                                                                </button>
+                                                            </div>
 
                                 </Form>
                             );
