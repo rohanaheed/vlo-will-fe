@@ -15,6 +15,7 @@ import User from "../assets/images/User.svg"
 import ChevronDown from "../assets/images/CheveronDownGray.svg"
 import DashboardIcon from "../assets/images/DashboardIcon.svg"
 import SliderUser from "../assets/images/SliderUser.svg"
+
 function Header({ title }) {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
@@ -79,7 +80,7 @@ function Header({ title }) {
                         <div className='rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center'>
                             <Image src={Searchicon} width={16} height={16} alt="media" />
                         </div>
-                        <div onClick={() => router.push('/Notification')} className='relative cursor-pointer rounded-full h-8 w-8 bg-[var(--color-main)] flex items-center justify-center'>
+                        <div onClick={() => router.push('/notification')} className='relative cursor-pointer rounded-full h-8 w-8 bg-[var(--color-main)] flex items-center justify-center'>
                             <Image src={Bell} width={16} height={16} alt="media" />
                             <span className='bg-[#FF0000] h-4.5 w-4.5 text-[10px] absolute top-0 right-0 translate-x-1 font-bold rounded-full p-0.5 flex justify-center items-center text-white'>
                                 12

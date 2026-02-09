@@ -53,7 +53,7 @@ function Slider({ data }) {
       </div>
 
       {/* Content Overlay - Positioned at bottom */}
-      <div className='absolute bottom-8 left-8 right-8 flex flex-col items-center gap-6'>
+      <div className='absolute bottom-4 left-4 right-4 lg:bottom-8 lg:left-8 lg:right-8 flex flex-col items-center gap-6'>
         <div
           key={currentIndex}
           className={`bg-black/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-white shadow-2xl overflow-hidden relative group w-full ${direction === 'right' ? 'animate-slideInRight' : 'animate-slideInLeft'}`}
@@ -62,16 +62,16 @@ function Slider({ data }) {
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
 
           {/* Quote */}
-          <h2 className='relative text-2xl md:text-3xl font-semibold leading-tight mb-8 z-10'>
+          <h2 className='relative text-lg md:text-lg lg:text-3xl font-semibold leading-tight mb-8 z-10'>
             &quot;{currentSlide.quote}&quot;
           </h2>
 
           <div className='relative flex justify-between z-10'>
             {/* Author Info */}
             <div>
-              <h3 className='text-3xl font-semibold'>{currentSlide.author}</h3>
-              <p className='text-white text-lg mt-3'>{currentSlide.role}</p>
-              <p className='text-white text-base mt-1'>{currentSlide.location}</p>
+              <h3 className='text-lg md:text-lg lg:text-3xl font-semibold'>{currentSlide.author}</h3>
+              <p className='text-white text-sm md:text-base lg:text-lg mt-3'>{currentSlide.role}</p>
+              <p className='text-white text-sm md:text-base lg:text-lg mt-1'>{currentSlide.location}</p>
             </div>
 
             {/* Right Side: Rating & Nav */}
@@ -89,13 +89,13 @@ function Slider({ data }) {
               <div className='flex gap-4'>
                 <button
                   onClick={prevSlide}
-                  className='w-14 h-14 rounded-full border border-white/50 flex items-center justify-center hover:bg-white/20 transition cursor-pointer'
+                  className='w-10 h-10 lg:w-14 lg:h-14 rounded-full border border-white/50 flex items-center justify-center hover:bg-white/20 transition cursor-pointer'
                 >
                   <Image src={arrow} alt="Previous" className="" width={24} height={24} />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className='w-14 h-14 rounded-full border border-white/50 flex items-center justify-center hover:bg-white/20 transition cursor-pointer'
+                  className='w-10 h-10 lg:w-14 lg:h-14 rounded-full border border-white/50 flex items-center justify-center hover:bg-white/20 transition cursor-pointer'
                 >
                   <Image src={arrow} alt="Next" className="rotate-180" width={24} height={24} />
                 </button>

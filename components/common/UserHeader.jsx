@@ -11,12 +11,14 @@ import ukflag from '@/components/assets/images/UkFlag.svg'
 import auflag from '@/components/assets/images/AUFlag.svg'
 import canflag from '@/components/assets/images/CAFlag.svg'
 import menuIcon from '@/components/assets/images/MenuIcon.svg'
+import crossIcon from '@/components/assets/images/CrossIcon.svg'
 import { useRouter } from 'next/navigation'
 function UserHeader() {
     const router = useRouter()
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [selectedLanguage, setSelectedLanguage] = useState({ label: 'ENG', value: 'UK', icon: ukflag });
     const [isOpen, setIsOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const languageOptions = [
         { label: 'ENG', value: 'UK', icon: ukflag },
         { label: 'ENG', value: 'US', icon: usflag },
@@ -57,6 +59,17 @@ function UserHeader() {
         };
     }, [isOpen, activeDropdown]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 0);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     const toggleDropdown = (name) => {
         setActiveDropdown(activeDropdown === name ? null : name);
     };
@@ -67,7 +80,7 @@ function UserHeader() {
 
     return (
         <div>
-            <main className='py-5 px-2 flex items-center justify-between whitespace-nowrap gap-4'>
+            <main className={`py-5 px-2 flex items-center fixed top-0 left-0 right-0 z-50 justify-between whitespace-nowrap gap-4 transition-all duration-300 ${isScrolled ? "bg-white/16 backdrop-blur-lg" : ""}`}>
                 <div className='flex items-center gap-8'>
                     <button className='cursor-pointer'>
                         <Image src={logo} alt="logo" width={100} height={32} />
@@ -83,7 +96,7 @@ function UserHeader() {
                                 <Image src={chevronDown} alt="chevronDown" width={20} height={20} />
                             </button>
                             {activeDropdown === 'product' && (
-                                <ul className='text-text-5 bg-black/10 text-white backdrop-blur-lg text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10'>
+                                <ul className={`text-text-5 text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10 ${isScrolled ? 'bg-white text-black' : 'bg-black/10 text-white backdrop-blur-lg'}`}>
                                     <li >
                                         <button
                                             onClick={closeDropdown}
@@ -112,7 +125,7 @@ function UserHeader() {
                                 <Image src={chevronDown} alt="chevronDown" width={20} height={20} />
                             </button>
                             {activeDropdown === 'services' && (
-                                <ul className='text-text-5 text-white bg-black/10 backdrop-blur-lg text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10'>
+                                <ul className={`text-text-5 text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10 ${isScrolled ? 'bg-white text-black' : 'bg-black/10 text-white backdrop-blur-lg'}`}>
                                     <li >
                                         <button
                                             onClick={closeDropdown}
@@ -149,7 +162,7 @@ function UserHeader() {
                                 <Image src={chevronDown} alt="chevronDown" width={20} height={20} />
                             </button>
                             {activeDropdown === 'resources' && (
-                                <ul className='text-text-5 text-white bg-black/10 backdrop-blur-lg text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10'>
+                                <ul className={`text-text-5 text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10 ${isScrolled ? 'bg-white text-black' : 'bg-black/10 text-white backdrop-blur-lg'}`}>
                                     <li >
                                         <button
                                             onClick={closeDropdown}
@@ -194,7 +207,7 @@ function UserHeader() {
                             value={selectedLanguage}
                             onChange={setSelectedLanguage}
                             className="border-none !w-auto !gap-7 !bg-transparent !p-0 !text-base !text-black !font-semibold"
-                            dropdownClassName="w-full !p-0 !bg-black/10 !backdrop-blur-lg !top-7 !text-xs !font-medium"
+                            dropdownClassName={`w-full !p-0 !top-7 !text-xs !font-medium ${isScrolled ? '!bg-white !text-black' : '!bg-black/10 !backdrop-blur-lg !text-white'}`}
                             buttonClassName="!hover:zinc-200 !p-1"
                         />
                     </div>
@@ -214,7 +227,7 @@ function UserHeader() {
                 </div>
             </main>
             <div className={` ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} fixed transition duration-300 ease-in-out inset-0 bg-black/10 backdrop-blur-lg z-50`}>
-                <div ref={mobileMenuRef} className={`p-6 ${isOpen ? "translate-x-0" : "-translate-x-full"} fixed transition duration-300 ease-in-out top-0 left-0 h-full bg-main z-50 w-[300px]`}>
+                <div ref={mobileMenuRef} className={`p-3 sm:p-6 ${isOpen ? "translate-x-0" : "-translate-x-full"} fixed transition duration-300 ease-in-out top-0 left-0 h-full bg-main z-50 w-full sm:w-[300px]`}>
                     <div className='flex items-center justify-center'>
                         <Image src={logo} alt="logo" width={170} height={32} className='brightness-200 invert-1 ' />
                     </div>
@@ -239,6 +252,9 @@ function UserHeader() {
                                     buttonClassName="!hover:bg-zinc-200 !text-white hover:!text-black !p-1"
                                     arrowClassName="!invert !brightness-100"
                                 />
+                            </div>
+                            <div onClick={() => setIsOpen(false)} className='cursor-pointer'>
+                                <Image src={crossIcon} alt="crossIcon" width={20} height={20} className='min-w-5 h-5 brightness-200 invert-1' />
                             </div>
                         </div>
                         <div className='flex mt-4 flex-col gap-2'>
@@ -277,7 +293,7 @@ function UserHeader() {
                                     className='flex items-center hover:bg-white/10 w-full transition-all duration-300 p-2 rounded-lg flex justify-between gap-2 cursor-pointer relative'
                                     onClick={() => toggleDropdown('services')}
                                 >
-                                    <p className='text-base font-normal font-semibold'>Services</p>
+                                    <p className='text-white font-normal font-semibold'>Services</p>
                                     <Image src={chevronDown} alt="chevronDown" width={20} height={20} className='brightness-200' />
                                 </button>
                                 {activeDropdown === 'services' && (
@@ -306,7 +322,7 @@ function UserHeader() {
                                     type="button"
                                     className='flex items-center hover:bg-white/10 w-full transition-all duration-300 p-2 rounded-lg gap-2 cursor-pointer relative'
                                 >
-                                    <p className='text-base font-normal font-semibold'>Pricing</p>
+                                    <p className='text-white font-normal font-semibold'>Pricing</p>
                                 </button>
                             </div>
                             <div className='relative' ref={resourcesRef}>
@@ -315,7 +331,7 @@ function UserHeader() {
                                     className='flex items-center hover:bg-white/10 w-full transition-all duration-300 p-2 rounded-lg flex justify-between gap-2 cursor-pointer relative'
                                     onClick={() => toggleDropdown('resources')}
                                 >
-                                    <p className='text-base font-normal font-semibold'>Resources</p>
+                                    <p className='text-white font-normal font-semibold'>Resources</p>
                                     <Image src={chevronDown} alt="chevronDown" width={20} height={20} className='brightness-200' />
                                 </button>
                                 {activeDropdown === 'resources' && (
@@ -345,21 +361,21 @@ function UserHeader() {
                                     type="button"
                                     className='flex items-center gap-2 cursor-pointer relative hover:bg-white/10 transition-all duration-300 p-2 rounded-lg w-full'
                                 >
-                                    <p className='text-base font-normal font-semibold'>About</p>
+                                    <p className='text-white font-normal font-semibold'>About</p>
                                 </button>
                             </div>
                             <div className='sm:hidden'>
                                 <button
-                                onClick={() => router.push("/auth/login")}
-                                 type="button" className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
+                                    onClick={() => router.push("/auth/login")}
+                                    type="button" className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
                                     <p className='text-base font-normal font-semibold'>Login</p>
                                 </button>
                             </div>
                             <div className='sm:hidden'>
 
-                                <button type="button" 
-                                onClick={() => router.push("/auth/signup")}
-                                className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
+                                <button type="button"
+                                    onClick={() => router.push("/auth/signup")}
+                                    className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
                                     <p className='text-base font-normal font-semibold'>Sign Up</p>
                                 </button>
                             </div>

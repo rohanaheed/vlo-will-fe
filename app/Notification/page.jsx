@@ -4,8 +4,8 @@ import Header from '../../components/common/Header'
 import ArrowBack from '../../components/assets/images/ArrowBack.svg'
 import Image from 'next/image'
 import { useState } from 'react'
-import NotificationTab from '../../app/Notification/NotificationTab/Page'
-import HeadupTab from '../../app/Notification/HeadupTab/Page'
+import NotificationTab from './NotificationTab/Page'
+import HeadupTab from './HeadupTab/Page'
 import { useRouter } from 'next/navigation'
 function Page() {
   const router = useRouter()
