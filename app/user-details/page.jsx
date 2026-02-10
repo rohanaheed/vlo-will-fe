@@ -9,12 +9,11 @@ import user2 from '@/components/assets/images/User2.svg'
 import user3 from '@/components/assets/images/User3.svg'
 import StampPaper from '@/components/assets/images/StampPaper.svg'
 import Image from 'next/image'
+import ProgressBar from '@/components/common/ProgressBar'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 function Page() {
     const [tab, setTab] = useState("overview")
-    const router = useRouter()
     const questions = [
         {
             id: 1,
@@ -56,23 +55,8 @@ function Page() {
                             Make a legally valid Will in minutes. Protect your loved ones and ensure your wishes are carried out with
                             ease and confidence.
                         </p>
-                        <div className='flex items-center justify-between gap-4 mt-6 flex-wrap'>
-                            <p className='text-text-5 text-sm md:text-base lg:text-xl'>
-                                Takes less than 10 minutes. Create, customise, and download instantly.
-                            </p>
-                            <button onClick={() => router.push('/user-details')} 
-                             className='max-md:w-full self-end text-sm md:text-base lg:text-xl cursor-pointer font-semibold bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
-                                Start Document <span className='text-lg md:text-xl lg:text-2xl'>(£29)</span>
-                            </button>
-
-                        </div>
-                        <div className='px-4'>
-                            <div className='flex p-0.75 bg-[#FAFAFA] rounded-xl border border-black/16 mt-8 backdrop-blur-lg'>
-                                <button className={`${tab === "overview" ? "bg-main text-white" : "bg-white text-text-1"} p-2.5 rounded-xl w-full cursor-pointer transition-all duration-300`} onClick={() => setTab("overview")}>Overview</button>
-                                <button className={`${tab === "Preview" ? "bg-main text-white" : "bg-white text-text-1"} p-2.5 rounded-xl w-full cursor-pointer transition-all duration-300`} onClick={() => setTab("Preview")}>Preview</button>
-                                <button className={`${tab === "FAQ’s" ? "bg-main text-white" : "bg-white text-text-1"} p-2.5 rounded-xl w-full cursor-pointer transition-all duration-300`} onClick={() => setTab("FAQ’s")}>FAQ’s</button>
-
-                            </div>
+                        <div className='flex items-center justify-between gap-4 mt-6 flex-wrap w-full'>
+                            <ProgressBar />
                         </div>
 
                     </div>
