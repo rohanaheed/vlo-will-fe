@@ -12,6 +12,7 @@ import * as Yup from "yup"; // used when validating with a pre-built solution
 import { ErrorMessage } from "formik";
 import { signupApi } from '../../services/authService'
 import Loader from '../../../components/common/Loader'
+import LoginWithGoogle from '../../../components/common/LoginWithGoogle'
 
 const validationSchema = Yup.object({
     name: Yup.string()
@@ -157,10 +158,11 @@ function Page() {
                                             "Get Started"
                                         )}
                                     </button>
-                                    <div className='flex items-center gap-2 shadow mt-4 border border-[#D5D7DA] rounded-lg p-2.5 cursor-pointer flex justify-center items-center hover:bg-zinc-100 transition'>
+                                    <LoginWithGoogle />
+                                    {/* <div className='flex items-center gap-2 shadow mt-4 border border-[#D5D7DA] rounded-lg p-2.5 cursor-pointer flex justify-center items-center hover:bg-zinc-100 transition'>
                                         <Image src={GoogleIcon} width={20} height={20} alt="google" />
                                         <p className='text-[#414651] font-semibold'>Sign in with Google</p>
-                                    </div>
+                                    </div> */}
                                     <div className='flex items-center justify-center gap-1 mt-4'>
                                         <p className='text-[#414651] text-sm'>Already have an account?</p>
                                         <button className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/login")}>
