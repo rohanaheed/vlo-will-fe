@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Logo from "../../../components/assets/images/Logo.svg"
 import Image from 'next/image'
+import toast from 'react-hot-toast'
 import sliderbg from "../../../components/assets/images/SliderBg1.png"
 import Slider from '../../../components/common/slider'
 import { useRouter } from 'next/navigation'
@@ -56,14 +57,14 @@ function Page() {
                         onSubmit={async (values, { setSubmitting, setFieldError }) => {
                             try {
                                 const res = await signupApi(values);
+                                 toast.success("Registration successful. Please verify your email.")
                             }
                             catch (error) {
-                                console.log("abc", error, error.message)
                                 // API error handling
                                 if (error.response?.data?.error.message) {
                                     setFieldError("email", error.response?.data?.error.message);
                                 } else {
-                                    alert("Something went wrong");
+                                    toast.error("Something went wrong");
                                 }
                             } finally {
                                 setSubmitting(false);
@@ -159,13 +160,9 @@ function Page() {
                                         )}
                                     </button>
                                     <LoginWithGoogle />
-                                    {/* <div className='flex items-center gap-2 shadow mt-4 border border-[#D5D7DA] rounded-lg p-2.5 cursor-pointer flex justify-center items-center hover:bg-zinc-100 transition'>
-                                        <Image src={GoogleIcon} width={20} height={20} alt="google" />
-                                        <p className='text-[#414651] font-semibold'>Sign in with Google</p>
-                                    </div> */}
                                     <div className='flex items-center justify-center gap-1 mt-4'>
                                         <p className='text-[#414651] text-sm'>Already have an account?</p>
-                                        <button className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/login")}>
+                                        <button type='button'className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/login")}>
                                             Log in
                                         </button>
                                     </div>

@@ -1,18 +1,18 @@
 "use client"
 import React, { useState } from 'react'
-import Logo from "../../../components/assets/images/Logo.svg"
+import * as Yup from "yup"; // used when validating with a pre-built solution
 import Image from 'next/image'
+import Logo from "../../../components/assets/images/Logo.svg"
 import sliderbg from "../../../components/assets/images/SliderBg1.png"
 import Slider from '../../../components/common/slider'
 import { useRouter } from 'next/navigation'
 import { Formik, Form, Field } from "formik";
-import * as EmailValidator from "email-validator"; // used when validating with a self-implemented approach
-import * as Yup from "yup"; // used when validating with a pre-built solution
 import { ErrorMessage } from "formik";
 import Loader from '../../../components/common/Loader'
 import { loginApi } from '../../services/authService'
 import GoogleIcon from "../../../components/assets/images/GoogleIcon.svg"
 import LoginWithGoogle from '../../../components/common/LoginWithGoogle'
+import toast from 'react-hot-toast'
 
 const validationSchema = Yup.object({
     email: Yup.string()
@@ -40,12 +40,8 @@ function Page() {
                         onSubmit={async (values, { setSubmitting, setFieldError }) => {
                             try {
                                 const res = await loginApi(values);
-
-                                // Example response:
-                                // { token: "abc123", user: {...} }
-
-                                localStorage.setItem("token", res.token);
-
+                                console.log("token", res)
+                                localStorage.setItem("userInfo", JSON.stringify(res.data));
                                 router.push("/dashboard");
                             } catch (error) {
                                 console.log("abc", error, error.message)
@@ -53,7 +49,7 @@ function Page() {
                                 if (error.response?.data?.error.message) {
                                     setFieldError("email", error.response?.data?.error.message);
                                 } else {
-                                    alert("Something went wrong");
+                                    toast.error("Something went wrong");
                                 }
                             } finally {
                                 setSubmitting(false);
@@ -142,7 +138,7 @@ function Page() {
                                     </div> */}
                                     <div className='flex items-center justify-center gap-2 mt-4'>
                                         <p className='text-[#414651] text-sm'>Don't have an account?</p>
-                                        <button className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/signup")}>
+                                        <button type='button'  className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/signup")}>
                                             Sign up
                                         </button>
                                     </div>
