@@ -22,3 +22,14 @@ export const signupApi = async (data) => {
   }
 };
 
+export const forgotPassword = async (data) => {
+  try {
+    const response = await api.post("/auth/forgot-password", data);
+    console.log("response:", response);
+    return response.data;
+  } catch (error) {
+    console.log("API error:", error.response || error);
+    throw error;
+  }
+};
+
