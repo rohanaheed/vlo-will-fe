@@ -20,16 +20,16 @@ function Commondropdown({ options, imageClassName, arrowClassName, buttonClassNa
   }, [])
 
   return (
-    <div className={`relative ${className}`} ref={dropdownRef}>
+    <div className={`relative`} ref={dropdownRef}>
       <div
         onClick={() => setIsOpen(!isOpen)}
         className={`${className} border w-full border-[#D5D7DA] gap-2 bg-white rounded-lg px-3.5 py-2.25 flex items-center justify-between cursor-pointer`}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
           {value && typeof value === 'object' && value.icon && (
             <Image src={value.icon} alt="icon" width={20} height={20} className={`${imageClassName} rounded-full object-cover`} />
           )}
-          <span className={`text-sm ${value ? "" : "text-[#717680]"}`}>
+          <span className={`text-sm truncate ${value ? "" : "text-[#717680]"}`}>
             {value ? (typeof value === 'object' ? value.label : value) : placeholder}
           </span>
         </div>

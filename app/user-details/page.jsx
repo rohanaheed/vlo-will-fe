@@ -7,13 +7,92 @@ import faqBg from '@/components/assets/images/FAQ.svg'
 import user1 from '@/components/assets/images/User1.svg'
 import user2 from '@/components/assets/images/User2.svg'
 import user3 from '@/components/assets/images/User3.svg'
-import StampPaper from '@/components/assets/images/StampPaper.svg'
+import StampPaper from '@/components/assets/images/StampPaper1.svg'
 import Image from 'next/image'
 import ProgressBar from '@/components/common/ProgressBar'
+import ExpandIcon from '@/components/assets/images/ExpandIcon.svg'
 import { useState } from 'react'
+import Testatot from './forms/Testatot'
+import Executors from './forms/Executors'
+import Spounce from './forms/Spounce'
+import Beneficiaries from './forms/Beneficiaries'
+import Assets from './forms/Assets'
+import Refresh from '@/components/assets/images/RefreshIcon.svg'
+import UpDownIcon from '@/components/assets/images/UpDownIcon.svg'
+import RotateIcon from '@/components/assets/images/RotateIcon.svg'
+import FillArrowLeftIcon from '@/components/assets/images/FillArrowLeftIcon.svg'
+import Liabilities from './forms/Liabilities'
+import Gifts from './forms/Gifts'
+import Residual from './forms/Residual'
+// import Funeral from './forms/Funeral'
+// import Witnesses from './forms/Witnesses'
+// import Review from './forms/Review'
+
 
 function Page() {
     const [tab, setTab] = useState("overview")
+    const [tab1, settab1] = useState("testator")
+    const [completedSteps, setCompletedSteps] = useState([])
+
+    // Steps mapping
+    const steps = [
+        "testator", "executor", "spouse", "beneficiaries", "assets",
+        "liabilities", "gifts", "residual", "funeral", "witnesses", "review"
+    ]
+
+    const getCurrentStepIndex = () => steps.indexOf(tab1)
+
+    const handleSave = () => {
+        const currentIndex = getCurrentStepIndex()
+        if (currentIndex < steps.length - 1) {
+            setCompletedSteps(prev => [...new Set([...prev, currentIndex])])
+            settab1(steps[currentIndex + 1])
+        }
+    }
+
+    const handleSkip = () => {
+        const currentIndex = getCurrentStepIndex()
+        if (currentIndex < steps.length - 1) {
+            settab1(steps[currentIndex + 1])
+        }
+    }
+
+    const handleBack = () => {
+        const currentIndex = getCurrentStepIndex()
+        if (currentIndex > 0) {
+            settab1(steps[currentIndex - 1])
+        }
+    }
+    const [zoom, setZoom] = useState(100)
+    const [rotation, setRotation] = useState(0)
+    const [page, setPage] = useState(1)
+    const totalPages = 2
+    const [isFullScreen, setIsFullScreen] = useState(false)
+
+    const toggleFullScreen = () => {
+        setIsFullScreen(!isFullScreen)
+    }
+
+    const handleZoomIn = () => {
+        setZoom(prev => Math.min(prev + 10, 200))
+    }
+
+    const handleZoomOut = () => {
+        setZoom(prev => Math.max(prev - 10, 50))
+    }
+
+    const handleRotate = () => {
+        setRotation(prev => (prev + 90) % 360)
+    }
+
+    const handleNextPage = () => {
+        setPage(prev => Math.min(prev + 1, totalPages))
+    }
+
+    const handlePrevPage = () => {
+        setPage(prev => Math.max(prev - 1, 1))
+    }
+
     const questions = [
         {
             id: 1,
@@ -48,7 +127,7 @@ function Page() {
                 <UserHeader />
             </div>
             <div className=''>
-                <div className="bg-[url('@/components/assets/images/Background.svg')] p-4 pt-20 md:pt-30 pb-10 md:pb-10 bg-cover bg-center">
+                <div className="bg-[url('@/components/assets/images/Background.svg')] p-4 pt-20 md:pt-30 pb-5 md:pb-10 bg-cover bg-center">
                     <div className='max-w-[1200px] mx-auto'>
                         <h1 className='text-text-1 text-center text-2xl md:text-[45px] lg:text-[60px] font-semibold'>Create Your Will</h1>
                         <p className='text-text-5 text-sm md:text-base lg:text-xl mt-6'>
@@ -56,72 +135,131 @@ function Page() {
                             ease and confidence.
                         </p>
                         <div className='flex items-center justify-between gap-4 mt-6 flex-wrap w-full'>
-                            <ProgressBar />
+                            <ProgressBar
+                                currentStep={getCurrentStepIndex()}
+                                completedSteps={completedSteps}
+                            />
                         </div>
 
                     </div>
                 </div>
-                <div className='grid md:grid-cols-2 grid-cols-1 max-w-[1200px] mx-auto items-start md:pb-24 pb-8 p-4'>
-                    <div className='bg-white rounded-lg'>
-                        <h2 className='text-xl md:text-2xl lg:text-4xl font-bold mb-6 text-text-1'>Overview</h2>
+                <div className='grid md:grid-cols-2 grid-cols-1 gap-9 max-w-[1200px] mx-auto items-start md:pb-24 pb-8 p-4'>
+                    {tab1 === "testator" &&
+                        <Testatot onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {tab1 === "executor" &&
+                        <Executors onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {tab1 === "spouse" &&
+                        <Spounce onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {tab1 === "beneficiaries" &&
+                        <Beneficiaries onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {tab1 === "assets" &&
+                        <Assets onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {tab1 === "liabilities" &&
+                        <Liabilities onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {tab1 === "gifts" &&
+                        <Gifts onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {tab1 === "residual" &&
+                        <Residual onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {/* {tab1 === "funeral" &&
+                        <Funeral onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {tab1 === "witnesses" &&
+                        <Witnesses onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                    {tab1 === "review" &&
+                        <Review onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />} */}
+                    <div className='bg-[#fafafa] border border-black/16 rounded-2xl'>
+                        <div className='flex items-center justify-between bg-white  p-4 rounded-t-2xl shadow-lg'>
+                            <div className="flex items-center  gap-1 cursor-pointer">
+                                <p className="text-xs text-black">Update Preview</p>
+                                <Image src={Refresh} alt="refresh" width={16} height={16} />
+                            </div>
+                            <div onClick={toggleFullScreen} className="cursor-pointer">
+                                <Image src={ExpandIcon} alt="refresh" width={16} height={16} />
+                            </div>
+                        </div>
+                        <div className="overflow-hidden flex justify-center bg-[#fafafa] transition-all" style={{ height: '500px' }}>
+                            <div
+                                style={{
+                                    transform: `scale(${zoom / 100}) rotate(${rotation}deg)`,
+                                    transition: 'transform 0.3s ease',
+                                    transformOrigin: 'center center'
+                                }}
+                                className="w-full h-full flex items-center justify-center"
+                            >
+                                <Image src={StampPaper} alt="stamp" width={100} height={100} className='w-full h-full object-contain' />
+                            </div>
+                        </div>
+                        <div className="bg-white p-4 rounded-b-2xl flex items-center justify-between z-10 relative">
+                            <div className="flex items-center gap-4">
+                                <button onClick={handleZoomOut} className='font-bold text-2xl text-[#535862] hover:text-black'>-</button>
+                                <span className='text-sm text-[#414651] font-semibold w-12 text-center'>{zoom}%</span>
+                                <button onClick={handleZoomIn} className='font-bold text-2xl text-[#535862] hover:text-black'>+</button>
+                            </div>
+                            <div className='w-[1px] h-6 bg-[#BDBDC7]'></div>
+                            <div className="flex items-center gap-4">
+                                <Image src={UpDownIcon} alt="resize" width={24} height={24} className='cursor-pointer hover:opacity-80' onClick={() => { setZoom(100); setRotation(0); }} />
+                                <Image src={RotateIcon} alt="rotate" width={24} height={24} className='cursor-pointer hover:opacity-80' onClick={handleRotate} />
+                            </div>
+                            <div className='w-[1px] h-6 bg-[#BDBDC7]'></div>
+                            <div className="flex items-center gap-4">
+                                <button onClick={handlePrevPage} disabled={page === 1} className={`transition-opacity ${page === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:opacity-80'}`}>
+                                    <Image src={FillArrowLeftIcon} alt="prev" width={24} height={24} />
+                                </button>
+                                <span className='text-sm text-[#414651] font-semibold'>{page} / {totalPages}</span>
+                                <button onClick={handleNextPage} disabled={page === totalPages} className={`rotate-180 transition-opacity ${page === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:opacity-80'}`}>
+                                    <Image src={FillArrowLeftIcon} alt="next" width={24} height={24} />
+                                </button>
+                            </div>
+                        </div>
 
-                        <ul className='list-disc pl-6 space-y-6 text-text-1'>
-                            <li>
-                                <h3 className='font-bold md:text-lg lg:text-xl mb-2 inline'>About this document:</h3>
-                                <p className='text-text-5 md:text-lg lg:text-xl mb-3 mt-5'>
-                                    A Will, also known as a Last Will and Testament, is a legal document that outlines how you want your property, money, and personal belongings to be distributed after your death. It also lets you appoint executors to manage your estate and guardians to care for any minor children.
-                                </p>
-                                <p className='text-text-5 md:text-lg lg:text-xl mt-2'>
-                                    Creating a Will helps prevent disputes, ensures your wishes are respected, and gives peace of mind that your loved ones are looked after.
-                                </p>
-                            </li>
-
-                            <li>
-                                <h3 className='font-bold md:text-lg lg:text-xl mb-2 inline'>Who should use this:</h3>
-                                <p className='text-text-5 md:text-lg lg:text-xl mb-2 mt-5'>This document is suitable for:</p>
-                                <ul className='list-disc pl-6 space-y-2 text-text-5 md:text-lg lg:text-xl mt-2'>
-                                    <li>Individuals who want to plan how their assets are distributed after death.</li>
-                                    <li>Parents or guardians who wish to appoint caretakers for their children.</li>
-                                    <li>Anyone who owns property, savings, or digital assets.</li>
-                                    <li>People who want to make charitable gifts or donations through their estate.</li>
-                                    <li>Those who want to update an existing Will due to marriage, divorce, or changes in assets.</li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <h3 className='font-semibold text-lg mb-2 inline'>Types included:</h3>
-                                <p className='text-text-5 md:text-lg lg:text-xl mb-2 mt-5'>This template supports different types of Wills, including:</p>
-                                <ul className='list-disc pl-6 space-y-2 text-text-5 md:text-lg lg:text-xl mt-2'>
-                                    <li><span className='font-semibold text-text-1'>Single Will</span> – For individuals making their own Will.</li>
-                                    <li><span className='font-semibold text-text-1'>Mirror Will</span> – For couples or partners who wish to leave their estates to each other.</li>
-                                    <li><span className='font-semibold text-text-1'>Living Will</span> (Advance Directive) – For expressing medical and care wishes in advance.</li>
-                                    <li><span className='font-semibold text-text-1'>Trust Will</span> – For creating trusts to manage or protect assets for beneficiaries.</li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <h3 className='font-semibold text-lg mb-2 inline'>What you&apos;ll need:</h3>
-                                <p className='text-text-5 md:text-lg lg:text-xl mb-2 mt-5'>Before starting, make sure you have the following information:</p>
-                                <ul className='list-disc pl-6 space-y-2 text-text-5 md:text-lg lg:text-xl mt-2'>
-                                    <li>Your full legal name, address, and date of birth.</li>
-                                    <li>Details of your spouse or partner (if applicable).</li>
-                                    <li>Names and contact details of executors and guardians.</li>
-                                    <li>A list of your assets and any debts or liabilities.</li>
-                                    <li>Details of any specific gifts, charities, or beneficiaries.</li>
-                                    <li>Any special instructions, such as funeral wishes or personal messages.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <button className='max-md:w-full mt-6 self-end text-sm md:text-base lg:text-xl cursor-pointer font-semibold bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
-                            Start Document <span className='text-lg md:text-xl lg:text-2xl'>(£29)</span>
-                        </button>
-                        <p className='text-text-5 md:text-lg lg:text-xl mt-2'>*
-                            Takes less than 10 minutes. Create, customise, and download instantly.
-                        </p>
+                        {/* Full Screen Overlay */}
+                        {isFullScreen && (
+                            <div className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-center p-4">
+                                <div className="absolute top-4 right-4 z-60">
+                                    <button onClick={toggleFullScreen} className="text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div className="w-full h-full flex-1 overflow-auto flex items-center justify-center relative">
+                                    <div
+                                        style={{
+                                            transform: `scale(${zoom / 100}) rotate(${rotation}deg)`,
+                                            transition: 'transform 0.3s ease',
+                                            transformOrigin: 'center center'
+                                        }}
+                                        className="max-w-[90%] max-h-[80vh]"
+                                    >
+                                        <Image src={StampPaper} alt="stamp" width={800} height={800} className='object-contain w-auto h-auto max-w-full max-h-full' />
+                                    </div>
+                                </div>
+                                {/* Full Screen Toolbar */}
+                                <div className="bg-white p-4 rounded-2xl flex items-center gap-6 mt-4 shadow-xl">
+                                    <div className="flex items-center gap-4">
+                                        <button onClick={handleZoomOut} className='font-bold text-2xl text-[#535862] hover:text-black'>-</button>
+                                        <span className='text-sm text-[#414651] font-semibold w-12 text-center'>{zoom}%</span>
+                                        <button onClick={handleZoomIn} className='font-bold text-2xl text-[#535862] hover:text-black'>+</button>
+                                    </div>
+                                    <div className='w-[1px] h-6 bg-[#E9EAEB]'></div>
+                                    <div className="flex items-center gap-4">
+                                        <Image src={UpDownIcon} alt="resize" width={20} height={20} className='cursor-pointer hover:opacity-80' onClick={() => { setZoom(100); setRotation(0); }} />
+                                        <Image src={RotateIcon} alt="rotate" width={20} height={20} className='cursor-pointer hover:opacity-80' onClick={handleRotate} />
+                                    </div>
+                                    <div className='w-[1px] h-6 bg-[#E9EAEB]'></div>
+                                    <div className="flex items-center gap-4">
+                                        <button onClick={handlePrevPage} disabled={page === 1} className={`transition-opacity ${page === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:opacity-80'}`}>
+                                            <Image src={FillArrowLeftIcon} alt="prev" width={24} height={24} />
+                                        </button>
+                                        <span className='text-sm text-[#414651] font-semibold'>{page} / {totalPages}</span>
+                                        <button onClick={handleNextPage} disabled={page === totalPages} className={`rotate-180 transition-opacity ${page === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:opacity-80'}`}>
+                                            <Image src={FillArrowLeftIcon} alt="next" width={24} height={24} />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                    <div className=''>
-                        <Image src={StampPaper} alt="stamp" width={100} height={100} className='w-full h-full object-fill' />
-                    </div>
+
                 </div>
                 <div className='border-t border-black/16 md:pt-24 pt-8'>
                     <div className='px-4 md:px-6 lg:px-8 max-w-[1200px] mx-auto'>
@@ -169,40 +307,7 @@ function Page() {
                         </div>
 
                     </div>
-                    <div className='bg-main text-center pt-9 md:pt-24 pb-40 w-full'>
-                        <div className='max-w-md mx-auto'>
-                            <h1 className='lg:text-[36px] md:text-2xl text-xl font-semibold text-white mt-5'>DocNet by the Numbers</h1>
-                            <p className='mt-5 lg:text-xl md:text-lg text-base font-normal text-[#F3F3F3] mt-5'>
-                                Real results from users who trust <span className='font-semibold'>DocNet Ltd</span> to create, customise and manage legal documents quickly
-                                and securely.
-                            </p>
-                        </div>
 
-                    </div>
-                    <div className=' max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 md:gap-6 gap-4 bg lg:p-14 md:p-10 p-6 translate-y-[-100px]'>
-                        <div className='bg-white/80 backdrop-blur-md boder border-white/60 rounded-xl p-4 text-center'>
-                            <h1 className='text-3xl font-bold text-main'>25,000+</h1>
-                            <h2 className='text-lg mt-3 font-semibold text-text-1'>Legal documents created</h2>
-                            <p className='text-base font-normal text-text-5 mt-2'>
-                                Documents generated across wills, tenancy, business and more.
-                            </p>
-                        </div>
-                        <div className='bg-white/80 backdrop-blur-md boder border-white/60 rounded-xl p-4 text-center'>
-                            <h1 className='text-3xl font-bold text-main'>12,300+</h1>
-                            <h2 className='text-lg mt-3 font-semibold text-text-1'>Registered users</h2>
-                            <p className='text-base font-normal text-text-5 mt-2'>
-                                Active accounts who've saved drafts or completed documents.
-                            </p>
-                        </div>
-                        <div className='bg-white/80 backdrop-blur-md boder border-white/60 rounded-xl p-4 text-center'>
-                            <h1 className='text-3xl font-bold text-main'>4.8/5</h1>
-                            <h2 className='text-lg mt-3 font-semibold text-text-1'>Average customer rating</h2>
-                            <p className='text-base font-normal text-text-5 mt-2'>
-                                Based on user reviews for ease, accuracy and support.
-                            </p>
-                        </div>
-
-                    </div>
 
                 </div>
             </div>
