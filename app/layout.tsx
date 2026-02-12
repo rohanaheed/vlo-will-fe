@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +30,32 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <GoogleOAuthProvider clientId="803171903133-92r3ih0jjf8ftatohl6g9j8mq7mck9p9.apps.googleusercontent.com">
+          {children}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              // Define default options
+              className: '',
+              duration: 5000,
+              removeDelay: 1000,
+              // style: {
+              //   background: '#363636',
+              //   color: '#fff',
+              // },
+
+              // Default options for specific types
+              success: {
+                duration: 5000,
+                // iconTheme: {
+                //   primary: 'green',
+                //   secondary: 'black',
+                // },
+              },
+            }}
+          />
+        </GoogleOAuthProvider>
       </body>
-    </html>
+    </html >
   );
 }

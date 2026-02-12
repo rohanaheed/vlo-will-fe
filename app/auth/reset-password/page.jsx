@@ -7,6 +7,11 @@ import sliderbg from "../../../components/assets/images/SliderBg1.png";
 import Slider from "../../../components/common/slider";
 import { useRouter } from "next/navigation";
 import Check from "../../../components/assets/images/CheckIcon.svg";
+import { forgotPassword } from "../../services/authService";
+import { Formik, Form, Field } from "formik";
+import * as EmailValidator from "email-validator"; // used when validating with a self-implemented approach
+import * as Yup from "yup"; // used when validating with a pre-built solution
+import { ErrorMessage } from "formik";
 
 function Page() {
   const router = useRouter();

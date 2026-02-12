@@ -1,17 +1,18 @@
 "use client"
 import React, { useState } from 'react'
-import Logo from "../../../components/assets/images/Logo.svg"
+import * as Yup from "yup"; // used when validating with a pre-built solution
 import Image from 'next/image'
+import Logo from "../../../components/assets/images/Logo.svg"
 import sliderbg from "../../../components/assets/images/SliderBg1.png"
 import Slider from '../../../components/common/slider'
 import { useRouter } from 'next/navigation'
 import { Formik, Form, Field } from "formik";
-import * as EmailValidator from "email-validator"; // used when validating with a self-implemented approach
-import * as Yup from "yup"; // used when validating with a pre-built solution
 import { ErrorMessage } from "formik";
 import Loader from '../../../components/common/Loader'
 import { loginApi } from '../../services/authService'
 import GoogleIcon from "../../../components/assets/images/GoogleIcon.svg"
+import LoginWithGoogle from '../../../components/common/LoginWithGoogle'
+import toast from 'react-hot-toast'
 
 const validationSchema = Yup.object({
     email: Yup.string()
@@ -26,7 +27,7 @@ const validationSchema = Yup.object({
 
 function Page() {
     const router = useRouter()
-
+    const [remember, setRember] = useState(false)
     return (
         <div className='flex h-screen w-full overflow-hidden'>
             {/* Left Side - Form */}
@@ -38,13 +39,9 @@ function Page() {
                         validationSchema={validationSchema}
                         onSubmit={async (values, { setSubmitting, setFieldError }) => {
                             try {
-                                const res = await loginApi(values);
-
-                                // Example response:
-                                // { token: "abc123", user: {...} }
-
-                                localStorage.setItem("token", res.token);
-
+                                const res = await loginApi({...values , remember_me:remember});
+                                console.log("token", res)
+                                localStorage.setItem("userInfo", JSON.stringify(res.data));
                                 router.push("/dashboard");
                             } catch (error) {
                                 console.log("abc", error, error.message)
@@ -52,7 +49,7 @@ function Page() {
                                 if (error.response?.data?.error.message) {
                                     setFieldError("email", error.response?.data?.error.message);
                                 } else {
-                                    alert("Something went wrong");
+                                    toast.error("Something went wrong");
                                 }
                             } finally {
                                 setSubmitting(false);
@@ -115,8 +112,8 @@ function Page() {
                                         />
                                     </div>
                                     <div className='flex flex-col gap-2 md:flex-row justify-between mt-8'>
-                                        <div className='flex items-center gap-0.5'>
-                                            <input type="checkbox" id='check' className='cursor-pointer' />
+                                        <div  className='flex items-center gap-0.5'>
+                                            <input type="checkbox" onClick={() => setRember(!remember)} id='check' className='cursor-pointer' />
                                             <label htmlFor="check" className=' cursor-pointer text-[#414651] text-sm font-medium'>Remember me for 30 days</label>
                                         </div>
                                         <button className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/forgot-password")}>
@@ -129,21 +126,22 @@ function Page() {
                                         className={`w-full mt-8 p-2.5 rounded-lg font-semibold text-white cursor-pointer ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-[var(--color-main)] hover:bg-[var(--color-main)]/85"}`}
                                     >
                                         {isSubmitting ? (
-                                           <Loader />
+                                            <Loader />
                                         ) : (
                                             "Sign in"
                                         )}
                                     </button>
-                                    <div className='flex items-center gap-2 mt-4 border border-[#D5D7DA] rounded-lg p-2.5 cursor-pointer flex justify-center items-center hover:bg-zinc-100 transition'>
-                                                                <Image src={GoogleIcon} width={20} height={20} alt="google" />
-                                                                <p className='text-[#414651] font-semibold'>Sign in with Google</p>
-                                                            </div>
-                                                            <div className='flex items-center justify-center gap-2 mt-4'>
-                                                                <p className='text-[#414651] text-sm'>Don't have an account?</p>
-                                                                <button className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/signup")}>
-                                                                    Sign up
-                                                                </button>
-                                                            </div>
+                                    <LoginWithGoogle />
+                                    {/* <div className='flex items-center gap-2 mt-4 border border-[#D5D7DA] rounded-lg p-2.5 cursor-pointer flex justify-center items-center hover:bg-zinc-100 transition'>
+                                        <Image src={GoogleIcon} width={20} height={20} alt="google" />
+                                        <p className='text-[#414651] font-semibold'>Sign in with Google</p>
+                                    </div> */}
+                                    <div className='flex items-center justify-center gap-2 mt-4'>
+                                        <p className='text-[#414651] text-sm'>Don't have an account?</p>
+                                        <button type='button'  className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/signup")}>
+                                            Sign up
+                                        </button>
+                                    </div>
 
                                 </Form>
                             );
