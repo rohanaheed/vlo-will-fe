@@ -27,7 +27,7 @@ const validationSchema = Yup.object({
 
 function Page() {
     const router = useRouter()
-
+    const [remember, setRember] = useState(false)
     return (
         <div className='flex h-screen w-full overflow-hidden'>
             {/* Left Side - Form */}
@@ -39,7 +39,7 @@ function Page() {
                         validationSchema={validationSchema}
                         onSubmit={async (values, { setSubmitting, setFieldError }) => {
                             try {
-                                const res = await loginApi(values);
+                                const res = await loginApi({...values , remember_me:remember});
                                 console.log("token", res)
                                 localStorage.setItem("userInfo", JSON.stringify(res.data));
                                 router.push("/dashboard");
@@ -112,8 +112,8 @@ function Page() {
                                         />
                                     </div>
                                     <div className='flex flex-col gap-2 md:flex-row justify-between mt-8'>
-                                        <div className='flex items-center gap-0.5'>
-                                            <input type="checkbox" id='check' className='cursor-pointer' />
+                                        <div  className='flex items-center gap-0.5'>
+                                            <input type="checkbox" onClick={() => setRember(!remember)} id='check' className='cursor-pointer' />
                                             <label htmlFor="check" className=' cursor-pointer text-[#414651] text-sm font-medium'>Remember me for 30 days</label>
                                         </div>
                                         <button className='text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer' onClick={() => router.push("/auth/forgot-password")}>
