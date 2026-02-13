@@ -388,6 +388,87 @@ function Assets({ onSave, onSkip, onBack }) {
         setIntellectualAssets(prev => prev.filter(asset => asset.id !== id))
     }
 
+    const handleSave = () => {
+        const allErrors = {}
+        let isValid = true
+
+        // Property Validation
+        if (hasProperty === 'yes' && properties.length === 0) {
+            if (!validateForm()) {
+                allErrors.property = "Please add at least one property or complete the current entry"
+                isValid = false
+            } else {
+                // Auto-add if valid and list is empty? Or just block.
+                // Better to block and show error saying click add.
+                allErrors.property = "Please click 'Add' to include this property in your list"
+                isValid = false
+            }
+        }
+
+        // Bank Account Validation
+        if (hasBankAccount === 'yes' && bankAccounts.length === 0) {
+            if (!validateBankAccount()) {
+                allErrors.bank = "Please add at least one bank account or complete the current entry"
+                isValid = false
+            } else {
+                allErrors.bank = "Please click 'Add' to include this bank account in your list"
+                isValid = false
+            }
+        }
+
+        // Investment Validation
+        if (hasInvestment === 'yes' && investments.length === 0) {
+            if (!validateInvestment()) {
+                allErrors.investment = "Please add at least one investment or complete the current entry"
+                isValid = false
+            } else {
+                allErrors.investment = "Please click 'Add' to include this investment in your list"
+                isValid = false
+            }
+        }
+
+        // Valuable Item Validation
+        if (hasValuableItem === 'yes' && valuableItems.length === 0) {
+            if (!validateValuableItem()) {
+                allErrors.valuable = "Please add at least one valuable item or complete the current entry"
+                isValid = false
+            } else {
+                allErrors.valuable = "Please click 'Add' to include this item in your list"
+                isValid = false
+            }
+        }
+
+        // Digital Asset Validation
+        if (hasDigitalAsset === 'yes' && digitalAssets.length === 0) {
+            if (!validateDigitalAsset()) {
+                allErrors.digital = "Please add at least one digital asset or complete the current entry"
+                isValid = false
+            } else {
+                allErrors.digital = "Please click 'Add' to include this digital asset in your list"
+                isValid = false
+            }
+        }
+
+        // Intellectual Asset Validation
+        if (hasIntellectualAsset === 'yes' && intellectualAssets.length === 0) {
+            if (!validateIntellectualAsset()) {
+                allErrors.intellectual = "Please add at least one intellectual asset or complete the current entry"
+                isValid = false
+            } else {
+                allErrors.intellectual = "Please click 'Add' to include this asset in your list"
+                isValid = false
+            }
+        }
+
+        if (isValid) {
+            onSave()
+        } else {
+            // Set global or specific section errors
+            setErrors(prev => ({ ...prev, ...allErrors }))
+            // Scroll to top or first error could be good but let's start with blocking
+        }
+    }
+
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>
             <div className='flex items-center justify-between gap-4 flex-wrap w-full mb-5'>
@@ -660,21 +741,23 @@ function Assets({ onSave, onSkip, onBack }) {
                             <button
                                 onClick={addProperty}
                                 type="button"
-                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
                             >
                                 <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                 Add
                             </button>
-                            {properties.length > 0 && (
-                                <button
-                                    onClick={() => removeProperty(properties[properties.length - 1].id)}
-                                    type="button"
-                                    className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
-                                >
-                                    <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
-                                    Remove
-                                </button>
-                            )}
+                            <button
+                                onClick={() => {
+                                    if (properties.length > 0) {
+                                        removeProperty(properties[properties.length - 1].id)
+                                    }
+                                }}
+                                type="button"
+                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                            >
+                                <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
+                                Remove
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -802,21 +885,23 @@ function Assets({ onSave, onSkip, onBack }) {
                             <button
                                 onClick={addBankAccount}
                                 type="button"
-                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
                             >
                                 <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                 Add
                             </button>
-                            {bankAccounts.length > 0 && (
-                                <button
-                                    onClick={() => removeBankAccount(bankAccounts[bankAccounts.length - 1].id)}
-                                    type="button"
-                                    className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
-                                >
-                                    <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
-                                    Remove
-                                </button>
-                            )}
+                            <button
+                                onClick={() => {
+                                    if (bankAccounts.length > 0) {
+                                        removeBankAccount(bankAccounts[bankAccounts.length - 1].id)
+                                    }
+                                }}
+                                type="button"
+                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                            >
+                                <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
+                                Remove
+                            </button>
                         </div>
                     </div>
                 )}
@@ -944,21 +1029,23 @@ function Assets({ onSave, onSkip, onBack }) {
                             <button
                                 onClick={addInvestment}
                                 type="button"
-                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
                             >
                                 <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                 Add
                             </button>
-                            {investments.length > 0 && (
-                                <button
-                                    onClick={() => removeInvestment(investments[investments.length - 1].id)}
-                                    type="button"
-                                    className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
-                                >
-                                    <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
-                                    Remove
-                                </button>
-                            )}
+                            <button
+                                onClick={() => {
+                                    if (investments.length > 0) {
+                                        removeInvestment(investments[investments.length - 1].id)
+                                    }
+                                }}
+                                type="button"
+                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                            >
+                                <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
+                                Remove
+                            </button>
                         </div>
                     </div>
                 )}
@@ -1074,21 +1161,23 @@ function Assets({ onSave, onSkip, onBack }) {
                             <button
                                 onClick={addValuableItem}
                                 type="button"
-                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
                             >
                                 <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                 Add
                             </button>
-                            {valuableItems.length > 0 && (
-                                <button
-                                    onClick={() => removeValuableItem(valuableItems[valuableItems.length - 1].id)}
-                                    type="button"
-                                    className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
-                                >
-                                    <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
-                                    Remove
-                                </button>
-                            )}
+                            <button
+                                onClick={() => {
+                                    if (valuableItems.length > 0) {
+                                        removeValuableItem(valuableItems[valuableItems.length - 1].id)
+                                    }
+                                }}
+                                type="button"
+                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                            >
+                                <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
+                                Remove
+                            </button>
                         </div>
                     </div>
                 )}
@@ -1216,21 +1305,23 @@ function Assets({ onSave, onSkip, onBack }) {
                             <button
                                 onClick={addDigitalAsset}
                                 type="button"
-                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
                             >
                                 <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                 Add
                             </button>
-                            {digitalAssets.length > 0 && (
-                                <button
-                                    onClick={() => removeDigitalAsset(digitalAssets[digitalAssets.length - 1].id)}
-                                    type="button"
-                                    className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
-                                >
-                                    <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
-                                    Remove
-                                </button>
-                            )}
+                            <button
+                                onClick={() => {
+                                    if (digitalAssets.length > 0) {
+                                        removeDigitalAsset(digitalAssets[digitalAssets.length - 1].id)
+                                    }
+                                }}
+                                type="button"
+                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                            >
+                                <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
+                                Remove
+                            </button>
                         </div>
                     </div>
                 )}
@@ -1358,21 +1449,23 @@ function Assets({ onSave, onSkip, onBack }) {
                             <button
                                 onClick={addIntellectualAsset}
                                 type="button"
-                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
                             >
                                 <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                 Add
                             </button>
-                            {intellectualAssets.length > 0 && (
-                                <button
-                                    onClick={() => removeIntellectualAsset(intellectualAssets[intellectualAssets.length - 1].id)}
-                                    type="button"
-                                    className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
-                                >
-                                    <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
-                                    Remove
-                                </button>
-                            )}
+                            <button
+                                onClick={() => {
+                                    if (intellectualAssets.length > 0) {
+                                        removeIntellectualAsset(intellectualAssets[intellectualAssets.length - 1].id)
+                                    }
+                                }}
+                                type="button"
+                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                            >
+                                <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
+                                Remove
+                            </button>
                         </div>
                     </div>
                 )}
@@ -1383,7 +1476,7 @@ function Assets({ onSave, onSkip, onBack }) {
                 <button onClick={onBack} type="button" className="cursor-pointer px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-main hover:text-white transition-colors w-full md:w-auto">
                     Back
                 </button>
-                <button onClick={onSave} type="button" className="cursor-pointer flex-1 px-6 py-2.5 rounded-lg bg-main text-white font-medium whitespace-nowrap hover:bg-main/85 transition-colors w-full md:w-auto text-center">
+                <button onClick={handleSave} type="button" className="cursor-pointer flex-1 px-6 py-2.5 rounded-lg bg-main text-white font-medium whitespace-nowrap hover:bg-main/85 transition-colors w-full md:w-auto text-center">
                     Save and Continue
                 </button>
                 <button onClick={onSkip} type="button" className="cursor-pointer px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-main hover:text-white transition-colors w-full md:w-auto">

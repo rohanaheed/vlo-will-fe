@@ -1,97 +1,60 @@
 "use client"
-import React, { useState, forwardRef } from 'react'
+import React, { useState } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
-import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css"
-
 import UKFlag from '@/components/assets/images/UkFlag.svg'
-import UsFlag from '@/components/assets/images/USFlag.svg'
-import calender from '@/components/assets/images/CalendarIcon1.svg'
-
-
-const calculateAge = (dob) => {
-    if (!dob) return "";
-    const today = new Date();
-    const birthDate = new Date(dob);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return `${age} Year`;
-}
-
-const CustomDateInput = forwardRef(({ value, onClick, onChange, placeholder, age }, ref) => (
-    <div
-        className="flex items-center justify-between border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 bg-white w-full focus-within:border-black"
-        onClick={onClick}
-    >
-        <div className="flex items-center gap-2 w-full">
-            <Image src={calender} alt="Calendar" width={20} height={20} className="cursor-pointer" />
-            <input
-                ref={ref}
-                value={value}
-                onChange={onChange}
-                placeholder={placeholder}
-                className="flex-1 w-full bg-transparent text-black border-none outline-none text-sm placeholder:text-[#717680]"
-            />
-            {age && (
-                <span className="text-sm text-text-1 font-medium whitespace-nowrap">
-                    {age}
-                </span>
-            )}
-        </div>
-    </div>
-));
-CustomDateInput.displayName = "CustomDateInput";
+import PlusBlueIcon from '@/components/assets/images/PlusBlueIcon.svg'
+import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
 function Executors({ onSave, onSkip, onBack }) {
-    const [calendarView, setCalendarView] = useState('day')
-    const [executors, setExecutors] = useState([])
+    const [executorType, setExecutorType] = useState('individual')
+    const [appointAlternate, setAppointAlternate] = useState(true)
+    const [executorsList, setExecutorsList] = useState([])
     const [errors, setErrors] = useState({})
-    const [formData, setFormData] = useState({
+
+    const initialFormData = {
+        // Individual Fields
         title: "",
         fullName: "",
-        otherName: "",
-        gender: "",
-        buildingNumber: "",
-        buildingName: "",
-        street: "",
-        town: "",
-        city: "",
-        county: "",
-        postcode: "",
-        country: { label: "United Kingdom", value: "UK", icon: UKFlag },
-        niNumber: "",
-        dob: null,
+        relationship: "",
         phoneCode: { label: "+44", value: "+44", icon: UKFlag },
         phone: "",
         email: "",
-        maritalStatus: "",
-        marriageClause: "",
-        declaration: false
-    })
+
+        // Professional Fields
+        firmName: "",
+        role: "",
+
+        // Common
+        isAlternate: false,
+        isBackup: false
+    }
+
+    // Main Executor Data
+    const [formData, setFormData] = useState({ ...initialFormData })
 
     const titleOptions = ["Mr", "Mrs", "Ms", "Dr", "Prof", "Rev", "Other"]
-    const genderOptions = ["Male", "Female", "Trans", "Other", "Prefer not to say"]
-    const maritalStatusOptions = [
-        "Single",
-        "Married",
-        "Divorced",
-        "Widowed",
-        "Civil partner",
-        "Previously civil partner",
-        "Separated",
-        "Living as Partners",
-        "Other"
+
+    // Relationship Options
+    const relationshipOptions = [
+        "Spouse",
+        "Civil Partner",
+        "Long-term Partner",
+        "Brother",
+        "Sister",
+        "Friend",
+        "Child",
+        "Parent",
+        "Add"
     ]
 
-    // Placeholder options for country and phone code
-    const countryOptions = [
-        { label: "United Kingdom", value: "UK", icon: UKFlag },
-        // Add more countries as needed
+    // Professional Role Options
+    const roleOptions = [
+        "Solicitor",
+        "Accountant",
+        "Manager",
+        "Add"
     ]
 
     const phoneCodeOptions = [
@@ -106,419 +69,391 @@ function Executors({ onSave, onSkip, onBack }) {
         }
     }
 
-    const validateExecutor = () => {
+    // Handlers for Main Executors
+    const addExecutor = () => {
+        if (validate()) {
+            setExecutorsList(prev => [...prev, { ...formData, id: Date.now(), type: executorType }])
+            setFormData({ ...initialFormData })
+            setErrors({})
+        }
+    }
+
+    const removeExecutor = () => {
+        if (executorsList.length > 0) {
+            setExecutorsList(prev => prev.slice(0, -1))
+        }
+    }
+
+    const validate = () => {
         const newErrors = {}
-        if (!formData.fullName) newErrors.fullName = "Full Name is required"
-        if (!formData.dob) newErrors.dob = "Date of Birth is required"
-        if (!formData.buildingNumber && !formData.buildingName) newErrors.buildingName = "Building Name or Number is required"
-        if (!formData.street) newErrors.street = "Street is required"
-        if (!formData.town) newErrors.town = "Town is required"
-        if (!formData.postcode) newErrors.postcode = "Postcode is required"
-        if (!formData.maritalStatus) newErrors.maritalStatus = "Marital Status is required"
+        if (executorType === 'individual') {
+            if (!formData.fullName) newErrors.fullName = "Full Name is required"
+            if (!formData.relationship) newErrors.relationship = "Relationship is required"
+        } else {
+            if (!formData.firmName) newErrors.firmName = "Firm Name is required"
+            if (!formData.role) newErrors.role = "Role is required"
+        }
 
         setErrors(newErrors)
         return Object.keys(newErrors).length === 0
     }
 
-    const addExecutor = () => {
-        if (validateExecutor()) {
-            setExecutors(prev => [...prev, { ...formData, id: Date.now() }])
-            // Reset form
-            setFormData({
-                title: "",
-                fullName: "",
-                otherName: "",
-                gender: "",
-                buildingNumber: "",
-                buildingName: "",
-                street: "",
-                town: "",
-                city: "",
-                county: "",
-                postcode: "",
-                country: { label: "United Kingdom", value: "UK", icon: UKFlag },
-                niNumber: "",
-                dob: null,
-                phoneCode: { label: "+44", value: "+44", icon: UKFlag },
-                phone: "",
-                email: "",
-                maritalStatus: "",
-                marriageClause: "",
-                declaration: false
-            })
-            setErrors({})
+    const handleSave = () => {
+        if (executorsList.length === 0) {
+            if (!validate()) {
+                setErrors(prev => ({ ...prev, global: "Please add at least one executor or complete the current entry" }))
+            } else {
+                setErrors(prev => ({ ...prev, global: "Please click 'Add' to include this executor in your list" }))
+            }
+            return
         }
-    }
-
-    const removeExecutor = (id) => {
-        setExecutors(prev => prev.filter(ex => ex.id !== id))
+        onSave()
     }
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>
-            <div className='flex items-center justify-between gap-4 flex-wrap w-full mb-6'>
-                <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-text-1'>Executors' Details</h2>
+            <div className='flex items-center justify-between gap-4 flex-wrap w-full mb-5'>
+                <h2 className='text-xl md:text-2xl lg:text-4xl font-bold text-text-1'>Executors' Details</h2>
                 <button className='text-black flex text-xs items-center gap-1 cursor-pointer'>
                     Auto Saved
                     <Image src={Refresh} alt="Refresh" width={16} height={16} className='w-4 h-4' />
                 </button>
             </div>
 
-            <p className='text-text-5 text-sm md:text-base mb-4'>
-                Enter your full legal details. These appear in your Will exactly as shown.
+            <p className='text-text-4 text-sm md:text-base mb-4'>
+                Appoint one or more executors to carry out your wishes.
             </p>
 
+            <div className='mb-4'>
+                <div className="flex items-center gap-2 mb-1.5">
+                    <label className='block text-sm font-medium text-text-4'>
+                        Who will be your Executor?
+                    </label>
+                    <div className="flex ml-2.5 items-center justify-center w-[17px] h-[17px] rounded-full border border-black text-black text-[10px] font-bold cursor-pointer">?</div>
+                </div>
+                <div className="flex items-center gap-6">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                            type="radio"
+                            name="executorType"
+                            checked={executorType === 'individual'}
+                            onChange={() => setExecutorType('individual')}
+                            className="appearance-none w-4 h-4 border border-gray-300 rounded-full bg-white checked:border-[#003966] checked:bg-white focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden after:absolute after:w-2 after:h-2 after:bg-[#003966] after:rounded-full checked:after:block"
+                        />
+                        <span className="text-sm font-medium text-text-1">Individual</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                            type="radio"
+                            name="executorType"
+                            checked={executorType === 'professional'}
+                            onChange={() => setExecutorType('professional')}
+                            className="appearance-none w-4 h-4 border border-gray-300 rounded-full bg-white checked:border-[#003966] checked:bg-white focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden after:absolute after:w-2 after:h-2 after:bg-[#003966] after:rounded-full checked:after:block"
+                        />
+                        <span className="text-sm font-medium text-text-1">Professional Advisors</span>
+                    </label>
+                </div>
+            </div>
+
             <form className='space-y-4'>
-                {/* Full Name */}
-                <div>
-                    <label className='block text-sm font-medium text-text-1 mb-1.5'>Full Name <span className='text-red-500'>*</span></label>
-                    <div className='flex items-center w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-2 focus-within:border-black'>
-                        <Commondropdown
-                            options={titleOptions}
-                            value={formData.title}
-                            onChange={(val) => handleChange("title", val)}
-                            placeholder="Mr / Mrs / Ms / Dr"
-                            className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                            dropdownClassName="!w-[200px]"
-                        />
-                        <input
-                            type="text"
-                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
-                            placeholder="John Alexander Smith"
-                            value={formData.fullName}
-                            onChange={(e) => handleChange("fullName", e.target.value)}
-                        />
-                    </div>
-                </div>
 
-                {/* Other Name */}
-                <div>
-                    <label className='block text-sm font-medium text-text-1 mb-1.5'>Known by any other name (if applicable)</label>
-                    <input
-                        type="text"
-                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                        placeholder="Please leave blank if this does not apply."
-                        value={formData.otherName}
-                        onChange={(e) => handleChange("otherName", e.target.value)}
-                    />
-                </div>
+                {/* INDIVIDUAL SECTION */}
+                {executorType === 'individual' && (
+                    <div className="space-y-4">
+                        <h3 className="font-bold text-xl text-black">Individual</h3>
 
-                {/* Gender */}
-                <div>
-                    <label className='block text-sm font-medium text-text-1 mb-1.5'>Gender</label>
-                    <Commondropdown
-                        options={genderOptions}
-                        value={formData.gender}
-                        onChange={(val) => handleChange("gender", val)}
-                        placeholder="Male/Female/Trans/Other / Add"
-                        className="w-full"
-                    />
-                </div>
-
-                <div className=''>
-                    <h3 className='text-lg font-bold text-text-1 mb-4'>Address Details <span className='text-red-500'>*</span></h3>
-
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                        {/* Building Number & Name */}
+                        {/* Full Name */}
                         <div>
-                            <label className='block text-sm font-medium text-text-5 mb-1.5'>Building Number</label>
-                            <input
-                                type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                                placeholder="1568"
-                                value={formData.buildingNumber}
-                                onChange={(e) => handleChange("buildingNumber", e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label className='block text-sm font-medium text-text-5 mb-1.5'>Building Name</label>
-                            <input
-                                type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                                placeholder="Sky land"
-                                value={formData.buildingName}
-                                onChange={(e) => handleChange("buildingName", e.target.value)}
-                            />
+                            <label className='block text-sm font-medium text-text-4 mb-1.5'>Full Name <span className='text-red-500'>*</span></label>
+                            <div className={`flex items-center w-full bg-white text-black border ${errors.fullName ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-2 focus-within:border-black`}>
+                                <Commondropdown
+                                    options={titleOptions}
+                                    value={formData.title}
+                                    onChange={(val) => handleChange("title", val)}
+                                    placeholder="Mr / Mrs / Ms / Dr"
+                                    className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                                    dropdownClassName="!w-[120px]"
+                                />
+
+                                <input
+                                    type="text"
+                                    className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                    placeholder="Robert Wilson"
+                                    value={formData.fullName}
+                                    onChange={(e) => handleChange("fullName", e.target.value)}
+                                />
+                            </div>
+                            {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
                         </div>
 
-                        {/* Street & Town */}
+                        {/* Relationship */}
                         <div>
-                            <label className='block text-sm font-medium text-text-5 mb-1.5'>Street</label>
-                            <input
-                                type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                                placeholder="Wood Street"
-                                value={formData.street}
-                                onChange={(e) => handleChange("street", e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label className='block text-sm font-medium text-text-5 mb-1.5'>Town</label>
-                            <input
-                                type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                                placeholder="Leyton"
-                                value={formData.town}
-                                onChange={(e) => handleChange("town", e.target.value)}
-                            />
-                        </div>
-
-                        {/* City & County */}
-                        <div>
-                            <label className='block text-sm font-medium text-text-5 mb-1.5'>City</label>
-                            <input
-                                type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                                placeholder="London"
-                                value={formData.city}
-                                onChange={(e) => handleChange("city", e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label className='block text-sm font-medium text-text-5 mb-1.5'>County/State</label>
-                            <input
-                                type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                                placeholder="London"
-                                value={formData.county}
-                                onChange={(e) => handleChange("county", e.target.value)}
-                            />
-                        </div>
-
-                        {/* PostCode & Country */}
-                        <div>
-                            <label className='block text-sm font-medium text-text-5 mb-1.5'>Post/Zip Code</label>
-                            <input
-                                type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                                placeholder="Post/zip code"
-                                value={formData.postcode}
-                                onChange={(e) => handleChange("postcode", e.target.value)}
-                            />
-                        </div>
-                        <div className='text-[#414651]'>
-                            <label className='block text-sm font-medium text-text-1 text-text-5 mb-1.5'>Country</label>
+                            <label className='block text-sm font-medium text-text-4 mb-1.5'>Relationship to You <span className='text-red-500'>*</span></label>
                             <Commondropdown
-                                options={countryOptions}
-                                value={formData.country}
-                                onChange={(val) => handleChange("country", val)}
-                                placeholder="Select Country"
-                                className="w-full py-[10px]"
-                                inputClassName=""
+                                options={relationshipOptions}
+                                value={formData.relationship}
+                                onChange={(val) => handleChange("relationship", val)}
+                                placeholder="Spouse / Civil Partner / Long-term Partner / Brother / Friend / Add"
+                                className={`w-full !py-2.5 text-[#414651] ${errors.relationship ? 'border-red-500' : ''}`}
+                            />
+                            {errors.relationship && <p className="text-red-500 text-xs mt-1">{errors.relationship}</p>}
+                        </div>
+
+                        {/* Telephone */}
+                        <div>
+                            <label className='block text-sm font-medium text-text-4 mb-1.5'>Telephone (Optional)</label>
+                            <div className='flex items-center w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-2 focus-within:border-black'>
+                                <Commondropdown
+                                    options={phoneCodeOptions}
+                                    value={formData.phoneCode}
+                                    onChange={(val) => handleChange("phoneCode", val)}
+                                    className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                                    dropdownClassName="!w-[100px]"
+                                />
+
+                                <input
+                                    type="text"
+                                    className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                    placeholder="7890 123456"
+                                    value={formData.phone}
+                                    onChange={(e) => handleChange("phone", e.target.value)}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Email Address */}
+                        <div>
+                            <label className='block text-sm font-medium text-text-4 mb-1.5'>Email Address</label>
+                            <input
+                                type="email"
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                placeholder="robert@wilsonsolicitors.co.uk"
+                                value={formData.email}
+                                onChange={(e) => handleChange("email", e.target.value)}
                             />
                         </div>
+
+                        {/* Alternate Executor Section (Individual) */}
+                        <div className="pt-2">
+                            <div className="flex items-center gap-2 mb-4">
+                                <h4 className="font-bold text-black">Alternate Executor/s</h4>
+                                <div className="flex ml-2.5 items-center justify-center w-[17px] h-[17px] rounded-full border border-black text-black text-[10px] font-bold cursor-pointer">?</div>
+                            </div>
+
+                            <div className="space-y-2 mb-4">
+                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.isAlternate}
+                                        onChange={(e) => handleChange('isAlternate', e.target.checked)}
+                                        className="appearance-none w-5 h-5 border border-[#D5D7DA] rounded-sm bg-white checked:bg-[#003966] checked:border-[#003966] focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden checked:after:block after:w-[6px] after:h-[10px] after:border-white after:border-r-2 after:border-b-2 after:rotate-45 after:mb-[2px]"
+                                    />
+                                    <span className="text-sm text-text-4">Alternate Executor / Executrix</span>
+                                </label>
+                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.isBackup}
+                                        onChange={(e) => handleChange('isBackup', e.target.checked)}
+                                        className="appearance-none w-5 h-5 border border-[#D5D7DA] rounded-sm bg-white checked:bg-[#003966] checked:border-[#003966] focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden checked:after:block after:w-[6px] after:h-[10px] after:border-white after:border-r-2 after:border-b-2 after:rotate-45 after:mb-[2px]"
+                                    />
+                                    <span className="text-sm text-text-4">Backup Executor / Executrix</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                {/* National Insurance Number */}
-                <div>
-                    <label className='block text-sm font-medium text-text-1 mb-1.5'>National Insurance Number</label>
-                    <input
-                        type="text"
-                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                        placeholder="AB123456C"
-                        value={formData.niNumber}
-                        onChange={(e) => handleChange("niNumber", e.target.value)}
-                    />
-                </div>
+                )}
 
 
-                <div>
-                    <label className='block text-sm font-medium text-text-1 mb-1.5'>Date of Birth <span className='text-red-500'>*</span></label>
-                    <DatePicker
-                        selected={formData.dob}
-                        onChange={(date) => {
-                            if (calendarView === 'year') {
-                                setCalendarView('month')
-                                const newDate = new Date(formData.dob || new Date())
-                                newDate.setFullYear(date.getFullYear())
-                                handleChange("dob", newDate)
-                            } else if (calendarView === 'month') {
-                                setCalendarView('day')
-                                const newDate = new Date(formData.dob || new Date())
-                                newDate.setMonth(date.getMonth())
-                                newDate.setFullYear(date.getFullYear()) // Month picker might return 1st of month with current year if not careful, but date object usually has correct year if we are in that context
-                                handleChange("dob", date) // Actually date from month picker is full date
-                            } else {
-                                handleChange("dob", date)
-                            }
-                        }}
-                        customInput={<CustomDateInput age={calculateAge(formData.dob)} />}
-                        dateFormat="dd/MM/yyyy"
-                        placeholderText="DD/MM/YYYY"
-                        wrapperClassName="w-full"
-                        maxDate={new Date()}
-                        showMonthYearPicker={calendarView === 'month'}
-                        showYearPicker={calendarView === 'year'}
-                        onCalendarClose={() => setCalendarView('day')}
-                        shouldCloseOnSelect={calendarView === 'day'}
-                        renderCustomHeader={({
-                            date,
-                            changeYear,
-                            changeMonth,
-                            decreaseMonth,
-                            increaseMonth,
-                            prevMonthButtonDisabled,
-                            nextMonthButtonDisabled,
-                            decreaseYear,
-                            increaseYear,
-                            prevYearButtonDisabled,
-                            nextYearButtonDisabled
-                        }) => (
-                            <div className="flex items-center justify-between px-2 py-2">
-                                <button
-                                    onClick={calendarView === 'year' ? decreaseYear : decreaseMonth}
-                                    disabled={calendarView === 'year' ? prevYearButtonDisabled : prevMonthButtonDisabled}
-                                    type="button"
-                                    className={`p-1 hover:bg-gray-100 rounded-full ${(calendarView === 'year' ? prevYearButtonDisabled : prevMonthButtonDisabled) ? 'opacity-30' : ''}`}
-                                >
-                                    <span className="text-gray-600 text-xl font-bold">{'<'}</span>
-                                </button>
-                                <div className="flex items-center gap-2 font-bold text-gray-800">
-                                    <span
-                                        onClick={() => setCalendarView('month')}
-                                        className="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded transition-colors"
-                                    >
-                                        {date.toLocaleString('default', { month: 'long' })}
-                                    </span>
-                                    <span
-                                        onClick={() => setCalendarView('year')}
-                                        className="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded transition-colors"
-                                    >
-                                        {date.getFullYear()}
-                                    </span>
+                {/* PROFESSIONAL SECTION */}
+                {executorType === 'professional' && (
+                    <div className="space-y-4">
+                        <h3 className="font-bold text-xl text-black">Professional Advisor</h3>
+
+                        {/* Business / Firm Name */}
+                        <div>
+                            <label className='block text-sm font-medium text-text-4 mb-1.5'>Business / Firm Name <span className='text-red-500'>*</span></label>
+                            <input
+                                type="text"
+                                className={`w-full bg-white text-black border ${errors.firmName ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]`}
+                                placeholder="Wilson & Co. Solicitors"
+                                value={formData.firmName}
+                                onChange={(e) => handleChange("firmName", e.target.value)}
+                            />
+                            {errors.firmName && <p className="text-red-500 text-xs mt-1">{errors.firmName}</p>}
+                        </div>
+
+                        {/* Role/Title */}
+                        <div>
+                            <label className='block text-sm font-medium text-text-4 mb-1.5'>Role/Title <span className='text-red-500'>*</span></label>
+                            <Commondropdown
+                                options={roleOptions}
+                                value={formData.role}
+                                onChange={(val) => handleChange("role", val)}
+                                placeholder="Solicitor / Accountant / Manager / Add"
+                                className={`w-full !py-2.5 text-[#414651] ${errors.role ? 'border-red-500' : ''}`}
+                            />
+                            {errors.role && <p className="text-red-500 text-xs mt-1">{errors.role}</p>}
+                        </div>
+
+                        {/* Telephone */}
+                        <div>
+                            <label className='block text-sm font-medium text-text-4 mb-1.5'>Telephone (Optional)</label>
+                            <div className='flex items-center w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-2 focus-within:border-black'>
+                                <Commondropdown
+                                    options={phoneCodeOptions}
+                                    value={formData.phoneCode}
+                                    onChange={(val) => handleChange("phoneCode", val)}
+                                    className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                                    dropdownClassName="!w-[100px]"
+                                />
+                                <input
+                                    type="text"
+                                    className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                    placeholder="7890 123456"
+                                    value={formData.phone}
+                                    onChange={(e) => handleChange("phone", e.target.value)}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Email Address */}
+                        <div>
+                            <label className='block text-sm font-medium text-text-4 mb-1.5'>Email Address</label>
+                            <input
+                                type="email"
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                placeholder="robert@wilsonsolicitors.co.uk"
+                                value={formData.email}
+                                onChange={(e) => handleChange("email", e.target.value)}
+                            />
+                        </div>
+
+                        <div className="pt-2">
+                            <div className="flex items-center gap-2 mb-2">
+                                <label className='block text-sm font-medium text-black'>
+                                    Do you want to appoint an alternate executor?
+                                </label>
+                                <div className="flex ml-2.5 items-center justify-center w-[17px] h-[17px] rounded-full border border-black text-black text-[10px] font-bold cursor-pointer">?</div>
+                            </div>
+                            <div className="flex items-center gap-6 mb-4">
+                                <label className="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="appointAlternate"
+                                        className="appearance-none w-4 h-4 border border-gray-300 rounded-full bg-white checked:border-[#003966] checked:bg-white focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden after:absolute after:w-2 after:h-2 after:bg-[#003966] after:rounded-full checked:after:block"
+                                        checked={appointAlternate === true}
+                                        onChange={() => setAppointAlternate(true)}
+                                    />
+                                    <span className="text-sm font-medium text-black">Yes</span>
+                                </label>
+                                <label className="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="appointAlternate"
+                                        className="appearance-none w-4 h-4 border border-gray-300 rounded-full bg-white checked:border-[#003966] checked:bg-white focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden after:absolute after:w-2 after:h-2 after:bg-[#003966] after:rounded-full checked:after:block"
+                                        checked={appointAlternate === false}
+                                        onChange={() => setAppointAlternate(false)}
+                                    />
+                                    <span className="text-sm font-medium text-text-1">No</span>
+                                </label>
+                            </div>
+
+
+                            {appointAlternate && (
+                                <>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <h4 className="font-bold text-text-1">Alternate Executor/s</h4>
+                                        <div className="flex ml-2.5 items-center justify-center w-[17px] h-[17px] rounded-full border border-black text-black text-[10px] font-bold cursor-pointer">?</div>
+                                    </div>
+
+                                    <div className="space-y-2 mb-4">
+                                        <label className="flex items-center gap-3 cursor-pointer">
+                                            <input
+                                                type="checkbox"
+                                                checked={formData.isAlternate}
+                                                onChange={(e) => handleChange('isAlternate', e.target.checked)}
+                                                className="appearance-none w-5 h-5 border border-[#D5D7DA] rounded-sm bg-white checked:bg-[#003966] checked:border-[#003966] focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden checked:after:block after:w-[6px] after:h-[10px] after:border-white after:border-r-2 after:border-b-2 after:rotate-45 after:mb-[2px]"
+                                            />
+                                            <span className="text-sm text-text-4">Alternate Executor / Executrix</span>
+                                        </label>
+                                        <label className="flex items-center gap-3 cursor-pointer">
+                                            <input
+                                                type="checkbox"
+                                                checked={formData.isBackup}
+                                                onChange={(e) => handleChange('isBackup', e.target.checked)}
+                                                className="appearance-none w-5 h-5 border border-[#D5D7DA] rounded-sm bg-white checked:bg-[#003966] checked:border-[#003966] focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden checked:after:block after:w-[6px] after:h-[10px] after:border-white after:border-r-2 after:border-b-2 after:rotate-45 after:mb-[2px]"
+                                            />
+                                            <span className="text-sm text-text-4">Backup Executor / Executrix</span>
+                                        </label>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+
+
+                {/* List of Added Main Executors */}
+                {
+                    executorsList.length > 0 && (
+                        <div className="space-y-3 mt-4">
+                            <h3 className='text-sm font-bold text-text-1'>Added Executors</h3>
+                            {executorsList.map((executor) => (
+                                <div key={executor.id} className="bg-white p-4 rounded-lg border border-gray-200 flex justify-between items-center shadow-sm">
+                                    <div className="min-w-0 pr-4">
+                                        <p className="font-medium text-text-1 truncate" title={executor.type === 'individual' ? [executor.title, executor.fullName].filter(Boolean).join(' ') : executor.firmName}>
+                                            {executor.type === 'individual'
+                                                ? `${[executor.title, executor.fullName].filter(Boolean).join(' ')} - ${executor.relationship}`
+                                                : `${executor.firmName} - ${executor.role}`
+                                            }
+                                        </p>
+                                        <p className="text-sm text-text-5 truncate">
+                                            {executor.email || executor.phone || "No contact info"}
+                                        </p>
+                                    </div>
                                 </div>
-                                <button
-                                    onClick={calendarView === 'year' ? increaseYear : increaseMonth}
-                                    disabled={calendarView === 'year' ? nextYearButtonDisabled : nextMonthButtonDisabled}
-                                    type="button"
-                                    className={`p-1 hover:bg-gray-100 rounded-full ${(calendarView === 'year' ? nextYearButtonDisabled : nextMonthButtonDisabled) ? 'opacity-30' : ''}`}
-                                >
-                                    <span className="text-gray-600 text-xl font-bold">{'>'}</span>
-                                </button>
-                            </div>
-                        )}
-                    />
-                </div>
+                            ))}
+                        </div>
+                    )
+                }
 
-                {/* Telephone */}
-                <div>
-                    <label className='block text-sm font-medium text-text-1 mb-1.5'>Telephone (Optional)</label>
-                    <div className='flex items-center w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-2 focus-within:border-black'>
-                        <Commondropdown
-                            options={phoneCodeOptions}
-                            value={formData.phoneCode}
-                            onChange={(val) => handleChange("phoneCode", val)}
-                            className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                            dropdownClassName="!w-[200px]"
-                        />
-                        <input
-                            type="text"
-                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
-                            placeholder="7890 123456"
-                            value={formData.phone}
-                            onChange={(e) => handleChange("phone", e.target.value)}
-                        />
-                    </div>
+                {/* Main Add/Remove Buttons */}
+                <div className="flex gap-4">
+                    <button
+                        onClick={addExecutor}
+                        type="button"
+                        className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                    >
+                        <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
+                        Add
+                    </button>
+                    <button
+                        onClick={removeExecutor}
+                        type="button"
+                        className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                    >
+                        <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
+                        Remove
+                    </button>
                 </div>
-
-                {/* Email Address */}
-                <div>
-                    <label className='block text-sm font-medium text-text-1 mb-1.5'>Email Address</label>
-                    <input
-                        type="email"
-                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
-                        placeholder="johnsmith@email.com"
-                        value={formData.email}
-                        onChange={(e) => handleChange("email", e.target.value)}
-                    />
-                </div>
-
-                {/* Marital Status */}
-                <div>
-                    <label className='block text-sm font-medium text-text-1 mb-1.5'>Marital Status <span className='text-red-500'>*</span></label>
-                    <Commondropdown
-                        options={maritalStatusOptions}
-                        value={formData.maritalStatus}
-                        onChange={(val) => handleChange("maritalStatus", val)}
-                        placeholder="Single / Married / Divorced / Widowed / Civil partner / Previously married / Separated / Living as Partners/Add"
-                        className="w-full"
-                    />
-                </div>
-                {/* Future Marriage Clause */}
-                <div className="space-y-4">
-                    <p className="text-text-5 text-base md:text-lg lg:text-xl  font-medium">
-                        Do you want to include a clause to keep your Will valid after future marriage?
-                    </p>
-                    <div className="space-y-3">
-                        <label className="flex items-center gap-3 cursor-pointer">
-                            <div className="relative flex items-center mt-1">
-                                <input
-                                    type="radio"
-                                    name="marriageClause"
-                                    value="yes"
-                                    checked={formData.marriageClause === 'yes'}
-                                    onChange={(e) => handleChange("marriageClause", e.target.value)}
-                                    className="appearance-none w-4 h-4 border border-gray-300 rounded-full bg-white checked:border-[#003966] checked:bg-white focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden after:absolute after:w-2 after:h-2 after:bg-[#003966] after:rounded-full checked:after:block"
-                                />
-                            </div>
-                            <div className="text-sm">
-                                <span className="text-black font-medium">Yes, I want to include a clause that keeps my Will valid after marriage.</span>
-                            </div>
-                        </label>
-                        <p className="text-black text-sm">“This Will is made in contemplation of my future marriage, and it shall remain valid and effective after such marriage.”</p>
-                        <label className="flex items-center gap-3 cursor-pointer">
-                            <div className="relative flex items-center mt-1">
-                                <input
-                                    type="radio"
-                                    name="marriageClause"
-                                    value="no"
-                                    checked={formData.marriageClause === 'no'}
-                                    onChange={(e) => handleChange("marriageClause", e.target.value)}
-                                    className="appearance-none w-4 h-4 border border-gray-300 rounded-full bg-white checked:border-[#003966] checked:bg-white focus:outline-none relative flex items-center justify-center after:content-[''] after:hidden after:absolute after:w-2 after:h-2 after:bg-[#003966] after:rounded-full checked:after:block"
-                                />
-                            </div>
-                            <div className="text-sm text-black">
-                                No, I'll update my Will if I get married.
-                            </div>
-                        </label>
-                    </div>
-                    <p className="text-sm text-black">
-                        <span className="font-bold text-sm text-black">Please note:</span> This Will may become invalid if you marry in the future. It is recommended that you review and update your Will after marriage.
-                    </p>
-                </div>
+                {errors.global && <p className='text-red-500 text-sm mt-3 font-medium'>{errors.global}</p>}
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-4 pt-4 border-t border-gray-200 mt-6 md:mt-8">
-                    <button onClick={onBack} type="button" className="px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-gray-50 transition-colors w-full md:w-auto">
+                <div className="flex items-center flex-wrap gap-4 mt-4">
+                    <button onClick={onBack} type="button" className="cursor-pointer px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-main hover:text-white transition-colors w-full md:w-auto">
                         Back
                     </button>
-                    <button onClick={onSave} type="button" className="flex-1 px-6 py-2.5 rounded-lg bg-[#003966] text-white font-medium hover:bg-[#002d52] transition-colors w-full md:w-auto text-center">
+                    <button onClick={handleSave} type="button" className="cursor-pointer flex-1 px-6 py-2.5 rounded-lg bg-main text-white font-medium whitespace-nowrap hover:bg-main/85 transition-colors w-full md:w-auto text-center">
                         Save and Continue
                     </button>
-                    <button onClick={onSkip} type="button" className="px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-gray-50 transition-colors w-full md:w-auto">
+                    <button onClick={onSkip} type="button" className="cursor-pointer px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-main hover:text-white transition-colors w-full md:w-auto">
                         Skip
                     </button>
                 </div>
-
-                {/* Declaration */}
-                <div className="pt-4">
-                    <label className="flex items-start gap-3 cursor-pointer">
-                        <div className="relative flex items-center mt-0.5">
-                            <input
-                                type="checkbox"
-                                checked={formData.declaration}
-                                onChange={(e) => handleChange("declaration", e.target.checked)}
-                                className="appearance-none w-5 h-5 border border-gray-300 rounded bg-white checked:bg-[#003966] checked:border-[#003966] focus:outline-none relative flex items-center justify-center cursor-pointer after:content-[''] after:hidden after:absolute after:w-1.5 after:h-2.5 after:border-white after:border-r-2 after:border-b-2 after:rotate-45 after:mb-0.5 checked:after:block"
-                            />
-                        </div>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                            <span className="font-bold text-sm text-text-5">Declaration:</span> “I declare that I am over 18 years of age, of sound mind, and making this Will voluntarily, in accordance with the laws of England and Wales.”
-                        </p>
-                    </label>
-                </div>
-            </form>
-        </div>
+            </form >
+        </div >
     )
 }
 

@@ -60,6 +60,18 @@ function Liabilities({ onSave, onSkip, onBack }) {
         setLiabilities(prev => prev.filter(l => l.id !== id))
     }
 
+    const handleSave = () => {
+        if (hasDebt === 'yes' && liabilities.length === 0) {
+            if (!validate()) {
+                setErrors(prev => ({ ...prev, global: "Please add at least one debt or complete the current entry" }))
+            } else {
+                setErrors(prev => ({ ...prev, global: "Please click 'Add' to include this debt in your list" }))
+            }
+            return
+        }
+        onSave()
+    }
+
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>
             <div className='flex items-center justify-between gap-4 flex-wrap w-full mb-5'>
@@ -179,21 +191,24 @@ function Liabilities({ onSave, onSkip, onBack }) {
                     <div className='flex items-center gap-3'>
                         <button
                             onClick={handleAdd}
-                            className='flex cursor-pointer text-base font-semibold items-center gap-2 px-5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
+                            className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
                         >
                             <Image src={PlusBlueIcon} alt="Add" width={18} height={18} />
                             Add
                         </button>
-                        {liabilities.length > 0 && (
-                            <button
-                                onClick={() => handleRemove(liabilities[liabilities.length - 1].id)}
-                                className='flex items-center gap-2 px-5 py-2 rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm'
-                            >
-                                <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
-                                Remove
-                            </button>
-                        )}
+                        <button
+                            onClick={() => {
+                                if (liabilities.length > 0) {
+                                    handleRemove(liabilities[liabilities.length - 1].id)
+                                }
+                            }}
+                            className='flex items-center gap-2 px-5 py-2.5 cursor-pointer rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm'
+                        >
+                            <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
+                            Remove
+                        </button>
                     </div>
+                    {errors.global && <p className='text-red-500 text-sm mt-3 font-medium'>{errors.global}</p>}
                 </div>
             )}
 
@@ -205,7 +220,7 @@ function Liabilities({ onSave, onSkip, onBack }) {
                     Back
                 </button>
                 <button
-                    onClick={onSave}
+                    onClick={handleSave}
                     className='cursor-pointer flex-1 px-6 py-2.5 rounded-lg bg-main text-white font-medium whitespace-nowrap hover:bg-main/85 transition-colors w-full md:w-auto text-center'
                 >
                     Save and Continue

@@ -436,21 +436,21 @@ function Testatot({ onSave, onSkip, onBack }) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-4 pt-4 border-t border-gray-200 mt-6 md:mt-8">
-                    <button onClick={onBack} type="button" className="px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-gray-50 transition-colors w-full md:w-auto">
+                <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-gray-200 mt-6 md:mt-8">
+                    <button onClick={onBack} type="button" className="cursor-pointer px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-main hover:text-white transition-colors w-full md:w-auto">
                         Back
                     </button>
                     <button onClick={onSave}
-                        type="button" className="flex-1 px-6 py-2.5 rounded-lg bg-[#003966] text-white font-medium hover:bg-[#002d52] transition-colors w-full md:w-auto text-center">
+                        type="button" className="cursor-pointer flex-1 px-6 py-2.5 rounded-lg bg-main text-white font-medium whitespace-nowrap hover:bg-main/85 transition-colors w-full md:w-auto text-center">
                         Save and Continue
                     </button>
-                    <button onClick={onSkip} type="button" className="px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-gray-50 transition-colors w-full md:w-auto">
+                    <button onClick={onSkip} type="button" className="cursor-pointer px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-main hover:text-white transition-colors w-full md:w-auto">
                         Skip
                     </button>
                 </div>
 
                 {/* Declaration */}
-                <div className="pt-4">
+                <div className="">
                     <label className="flex items-start gap-3 cursor-pointer">
                         <div className="relative flex items-center mt-0.5">
                             <input

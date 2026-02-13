@@ -14,7 +14,7 @@ import ExpandIcon from '@/components/assets/images/ExpandIcon.svg'
 import { useState } from 'react'
 import Testatot from './forms/Testatot'
 import Executors from './forms/Executors'
-import Spounce from './forms/Spounce'
+import Spouse from './forms/Spouse'
 import Beneficiaries from './forms/Beneficiaries'
 import Assets from './forms/Assets'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
@@ -24,6 +24,7 @@ import FillArrowLeftIcon from '@/components/assets/images/FillArrowLeftIcon.svg'
 import Liabilities from './forms/Liabilities'
 import Gifts from './forms/Gifts'
 import Residual from './forms/Residual'
+import Commondropdown from '@/components/common/Commondropdown1.jsx'
 // import Funeral from './forms/Funeral'
 // import Witnesses from './forms/Witnesses'
 // import Review from './forms/Review'
@@ -33,6 +34,7 @@ function Page() {
     const [tab, setTab] = useState("overview")
     const [tab1, settab1] = useState("testator")
     const [completedSteps, setCompletedSteps] = useState([])
+    const [willLocation, setWillLocation] = useState("England")
 
     // Steps mapping
     const steps = [
@@ -143,13 +145,13 @@ function Page() {
 
                     </div>
                 </div>
-                <div className='grid md:grid-cols-2 grid-cols-1 gap-9 max-w-[1200px] mx-auto items-start md:pb-24 pb-8 p-4'>
+                <div className='grid md:grid-cols-2 grid-cols-1 gap-9 max-w-[1200px] mx-auto items-start mb-6 p-4'>
                     {tab1 === "testator" &&
                         <Testatot onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "executor" &&
                         <Executors onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "spouse" &&
-                        <Spounce onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                        <Spouse onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "beneficiaries" &&
                         <Beneficiaries onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "assets" &&
@@ -260,7 +262,22 @@ function Page() {
                         )}
                     </div>
 
+
                 </div>
+                {tab1 === "testator" && <div className='md:mb-24 mx-4 mb-8 max-w-[1200px] min-[1200px]:mx-auto bg-[#fafafa] rounded-2xl p-6 mt-8'>
+                    <h1 className='text-text-1 text-xl md:text-2xl lg:text-[36px] font-semibold mb-6'>
+                        Create your Will
+                    </h1>
+                    <p className='text-[#414651] text-sm font-medium mb-1.5'>
+                        Where will this general be used?
+                    </p>
+                    <Commondropdown
+                        options={["England", "Wales", "Scotland", "Northern Ireland"]}
+                        value={willLocation}
+                        onChange={(val) => setWillLocation(val)}
+                        className="w-full bg-white text-[#414651]"
+                    />
+                </div>}
                 <div className='border-t border-black/16 md:pt-24 pt-8'>
                     <div className='px-4 md:px-6 lg:px-8 max-w-[1200px] mx-auto'>
 

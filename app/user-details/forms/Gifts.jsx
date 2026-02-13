@@ -121,6 +121,35 @@ function Gifts({ onSave, onSkip, onBack }) {
         setCharityDonations(prev => prev.filter(d => d.id !== id))
     }
 
+    const handleSave = () => {
+        let isValid = true
+        const newErrors = {}
+
+        if (individualGifts.length === 0) {
+            if (!validateGift()) {
+                newErrors.gift_global = "Please add at least one gift or complete the current entry"
+            } else {
+                newErrors.gift_global = "Please click 'Add' to include this gift in your list"
+            }
+            isValid = false
+        }
+
+        if (hasCharity === 'yes' && charityDonations.length === 0) {
+            if (!validateDonation()) {
+                newErrors.donation_global = "Please add at least one charity donation or complete the current entry"
+            } else {
+                newErrors.donation_global = "Please click 'Add' to include this donation in your list"
+            }
+            isValid = false
+        }
+
+        if (isValid) {
+            onSave()
+        } else {
+            setErrors(prev => ({ ...prev, ...newErrors }))
+        }
+    }
+
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>
             <div className='flex items-center justify-between gap-4 flex-wrap w-full mb-5'>
@@ -222,21 +251,24 @@ function Gifts({ onSave, onSkip, onBack }) {
                     <div className='flex items-center gap-3'>
                         <button
                             onClick={addGift}
-                            className='flex cursor-pointer text-base font-semibold items-center gap-2 px-5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
+                            className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
                         >
                             <Image src={PlusBlueIcon} alt="Add" width={18} height={18} />
                             Add
                         </button>
-                        {individualGifts.length > 0 && (
-                            <button
-                                onClick={() => removeGift(individualGifts[individualGifts.length - 1].id)}
-                                className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
-                            >
-                                <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
-                                Remove
-                            </button>
-                        )}
+                        <button
+                            onClick={() => {
+                                if (individualGifts.length > 0) {
+                                    removeGift(individualGifts[individualGifts.length - 1].id)
+                                }
+                            }}
+                            className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
+                        >
+                            <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
+                            Remove
+                        </button>
                     </div>
+                    {errors.gift_global && <p className='text-red-500 text-sm mt-3 font-medium'>{errors.gift_global}</p>}
                 </div>
             </div>
 
@@ -353,21 +385,24 @@ function Gifts({ onSave, onSkip, onBack }) {
                         <div className='flex items-center gap-3'>
                             <button
                                 onClick={addDonation}
-                                className='flex cursor-pointer text-base font-semibold items-center gap-2 px-5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
+                                className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
                             >
                                 <Image src={PlusBlueIcon} alt="Add" width={18} height={18} />
                                 Add
                             </button>
-                            {charityDonations.length > 0 && (
-                                <button
-                                    onClick={() => removeDonation(charityDonations[charityDonations.length - 1].id)}
-                                    className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
-                                >
-                                    <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
-                                    Remove
-                                </button>
-                            )}
+                            <button
+                                onClick={() => {
+                                    if (charityDonations.length > 0) {
+                                        removeDonation(charityDonations[charityDonations.length - 1].id)
+                                    }
+                                }}
+                                className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
+                            >
+                                <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
+                                Remove
+                            </button>
                         </div>
+                        {errors.donation_global && <p className='text-red-500 text-sm mt-3 font-medium'>{errors.donation_global}</p>}
                     </div>
                 )}
             </div>
@@ -381,7 +416,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                     Back
                 </button>
                 <button
-                    onClick={onSave}
+                    onClick={handleSave}
                     className='flex-1 px-8 py-2.5 whitespace-nowrap rounded-lg bg-main text-white font-bold hover:bg-main/80 transition-colors shadow-sm cursor-pointer'
                 >
                     Save and Continue

@@ -14,12 +14,11 @@
   --color-text-5: #535862;
   --color-text-7: #717680;
   --color-text-1: #181D27;
+  --color-text-4: #414651;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    
-  }
+  :root {}
 }
 
 body {
