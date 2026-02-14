@@ -514,7 +514,6 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
                                         dropdownClassName="!w-[120px]"
                                     />
-                                    <span className="text-gray-300 mx-1">|</span>
                                     <input
                                         type="text"
                                         className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
@@ -807,7 +806,6 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
                                         dropdownClassName="!w-[120px]"
                                     />
-                                    <span className="text-gray-300 mx-1">|</span>
                                     <input
                                         type="text"
                                         className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
@@ -956,7 +954,6 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                                 className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
                                                 dropdownClassName="!w-[100px]"
                                             />
-                                            <span className="text-gray-300 mx-1">|</span>
                                             <input
                                                 type="text"
                                                 className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
@@ -1100,7 +1097,6 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
                                             dropdownClassName="!w-[120px]"
                                         />
-                                        <span className="text-gray-300 mx-1">|</span>
                                         <input
                                             type="text"
                                             className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
@@ -1260,7 +1256,6 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
                                             dropdownClassName="!w-[120px]"
                                         />
-                                        <span className="text-gray-300 mx-1">|</span>
                                         <input
                                             type="text"
                                             className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
@@ -1389,7 +1384,6 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                                     className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
                                                     dropdownClassName="!w-[100px]"
                                                 />
-                                                <span className="text-gray-300 mx-1">|</span>
                                                 <input
                                                     type="text"
                                                     className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
@@ -1617,7 +1611,6 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                 className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
                                 dropdownClassName="!w-[150px]"
                             />
-                            <span className="text-gray-300 mx-1">|</span>
                             <input
                                 name="fullName"
                                 type="text"
@@ -1779,7 +1772,6 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
                                         dropdownClassName="!w-[120px]"
                                     />
-                                    <span className="text-gray-300 mx-1">|</span>
                                     <input
                                         name="telephone"
                                         type="text"

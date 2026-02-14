@@ -169,7 +169,7 @@ function Page() {
                     </div>
 
                 </div>
-                <div className='p-4 py-18 md:py-24'>
+                <div className='p-4 lg:py-24 md:py-18 py-8'>
                     <div className='max-w-md'>
                         <h1 className='text-[36px] font-semibold text-text-1 mt-5'>How it works</h1>
                         <p className='text-lg font-normal text-text-5 mt-2'>
@@ -313,7 +313,7 @@ function Page() {
                     </div>
 
                 </div>
-                <div className='lg:py-24 md:py-18 py-12 border-t border-black/16'>
+                <div className='lg:py-24 md:py-18 py-8 border-t border-black/16 max-md:-mt-9'>
                     <div className='max-w-[768px] w-full mx-auto'>
                         <p className='text-center md:text-base text-sm font-normal text-main mt-2'>Pricing</p>
                         <h1 className='text-center lg:text-[36px] md:text-2xl text-xl font-semibold text-text-1 mt-3'>
@@ -364,7 +364,8 @@ function Page() {
                             </div>
 
                             <div className='mt-8 space-y-3 p-4 md:p-6 lg:p-8'>
-                                <button className='w-full bg-[#0B2C4F] cursor-pointer text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
+                                <button onClick={() => router.push('/create-your-will')}
+                                    className='w-full bg-[#0B2C4F] cursor-pointer text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
                                     Create Now
                                 </button>
                                 <button className='w-full cursor-pointer bg-white border border-black/10 text-text-1 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors'>
@@ -496,7 +497,9 @@ function Page() {
                             </div>
 
                             <div className='mt-8 space-y-3 p-4 md:p-6 lg:p-8'>
-                                <button className='w-full bg-[#0B2C4F] cursor pointer text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
+                                <button
+                                    onClick={() => router.push('/create-your-will')}
+                                    className='w-full bg-[#0B2C4F] cursor-pointer text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
                                     Go Annual & Save
                                 </button>
                                 <button className='w-full bg-white border cursor-pointer border-black/10 text-text-1 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors'>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProgressBar = ({ currentStep = 0, completedSteps = [] }) => {
+const ProgressBar = ({ currentStep = 0, completedSteps = [], onStepClick }) => {
     const steps = [
         "Testator", "Executors", "Spouse", "Beneficiaries", "Assets",
         "Liabilities", "Gifts", "Residual", "Funeral", "Witnesses", "Review"
@@ -21,7 +21,11 @@ const ProgressBar = ({ currentStep = 0, completedSteps = [] }) => {
 
                 {/* Steps */}
                 {steps.map((step, index) => (
-                    <div key={index} className='flex flex-col items-center z-10 cursor-pointer group bg-transparent relative'>
+                    <div
+                        key={index}
+                        className='flex flex-col items-center z-10 cursor-pointer group bg-transparent relative'
+                        onClick={() => onStepClick && onStepClick(index)}
+                    >
                         {/* Circle */}
                         <div className={`w-8 h-8 p-0.5 rounded-full flex items-center justify-center transition-all duration-300 z-10 border-2
                             ${completedSteps.includes(index) ? 'bg-[#0B2C4F] border-[#0B2C4F]' : 'bg-[#fafafa]'}

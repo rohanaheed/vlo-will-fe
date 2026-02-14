@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, forwardRef } from 'react'
+import { useRouter } from 'next/navigation'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
@@ -97,14 +98,56 @@ function Testatot({ onSave, onSkip, onBack }) {
         // Add more codes as needed
     ]
 
+    const [errors, setErrors] = useState({})
+
     const handleChange = (field, value) => {
         setFormData(prev => ({ ...prev, [field]: value }))
+        // Clear error for this field when user starts typing
+        if (errors[field]) {
+            setErrors(prev => ({ ...prev, [field]: null }))
+        }
+    }
+
+    const router = useRouter()
+
+    const validateForm = () => {
+        const newErrors = {}
+
+        // Full Name validation
+        if (!formData.title) newErrors.title = "Title is required"
+        if (!formData.fullName.trim()) newErrors.fullName = "Full name is required"
+
+        // Address validation - at least one address field is required
+        const hasAddress = formData.buildingNumber || formData.buildingName ||
+            formData.street || formData.town || formData.city ||
+            formData.county || formData.postcode
+        if (!hasAddress) {
+            newErrors.address = "At least one address field is required"
+        }
+
+        // Date of Birth validation
+        if (!formData.dob) newErrors.dob = "Date of birth is required"
+
+        // Marital Status validation
+        if (!formData.maritalStatus) newErrors.maritalStatus = "Marital status is required"
+
+        setErrors(newErrors)
+        return Object.keys(newErrors).length === 0
+    }
+
+    const handleSave = () => {
+        if (validateForm()) {
+            onSave()
+        } else {
+            // Scroll to first error
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
     }
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>
-            <div className='flex items-center justify-between gap-4 flex-wrap w-full mb-6'>
-                <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-text-1'>Testator Information</h2>
+            <div className='flex items-center justify-between gap-4 flex-wrap w-full mb-5'>
+                <h2 className='text-xl md:text-2xl lg:text-4xl font-bold text-text-1'>Testator Information</h2>
                 <button className='text-black flex text-xs items-center gap-1 cursor-pointer'>
                     Auto Saved
                     <Image src={Refresh} alt="Refresh" width={16} height={16} className='w-4 h-4' />
@@ -119,7 +162,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                 {/* Full Name */}
                 <div>
                     <label className='block text-sm font-medium text-text-1 mb-1.5'>Full Name <span className='text-red-500'>*</span></label>
-                    <div className='flex items-center w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-2 focus-within:border-black'>
+                    <div className={`flex items-center w-full bg-white text-black border rounded-lg px-2 focus-within:border-black ${errors.title || errors.fullName ? 'border-red-500' : 'border-[#D5D7DA]'}`}>
                         <Commondropdown
                             options={titleOptions}
                             value={formData.title}
@@ -136,6 +179,9 @@ function Testatot({ onSave, onSkip, onBack }) {
                             onChange={(e) => handleChange("fullName", e.target.value)}
                         />
                     </div>
+                    {(errors.title || errors.fullName) && (
+                        <p className='text-red-500 text-xs mt-1'>{errors.title || errors.fullName}</p>
+                    )}
                 </div>
 
                 {/* Other Name */}
@@ -164,6 +210,9 @@ function Testatot({ onSave, onSkip, onBack }) {
 
                 <div className=''>
                     <h3 className='text-lg font-bold text-text-1 mb-4'>Address Details <span className='text-red-500'>*</span></h3>
+                    {errors.address && (
+                        <p className='text-red-500 text-xs mb-2'>{errors.address}</p>
+                    )}
 
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         {/* Building Number & Name */}
@@ -272,6 +321,9 @@ function Testatot({ onSave, onSkip, onBack }) {
 
                 <div>
                     <label className='block text-sm font-medium text-text-1 mb-1.5'>Date of Birth <span className='text-red-500'>*</span></label>
+                    {errors.dob && (
+                        <p className='text-red-500 text-xs mb-1'>{errors.dob}</p>
+                    )}
                     <DatePicker
                         selected={formData.dob}
                         onChange={(date) => {
@@ -389,8 +441,11 @@ function Testatot({ onSave, onSkip, onBack }) {
                         value={formData.maritalStatus}
                         onChange={(val) => handleChange("maritalStatus", val)}
                         placeholder="Single / Married / Divorced / Widowed / Civil partner / Previously married / Separated / Living as Partners/Add"
-                        className="w-full"
+                        className={`w-full ${errors.maritalStatus ? '!border-red-500' : ''}`}
                     />
+                    {errors.maritalStatus && (
+                        <p className='text-red-500 text-xs mt-1'>{errors.maritalStatus}</p>
+                    )}
                 </div>
                 {/* Future Marriage Clause */}
                 <div className="space-y-4">
@@ -436,11 +491,11 @@ function Testatot({ onSave, onSkip, onBack }) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-gray-200 mt-6 md:mt-8">
-                    <button onClick={onBack} type="button" className="cursor-pointer px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-main hover:text-white transition-colors w-full md:w-auto">
+                <div className="flex flex-wrap items-center gap-4 mt-8">
+                    <button onClick={() => router.push("/create-your-will")} type="button" className="cursor-pointer px-6 py-2.5 rounded-lg border border-gray-300 text-text-1 font-medium hover:bg-main hover:text-white transition-colors w-full md:w-auto">
                         Back
                     </button>
-                    <button onClick={onSave}
+                    <button onClick={handleSave}
                         type="button" className="cursor-pointer flex-1 px-6 py-2.5 rounded-lg bg-main text-white font-medium whitespace-nowrap hover:bg-main/85 transition-colors w-full md:w-auto text-center">
                         Save and Continue
                     </button>

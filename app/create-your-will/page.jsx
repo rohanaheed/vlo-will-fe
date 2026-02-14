@@ -128,7 +128,9 @@ function Page() {
                                 </ul>
                             </li>
                         </ul>
-                        <button className='max-md:w-full mt-6 self-end text-sm md:text-base lg:text-xl cursor-pointer font-semibold bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
+                        <button
+                            onClick={() => router.push('/user-details')}
+                            className='max-md:w-full mt-6 self-end text-sm md:text-base lg:text-xl cursor-pointer font-semibold bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
                             Start Document <span className='text-lg md:text-xl lg:text-2xl'>(£29)</span>
                         </button>
                         <p className='text-text-5 md:text-lg lg:text-xl mt-2'>*

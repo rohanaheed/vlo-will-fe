@@ -25,9 +25,9 @@ import Liabilities from './forms/Liabilities'
 import Gifts from './forms/Gifts'
 import Residual from './forms/Residual'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
-// import Funeral from './forms/Funeral'
-// import Witnesses from './forms/Witnesses'
-// import Review from './forms/Review'
+import Funeral from './forms/Funeral'
+import Witnesses from './forms/Witnesses'
+import Review from './forms/Review'
 
 
 function Page() {
@@ -64,6 +64,10 @@ function Page() {
         if (currentIndex > 0) {
             settab1(steps[currentIndex - 1])
         }
+    }
+
+    const handleStepClick = (stepIndex) => {
+        settab1(steps[stepIndex])
     }
     const [zoom, setZoom] = useState(100)
     const [rotation, setRotation] = useState(0)
@@ -140,12 +144,13 @@ function Page() {
                             <ProgressBar
                                 currentStep={getCurrentStepIndex()}
                                 completedSteps={completedSteps}
+                                onStepClick={handleStepClick}
                             />
                         </div>
 
                     </div>
                 </div>
-                <div className='grid md:grid-cols-2 grid-cols-1 gap-9 max-w-[1200px] mx-auto items-start mb-6 p-4'>
+                <div className={`${tab1 === "review" ? "!grid-cols-1" : ""} max-[1200px]:px-4 mx-auto grid md:grid-cols-2 grid-cols-1 gap-9 max-w-[1200px] mx-auto items-start mb-8 md:mb-24 p-4'`}>
                     {tab1 === "testator" &&
                         <Testatot onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "executor" &&
@@ -162,12 +167,12 @@ function Page() {
                         <Gifts onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "residual" &&
                         <Residual onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
-                    {/* {tab1 === "funeral" &&
+                    {tab1 === "funeral" &&
                         <Funeral onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "witnesses" &&
                         <Witnesses onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "review" &&
-                        <Review onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />} */}
+                        <Review onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     <div className='bg-[#fafafa] border border-black/16 rounded-2xl'>
                         <div className='flex items-center justify-between bg-white  p-4 rounded-t-2xl shadow-lg'>
                             <div className="flex items-center  gap-1 cursor-pointer">
@@ -178,23 +183,23 @@ function Page() {
                                 <Image src={ExpandIcon} alt="refresh" width={16} height={16} />
                             </div>
                         </div>
-                        <div className="overflow-hidden flex justify-center bg-[#fafafa] transition-all" style={{ height: '500px' }}>
+                        <div className="overflow-hidden flex justify-center items-center bg-[#fafafa] transition-all ">
                             <div
                                 style={{
                                     transform: `scale(${zoom / 100}) rotate(${rotation}deg)`,
                                     transition: 'transform 0.3s ease',
                                     transformOrigin: 'center center'
                                 }}
-                                className="w-full h-full flex items-center justify-center"
+                                className="w-full h-full flex items-center justify-center px-4"
                             >
-                                <Image src={StampPaper} alt="stamp" width={100} height={100} className='w-full h-full object-contain' />
+                                <Image src={StampPaper} alt="stamp" width={1000} height={1000} className='w-full h-auto object-contain' />
                             </div>
                         </div>
-                        <div className="bg-white p-4 rounded-b-2xl flex items-center justify-between z-10 relative">
+                        <div className="bg-white p-4 rounded-b-2xl flex items-center justify-center gap-4 z-10 relative">
                             <div className="flex items-center gap-4">
-                                <button onClick={handleZoomOut} className='font-bold text-2xl text-[#535862] hover:text-black'>-</button>
+                                <button onClick={handleZoomOut} className='font-bold text-2xl text-[#535862] hover:text-black cursor-pointer'>-</button>
                                 <span className='text-sm text-[#414651] font-semibold w-12 text-center'>{zoom}%</span>
-                                <button onClick={handleZoomIn} className='font-bold text-2xl text-[#535862] hover:text-black'>+</button>
+                                <button onClick={handleZoomIn} className='font-bold text-2xl text-[#535862] hover:text-black cursor-pointer'>+</button>
                             </div>
                             <div className='w-[1px] h-6 bg-[#BDBDC7]'></div>
                             <div className="flex items-center gap-4">
@@ -238,9 +243,9 @@ function Page() {
                                 {/* Full Screen Toolbar */}
                                 <div className="bg-white p-4 rounded-2xl flex items-center gap-6 mt-4 shadow-xl">
                                     <div className="flex items-center gap-4">
-                                        <button onClick={handleZoomOut} className='font-bold text-2xl text-[#535862] hover:text-black'>-</button>
+                                        <button onClick={handleZoomOut} className='font-bold text-2xl text-[#535862] hover:text-black cursor-pointer'>-</button>
                                         <span className='text-sm text-[#414651] font-semibold w-12 text-center'>{zoom}%</span>
-                                        <button onClick={handleZoomIn} className='font-bold text-2xl text-[#535862] hover:text-black'>+</button>
+                                        <button onClick={handleZoomIn} className='font-bold text-2xl text-[#535862] hover:text-black cursor-pointer'>+</button>
                                     </div>
                                     <div className='w-[1px] h-6 bg-[#E9EAEB]'></div>
                                     <div className="flex items-center gap-4">
