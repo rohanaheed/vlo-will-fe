@@ -23,9 +23,9 @@ function Page() {
       const res = await resendVerificationLink({ email: email });
       toast.success("Email sent successfully if you have account")
     } catch (error) {
-      console.log("abc", error, error.message)
+      console.log("abc", error, error.response?.data)
       if (error.response?.data?.error.message) {
-        setFieldError("email", error.response?.data?.error.message);
+        toast.error(error.response?.data?.error.message);
       } else {
         toast.error("Something went wrong");
       }

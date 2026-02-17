@@ -52,7 +52,7 @@ function Page() {
                         onSubmit={async (values, { setSubmitting, setFieldError }) => {
                             try {
                                 const res = await resetpassword({ new_password: values?.password, token: token });
-                                router.push('/reset-password')
+                                router.push('/auth/reset-password')
                             } catch (error) {
                                 // API error handling
                                 if (error.response?.data?.error.message) {
