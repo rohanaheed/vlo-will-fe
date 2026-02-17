@@ -35,9 +35,10 @@ function Page() {
             onSubmit={async (values, { setSubmitting, setFieldError }) => {
               try {
                 const res = await forgotPassword(values);
-                toast.success("Email sent successfully if you have account");
+                router.push(`/auth/check-email?email=${values.email}`);
+                // toast.success("Email sent successfully if you have account")
               } catch (error) {
-                console.log("abc", error, error.message);
+                console.log("abc", error, error.response);
                 if (error.response?.data?.error.message) {
                   setFieldError("email", error.response?.data?.error.message);
                 } else {
