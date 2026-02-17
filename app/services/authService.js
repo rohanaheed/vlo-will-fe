@@ -42,4 +42,23 @@ export const googleLogin= async (data) => {
     throw error;
   }
 };
-
+export const resendVerificationLink= async (data) => {
+  try {
+    const response = await api.post("/auth/resend-password-reset-email", data);
+    console.log("response:", response);
+    return response.data;
+  } catch (error) {
+    console.log("API error:", error.response || error);
+    throw error;
+  }
+};
+export const resetpassword = async (data) => {
+  try {
+    const response = await api.post("/auth/reset-password", data);
+    console.log("response:", response);
+    return response.data;
+  } catch (error) {
+    console.log("API error:", error.response || error);
+    throw error;
+  }
+};
