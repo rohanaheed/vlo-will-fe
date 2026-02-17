@@ -86,8 +86,10 @@ function Page() {
 
               return (
                 <Form>
-                  <div className="shadow border border-[#E9EAEB] rounded-lg p-3 justify-center inline-flex mx-auto">
-                    <Image src={key} width={28} height={28} alt="media" />
+                  <div className="flex justify-center">
+                    <div className="shadow border border-[#E9EAEB] rounded-lg p-3 justify-center inline-flex mx-auto">
+                      <Image src={key} width={28} height={28} alt="media" />
+                    </div>
                   </div>
                   <h1 className="text-lg md:text-[30px] text-center font-semibold text-[#181D27] mt-6">
                     Set new password
@@ -188,7 +190,7 @@ function Page() {
                   <div className="mt-6 flex flex-col gap-3">
                     <div className="flex items-center gap-2">
                       <div
-                        className={`w-4 h-4 rounded-full border flex items-center justify-center p-0.5 transition-colors duration-300 ${values?.password.length >= 8 ? "bg-[var(--color-main)] border-[var(--color-main)]" : "border-[#D0D5DD]"}`}
+                        className={`w-4 h-4 rounded-full bg-[#D0D5DD] border flex items-center justify-center p-0.5 transition-colors duration-300 ${values?.password.length >= 8 ? "bg-[var(--color-main)] border-[var(--color-main)]" : "border-[#D0D5DD]"}`}
                       >
                         <svg
                           width="10"
@@ -200,7 +202,7 @@ function Page() {
                           <path
                             d="M9 1L3.5 6.5L1 4"
                             stroke={
-                              values?.password.length >= 8 ? "white" : "#D0D5DD"
+                              values?.password.length >= 8 ? "white" : "white"
                             }
                             strokeWidth="1.66667"
                             strokeLinecap="round"
@@ -216,7 +218,7 @@ function Page() {
                     </div>
                     <div className="flex items-center gap-2">
                       <div
-                        className={`w-4 h-4 rounded-full border flex items-center justify-center p-0.5 transition-colors duration-300 ${/[!@#$%^&*(),.?":{}|<>]/.test(values?.password) ? "bg-[var(--color-main)] border-[var(--color-main)]" : "border-[#D0D5DD]"}`}
+                        className={`w-4 h-4 bg-[#D0D5DD] rounded-full border flex items-center justify-center p-0.5 transition-colors duration-300 ${/[!@#$%^&*(),.?":{}|<>]/.test(values?.password) ? "bg-[var(--color-main)] border-[var(--color-main)]" : "border-[#D0D5DD]"}`}
                       >
                         <svg
                           width="10"
@@ -230,7 +232,7 @@ function Page() {
                             stroke={
                               /[!@#$%^&*(),.?":{}|<>]/.test(values?.password)
                                 ? "white"
-                                : "#D0D5DD"
+                                : "white"
                             }
                             strokeWidth="1.66667"
                             strokeLinecap="round"
@@ -255,7 +257,7 @@ function Page() {
                   </button>
                   <div className="flex w-full justify-between mt-8">
                     <button
-                      className="text-[var(--color-main)] flex items-center justify-center w-full gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
+                      className="text-text-5 flex items-center justify-center w-full gap-1.5 hover:text-text-5/85 transition text-sm font-semibold cursor-pointer"
                       onClick={() => router.push("/auth/login")}
                     >
                       <Image

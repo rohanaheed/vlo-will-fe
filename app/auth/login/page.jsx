@@ -144,7 +144,7 @@ function Page() {
                       className="text-xs md:text-sm font-medium  text-[#FF383C]"
                     />
                   </div>
-                  <div className="flex flex-col gap-2 md:flex-row justify-between mt-8">
+                  <div className="flex flex-col gap-2 md:flex-row md:justify-between mt-8">
                     <div className="flex items-center gap-0.5">
                       <input
                         type="checkbox"
@@ -160,7 +160,7 @@ function Page() {
                       </label>
                     </div>
                     <button
-                      className="text-[var(--color-main)] hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
+                      className="text-[var(--color-main)] self-end hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
                       onClick={() => router.push("/auth/forgot-password")}
                     >
                       Forgot password

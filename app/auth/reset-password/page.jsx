@@ -8,7 +8,6 @@ import Slider from "../../../components/common/slider";
 import { useRouter } from "next/navigation";
 import Check from "../../../components/assets/images/CheckIcon.svg";
 
-
 function Page() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -39,7 +38,7 @@ function Page() {
             </p>
             <div className="flex w-full justify-between mt-8">
               <button
-                className="text-[var(--color-main)] flex items-center justify-center w-full gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
+                className="text-text-5 flex items-center justify-center w-full gap-1.5 hover:text-text-5/85 transition text-sm font-semibold cursor-pointer"
                 onClick={() => router.push("/auth/login")}
               >
                 <Image src={ArrowLeft} alt="media" width={20} height={20} />
