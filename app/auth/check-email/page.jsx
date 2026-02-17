@@ -13,17 +13,17 @@ import { resendVerificationLink } from "../../services/authService";
 
 function Page() {
   const router = useRouter();
-  const searchParams = useSearchParams()
-  const email = searchParams.get("email")
-  const [loading, setLoading] = useState(false)
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email");
+  const [loading, setLoading] = useState(false);
 
   const handleResend = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       const res = await resendVerificationLink({ email: email });
-      toast.success("Email sent successfully if you have account")
+      toast.success("Email sent successfully if you have account");
     } catch (error) {
-      console.log("abc", error, error.response?.data)
+      console.log("abc", error, error.response?.data);
       if (error.response?.data?.error.message) {
         toast.error(error.response?.data?.error.message);
       } else {
@@ -32,8 +32,7 @@ function Page() {
     } finally {
       setLoading(false);
     }
-
-  }
+  };
 
   return (
     <div className="flex h-screen w-full overflow-hidden">
@@ -57,20 +56,13 @@ function Page() {
             <p className="text-sm md:text-base text-text-5 text-center mt-3">
               We sent a password reset link to{" "}
             </p>
-<<<<<<< HEAD
-            <p className="text-sm md:text-base text-text-5 text-center mt-3">
-              olivia@untitledui.com{" "}
-            </p>
-            <button
-              onClick={() => router.push("/auth/verfication-otp")}
-              className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5"
-            >
-=======
             <p className="text-sm md:text-base text-[#535862] text-center mt-3">
               {email}{" "}
             </p>
-            <button onClick={() => window.open("https://mail.google.com", "_blank")} className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5">
->>>>>>> e6243cccac85ef8c38175551c104826b8011936c
+            <button
+              onClick={() => window.open("https://mail.google.com", "_blank")}
+              className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5"
+            >
               Open email app
             </button>
             <div className="mt-8 flex justify-center gap-1">
@@ -82,10 +74,7 @@ function Page() {
                 className="text-[var(--color-main)] flex items-center justify-center gap-1.5 hover:text-[var(--color-main)]/85 transition text-sm font-semibold cursor-pointer"
                 onClick={() => handleResend()}
               >
-                {loading ? <Loader />
-                  :
-                  "Click to resend"
-                }
+                {loading ? <Loader /> : "Click to resend"}
               </button>
             </div>
             <div className="flex w-full justify-between mt-8">
