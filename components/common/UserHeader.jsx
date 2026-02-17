@@ -92,25 +92,25 @@ function UserHeader() {
                                 className='flex items-center gap-2 cursor-pointer relative'
                                 onClick={() => toggleDropdown('product')}
                             >
-                                <p className='text-base font-normal text-black font-semibold text-text-5'>Product</p>
+                                <p className='text-base font-semibold text-text-5'>Product</p>
                                 <Image src={chevronDown} alt="chevronDown" width={20} height={20} />
                             </button>
                             {activeDropdown === 'product' && (
-                                <ul className={`text-text-5 text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10 ${isScrolled ? 'bg-white text-black' : 'bg-black/10 text-white backdrop-blur-lg'}`}>
+                                <ul className={`text-text-5 text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10 ${isScrolled ? 'bg-white text-black' : 'bg-black/10 text-black backdrop-blur-lg'}`}>
                                     <li >
                                         <button
                                             onClick={closeDropdown}
-                                            className='w-full text-left hover:bg-zinc-200 p-2 cursor-pointer'>Product</button>
+                                            className='w-full text-left hover:bg-zinc-400 p-2 cursor-pointer'>Product</button>
                                     </li>
                                     <li>
                                         <button
                                             onClick={closeDropdown}
-                                            className='w-full text-left hover:bg-zinc-200 p-2 cursor-pointer'>Product</button>
+                                            className='w-full text-left hover:bg-zinc-400 p-2 cursor-pointer'>Product</button>
                                     </li>
                                     <li>
                                         <button
                                             onClick={closeDropdown}
-                                            className='w-full text-left hover:bg-zinc-200 p-2 cursor-pointer'>Product</button>
+                                            className='w-full text-left hover:bg-zinc-400 p-2 cursor-pointer'>Product</button>
                                     </li>
                                 </ul>
                             )}
@@ -121,25 +121,25 @@ function UserHeader() {
                                 className='flex items-center gap-2 cursor-pointer relative'
                                 onClick={() => toggleDropdown('services')}
                             >
-                                <p className='text-base font-normal text-black font-semibold text-text-5'>Services</p>
+                                <p className='text-base font-semibold text-text-5'>Services</p>
                                 <Image src={chevronDown} alt="chevronDown" width={20} height={20} />
                             </button>
                             {activeDropdown === 'services' && (
-                                <ul className={`text-text-5 text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10 ${isScrolled ? 'bg-white text-black' : 'bg-black/10 text-white backdrop-blur-lg'}`}>
+                                <ul className={`text-text-5 text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10 ${isScrolled ? 'bg-white text-black' : 'bg-black/10 text-black backdrop-blur-lg'}`}>
                                     <li >
                                         <button
                                             onClick={closeDropdown}
-                                            className='w-full text-left hover:bg-zinc-200 p-2 cursor-pointer'>Services</button>
+                                            className='w-full text-left hover:bg-zinc-400 p-2 cursor-pointer'>Services</button>
                                     </li>
                                     <li>
                                         <button
                                             onClick={closeDropdown}
-                                            className='w-full text-left hover:bg-zinc-200 p-2 cursor-pointer'>Services</button>
+                                            className='w-full text-left hover:bg-zinc-400 p-2 cursor-pointer'>Services</button>
                                     </li>
                                     <li>
                                         <button
                                             onClick={closeDropdown}
-                                            className='w-full text-left hover:bg-zinc-200 p-2 cursor-pointer'>Services</button>
+                                            className='w-full text-left hover:bg-zinc-400 p-2 cursor-pointer'>Services</button>
                                     </li>
                                 </ul>
                             )}
@@ -149,7 +149,7 @@ function UserHeader() {
                                 type="button"
                                 className='flex items-center gap-2 cursor-pointer relative'
                             >
-                                <p className='text-base font-normal text-black font-semibold text-text-5'>Pricing</p>
+                                <p className='text-base font-semibold text-text-5'>Pricing</p>
                             </button>
                         </div>
                         <div className='relative' ref={resourcesRef}>
@@ -158,25 +158,25 @@ function UserHeader() {
                                 className='flex items-center gap-2 cursor-pointer relative'
                                 onClick={() => toggleDropdown('resources')}
                             >
-                                <p className='text-base font-normal text-black font-semibold text-text-5'>Resources</p>
+                                <p className='text-base font-semibold text-text-5'>Resources</p>
                                 <Image src={chevronDown} alt="chevronDown" width={20} height={20} />
                             </button>
                             {activeDropdown === 'resources' && (
-                                <ul className={`text-text-5 text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10 ${isScrolled ? 'bg-white text-black' : 'bg-black/10 text-white backdrop-blur-lg'}`}>
+                                <ul className={`text-text-5 text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-40 z-10 ${isScrolled ? 'bg-white text-black' : 'bg-black/10 text-black backdrop-blur-lg'}`}>
                                     <li >
                                         <button
                                             onClick={closeDropdown}
-                                            className='w-full text-left hover:bg-zinc-200 p-2 cursor-pointer'>Resources</button>
+                                            className='w-full text-left hover:bg-zinc-400 p-2 cursor-pointer'>Resources</button>
                                     </li>
                                     <li>
                                         <button
                                             onClick={closeDropdown}
-                                            className='w-full text-left hover:bg-zinc-200 p-2 cursor-pointer'>Resources</button>
+                                            className='w-full text-left hover:bg-zinc-400 p-2 cursor-pointer'>Resources</button>
                                     </li>
                                     <li>
                                         <button
                                             onClick={closeDropdown}
-                                            className='w-full text-left hover:bg-zinc-200 p-2 cursor-pointer'>Resources</button>
+                                            className='w-full text-left hover:bg-zinc-400 p-2 cursor-pointer'>Resources</button>
                                     </li>
                                 </ul>
                             )}
@@ -187,7 +187,7 @@ function UserHeader() {
                                 type="button"
                                 className='flex items-center gap-2 cursor-pointer relative'
                             >
-                                <p className='text-base font-normal text-black font-semibold text-text-5'>About</p>
+                                <p className='text-base font-semibold text-text-5'>About</p>
                             </button>
                         </div>
                     </div>
@@ -206,8 +206,8 @@ function UserHeader() {
                             options={languageOptions}
                             value={selectedLanguage}
                             onChange={setSelectedLanguage}
-                            className="border-none !w-auto !gap-7 !bg-transparent !p-0 !text-base !text-black !font-semibold"
-                            dropdownClassName={`w-full !p-0 !top-7 !text-xs !font-medium ${isScrolled ? '!bg-white !text-black' : '!bg-black/10 !backdrop-blur-lg !text-white'}`}
+                            className="border-none w-auto! gap-7! bg-transparent! p-0! text-base! text-black! font-semibold!"
+                            dropdownClassName={`w-full !p-0 !top-7 !text-xs !font-medium ${isScrolled ? '!bg-white !text-black' : '!bg-black/10 !backdrop-blur-lg !text-black'}`}
                             buttonClassName="!hover:zinc-200 !p-1"
                         />
                     </div>
@@ -217,7 +217,7 @@ function UserHeader() {
                         </button>
                     </div>
                     <div className='max-sm:hidden'>
-                        <button type="button" onClick={() => router.push("/auth/signup")} className='flex py-2.5 transition-all duration-300 px-4 bg-main hover:bg-main/85 cursor-pointer rounded-lg text-white font-semibold items-center gap-2 cursor-pointer relative'>
+                        <button type="button" onClick={() => router.push("/auth/signup")} className='flex py-2.5 transition-all duration-300 px-4 bg-main hover:bg-main/85 rounded-lg text-white font-semibold items-center gap-2 cursor-pointer relative'>
                             Sign Up
                         </button>
                     </div>
@@ -247,10 +247,10 @@ function UserHeader() {
                                     options={languageOptions}
                                     value={selectedLanguage}
                                     onChange={setSelectedLanguage}
-                                    className="border-none !w-auto !text-white !gap-4 !bg-transparent !p-0 !text-base !font-semibold"
-                                    dropdownClassName="w-full !p-0 !text-white !bg-white/10 !backdrop-blur-lg !top-7 !text-xs !font-medium"
-                                    buttonClassName="!hover:bg-zinc-200 !text-white hover:!text-black !p-1"
-                                    arrowClassName="!invert !brightness-100"
+                                    className="border-none w-auto! text-white gap-4 bg-transparent! p-0 text-base font-semibold"
+                                    dropdownClassName="w-full p-0 text-white bg-white/10 backdrop-blur-lg top-7 text-xs font-medium"
+                                    buttonClassName="hover:bg-zinc-200 text-white hover:text-black p-1"
+                                    arrowClassName="invert brightness-100"
                                 />
                             </div>
                             <div onClick={() => setIsOpen(false)} className='cursor-pointer'>
@@ -261,14 +261,14 @@ function UserHeader() {
                             <div className='relative' ref={productRef}>
                                 <button
                                     type="button"
-                                    className='flex items-center gap-2 cursor-pointer hover:bg-white/10 transition-all duration-300 p-2 rounded-lg text-white relative w-full flex justify-between'
+                                    className='items-center gap-2 cursor-pointer hover:bg-white/10 transition-all duration-300 p-2 rounded-lg text-white relative w-full flex justify-between'
                                     onClick={() => toggleDropdown('product')}
                                 >
-                                    <p className='text-base font-normal font-semibold '>Product</p>
+                                    <p className='text-base -semibold '>Product</p>
                                     <Image src={chevronDown} alt="chevronDown" width={20} height={20} className='brightness-200' />
                                 </button>
                                 {activeDropdown === 'product' && (
-                                    <ul className='text-text-5 w-full bg-white/10 text-white backdrop-blur-lg text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md z-10'>
+                                    <ul className='text-black w-full bg-white/10 backdrop-blur-lg text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md z-10'>
                                         <li >
                                             <button
                                                 onClick={() => { { closeDropdown, setIsOpen(false) } }}
@@ -290,14 +290,14 @@ function UserHeader() {
                             <div className='relative' ref={servicesRef}>
                                 <button
                                     type="button"
-                                    className='flex items-center hover:bg-white/10 w-full transition-all duration-300 p-2 rounded-lg flex justify-between gap-2 cursor-pointer relative'
+                                    className='items-center hover:bg-white/10 w-full transition-all duration-300 p-2 rounded-lg flex justify-between gap-2 cursor-pointer relative'
                                     onClick={() => toggleDropdown('services')}
                                 >
-                                    <p className='text-white font-normal font-semibold'>Services</p>
+                                    <p className='text-white font-semibold'>Services</p>
                                     <Image src={chevronDown} alt="chevronDown" width={20} height={20} className='brightness-200' />
                                 </button>
                                 {activeDropdown === 'services' && (
-                                    <ul className='text-text-5 text-white bg-white/10 backdrop-blur-lg text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-full z-10'>
+                                    <ul className='text-black bg-white/10 backdrop-blur-lg text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-full z-10'>
                                         <li >
                                             <button
                                                 onClick={() => { { closeDropdown, setIsOpen(false) } }}
@@ -322,20 +322,20 @@ function UserHeader() {
                                     type="button"
                                     className='flex items-center hover:bg-white/10 w-full transition-all duration-300 p-2 rounded-lg gap-2 cursor-pointer relative'
                                 >
-                                    <p className='text-white font-normal font-semibold'>Pricing</p>
+                                    <p className='text-white font-semibold'>Pricing</p>
                                 </button>
                             </div>
                             <div className='relative' ref={resourcesRef}>
                                 <button
                                     type="button"
-                                    className='flex items-center hover:bg-white/10 w-full transition-all duration-300 p-2 rounded-lg flex justify-between gap-2 cursor-pointer relative'
+                                    className='items-center hover:bg-white/10 w-full transition-all duration-300 p-2 rounded-lg flex justify-between gap-2 cursor-pointer relative'
                                     onClick={() => toggleDropdown('resources')}
                                 >
-                                    <p className='text-white font-normal font-semibold'>Resources</p>
+                                    <p className='text-white font-semibold'>Resources</p>
                                     <Image src={chevronDown} alt="chevronDown" width={20} height={20} className='brightness-200' />
                                 </button>
                                 {activeDropdown === 'resources' && (
-                                    <ul className='text-text-5 text-white bg-white/10 backdrop-blur-lg text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-full z-10'>
+                                    <ul className='text-black bg-white/10 backdrop-blur-lg text-base font-normal overflow-hidden absolute top-10 left-0 border border-black/16 rounded-md w-full z-10'>
                                         <li >
                                             <button
                                                 onClick={() => { { closeDropdown, setIsOpen(false) } }}
@@ -361,22 +361,22 @@ function UserHeader() {
                                     type="button"
                                     className='flex items-center gap-2 cursor-pointer relative hover:bg-white/10 transition-all duration-300 p-2 rounded-lg w-full'
                                 >
-                                    <p className='text-white font-normal font-semibold'>About</p>
+                                    <p className='text-white font-semibold'>About</p>
                                 </button>
                             </div>
                             <div className='sm:hidden'>
                                 <button
                                     onClick={() => router.push("/auth/login")}
-                                    type="button" className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
-                                    <p className='text-base font-normal font-semibold'>Login</p>
+                                    type="button" className='flex justify-center py-2.5 bg-white w-full text-center px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
+                                    <p className='text-base font-semibold'>Login</p>
                                 </button>
                             </div>
                             <div className='sm:hidden'>
 
                                 <button type="button"
                                     onClick={() => router.push("/auth/signup")}
-                                    className='flex justify-center py-2.5 bg-white w-full text-center transition-all duration-300 px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
-                                    <p className='text-base font-normal font-semibold'>Sign Up</p>
+                                    className='flex justify-center py-2.5 bg-white w-full text-center px-4 text-main hover:bg-main/70 backdrop-blur-lg hover:text-white rounded-lg font-semibold items-center gap-2 cursor-pointer border border-white/16 transition-all duration-300'>
+                                    <p className='text-base font-semibold'>Sign Up</p>
                                 </button>
                             </div>
                         </div>

@@ -59,7 +59,7 @@ function Slider({ data }) {
           className={`bg-black/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-white shadow-2xl overflow-hidden relative group w-full ${direction === 'right' ? 'animate-slideInRight' : 'animate-slideInLeft'}`}
         >
           {/* Glass effect gradient - subtle */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none" />
 
           {/* Quote */}
           <h2 className='relative text-lg md:text-lg lg:text-3xl font-semibold leading-tight mb-8 z-10'>

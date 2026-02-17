@@ -29,7 +29,7 @@ function Commondropdown({ options, imageClassName, arrowClassName, buttonClassNa
           {value && typeof value === 'object' && value.icon && (
             <Image src={value.icon} alt="icon" width={20} height={20} className={`${imageClassName} rounded-full object-cover`} />
           )}
-          <span className={`text-sm truncate ${value ? "" : "text-[#717680]"}`}>
+          <span className={`text-sm truncate ${value ? "" : "text-text-7"}`}>
             {value ? (typeof value === 'object' ? value.label : value) : placeholder}
           </span>
         </div>
@@ -53,7 +53,7 @@ function Commondropdown({ options, imageClassName, arrowClassName, buttonClassNa
                   setIsOpen(false)
                 }}
                 style={option.value === value.value ? { color: "#000000" } : {}}
-                className={`${buttonClassName} px-3.5 py-2.5 text-sm hover:bg-zinc-200 cursor-pointer transition-colors flex items-center gap-2 ${option.value === value.value ? "bg-zinc-200 !text-black" : ""}`}
+                className={`${buttonClassName} px-3.5 py-2.5 text-sm hover:bg-zinc-200 cursor-pointer transition-colors flex items-center gap-2 ${option.value === value.value ? "text-black" : ""}`}
               >
                 {typeof option === 'object' && option.icon && (
                   <Image src={option.icon} alt="icon" width={20} height={20} className={`${imageClassName} rounded-full object-cover`} />
@@ -62,7 +62,7 @@ function Commondropdown({ options, imageClassName, arrowClassName, buttonClassNa
               </div>
             ))
           ) : (
-            <div className='px-3.5 py-2.5 text-sm text-[#717680] text-center'>No options found</div>
+            <div className='px-3.5 py-2.5 text-sm text-text-7 text-center'>No options found</div>
           )}
         </div>
       )}

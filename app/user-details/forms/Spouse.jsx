@@ -36,7 +36,7 @@ const CustomDateInput = forwardRef(({ value, onClick, onChange, placeholder, age
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                className="flex-1 w-full bg-transparent text-black border-none outline-none text-sm placeholder:text-[#717680]"
+                className="flex-1 w-full bg-transparent text-black border-none outline-none text-sm placeholder:text-text-7"
             />
             {age && (
                 <span className="text-sm text-text-4 font-medium whitespace-nowrap">
@@ -188,12 +188,12 @@ function Spouse({ onSave, onSkip, onBack }) {
                                 value={formData.title}
                                 onChange={(val) => handleChange("title", val)}
                                 placeholder="Mr / Mrs / Ms / Dr"
-                                className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                                className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap! py-0! pr-0! px-1.5!"
                                 dropdownClassName="!w-[120px]"
                             />
                             <input
                                 type="text"
-                                className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                 placeholder="John Alexander Smith"
                                 value={formData.fullName}
                                 onChange={(e) => handleChange("fullName", e.target.value)}
@@ -289,7 +289,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                             value={formData.relationship}
                             onChange={(val) => handleChange("relationship", val)}
                             placeholder="Spouse / Civil Partner / Long-term Partner / Add"
-                            className="w-full !py-2.5 text-[#414651]"
+                            className="w-full py-2.5! text-text-4"
                         />
                     </div>
 
@@ -301,7 +301,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                                 <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Number</label>
                                 <input
                                     type="text"
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="1568"
                                     value={formData.buildingNumber}
                                     onChange={(e) => handleChange("buildingNumber", e.target.value)}
@@ -311,7 +311,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                                 <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Name</label>
                                 <input
                                     type="text"
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="Sky land"
                                     value={formData.buildingName}
                                     onChange={(e) => handleChange("buildingName", e.target.value)}
@@ -322,7 +322,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                                 <label className='block text-sm font-medium text-text-4 mb-1.5'>Street</label>
                                 <input
                                     type="text"
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="Wood Street"
                                     value={formData.street}
                                     onChange={(e) => handleChange("street", e.target.value)}
@@ -332,7 +332,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                                 <label className='block text-sm font-medium text-text-4 mb-1.5'>Town</label>
                                 <input
                                     type="text"
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="Leyton"
                                     value={formData.town}
                                     onChange={(e) => handleChange("town", e.target.value)}
@@ -343,7 +343,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                                 <label className='block text-sm font-medium text-text-4 mb-1.5'>City</label>
                                 <input
                                     type="text"
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="London"
                                     value={formData.city}
                                     onChange={(e) => handleChange("city", e.target.value)}
@@ -353,7 +353,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                                 <label className='block text-sm font-medium text-text-4 mb-1.5'>County/State</label>
                                 <input
                                     type="text"
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="London"
                                     value={formData.county}
                                     onChange={(e) => handleChange("county", e.target.value)}
@@ -364,7 +364,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                                 <label className='block text-sm font-medium text-text-4 mb-1.5'>Post/Zip Code</label>
                                 <input
                                     type="text"
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="Post/zip code"
                                     value={formData.postcode}
                                     onChange={(e) => handleChange("postcode", e.target.value)}
@@ -377,7 +377,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                                     value={formData.country}
                                     onChange={(val) => handleChange("country", val)}
                                     placeholder="Select Country"
-                                    className="w-full !py-2.5 text-[#414651]"
+                                    className="w-full py-2.5! text-text-4"
                                 />
                             </div>
                         </div>
@@ -392,12 +392,12 @@ function Spouse({ onSave, onSkip, onBack }) {
                                 options={phoneCodeOptions}
                                 value={formData.phoneCode}
                                 onChange={(val) => handleChange("phoneCode", val)}
-                                className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                                className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap! py-0! pr-0! px-1.5!"
                                 dropdownClassName="!w-[100px]"
                             />
                             <input
                                 type="text"
-                                className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                 placeholder="7890 123456"
                                 value={formData.phone}
                                 onChange={(e) => handleChange("phone", e.target.value)}
@@ -429,7 +429,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                         <button
                             onClick={addSpouse}
                             type="button"
-                            className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                            className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors shadow-sm"
                         >
                             <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                             Add
@@ -437,7 +437,7 @@ function Spouse({ onSave, onSkip, onBack }) {
                         <button
                             onClick={removeSpouse}
                             type="button"
-                            className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                            className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-base font-semibold shadow-sm"
                         >
                             <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
                             Remove

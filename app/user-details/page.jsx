@@ -28,13 +28,33 @@ import Commondropdown from '@/components/common/Commondropdown1.jsx'
 import Funeral from './forms/Funeral'
 import Witnesses from './forms/Witnesses'
 import Review from './forms/Review'
-
+import BorderTick from '@/components/assets/images/BorderTick.svg'
+import DabitCard from '@/components/assets/images/DabitCard.svg'
 
 function Page() {
     const [tab, setTab] = useState("overview")
     const [tab1, settab1] = useState("testator")
     const [completedSteps, setCompletedSteps] = useState([])
     const [willLocation, setWillLocation] = useState("England")
+    const [tab2, setTab2] = useState("annual")
+    const [paymentData, setPaymentData] = useState({
+        fname: '',
+        mname: '',
+        lname: '',
+        cardno: '',
+        ccv: '',
+        expiry: '',
+        billingzip: ''
+    })
+
+    const handlePaymentChange = (e) => {
+        const { name, value } = e.target
+        setPaymentData(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
 
     // Steps mapping
     const steps = [
@@ -150,7 +170,7 @@ function Page() {
 
                     </div>
                 </div>
-                <div className={`${tab1 === "review" ? "!grid-cols-1" : ""} max-[1200px]:px-4 mx-auto grid md:grid-cols-2 grid-cols-1 gap-9 max-w-[1200px] mx-auto items-start mb-8 md:mb-24 p-4'`}>
+                <div className={`${tab1 === "review" ? "grid-cols-1!" : ""} max-[1200px]:px-4 grid md:grid-cols-2 grid-cols-1 gap-9 max-w-[1200px] mx-auto items-start mb-6 p-4'`}>
                     {tab1 === "testator" &&
                         <Testatot onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "executor" &&
@@ -173,6 +193,7 @@ function Page() {
                         <Witnesses onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
                     {tab1 === "review" &&
                         <Review onSave={handleSave} onSkip={handleSkip} onBack={handleBack} />}
+                   
                     <div className='bg-[#fafafa] border border-black/16 rounded-2xl'>
                         <div className='flex items-center justify-between bg-white  p-4 rounded-t-2xl shadow-lg'>
                             <div className="flex items-center  gap-1 cursor-pointer">
@@ -197,21 +218,21 @@ function Page() {
                         </div>
                         <div className="bg-white p-4 rounded-b-2xl flex items-center justify-center gap-4 z-10 relative">
                             <div className="flex items-center gap-4">
-                                <button onClick={handleZoomOut} className='font-bold text-2xl text-[#535862] hover:text-black cursor-pointer'>-</button>
-                                <span className='text-sm text-[#414651] font-semibold w-12 text-center'>{zoom}%</span>
-                                <button onClick={handleZoomIn} className='font-bold text-2xl text-[#535862] hover:text-black cursor-pointer'>+</button>
+                                <button onClick={handleZoomOut} className='font-bold text-2xl text-text-5hover:text-black cursor-pointer'>-</button>
+                                <span className='text-sm text-text-4 font-semibold w-12 text-center'>{zoom}%</span>
+                                <button onClick={handleZoomIn} className='font-bold text-2xl text-text-5hover:text-black cursor-pointer'>+</button>
                             </div>
-                            <div className='w-[1px] h-6 bg-[#BDBDC7]'></div>
+                            <div className='w-px h-6 bg-[#BDBDC7]'></div>
                             <div className="flex items-center gap-4">
                                 <Image src={UpDownIcon} alt="resize" width={24} height={24} className='cursor-pointer hover:opacity-80' onClick={() => { setZoom(100); setRotation(0); }} />
                                 <Image src={RotateIcon} alt="rotate" width={24} height={24} className='cursor-pointer hover:opacity-80' onClick={handleRotate} />
                             </div>
-                            <div className='w-[1px] h-6 bg-[#BDBDC7]'></div>
+                            <div className='w-px h-6 bg-[#BDBDC7]'></div>
                             <div className="flex items-center gap-4">
                                 <button onClick={handlePrevPage} disabled={page === 1} className={`transition-opacity ${page === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:opacity-80'}`}>
                                     <Image src={FillArrowLeftIcon} alt="prev" width={24} height={24} />
                                 </button>
-                                <span className='text-sm text-[#414651] font-semibold'>{page} / {totalPages}</span>
+                                <span className='text-sm text-text-4 font-semibold'>{page} / {totalPages}</span>
                                 <button onClick={handleNextPage} disabled={page === totalPages} className={`rotate-180 transition-opacity ${page === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:opacity-80'}`}>
                                     <Image src={FillArrowLeftIcon} alt="next" width={24} height={24} />
                                 </button>
@@ -243,21 +264,21 @@ function Page() {
                                 {/* Full Screen Toolbar */}
                                 <div className="bg-white p-4 rounded-2xl flex items-center gap-6 mt-4 shadow-xl">
                                     <div className="flex items-center gap-4">
-                                        <button onClick={handleZoomOut} className='font-bold text-2xl text-[#535862] hover:text-black cursor-pointer'>-</button>
-                                        <span className='text-sm text-[#414651] font-semibold w-12 text-center'>{zoom}%</span>
-                                        <button onClick={handleZoomIn} className='font-bold text-2xl text-[#535862] hover:text-black cursor-pointer'>+</button>
+                                        <button onClick={handleZoomOut} className='font-bold text-2xl text-text-5hover:text-black cursor-pointer'>-</button>
+                                        <span className='text-sm text-text-4 font-semibold w-12 text-center'>{zoom}%</span>
+                                        <button onClick={handleZoomIn} className='font-bold text-2xl text-text-5hover:text-black cursor-pointer'>+</button>
                                     </div>
-                                    <div className='w-[1px] h-6 bg-[#E9EAEB]'></div>
+                                    <div className='w-px h-6 bg-[#E9EAEB]'></div>
                                     <div className="flex items-center gap-4">
                                         <Image src={UpDownIcon} alt="resize" width={20} height={20} className='cursor-pointer hover:opacity-80' onClick={() => { setZoom(100); setRotation(0); }} />
                                         <Image src={RotateIcon} alt="rotate" width={20} height={20} className='cursor-pointer hover:opacity-80' onClick={handleRotate} />
                                     </div>
-                                    <div className='w-[1px] h-6 bg-[#E9EAEB]'></div>
+                                    <div className='w-px h-6 bg-[#E9EAEB]'></div>
                                     <div className="flex items-center gap-4">
                                         <button onClick={handlePrevPage} disabled={page === 1} className={`transition-opacity ${page === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:opacity-80'}`}>
                                             <Image src={FillArrowLeftIcon} alt="prev" width={24} height={24} />
                                         </button>
-                                        <span className='text-sm text-[#414651] font-semibold'>{page} / {totalPages}</span>
+                                        <span className='text-sm text-text-4 font-semibold'>{page} / {totalPages}</span>
                                         <button onClick={handleNextPage} disabled={page === totalPages} className={`rotate-180 transition-opacity ${page === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:opacity-80'}`}>
                                             <Image src={FillArrowLeftIcon} alt="next" width={24} height={24} />
                                         </button>
@@ -273,17 +294,324 @@ function Page() {
                     <h1 className='text-text-1 text-xl md:text-2xl lg:text-[36px] font-semibold mb-6'>
                         Create your Will
                     </h1>
-                    <p className='text-[#414651] text-sm font-medium mb-1.5'>
+                    <p className='text-text-4 text-sm font-medium mb-1.5'>
                         Where will this general be used?
                     </p>
                     <Commondropdown
                         options={["England", "Wales", "Scotland", "Northern Ireland"]}
                         value={willLocation}
                         onChange={(val) => setWillLocation(val)}
-                        className="w-full bg-white text-[#414651]"
+                        className="w-full bg-white text-text-4"
                     />
                 </div>}
-                <div className='border-t border-black/16 md:pt-24 pt-8'>
+                {tab1 === "review" &&
+                <>
+                 <div className='md:py-18 py-8 md:pt-24 pt-8 border-t border-black/16'>
+                    <div className='max-w-[768px] w-full mx-auto'>
+                        <p className='text-center md:text-base text-sm font-normal text-main mt-2'>Pricing</p>
+                        <h1 className='text-center lg:text-[36px] md:text-2xl text-xl font-semibold text-text-1 mt-3'>
+                            DocNet Subscription Plans
+                        </h1>
+                        <p className='text-center md:text-lg lg:text-xl text-base font-normal text-text-5 mt-2'>
+                           Get instant access to every legal document you need — create, edit, sign, and download anytime.
+                        </p>
+                        <p className='text-center md:text-base text-sm font-normal text-text-5 mt-5'>
+                            <span className='font-semibold'>Note:</span> All prices include VAT Subscriptions renew automatically unless cancelled before renewal date.
+                        </p>
+                    </div>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto mt-12 px-4'>
+                        {/* Single Document */}
+                        <div
+                            onClick={() => setTab2("single")}
+                            className={`border border-black/10 rounded-2xl cursor-pointer flex flex-col shadow ${tab2 === "single" ? "bg-[#ECF6FF] border-main" : ""}`}>
+                            <div className='p-4 md:p-6 lg:p-8'>
+                                <h3 className='md:text-lg text-base font-semibold text-text-5'>Single Document</h3>
+                                <div className='mt-4 flex items-baseline'>
+                                    <span className='md:text-base text-xs font-medium text-text-5 mr-1'>From</span>
+                                    <span className='lg:text-[60px] md:text-[45px] text-[30px] font-semibold text-text-1'>£10</span>
+                                </div>
+                                <p className='text-text-5 md:text-base text-sm mt-4'>Ideal if you only need one document.</p>
+                            </div>
+                            <div className='mt-6 border-t border-black/10 pt-6 p-4 md:p-6 lg:p-8 flex-1'>
+                                <p className='text-sm font-semibold text-text-1 mb-4'>Includes:</p>
+                                <ul className='space-y-3'>
+                                    <li className='flex items-start gap-3'>
+                                        <div className=''>
+                                            <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                        </div>
+                                        <span className='text-text-5 text-sm'>One-time creation and download</span>
+                                    </li>
+                                    <li className='flex items-start gap-3'>
+                                        <div className=''>
+                                            <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Editable before download</span>
+                                    </li>
+                                    <li className='flex items-start gap-3'>
+                                        <div className=''>
+                                            <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Secure 30-day access for updates</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className='mt-8 space-y-3 p-4 md:p-6 lg:p-8'>
+                                <button onClick={() => router.push('/create-your-will')}
+                                    className='w-full bg-[#0B2C4F] cursor-pointer text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
+                                    Create Now
+                                </button>
+                                <button className='w-full cursor-pointer bg-white border border-black/10 text-text-1 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors'>
+                                    Chat to sales
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Monthly Plan */}
+                        <div
+                            onClick={() => setTab2("monthly")}
+                            className={`border border-black/10 rounded-2xl flex flex-col shadow cursor-pointer ${tab2 === "monthly" ? "bg-[#ECF6FF] border-main" : ""}`}>
+                            <div className='p-4 md:p-6 lg:p-8'>
+
+
+                                <div className='flex justify-between items-start'>
+                                    <h3 className='md:text-lg text-base font-semibold text-text-5'>Monthly Plan</h3>
+                                    <span className='inline-block px-3 py-1 rounded-full border border-main text-main text-xs md:text-sm font-semibold bg-[#ECF6FF]'>
+                                        Popular
+                                    </span>
+                                </div>
+                                <div className='mt-4 flex items-baseline'>
+                                    <span className='lg:text-[60px] md:text-[45px] text-[30px] font-semibold text-text-1'>£29</span>
+                                    <span className='md:text-base text-xs font-medium text-text-5 mr-1'>/ month</span>
+                                </div>
+                                <p className='text-text-5 md:text-base text-sm mt-4'>Perfect if you need several documents or ongoing access.</p>
+                            </div>
+                            <div className='mt-6 border-t border-black/10 pt-6 flex-1 p-4 md:p-6 lg:p-8'>
+                                <p className='text-sm font-semibold text-text-1 mb-4'>Includes:</p>
+                                <ul className='space-y-3'>
+                                    <li className='flex items-start gap-3'>
+                                        <div className=''>
+                                            <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Unlimited document creation and editing</span>
+                                    </li>
+                                    <li className='flex items-start gap-3'>
+                                        <div className=''>
+                                            <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Full access to all legal templates</span>
+                                    </li>
+                                    <li className='flex items-start gap-3'>
+                                        <div className=''>
+                                            <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Download in Word or PDF</span>
+                                    </li>
+                                    <li className='flex items-start gap-3'>
+                                        <div className=''>
+                                            <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Secure online storage</span>
+                                    </li>
+                                    <li className='flex items-start gap-3'>
+                                        <div className=''>
+                                            <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                        </div>
+                                        <span className='text-text-5 text-sm'>eSignature included</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className='mt-8 space-y-3 p-4 md:p-6 lg:p-8'>
+                                <button onClick={() => router.push('/create-your-will')} 
+                                 className='w-full bg-[#0B2C4F] cursor-pointer text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
+                                    Start Free Trial
+                                </button>
+                                <button className='w-full bg-white cursor-pointer border border-black/10 text-text-1 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors'>
+                                    Chat to sales
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Annual Plan */}
+                        <div
+                            onClick={() => setTab2("annual")}
+                            className={`border border-black/10 rounded-2xl flex flex-col shadow cursor-pointer ${tab2 === "annual" ? "bg-[#ECF6FF] border-main" : ""}`}>
+                            <div className='p-4 md:p-6 lg:p-8'>
+                                <h3 className='md:text-lg text-base font-semibold text-text-5'>Annual Plan</h3>
+                                <div className='mt-4 flex items-baseline'>
+                                    <span className='lg:text-[60px] md:text-[45px] text-[30px] font-semibold text-text-1'>£59.88</span>
+                                    <span className='md:text-base text-xs font-medium text-text-5 ml-1'>/ year</span>
+                                </div>
+                                <div className=''>
+                                    <span className='inline-block px-3 py-1 rounded-full border border-main text-main text-xs md:text-sm font-semibold bg-[#ECF6FF]'>
+                                        Save 80% compared to monthly
+                                    </span>
+                                </div>
+
+                                <p className='text-text-5 md:text-base text-sm mt-4'>Best value for individuals and small businesses.</p>
+                            </div>
+                            <div className='mt-6 border-t border-black/10 pt-6 flex-1 p-4 md:p-6 lg:p-8'>
+                                <p className='text-sm font-semibold text-text-1 mb-4'>Includes:</p>
+                                <ul className='space-y-3'>
+                                    <li className='flex items-start gap-3'>
+                                        <div className='mt-0.5 min-w-5'>
+                                            <div className=''>
+                                                <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                            </div>
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Everything in the Monthly Plan, plus.</span>
+                                    </li>
+                                    <li className='flex items-start gap-3'>
+                                        <div className='mt-0.5 min-w-5'>
+                                            <div className=''>
+                                                <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                            </div>
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Priority customer support</span>
+                                    </li>
+                                    <li className='flex items-start gap-3'>
+                                        <div className='mt-0.5 min-w-5'>
+                                            <div className=''>
+                                                <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                            </div>
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Early access to new templates</span>
+                                    </li>
+                                    <li className='flex items-start gap-3'>
+                                        <div className='mt-0.5 min-w-5'>
+                                            <div className=''>
+                                                <Image src={BorderTick} alt="check" width={20} height={20} className='w-6 h-6' />
+                                            </div>
+                                        </div>
+                                        <span className='text-text-5 text-sm'>Annual billing for complete peace of mind</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className='mt-8 space-y-3 p-4 md:p-6 lg:p-8'>
+                                <button
+                                    onClick={() => router.push('/create-your-will')}
+                                    className='w-full bg-[#0B2C4F] cursor-pointer text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
+                                    Go Annual & Save
+                                </button>
+                                <button className='w-full bg-white border cursor-pointer border-black/10 text-text-1 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors'>
+                                    Chat to sales
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                <div className='border max-w-[1200px] max-[1200px]:mx-4 min-[1200px]:mx-auto border-main bg-[#fafafa] p-4 md:p-6 md:mb-24 mb-8 rounded-xl'>
+                        <h1 className='text-text-1 text-xl md:text-2xl lg:text-[36px] font-semibold'>Enter your payment information</h1>
+                        <p className='md:text-base text-sm font-normal text-text-5 mt-5'>
+                            <span className='font-semibold'>Note:</span> All prices include VAT Subscriptions renew automatically unless cancelled before renewal date.
+                        </p>
+                        <div className='grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4 mt-4'>
+                        <div>
+                            <label htmlFor="fname" className='text-text-4 text-sm font-medium mb-1.5'>First Name</label>
+                            <input
+                                type="text"
+                                id="fname"
+                                name="fname"
+                                value={paymentData.fname}
+                                onChange={handlePaymentChange}
+                                placeholder='Olivia Rhye'
+                                className='w-full text-text-1 border border-black/10 rounded-lg p-2 py-1.75 shadow'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="mname" className='text-text-4 text-sm font-medium mb-1.5'>Middle Name</label>
+                            <input
+                                type="text"
+                                id="mname"
+                                name="mname"
+                                value={paymentData.mname}
+                                onChange={handlePaymentChange}
+                                placeholder='Olivia Rhye'
+                                className='w-full text-text-1 border border-black/10 rounded-lg p-2 py-1.75 shadow'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="lname" className='text-text-4 text-sm font-medium mb-1.5'>Last Name</label>
+                            <input
+                                type="text"
+                                id="lname"
+                                name="lname"
+                                value={paymentData.lname}
+                                onChange={handlePaymentChange}
+                                placeholder='Olivia Rhye'
+                                className='w-full text-text-1 border border-black/10 rounded-lg p-2 py-1.75 shadow'
+                            />
+                        </div>
+                        <div className='relative'>
+                            <label htmlFor="cardno" className='text-text-4 text-sm font-medium mb-1.5'>Card Number</label>
+                            <div className='relative'>
+                                <input
+                                    type="text"
+                                    id="cardno"
+                                    name="cardno"
+                                    value={paymentData.cardno}
+                                    onChange={handlePaymentChange}
+                                    placeholder='1234 5678 9012 3456'
+                                    className='w-full text-text-1 border border-black/10 rounded-lg pl-9 p-2 py-1.75 shadow'
+                                />
+                                <div className='absolute left-2 top-1/2 -translate-y-1/2 flex items-center'>
+                                    <Image src={DabitCard} alt="DabitCard" width={24} height={18}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="ccv" className='text-text-4 text-sm font-medium mb-1.5'>CCV</label>
+                            <input
+                                type="password"
+                                id="ccv"
+                                name="ccv"
+                                value={paymentData.ccv}
+                                onChange={handlePaymentChange}
+                                placeholder='...'
+                                className='w-full text-text-1 border border-black/10 rounded-lg p-2 py-1.75 shadow'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="expiry" className='text-text-4 text-sm font-medium mb-1.5'>Expiry Date</label>
+                            <input
+                                type="text"
+                                id="expiry"
+                                name="expiry"
+                                value={paymentData.expiry}
+                                onChange={handlePaymentChange}
+                                placeholder='06 / 2025'
+                                className='w-full text-text-1 border border-black/10 rounded-lg p-2 py-1.75 shadow'
+                            />
+                        </div>
+                        </div>
+                        <div className="mt-4">
+                            <label htmlFor="billingzip" className='text-text-4 text-sm font-medium mb-1.5'>Billing Zip</label>
+                            <input
+                                type="text"
+                                id="billingzip"
+                                name="billingzip"
+                                value={paymentData.billingzip}
+                                onChange={handlePaymentChange}
+                                placeholder='06 / 2025'
+                                className='w-full text-text-1 border border-black/10 rounded-lg p-2 py-1.75 shadow'
+                            />
+                            <p className='text-red-500 text-sm mt-1.5'>
+                                Please enter a valid card's billing zip code.
+                            </p>
+                        </div>
+                        <div>
+                            <button className='w-full bg-main cursor-pointer mt-4 text-white p-3 rounded-lg font-semibold hover:bg-main/85 transition-opacity'>
+                                Yes, start my membership
+                            </button>
+                        </div>
+                    </div>
+                </>
+                }
+                <div className='md:pt-24 pt-8'>
                     <div className='px-4 md:px-6 lg:px-8 max-w-[1200px] mx-auto'>
 
 

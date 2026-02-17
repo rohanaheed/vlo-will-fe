@@ -14,6 +14,7 @@ import AddIcon from '@/components/assets/images/AddClipboardIcon.svg'
 
 function Review({ onSave, onSkip, onBack }) {
     const [isActive, setIsActive] = useState("create")
+    
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>
             <div className='flex items-center justify-between gap-4 flex-wrap w-full mb-5'>
@@ -34,23 +35,23 @@ function Review({ onSave, onSkip, onBack }) {
 
                 {/* Action Buttons */}
                 <div className='flex flex-col md:flex-row items-center flex-wrap whitespace-nowrap gap-2 mt-4'>
-                    <button onClick={() => setIsActive("print")} className={`${isActive === "print" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[290px] md:shrink-1 md:grow md:basis-[150px]`}>
+                    <button onClick={() => setIsActive("print")} className={`${isActive === "print" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[290px] md:shrink md:grow md:basis-[150px]`}>
                         <Image src={PrintIcon} alt="Print" width={20} height={20} className={`${isActive === "print" ? "invert brightness-0" : "group-hover:invert group-hover:brightness-0"}`} />
                         <span className=''>Print</span>
                     </button>
-                    <button onClick={() => setIsActive("edit")} className={`${isActive === "edit" ? "bg-main text-white border-white" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[290px] md:shrink-1 md:grow md:basis-[150px]`}>
+                    <button onClick={() => setIsActive("edit")} className={`${isActive === "edit" ? "bg-main text-white border-white" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[290px] md:shrink md:grow md:basis-[150px]`}>
                         <Image src={EditIconBlue} alt="Edit" width={20} height={20} className={`${isActive === "edit" ? "invert brightness-0" : "group-hover:invert group-hover:brightness-0"}`} />
                         <span className=''>Edit</span>
                     </button>
-                    <button onClick={() => setIsActive("download")} className={`${isActive === "download" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink-1 md:grow md:basis-[150px]`}>
+                    <button onClick={() => setIsActive("download")} className={`${isActive === "download" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink md:grow md:basis-[150px]`}>
                         <Image src={DownloadIconBlue} alt="Download" width={20} height={20} className={`${isActive === "download" ? "invert brightness-0" : "group-hover:invert group-hover:brightness-0"}`} />
                         <span className=''>Download Pdf</span>
                     </button>
-                    <button onClick={() => setIsActive("share")} className={`${isActive === "share" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink-1 md:grow md:basis-[180px]`}>
+                    <button onClick={() => setIsActive("share")} className={`${isActive === "share" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink md:grow md:basis-[180px]`}>
                         <Image src={ShareIconBlue} alt="Share" width={20} height={20} className={`${isActive === "share" ? "invert brightness-0" : "group-hover:invert group-hover:brightness-0"}`} />
                         <span>Share</span>
                     </button>
-                    <button onClick={() => setIsActive("create")} className={`${isActive === "create" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink-1 md:grow md:basis-[230px]`}>
+                    <button onClick={onSave} className={`${isActive === "create" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink md:grow md:basis-[230px]`}>
                         <Image src={AddIcon} alt="Create" width={24} height={24} className={`${isActive === "create" ? "invert brightness-0" : "brightness-0 group-hover:invert"}`} />
                         Create My Will (28)
                     </button>

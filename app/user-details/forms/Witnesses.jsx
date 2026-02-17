@@ -91,7 +91,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
             />
             <input
                 type='text'
-                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg pl-10 pr-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] cursor-pointer'
+                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg pl-10 pr-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 cursor-pointer'
                 placeholder='DD/MM/YYYY'
                 value={value}
                 readOnly
@@ -127,12 +127,12 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                     value={testatorTitle}
                                     onChange={(val) => setTestatorTitle(val)}
                                     placeholder="Mr / Mrs / Ms / Dr"
-                                    className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                                    className="border-none! w-fit gap-1! text-text-4 shadow-none! bg-white whitespace-nowrap py-0! pr-0! px-1.5!"
                                     dropdownClassName="!w-[100px]"
                                 />
                                 <input
                                     type='text'
-                                    className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-[#717680] py-2.5 pr-2'
+                                    className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-text-7 py-2.5 pr-2'
                                     placeholder='John Alexander Smith'
                                     value={testatorName}
                                     onChange={(e) => {
@@ -203,12 +203,12 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             value={witness1Title}
                                             onChange={(val) => setWitness1Title(val)}
                                             placeholder="Mr / Mrs / Ms / Dr"
-                                            className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                                            className="border-none! w-fit gap-1! text-text-4 shadow-none! bg-white whitespace-nowrap py-0! pr-0! px-1.5!"
                                             dropdownClassName="!w-[100px]"
                                         />
                                         <input
                                             type='text'
-                                            className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-[#717680] py-2.5 pr-2'
+                                            className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-text-7 py-2.5 pr-2'
                                             placeholder='John Alexander Smith'
                                             value={witness1Name}
                                             onChange={(e) => {
@@ -227,7 +227,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Number</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='1568'
                                                 value={witness1BuildingNumber}
                                                 onChange={(e) => setWitness1BuildingNumber(e.target.value)}
@@ -237,7 +237,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Name</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='Sky land'
                                                 value={witness1BuildingName}
                                                 onChange={(e) => setWitness1BuildingName(e.target.value)}
@@ -247,7 +247,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Street</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='Wood Street'
                                                 value={witness1Street}
                                                 onChange={(e) => setWitness1Street(e.target.value)}
@@ -257,7 +257,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Town</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='Leyton'
                                                 value={witness1Town}
                                                 onChange={(e) => setWitness1Town(e.target.value)}
@@ -267,7 +267,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>City</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='London'
                                                 value={witness1City}
                                                 onChange={(e) => setWitness1City(e.target.value)}
@@ -277,7 +277,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>County/State</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='London'
                                                 value={witness1County}
                                                 onChange={(e) => setWitness1County(e.target.value)}
@@ -287,7 +287,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Post/Zip Code</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='Post/zip code'
                                                 value={witness1Postcode}
                                                 onChange={(e) => setWitness1Postcode(e.target.value)}
@@ -300,7 +300,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                                 value={witness1Country}
                                                 onChange={(val) => setWitness1Country(val)}
                                                 placeholder="Select Country"
-                                                className="w-full !py-2.5 text-[#414651]"
+                                                className="w-full py-2.5! text-text-4"
                                                 dropdownClassName="!text-black"
                                             />
                                         </div>
@@ -311,7 +311,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                     <label className='block text-sm font-medium text-text-4 mb-1.5'>Address <span className='text-red-500'>*</span></label>
                                     <input
                                         type='text'
-                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                         placeholder='45 Meadow Lane, Manchester, M 14 3AA'
                                         value={witness1Address}
                                         onChange={(e) => setWitness1Address(e.target.value)}
@@ -325,7 +325,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                         value={witness1Occupation}
                                         onChange={(val) => setWitness1Occupation(val)}
                                         placeholder="Accountant"
-                                        className="w-full !py-2.5 text-[#414651]"
+                                        className="w-full py-2.5! text-text-4 bg-white"
                                         dropdownClassName="!text-black"
                                     />
                                 </div>
@@ -334,7 +334,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                     <label className='block text-sm font-medium text-text-4 mb-1.5'>Witness Signature:</label>
                                     <input
                                         type='text'
-                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                         placeholder='Daniel Evans'
                                         value={witness1Signature}
                                         onChange={(e) => setWitness1Signature(e.target.value)}
@@ -356,12 +356,12 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             value={witness2Title}
                                             onChange={(val) => setWitness2Title(val)}
                                             placeholder="Mr / Mrs / Ms / Dr"
-                                            className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                                            className="border-none! w-fit gap-1! text-text-4 shadow-none! bg-white whitespace-nowrap py-0! pr-0! px-1.5!"
                                             dropdownClassName="!w-[100px]"
                                         />
                                         <input
                                             type='text'
-                                            className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-[#717680] py-2.5 pr-2'
+                                            className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-text-7 py-2.5 pr-2'
                                             placeholder='John Alexander Smith'
                                             value={witness2Name}
                                             onChange={(e) => {
@@ -380,7 +380,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Number</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='1568'
                                                 value={witness2BuildingNumber}
                                                 onChange={(e) => setWitness2BuildingNumber(e.target.value)}
@@ -390,7 +390,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Name</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='Sky land'
                                                 value={witness2BuildingName}
                                                 onChange={(e) => setWitness2BuildingName(e.target.value)}
@@ -400,7 +400,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Street</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='Wood Street'
                                                 value={witness2Street}
                                                 onChange={(e) => setWitness2Street(e.target.value)}
@@ -410,7 +410,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Town</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='Leyton'
                                                 value={witness2Town}
                                                 onChange={(e) => setWitness2Town(e.target.value)}
@@ -420,7 +420,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>City</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='London'
                                                 value={witness2City}
                                                 onChange={(e) => setWitness2City(e.target.value)}
@@ -430,7 +430,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>County/State</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='London'
                                                 value={witness2County}
                                                 onChange={(e) => setWitness2County(e.target.value)}
@@ -440,7 +440,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Post/Zip Code</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='Post/zip code'
                                                 value={witness2Postcode}
                                                 onChange={(e) => setWitness2Postcode(e.target.value)}
@@ -453,7 +453,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                                 value={witness2Country}
                                                 onChange={(val) => setWitness2Country(val)}
                                                 placeholder="Select Country"
-                                                className="w-full !py-2.5 text-[#414651]"
+                                                className="w-full py-2.5! text-text-4 bg-white"
                                                 dropdownClassName="!text-black"
                                             />
                                         </div>
@@ -464,7 +464,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                     <label className='block text-sm font-medium text-text-4 mb-1.5'>Address <span className='text-red-500'>*</span></label>
                                     <input
                                         type='text'
-                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                         placeholder='45 Meadow Lane, Manchester, M 14 3AA'
                                         value={witness2Address}
                                         onChange={(e) => setWitness2Address(e.target.value)}
@@ -478,7 +478,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                         value={witness2Occupation}
                                         onChange={(val) => setWitness2Occupation(val)}
                                         placeholder="Teacher"
-                                        className="w-full !py-2.5 text-[#414651]"
+                                        className="w-full py-2.5! text-text-4 bg-white"
                                         dropdownClassName="!text-black"
                                     />
                                 </div>
@@ -487,7 +487,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                                     <label className='block text-sm font-medium text-text-4 mb-1.5'>Witness Signature:</label>
                                     <input
                                         type='text'
-                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                         placeholder='Daniel Evans'
                                         value={witness2Signature}
                                         onChange={(e) => setWitness2Signature(e.target.value)}
@@ -507,7 +507,7 @@ function Witnesses({ onSave, onSkip, onBack }) {
                             </button>
                             <button
                                 type='button'
-                                className='flex items-center gap-2 px-5.5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
+                                className='flex items-center gap-2 px-5.5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] text-base font-semibold hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
                             >
                                 <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
                                 Remove

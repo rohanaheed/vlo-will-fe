@@ -97,7 +97,7 @@ function Page() {
                             Choose a template, answer a few simple questions and download a UK-compliant document in minutes. Simple, reliable and written or reviewed by qualified lawyers.
                         </p>
                         <div className='flex md:flex-row flex-col items-center gap-2 w-full mt-12'>
-                            <input type="text" placeholder='Search hundreds of documents...' value={value} onChange={(e) => setValue(e.target.value)} className='rounded-lg bg-white border-black/16 text-[#717680] w-full p-2.75 outline-0 border hover:border-main focus:border-main' />
+                            <input type="text" placeholder='Search hundreds of documents...' value={value} onChange={(e) => setValue(e.target.value)} className='rounded-lg bg-white border-black/16 text-text-7 w-full p-2.75 outline-0 border hover:border-main focus:border-main' />
                             <button className='flex items-center justify-center cursor-pointer min-w-[212px] w-full md:w-[212px] md:max-w-[212px] gap-2 bg-main text-white py-2.75 rounded-md whitespace-nowrap'>
                                 <Image src={searchIcon} alt="searchIcon" width={24} height={24} className='w-6 h-6' />
                                 <p className='font-semibold'>Browse templates</p></button>
@@ -122,7 +122,7 @@ function Page() {
                         <div className='rounded-full bg-[#ECF6FF] inline-flex items-center justify-center p-3.5'>
                             <Image src={ThuderIcon} alt="ThuderIcon" width={28} height={28} />
                         </div>
-                        <h1 className='text-[36px] font-semibold text-[#181D27] mt-5'>
+                        <h1 className='text-[36px] font-semibold text-text-1 mt-5'>
                             Key benefits
                         </h1>
                         <p className='text-lg font-normal text-text-5 mt-5'>
@@ -135,7 +135,7 @@ function Page() {
                                 <Image src={FastIcon} alt="FastIcon" width={24} height={24} />
                             </div>
                             <div className='mt-4'>
-                                <h3 className='text-xl font-semibold text-[#181D27]'>Fast — create in minutes</h3>
+                                <h3 className='text-xl font-semibold text-text-1'>Fast — create in minutes</h3>
                                 <p className='text-base font-normal text-text-5 mt-2'>Answer a guided questionnaire; your document is generated automatically and ready to download.</p>
                             </div>
                         </div>
@@ -144,7 +144,7 @@ function Page() {
                                 <Image src={LawyerIcon} alt="FastIcon" width={24} height={24} />
                             </div>
                             <div className='mt-4'>
-                                <h3 className='text-xl font-semibold text-[#181D27]'>Lawyer-sourced template</h3>
+                                <h3 className='text-xl font-semibold text-text-1'>Lawyer-sourced template</h3>
                                 <p className='text-base font-normal text-text-5 mt-2'>Templates are drafted or reviewed by qualified solicitors and kept up to date with jurisdictional changes.</p>
                             </div>
                         </div>
@@ -153,7 +153,7 @@ function Page() {
                                 <Image src={AddSquareIcon} alt="FastIcon" width={24} height={24} />
                             </div>
                             <div className='mt-4'>
-                                <h3 className='text-xl font-semibold text-[#181D27]'>Fully customisable</h3>
+                                <h3 className='text-xl font-semibold text-text-1'>Fully customisable</h3>
                                 <p className='text-base font-normal text-text-5 mt-2'>Edit any section, add clauses and download as Word or PDF — then sign or share securely.</p>
                             </div>
                         </div>
@@ -162,7 +162,7 @@ function Page() {
                                 <Image src={OpticalIcon} alt="FastIcon" width={24} height={24} />
                             </div>
                             <div className='mt-4'>
-                                <h3 className='text-xl font-semibold text-[#181D27]'>Optional legal review</h3>
+                                <h3 className='text-xl font-semibold text-text-1'>Optional legal review</h3>
                                 <p className='text-base font-normal text-text-5 mt-2'>For added peace of mind, request a lawyer review or bespoke drafting service.</p>
                             </div>
                         </div>
@@ -258,7 +258,7 @@ function Page() {
                         <div className='bg-main text-center pt-18 md:pt-24 pb-40'>
                             <div className='max-w-md mx-auto'>
                                 <h1 className='lg:text-[36px] md:text-2xl text-xl font-semibold text-white mt-5'>DocNet by the Numbers</h1>
-                                <p className='mt-5 lg:text-xl md:text-lg text-base font-normal text-[#F3F3F3] mt-5'>
+                                <p className='mt-5 lg:text-xl md:text-lg text-base font-normal text-[#F3F3F3]'>
                                     Real results from users who trust <span className='font-semibold'>DocNet Ltd</span> to create, customise and manage legal documents quickly
                                     and securely.
                                 </p>
@@ -282,7 +282,7 @@ function Page() {
             <div className='bg-main text-center pt-12 md:pt-24 pb-40'>
                 <div className='max-w-md mx-auto'>
                     <h1 className='text-center lg:text-[36px] md:text-2xl text-xl font-semibold text-white'>DocNet by the Numbers</h1>
-                    <p className='mt-5 lg:text-xl md:text-lg text-base font-normal text-[#F3F3F3] mt-5'>
+                    <p className='mt-5 lg:text-xl md:text-lg text-base font-normal text-[#F3F3F3]'>
                         Real results from users who trust <span className='font-semibold'>DocNet Ltd</span> to create, customise and manage legal documents quickly
                         and securely.
                     </p>
@@ -320,7 +320,7 @@ function Page() {
                             DocNet Subscription Plans
                         </h1>
                         <p className='text-center md:text-lg lg:text-xl text-base font-normal text-text-5 mt-2'>
-                            Note: All prices include VAT Subscriptions renew automatically unless cancelled before renewal date.
+                           Get instant access to every legal document you need — create, edit, sign, and download anytime.
                         </p>
                         <p className='text-center md:text-base text-sm font-normal text-text-5 mt-5'>
                             <span className='font-semibold'>Note:</span> All prices include VAT Subscriptions renew automatically unless cancelled before renewal date.

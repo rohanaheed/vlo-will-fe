@@ -36,7 +36,7 @@ const CustomDateInput = forwardRef(({ value, onClick, onChange, placeholder, age
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                className="flex-1 w-full bg-transparent text-black border-none outline-none text-sm placeholder:text-[#717680]"
+                className="flex-1 w-full bg-transparent text-black border-none outline-none text-sm placeholder:text-text-7"
             />
             {age && (
                 <span className="text-sm text-text-1 font-medium whitespace-nowrap">
@@ -168,12 +168,12 @@ function Testatot({ onSave, onSkip, onBack }) {
                             value={formData.title}
                             onChange={(val) => handleChange("title", val)}
                             placeholder="Mr / Mrs / Ms / Dr"
-                            className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                            className="border-none! w-fit gap-1 text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
                             dropdownClassName="!w-[200px]"
                         />
                         <input
                             type="text"
-                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                             placeholder="John Alexander Smith"
                             value={formData.fullName}
                             onChange={(e) => handleChange("fullName", e.target.value)}
@@ -189,7 +189,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                     <label className='block text-sm font-medium text-text-1 mb-1.5'>Known by any other name (if applicable)</label>
                     <input
                         type="text"
-                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                         placeholder="Please leave blank if this does not apply."
                         value={formData.otherName}
                         onChange={(e) => handleChange("otherName", e.target.value)}
@@ -204,7 +204,8 @@ function Testatot({ onSave, onSkip, onBack }) {
                         value={formData.gender}
                         onChange={(val) => handleChange("gender", val)}
                         placeholder="Male/Female/Trans/Other / Add"
-                        className="w-full"
+                        className="w-full bg-white text-text-4"
+                        dropdownClassName="!hover:bg-zinc-200 !bg-white"
                     />
                 </div>
 
@@ -220,7 +221,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-5 mb-1.5'>Building Number</label>
                             <input
                                 type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                 placeholder="1568"
                                 value={formData.buildingNumber}
                                 onChange={(e) => handleChange("buildingNumber", e.target.value)}
@@ -230,7 +231,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-5 mb-1.5'>Building Name</label>
                             <input
                                 type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                 placeholder="Sky land"
                                 value={formData.buildingName}
                                 onChange={(e) => handleChange("buildingName", e.target.value)}
@@ -242,7 +243,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-5 mb-1.5'>Street</label>
                             <input
                                 type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                 placeholder="Wood Street"
                                 value={formData.street}
                                 onChange={(e) => handleChange("street", e.target.value)}
@@ -252,7 +253,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-5 mb-1.5'>Town</label>
                             <input
                                 type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                 placeholder="Leyton"
                                 value={formData.town}
                                 onChange={(e) => handleChange("town", e.target.value)}
@@ -264,7 +265,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-5 mb-1.5'>City</label>
                             <input
                                 type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                 placeholder="London"
                                 value={formData.city}
                                 onChange={(e) => handleChange("city", e.target.value)}
@@ -274,7 +275,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-5 mb-1.5'>County/State</label>
                             <input
                                 type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                 placeholder="London"
                                 value={formData.county}
                                 onChange={(e) => handleChange("county", e.target.value)}
@@ -286,20 +287,20 @@ function Testatot({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-5 mb-1.5'>Post/Zip Code</label>
                             <input
                                 type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                 placeholder="Post/zip code"
                                 value={formData.postcode}
                                 onChange={(e) => handleChange("postcode", e.target.value)}
                             />
                         </div>
-                        <div className='text-[#414651]'>
-                            <label className='block text-sm font-medium text-text-1 text-text-5 mb-1.5'>Country</label>
+                        <div className='text-text-4'>
+                            <label className='block text-sm font-medium text-text-5 mb-1.5'>Country</label>
                             <Commondropdown
                                 options={countryOptions}
                                 value={formData.country}
                                 onChange={(val) => handleChange("country", val)}
                                 placeholder="Select Country"
-                                className="w-full py-[10px]"
+                                className="w-full py-[10px] bg-white text-text-4"
                                 inputClassName=""
                             />
                         </div>
@@ -311,7 +312,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                     <label className='block text-sm font-medium text-text-1 mb-1.5'>National Insurance Number</label>
                     <input
                         type="text"
-                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                         placeholder="AB123456C"
                         value={formData.niNumber}
                         onChange={(e) => handleChange("niNumber", e.target.value)}
@@ -408,12 +409,12 @@ function Testatot({ onSave, onSkip, onBack }) {
                             options={phoneCodeOptions}
                             value={formData.phoneCode}
                             onChange={(val) => handleChange("phoneCode", val)}
-                            className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
+                            className="border-none! w-fit gap-1! text-text-4 shadow-none! bg-white whitespace-nowrap py-0! pr-0! px-1.5!"
                             dropdownClassName="!w-[200px]"
                         />
                         <input
                             type="text"
-                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                             placeholder="7890 123456"
                             value={formData.phone}
                             onChange={(e) => handleChange("phone", e.target.value)}
@@ -426,7 +427,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                     <label className='block text-sm font-medium text-text-1 mb-1.5'>Email Address</label>
                     <input
                         type="email"
-                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                         placeholder="johnsmith@email.com"
                         value={formData.email}
                         onChange={(e) => handleChange("email", e.target.value)}
@@ -441,7 +442,7 @@ function Testatot({ onSave, onSkip, onBack }) {
                         value={formData.maritalStatus}
                         onChange={(val) => handleChange("maritalStatus", val)}
                         placeholder="Single / Married / Divorced / Widowed / Civil partner / Previously married / Separated / Living as Partners/Add"
-                        className={`w-full ${errors.maritalStatus ? '!border-red-500' : ''}`}
+                        className={`w-full bg-white text-text-4 ${errors.maritalStatus ? 'border-red-500!' : ''}`}
                     />
                     {errors.maritalStatus && (
                         <p className='text-red-500 text-xs mt-1'>{errors.maritalStatus}</p>

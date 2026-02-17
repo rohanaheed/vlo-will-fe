@@ -125,7 +125,7 @@ function Liabilities({ onSave, onSkip, onBack }) {
                         <label className='block text-sm font-medium text-text-1 mb-1.5'>Creditor Name</label>
                         <input
                             type="text"
-                            className={`w-full bg-white text-black border ${errors.creditorName ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]`}
+                            className={`w-full bg-white text-black border ${errors.creditorName ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7`}
                             placeholder="Enter Creditor Name"
                             value={currentLiability.creditorName}
                             onChange={(e) => handleChange("creditorName", e.target.value)}
@@ -140,7 +140,7 @@ function Liabilities({ onSave, onSkip, onBack }) {
                             value={currentLiability.debtType}
                             onChange={(val) => handleChange("debtType", val)}
                             placeholder="Mortgage / Loan / Credit Card / Business Loan / Tax / Other / Add"
-                            className={`w-full !py-2.5 text-black ${errors.debtType ? 'border-red-500' : ''}`}
+                            className={`w-full py-2.5! text-text-4 ${errors.debtType ? 'border-red-500' : ''}`}
                         />
                         {errors.debtType && <p className='text-red-500 text-xs mt-1'>{errors.debtType}</p>}
                     </div>
@@ -149,7 +149,7 @@ function Liabilities({ onSave, onSkip, onBack }) {
                         <label className='block text-sm font-medium text-text-1 mb-1.5'>Outstanding Amount (£)</label>
                         <input
                             type="text"
-                            className={`w-full bg-white text-black border ${errors.amount ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]`}
+                            className={`w-full bg-white text-black border ${errors.amount ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7`}
                             placeholder="£0.00"
                             value={currentLiability.amount}
                             onChange={(e) => handleChange("amount", e.target.value.replace(/[^0-9.]/g, ''))}
@@ -161,7 +161,7 @@ function Liabilities({ onSave, onSkip, onBack }) {
                         <label className='block text-sm font-medium text-text-1 mb-1.5'>Additional Information</label>
                         <textarea
                             rows={4}
-                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] resize-none'
+                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 resize-none'
                             placeholder="Additional information if any..."
                             value={currentLiability.additionalInfo}
                             onChange={(e) => handleChange("additionalInfo", e.target.value)}
@@ -191,7 +191,7 @@ function Liabilities({ onSave, onSkip, onBack }) {
                     <div className='flex items-center gap-3'>
                         <button
                             onClick={handleAdd}
-                            className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
+                            className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors shadow-sm'
                         >
                             <Image src={PlusBlueIcon} alt="Add" width={18} height={18} />
                             Add
@@ -202,7 +202,7 @@ function Liabilities({ onSave, onSkip, onBack }) {
                                     handleRemove(liabilities[liabilities.length - 1].id)
                                 }
                             }}
-                            className='flex items-center gap-2 px-5 py-2.5 cursor-pointer rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm'
+                            className='flex items-center gap-2 px-5 py-2.5 cursor-pointer rounded-lg border border-[#FDA29B] text-[#D92D20] text-base font-semibold hover:bg-red-50 transition-colors shadow-sm'
                         >
                             <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
                             Remove
@@ -215,7 +215,7 @@ function Liabilities({ onSave, onSkip, onBack }) {
             <div className='flex items-center flex-wrap gap-4 mt-4'>
                 <button
                     onClick={onBack}
-                    className='px-8 py-2.5 rounded-lg border border-main hover:border-main/80 hover:bg-main transition-colors cursor-pointer text-main font-bold hover:text-white transition-colors'
+                    className='px-8 py-2.5 rounded-lg border border-main hover:border-main/80 hover:bg-main cursor-pointer text-main font-bold hover:text-white transition-colors'
                 >
                     Back
                 </button>
@@ -227,7 +227,7 @@ function Liabilities({ onSave, onSkip, onBack }) {
                 </button>
                 <button
                     onClick={onSkip}
-                    className='px-8 py-2.5 rounded-lg border border-main hover:border-main/80 hover:bg-main transition-colors cursor-pointer text-main font-bold hover:text-white transition-colors'
+                    className='px-8 py-2.5 rounded-lg border border-main hover:border-main/80 hover:bg-main cursor-pointer text-main font-bold hover:text-white transition-colors'
                 >
                     Skip
                 </button>

@@ -92,7 +92,7 @@ function Residual({ onSave, onSkip, onBack }) {
                             value={currentResidue.fullName}
                             onChange={(val) => handleChange("fullName", val)}
                             placeholder="Sarah Johnson/Add Custom"
-                            className={`w-full !py-2.5 text-[#414651] ${errors.fullName ? 'border-red-500' : ''}`}
+                            className={`w-full py-2.5! text-text-4 ${errors.fullName ? 'border-red-500' : ''}`}
                         />
                         {errors.fullName && <p className='text-red-500 text-xs mt-1'>{errors.fullName}</p>}
                     </div>
@@ -104,7 +104,7 @@ function Residual({ onSave, onSkip, onBack }) {
                             value={currentResidue.relationship}
                             onChange={(val) => handleChange("relationship", val)}
                             placeholder="Son/Daughter/Step-son/Step-daughter/Brother/Sister/Step-brother/Step-sister/Mother/Father/Grandmother/Grandfather/Aunt/Uncle/Cousin/Niece/Nephew/Spouse/Partner/Friend/Other/Add"
-                            className={`w-full !py-2.5 text-[#414651] ${errors.relationship ? 'border-red-500' : ''}`}
+                            className={`w-full py-2.5! text-text-4 ${errors.relationship ? 'border-red-500' : ''}`}
                         />
                         {errors.relationship && <p className='text-red-500 text-xs mt-1'>{errors.relationship}</p>}
                     </div>
@@ -113,7 +113,7 @@ function Residual({ onSave, onSkip, onBack }) {
                         <label className='block text-sm font-medium text-text-1 mb-1.5'>Residue Estate Description</label>
                         <textarea
                             rows={3}
-                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] resize-none'
+                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 resize-none'
                             placeholder='e.g "Remaining estate distribute equally between children." or "Remaining go to my wife/husband"'
                             value={currentResidue.description}
                             onChange={(e) => handleChange("description", e.target.value)}
@@ -124,7 +124,7 @@ function Residual({ onSave, onSkip, onBack }) {
                         <label className='block text-sm font-medium text-text-1 mb-1.5'>Additional Information</label>
                         <textarea
                             rows={4}
-                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] resize-none'
+                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 resize-none'
                             placeholder="Additional information if any..."
                             value={currentResidue.additionalInfo}
                             onChange={(e) => handleChange("additionalInfo", e.target.value)}
@@ -154,7 +154,7 @@ function Residual({ onSave, onSkip, onBack }) {
                     <div className='flex items-center gap-3'>
                         <button
                             onClick={handleAdd}
-                            className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
+                            className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors shadow-sm'
                         >
                             <Image src={PlusBlueIcon} alt="Add" width={18} height={18} />
                             Add
@@ -165,7 +165,7 @@ function Residual({ onSave, onSkip, onBack }) {
                                     handleRemove(residueList[residueList.length - 1].id)
                                 }
                             }}
-                            className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
+                            className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] text-base font-semibold hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
                         >
                             <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
                             Remove

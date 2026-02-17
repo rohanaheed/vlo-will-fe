@@ -54,7 +54,7 @@ function PersonalPage() {
                     of business.
                 </p>
                 <div className='mt-6 flex flex-wrap gap-6'>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Articles of Association</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Outline company structure and internal rules.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -62,7 +62,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Shareholders Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Define rights and responsibilities of shareholders.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -70,7 +70,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Business Plan</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Present your business strategy and financial goals.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -78,7 +78,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Partnership Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Clarify terms between business partners.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -86,7 +86,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Joint Venture Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Establish collaboration between two entities.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -94,7 +94,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Business Transfer Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Legally transfer business ownership.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -102,7 +102,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Stock Transfer Form</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Record ownership change of company shares.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -110,7 +110,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Board Resolution</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Document key company decisions.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -118,7 +118,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Officer Resignation Letter</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Formalise an officers resignation.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -141,7 +141,7 @@ function PersonalPage() {
                     staff relationships, policies, and responsibilities with clarity and professionalism.
                 </p>
                 <div className='mt-6 flex flex-wrap gap-6'>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Employment Contract</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Set clear terms for new hires.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -149,7 +149,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Independent Contractor Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Define conditions for freelancers or consultants.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -157,7 +157,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Job Offer</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Officially offer employment to a candidate.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -165,7 +165,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Resignation Letter</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Enable employees to formally end employment.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -173,7 +173,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Employee Handbook</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Enable employees to formally end employment.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -181,7 +181,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Sickness Absence Policy</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Define procedures for employee sick leave.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -189,7 +189,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Disciplinary Policy</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Explain steps for handling misconduct.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -197,7 +197,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 flex-1 shrink-1 basis-[300px]'>
+                    <div className='bg-[#fafafa] p-6 flex-1 shrink basis-[300px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Social Media Policy</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Manage online behaviour linked to the workplace.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -218,7 +218,7 @@ function PersonalPage() {
                     Draft professional contracts that protect your business and client relationships. DocNet’s general agreements cover services, loans, consulting, and agency arrangements — all legally reviewed and easy to customise.
                 </p>
                 <div className='mt-6 flex max-[700px]:flex-col flex-wrap gap-6'>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Service Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Define service terms between client and provider.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -226,7 +226,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Consulting Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Specify scope and payment for consulting work.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -234,7 +234,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Loan Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Outline repayment details for business funding.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -242,7 +242,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Agency Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Clarify representation or distribution arrangements.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -250,7 +250,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Distribution Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Manage supplier and retailer relationships.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -258,7 +258,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Contract Amendment</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Modify an existing contract legally.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -281,7 +281,7 @@ function PersonalPage() {
 
                 </p>
                 <div className='mt-6 flex max-[700px]:flex-col flex-wrap gap-6'>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Residential Tenancy Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Outline terms between landlord and tenant.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -289,7 +289,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Commercial Lease Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Define terms for business property rentals.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -297,7 +297,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Sublet Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Allow tenants to sublet responsibly.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -305,7 +305,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Rental Inspection Report</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Record property condition during tenancy.</p>
                         <button className='flex items-center gap-1.5 mt-5'>
@@ -313,7 +313,7 @@ function PersonalPage() {
                             <Image src={ArrowRightBlueIcon} alt="ArrowRightBlueIcon" width={20} height={20} />
                         </button>
                     </div>
-                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink-1 min-[701px]:basis-[250px]'>
+                    <div className='bg-[#fafafa] p-6 min-[701px]:flex-1 min-[701px]:shrink min-[701px]:basis-[250px]'>
                         <h1 className='text-sm md:text-base lg:text-xl font-semibold text-text-1'>Holiday Rental Agreement</h1>
                         <p className='text-sm md:text-base font-normal text-text-5 mt-2'>Set terms for short-term rentals.</p>
                         <button className='flex items-center gap-1.5 mt-5'>

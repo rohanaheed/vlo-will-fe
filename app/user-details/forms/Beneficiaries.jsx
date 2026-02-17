@@ -35,7 +35,7 @@ const CustomDateInput = forwardRef(({ value, onClick, onChange, placeholder, age
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                className="flex-1 w-full bg-transparent text-black border-none outline-none text-sm placeholder:text-[#717680]"
+                className="flex-1 w-full bg-transparent text-black border-none outline-none text-sm placeholder:text-text-7"
             />
             {age && (
                 <span className="text-sm text-text-4 font-medium whitespace-nowrap">
@@ -511,12 +511,12 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         value={formData.title}
                                         onChange={(val) => handleChange("title", val)}
                                         placeholder="Mr / Mrs / Ms / Dr"
-                                        className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                        dropdownClassName="!w-[120px]"
+                                        className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                        dropdownClassName="w-[120px]!"
                                     />
                                     <input
                                         type="text"
-                                        className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                        className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                         placeholder="Mohammed Ali Khan"
                                         value={formData.fullName}
                                         onChange={(e) => handleChange("fullName", e.target.value)}
@@ -533,7 +533,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     value={formData.gender}
                                     onChange={(val) => handleChange("gender", val)}
                                     placeholder="Male / Female / Trans/Other / Add"
-                                    className="w-full !py-2.5 text-[#414651]"
+                                    className="w-full py-2.5! text-text-4"
                                 />
                             </div>
 
@@ -624,7 +624,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     value={formData.relationship}
                                     onChange={(val) => handleChange("relationship", val)}
                                     placeholder="Son / Daughter / Step Son / Step Daughter / Add"
-                                    className="w-full !py-2.5 text-[#414651]"
+                                    className="w-full py-2.5! text-text-4"
                                 />
                                 {errors.relationship && <p className="text-red-500 text-xs mt-1">{errors.relationship}</p>}
                             </div>
@@ -637,7 +637,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Number</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="1568"
                                             value={formData.buildingNumber}
                                             onChange={(e) => handleChange("buildingNumber", e.target.value)}
@@ -647,7 +647,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Name</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="Sky land"
                                             value={formData.buildingName}
                                             onChange={(e) => handleChange("buildingName", e.target.value)}
@@ -658,7 +658,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Street</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="Wood Street"
                                             value={formData.street}
                                             onChange={(e) => handleChange("street", e.target.value)}
@@ -668,7 +668,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Town</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="Leyton"
                                             value={formData.town}
                                             onChange={(e) => handleChange("town", e.target.value)}
@@ -679,7 +679,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>City</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="London"
                                             value={formData.city}
                                             onChange={(e) => handleChange("city", e.target.value)}
@@ -689,7 +689,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>County/State</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="London"
                                             value={formData.county}
                                             onChange={(e) => handleChange("county", e.target.value)}
@@ -700,7 +700,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Post/Zip Code</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="Post/zip code"
                                             value={formData.postcode}
                                             onChange={(e) => handleChange("postcode", e.target.value)}
@@ -713,7 +713,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             value={formData.country}
                                             onChange={(val) => handleChange("country", val)}
                                             placeholder="Select Country"
-                                            className="w-full !py-2.5 text-[#414651]"
+                                            className="w-full py-2.5! text-text-4"
                                         />
                                     </div>
                                 </div>
@@ -730,7 +730,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     value={formData.inheritanceAge}
                                     onChange={(val) => handleChange("inheritanceAge", val)}
                                     placeholder="25 years"
-                                    className="w-full !py-2.5 text-[#414651]"
+                                    className="w-full py-2.5! text-text-4"
                                 />
                                 {errors.inheritanceAge && <p className="text-red-500 text-xs mt-1">{errors.inheritanceAge}</p>}
                             </div>
@@ -761,7 +761,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                             <button
                                 onClick={addBeneficiary}
                                 type="button"
-                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer items-center gap-2 px-8.5 py-2.5 text-base font-semibold border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors shadow-sm"
                             >
                                 <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                 Add
@@ -773,7 +773,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     }
                                 }}
                                 type="button"
-                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-base font-semibold shadow-sm"
                             >
                                 <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
                                 Remove
@@ -803,12 +803,12 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         value={guardianForm.title}
                                         onChange={(val) => handleGuardianChange("title", val)}
                                         placeholder="Mr / Mrs / Ms / Dr"
-                                        className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                        dropdownClassName="!w-[120px]"
+                                        className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                        dropdownClassName="w-[120px]!"
                                     />
                                     <input
                                         type="text"
-                                        className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                        className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                         placeholder="Emi Johnson"
                                         value={guardianForm.fullName}
                                         onChange={(e) => handleGuardianChange("fullName", e.target.value)}
@@ -825,7 +825,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     value={guardianForm.relationship}
                                     onChange={(val) => handleGuardianChange("relationship", val)}
                                     placeholder="Son/Daughter/Brother/Sister/Mother/Father/Grandmother/Grandfather/Aunt/Uncle/Cousin/Niece/Nephew/Spouse/Friend/Other/Add"
-                                    className="w-full !py-2.5 text-[#414651]"
+                                    className="w-full py-2.5! text-text-4"
                                 />
                                 {guardianErrors.relationship && <p className="text-red-500 text-xs mt-1">{guardianErrors.relationship}</p>}
                             </div>
@@ -857,7 +857,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Number</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="1568"
                                             value={guardianForm.buildingNumber}
                                             onChange={(e) => handleGuardianChange("buildingNumber", e.target.value)}
@@ -867,7 +867,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Name</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="Sky land"
                                             value={guardianForm.buildingName}
                                             onChange={(e) => handleGuardianChange("buildingName", e.target.value)}
@@ -878,7 +878,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Street</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="Wood Street"
                                             value={guardianForm.street}
                                             onChange={(e) => handleGuardianChange("street", e.target.value)}
@@ -888,7 +888,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Town</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="Leyton"
                                             value={guardianForm.town}
                                             onChange={(e) => handleGuardianChange("town", e.target.value)}
@@ -899,7 +899,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>City</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="London"
                                             value={guardianForm.city}
                                             onChange={(e) => handleGuardianChange("city", e.target.value)}
@@ -909,7 +909,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>County/State</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="London"
                                             value={guardianForm.county}
                                             onChange={(e) => handleGuardianChange("county", e.target.value)}
@@ -920,7 +920,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Post/Zip Code</label>
                                         <input
                                             type="text"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="Post/zip code"
                                             value={guardianForm.postcode}
                                             onChange={(e) => handleGuardianChange("postcode", e.target.value)}
@@ -933,7 +933,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             value={guardianForm.country}
                                             onChange={(val) => handleGuardianChange("country", val)}
                                             placeholder="Select Country"
-                                            className="w-full !py-2.5 text-[#414651]"
+                                            className="w-full py-2.5! text-text-4"
                                         />
                                     </div>
                                 </div>
@@ -951,12 +951,12 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                                 options={phoneCodeOptions}
                                                 value={guardianForm.phoneCode}
                                                 onChange={(val) => handleGuardianChange("phoneCode", val)}
-                                                className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                                dropdownClassName="!w-[100px]"
+                                                className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                                dropdownClassName="w-[100px]!"
                                             />
                                             <input
                                                 type="text"
-                                                className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                                className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                                 placeholder="7890 123456"
                                                 value={guardianForm.phone}
                                                 onChange={(e) => handleGuardianChange("phone", e.target.value)}
@@ -969,7 +969,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         <label className='block text-sm font-medium text-text-4 mb-1.5'>Email Address (Optional)</label>
                                         <input
                                             type="email"
-                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                             placeholder="johnsmith@email.com"
                                             value={guardianForm.email}
                                             onChange={(e) => handleGuardianChange("email", e.target.value)}
@@ -1000,7 +1000,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                             <button
                                 onClick={addGuardian}
                                 type="button"
-                                className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer items-center gap-2 px-8.5 py-2.5 text-base font-semibold border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors shadow-sm"
                             >
                                 <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                 Add
@@ -1012,7 +1012,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     }
                                 }}
                                 type="button"
-                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                                className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-base font-semibold shadow-sm"
                             >
                                 <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
                                 Remove
@@ -1094,12 +1094,12 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             value={backupGuardianForm.title}
                                             onChange={(val) => handleBackupGuardianChange("title", val)}
                                             placeholder="Mr / Mrs / Ms / Dr"
-                                            className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                            dropdownClassName="!w-[120px]"
+                                            className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                            dropdownClassName="w-[120px]!"
                                         />
                                         <input
                                             type="text"
-                                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                             placeholder="Emi Johnson"
                                             value={backupGuardianForm.fullName}
                                             onChange={(e) => handleBackupGuardianChange("fullName", e.target.value)}
@@ -1116,7 +1116,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         value={backupGuardianForm.relationship}
                                         onChange={(val) => handleBackupGuardianChange("relationship", val)}
                                         placeholder="Son/Daughter/Brother/Sister/Mother/Father/Grandmother/Grandfather/Aunt/Uncle/Cousin/Niece/Nephew/Spouse/Friend/Other/Add"
-                                        className="w-full !py-2.5 text-[#414651]"
+                                        className="w-full py-2.5! text-text-4"
                                     />
                                     {backupGuardianErrors.relationship && <p className="text-red-500 text-xs mt-1">{backupGuardianErrors.relationship}</p>}
                                 </div>
@@ -1147,7 +1147,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Number</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="1568"
                                                 value={backupGuardianForm.buildingNumber}
                                                 onChange={(e) => handleBackupGuardianChange("buildingNumber", e.target.value)}
@@ -1157,7 +1157,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Name</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="Sky land"
                                                 value={backupGuardianForm.buildingName}
                                                 onChange={(e) => handleBackupGuardianChange("buildingName", e.target.value)}
@@ -1168,7 +1168,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Street</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="Wood Street"
                                                 value={backupGuardianForm.street}
                                                 onChange={(e) => handleBackupGuardianChange("street", e.target.value)}
@@ -1178,7 +1178,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Town</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="Leyton"
                                                 value={backupGuardianForm.town}
                                                 onChange={(e) => handleBackupGuardianChange("town", e.target.value)}
@@ -1189,7 +1189,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Post/Zip Code</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="Post/zip code"
                                                 value={backupGuardianForm.postcode}
                                                 onChange={(e) => handleBackupGuardianChange("postcode", e.target.value)}
@@ -1219,7 +1219,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     <button
                                         onClick={addBackupGuardian}
                                         type="button"
-                                        className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                        className="flex cursor-pointer items-center gap-2 px-8.5 py-2.5 text-base font-semibold border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors shadow-sm"
                                     >
                                         <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                         Add
@@ -1231,7 +1231,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             }
                                         }}
                                         type="button"
-                                        className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                                        className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-base font-semibold shadow-sm"
                                     >
                                         <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
                                         Remove
@@ -1253,12 +1253,12 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             value={trusteeForm.title}
                                             onChange={(val) => handleTrusteeChange("title", val)}
                                             placeholder="Mr / Mrs / Ms / Dr"
-                                            className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                            dropdownClassName="!w-[120px]"
+                                            className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                            dropdownClassName="w-[120px]!"
                                         />
                                         <input
                                             type="text"
-                                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                            className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                             placeholder="Emi Johnson"
                                             value={trusteeForm.fullName}
                                             onChange={(e) => handleTrusteeChange("fullName", e.target.value)}
@@ -1269,7 +1269,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
 
                                 {/* Relationship */}
                                 <div>
-                                    <label className='block text-sm font-medium text-text-4 mb-1.5 flex items-center gap-1'>What is their relationship to you?
+                                    <label className='text-sm font-medium text-text-4 mb-1.5 flex items-center gap-1'>What is their relationship to you?
                                         <div className="flex items-center justify-center w-[15px] h-[15px] rounded-full border border-black text-black text-[9px] font-bold cursor-pointer">?</div>
                                     </label>
                                     <Commondropdown
@@ -1277,7 +1277,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         value={trusteeForm.relationship}
                                         onChange={(val) => handleTrusteeChange("relationship", val)}
                                         placeholder="Son/Daughter/Brother/Sister/Mother/Father/Grandmother/Grandfather/Aunt/Uncle/Cousin/Niece/Nephew/Spouse/Friend/Other/Add"
-                                        className="w-full !py-2.5 text-[#414651]"
+                                        className="w-full py-2.5! text-text-4"
                                     />
                                     {trusteeErrors.relationship && <p className="text-red-500 text-xs mt-1">{trusteeErrors.relationship}</p>}
                                 </div>
@@ -1291,7 +1291,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Number</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="1568"
                                                 value={trusteeForm.buildingNumber}
                                                 onChange={(e) => handleTrusteeChange("buildingNumber", e.target.value)}
@@ -1301,7 +1301,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Building Name</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="Sky land"
                                                 value={trusteeForm.buildingName}
                                                 onChange={(e) => handleTrusteeChange("buildingName", e.target.value)}
@@ -1311,7 +1311,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Street</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="Wood Street"
                                                 value={trusteeForm.street}
                                                 onChange={(e) => handleTrusteeChange("street", e.target.value)}
@@ -1321,7 +1321,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Town</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="Leyton"
                                                 value={trusteeForm.town}
                                                 onChange={(e) => handleTrusteeChange("town", e.target.value)}
@@ -1331,7 +1331,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>City</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="London"
                                                 value={trusteeForm.city}
                                                 onChange={(e) => handleTrusteeChange("city", e.target.value)}
@@ -1341,7 +1341,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>County/State</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="London"
                                                 value={trusteeForm.county}
                                                 onChange={(e) => handleTrusteeChange("county", e.target.value)}
@@ -1351,7 +1351,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Post/Zip Code</label>
                                             <input
                                                 type="text"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="Post/zip code"
                                                 value={trusteeForm.postcode}
                                                 onChange={(e) => handleTrusteeChange("postcode", e.target.value)}
@@ -1363,7 +1363,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                                 options={[trusteeForm.country]}
                                                 value={trusteeForm.country}
                                                 onChange={() => { }}
-                                                className="w-full !py-2.5 text-[#414651]"
+                                                className="w-full py-2.5! text-text-4"
                                             />
                                         </div>
                                     </div>
@@ -1381,12 +1381,12 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                                     options={phoneCodeOptions}
                                                     value={trusteeForm.phoneCode}
                                                     onChange={(val) => handleTrusteeChange("phoneCode", val)}
-                                                    className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                                    dropdownClassName="!w-[100px]"
+                                                    className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                                    dropdownClassName="w-[100px]!"
                                                 />
                                                 <input
                                                     type="text"
-                                                    className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                                    className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                                     placeholder="7890 123456"
                                                     value={trusteeForm.phone}
                                                     onChange={(e) => handleTrusteeChange("phone", e.target.value)}
@@ -1399,7 +1399,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Email Address (Optional)</label>
                                             <input
                                                 type="email"
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder="johnsmith@email.com"
                                                 value={trusteeForm.email}
                                                 onChange={(e) => handleTrusteeChange("email", e.target.value)}
@@ -1575,7 +1575,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                             value={trusteePowers.additionalPowers}
                                             onChange={(e) => setTrusteePowers({ ...trusteePowers, additionalPowers: e.target.value })}
                                             placeholder="Additional power (If applicable)..."
-                                            className="w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] min-h-[100px] resize-vertical"
+                                            className="w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 min-h-[100px] resize-vertical"
                                         />
                                     </div>
                                 </div>
@@ -1608,15 +1608,15 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                 value={beneficiaryDetailsForm.title}
                                 onChange={(val) => handleBeneficiaryDetailsFormChange('title', val)}
                                 placeholder="Mr / Mrs / Ms / Dr"
-                                className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                dropdownClassName="!w-[150px]"
+                                className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                dropdownClassName="w-[150px]!"
                             />
                             <input
                                 name="fullName"
                                 type="text"
                                 value={beneficiaryDetailsForm.fullName}
                                 onChange={(e) => handleBeneficiaryDetailsFormChange('fullName', e.target.value)}
-                                className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                 placeholder="Emil Johnson"
                             />
                         </div>
@@ -1630,7 +1630,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                             value={beneficiaryDetailsForm.gender}
                             onChange={(val) => handleBeneficiaryDetailsFormChange('gender', val)}
                             placeholder="Male/Female/Trans/Other / Add"
-                            className="w-full !py-2.5 text-[#414651]"
+                            className="w-full py-2.5! text-text-4"
                         />
                     </div>
 
@@ -1643,7 +1643,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                 type="text"
                                 value={beneficiaryDetailsForm.dob || ""}
                                 onChange={(e) => handleBeneficiaryDetailsFormChange('dob', e.target.value)}
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                 placeholder="01/09/2025"
                             />
                             <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-sm text-text-4">29 Year</span>
@@ -1658,7 +1658,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                             value={beneficiaryDetailsForm.relationship}
                             onChange={(val) => handleBeneficiaryDetailsFormChange('relationship', val)}
                             placeholder="Son/Daughter/Step-son/Step-daughter/Brother/Sister/Step-brother/Step-sister/Mother/Father/Grandmother/Grandfather/Aunt/Uncle/Cousin/Niece/Nephew/Spouse/Partner/Friend/Other/Add"
-                            className="w-full !py-2.5 text-[#414651]"
+                            className="w-full py-2.5! text-text-4"
                         />
                     </div>
 
@@ -1673,7 +1673,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={beneficiaryDetailsForm.buildingNumber}
                                     onChange={(e) => handleBeneficiaryDetailsFormChange('buildingNumber', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="1568"
                                 />
                             </div>
@@ -1684,7 +1684,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={beneficiaryDetailsForm.buildingName}
                                     onChange={(e) => handleBeneficiaryDetailsFormChange('buildingName', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="Building name"
                                 />
                             </div>
@@ -1695,7 +1695,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={beneficiaryDetailsForm.street}
                                     onChange={(e) => handleBeneficiaryDetailsFormChange('street', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="Wood Street"
                                 />
                             </div>
@@ -1706,7 +1706,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={beneficiaryDetailsForm.town}
                                     onChange={(e) => handleBeneficiaryDetailsFormChange('town', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="Leyton"
                                 />
                             </div>
@@ -1717,7 +1717,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={beneficiaryDetailsForm.city}
                                     onChange={(e) => handleBeneficiaryDetailsFormChange('city', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="London"
                                 />
                             </div>
@@ -1728,7 +1728,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={beneficiaryDetailsForm.county}
                                     onChange={(e) => handleBeneficiaryDetailsFormChange('county', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="London"
                                 />
                             </div>
@@ -1739,7 +1739,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={beneficiaryDetailsForm.postcode}
                                     onChange={(e) => handleBeneficiaryDetailsFormChange('postcode', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="Post/zip code"
                                 />
                             </div>
@@ -1750,7 +1750,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     value={beneficiaryDetailsForm.country}
                                     onChange={(val) => handleBeneficiaryDetailsFormChange('country', val)}
                                     placeholder="United Kingdom"
-                                    className="w-full !py-2.5 text-[#414651]"
+                                    className="w-full py-2.5! text-text-4"
                                 />
                             </div>
                         </div>
@@ -1769,15 +1769,15 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         value={phoneCodeOptions[0]}
                                         onChange={() => { }}
                                         placeholder="+44"
-                                        className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                        dropdownClassName="!w-[120px]"
+                                        className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                        dropdownClassName="w-[120px]!"
                                     />
                                     <input
                                         name="telephone"
                                         type="text"
                                         value={beneficiaryDetailsForm.telephone}
                                         onChange={(e) => handleBeneficiaryDetailsFormChange('telephone', e.target.value)}
-                                        className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-[#717680]'
+                                        className='flex-1 w-full bg-transparent text-black border-none outline-none py-2.5 pl-1 pr-2 text-sm placeholder:text-text-7'
                                         placeholder="7890 123456"
                                     />
                                 </div>
@@ -1791,7 +1791,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="email"
                                     value={beneficiaryDetailsForm.email}
                                     onChange={(e) => handleBeneficiaryDetailsFormChange('email', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="johnsmith@gmail.com"
                                 />
                             </div>
@@ -1803,7 +1803,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                         <button
                             onClick={addBeneficiaryDetail}
                             type="button"
-                            className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                            className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors shadow-sm"
                         >
                             <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                             Add
@@ -1815,7 +1815,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                 }
                             }}
                             type="button"
-                            className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                            className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-base font-semibold shadow-sm"
                         >
                             <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
                             Remove
@@ -1892,7 +1892,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={charityForm.charityName}
                                     onChange={(e) => handleCharityFormChange('charityName', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="British Heart Foundation"
                                 />
                             </div>
@@ -1905,7 +1905,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={charityForm.registeredNumber}
                                     onChange={(e) => handleCharityFormChange('registeredNumber', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="225158"
                                 />
                             </div>
@@ -1918,7 +1918,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={charityForm.address}
                                     onChange={(e) => handleCharityFormChange('address', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="2300 The Crescent, Birmingham Business Park, Birmingham B37 7YE"
                                 />
                             </div>
@@ -1931,7 +1931,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     type="text"
                                     value={charityForm.gift}
                                     onChange={(e) => handleCharityFormChange('gift', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                     placeholder="£2,000 or 5% of estate"
                                 />
                             </div>
@@ -1943,7 +1943,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                     name="purpose"
                                     value={charityForm.purpose}
                                     onChange={(e) => handleCharityFormChange('purpose', e.target.value)}
-                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] min-h-[100px] resize-vertical'
+                                    className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 min-h-[100px] resize-vertical'
                                     placeholder="For heart disease research etc."
                                 />
                             </div>
@@ -1952,7 +1952,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                 <button
                                     onClick={addCharity}
                                     type="button"
-                                    className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm"
+                                    className="flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors shadow-sm"
                                 >
                                     <Image src={PlusBlueIcon} alt="Plus Blue Icon" width={24} height={24} className='w-6 h-6' />
                                     Add
@@ -1964,7 +1964,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
                                         }
                                     }}
                                     type="button"
-                                    className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-sm font-bold shadow-sm"
+                                    className="flex cursor-pointer items-center gap-2 px-5 py-2.5 border border-[#FF383C] text-[#FF383C] rounded-lg hover:bg-[#FEF3F2] transition-colors text-base font-semibold shadow-sm"
                                 >
                                     <Image src={CrossRedIcon} alt="Cross Red Icon" width={24} height={24} className='w-6 h-6' />
                                     Remove
@@ -2011,7 +2011,7 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
             {/* Information Tip */}
             <div className="mt-4">
                 <h4 className="text-base font-semibold text-text-5 mb-2">Information Tip:</h4>
-                <p className="text-base text-text-4 text-text-5 -mt-1">
+                <p className="text-base text-text-5 -mt-1">
                     A guardian will take parental responsibility for your children if both parents pass away. Always discuss guardianship with the person before naming them.
                 </p>
             </div>

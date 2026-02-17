@@ -176,7 +176,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                     <label className='block text-sm font-medium text-text-4 mb-1.5'>City / Location</label>
                                     <input
                                         type='text'
-                                        className={`w-full bg-white text-black border ${errors.cityLocation ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]`}
+                                        className={`w-full bg-white text-black border ${errors.cityLocation ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7`}
                                         placeholder='Enter your preferred location'
                                         value={cityLocation}
                                         onChange={(e) => {
@@ -193,7 +193,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Any special requests</label>
                             <textarea
                                 rows={3}
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] resize-none'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 resize-none'
                                 placeholder='I wish my body to be handled only by the same gender etc...'
                                 value={specialRequests}
                                 onChange={(e) => setSpecialRequests(e.target.value)}
@@ -238,7 +238,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                 <label className='block text-sm font-medium text-text-4 mb-1.5'>Specify payment priority</label>
                                 <input
                                     type='text'
-                                    className={`w-full bg-white text-black border ${errors.paymentPriority ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]`}
+                                    className={`w-full bg-white text-black border ${errors.paymentPriority ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7`}
                                     placeholder='Funeral and burial expenses should be settled before debts or bequests'
                                     value={paymentPriority}
                                     onChange={(e) => {
@@ -285,7 +285,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Insurance Provider Name</label>
                                             <input
                                                 type='text'
-                                                className={`w-full bg-white text-black border ${errors.insuranceProvider ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]`}
+                                                className={`w-full bg-white text-black border ${errors.insuranceProvider ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7`}
                                                 placeholder='ABC Funeral Care'
                                                 value={insuranceProvider}
                                                 onChange={(e) => {
@@ -300,7 +300,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Policy Number</label>
                                             <input
                                                 type='text'
-                                                className={`w-full bg-white text-black border ${errors.policyNumber ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]`}
+                                                className={`w-full bg-white text-black border ${errors.policyNumber ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7`}
                                                 placeholder='FUN-UK-987654'
                                                 value={policyNumber}
                                                 onChange={(e) => {
@@ -319,12 +319,12 @@ function Funeral({ onSave, onSkip, onBack }) {
                                                     value={policyholderTitle}
                                                     onChange={(val) => setPolicyholderTitle(val)}
                                                     placeholder="Mr / Mrs / Ms / Dr"
-                                                    className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                                    dropdownClassName="!w-[100px]"
+                                                    className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                                    dropdownClassName="w-[100px]!"
                                                 />
                                                 <input
                                                     type='text'
-                                                    className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-[#717680] py-2.5 pr-2'
+                                                    className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-text-7 py-2.5 pr-2'
                                                     placeholder='John Doe'
                                                     value={policyholderName}
                                                     onChange={(e) => {
@@ -340,7 +340,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Coverage Amount</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='£8,000'
                                                 value={coverageAmount}
                                                 onChange={(e) => setCoverageAmount(e.target.value)}
@@ -354,12 +354,12 @@ function Funeral({ onSave, onSkip, onBack }) {
                                                     options={phoneCodeOptions}
                                                     value={phoneCode}
                                                     onChange={(val) => setPhoneCode(val)}
-                                                    className="!border-none w-fit !gap-1 text-[#414651] !shadow-none !bg-transparent whitespace-nowrap !py-0 !pr-0 !px-1.5"
-                                                    dropdownClassName="!w-[100px]"
+                                                    className="border-none! w-fit gap-1! text-text-4 shadow-none! whitespace-nowrap py-0! pr-0! px-1.5!"
+                                                    dropdownClassName="w-[100px]!"
                                                 />
                                                 <input
                                                     type='text'
-                                                    className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-[#717680] py-2.5 pr-2'
+                                                    className='flex-1 bg-transparent text-black border-none outline-none text-sm placeholder:text-text-7 py-2.5 pr-2'
                                                     placeholder='7890 123456'
                                                     value={telephone}
                                                     onChange={(e) => setTelephone(e.target.value)}
@@ -371,7 +371,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Email Address (Optional)</label>
                                             <input
                                                 type='email'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='johnsmith@email.com'
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
@@ -382,7 +382,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Website URL (Optional)</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='http://www.johnsmithfuneral.com'
                                                 value={websiteUrl}
                                                 onChange={(e) => setWebsiteUrl(e.target.value)}
@@ -393,7 +393,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Policy Document Location</label>
                                             <input
                                                 type='text'
-                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                                 placeholder='Filed with my solicitor, Smith & Partners LLP, London.'
                                                 value={policyDocLocation}
                                                 onChange={(e) => setPolicyDocLocation(e.target.value)}
@@ -536,7 +536,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                             <label className='block text-sm font-medium text-text-4 mb-1.5'>Registration Reference No</label>
                                             <input
                                                 type='text'
-                                                className={`w-full bg-white text-black border ${errors.nhsReference ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]`}
+                                                className={`w-full bg-white text-black border ${errors.nhsReference ? 'border-red-500' : 'border-[#D5D7DA]'} rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7`}
                                                 placeholder='Enter reference number'
                                                 value={nhsReference}
                                                 onChange={(e) => {
@@ -553,7 +553,7 @@ function Funeral({ onSave, onSkip, onBack }) {
                                     <label className='block text-sm font-medium text-text-4 mb-1.5'>Additional Notes (optional)</label>
                                     <textarea
                                         rows={3}
-                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] resize-none'
+                                        className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 resize-none'
                                         placeholder='Additional Notes if any...'
                                         value={additionalNotes}
                                         onChange={(e) => setAdditionalNotes(e.target.value)}

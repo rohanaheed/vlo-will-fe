@@ -61,7 +61,7 @@ function Page() {
                                 Takes less than 10 minutes. Create, customise, and download instantly.
                             </p>
                             <button onClick={() => router.push('/user-details')} 
-                             className='max-md:w-full self-end text-sm md:text-base lg:text-xl cursor-pointer font-semibold bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
+                             className='max-md:w-full self-end text-sm md:text-base lg:text-xl cursor-pointer bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
                                 Start Document <span className='text-lg md:text-xl lg:text-2xl'>(£29)</span>
                             </button>
 
@@ -130,7 +130,7 @@ function Page() {
                         </ul>
                         <button
                             onClick={() => router.push('/user-details')}
-                            className='max-md:w-full mt-6 self-end text-sm md:text-base lg:text-xl cursor-pointer font-semibold bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
+                            className='max-md:w-full mt-6 self-end text-sm md:text-base lg:text-xl cursor-pointer bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
                             Start Document <span className='text-lg md:text-xl lg:text-2xl'>(£29)</span>
                         </button>
                         <p className='text-text-5 md:text-lg lg:text-xl mt-2'>*
@@ -190,7 +190,7 @@ function Page() {
                     <div className='bg-main text-center pt-9 md:pt-24 pb-40 w-full'>
                         <div className='max-w-md mx-auto'>
                             <h1 className='lg:text-[36px] md:text-2xl text-xl font-semibold text-white mt-5'>DocNet by the Numbers</h1>
-                            <p className='mt-5 lg:text-xl md:text-lg text-base font-normal text-[#F3F3F3] mt-5'>
+                            <p className='mt-5 lg:text-xl md:text-lg text-base font-normal text-[#F3F3F3]'>
                                 Real results from users who trust <span className='font-semibold'>DocNet Ltd</span> to create, customise and manage legal documents quickly
                                 and securely.
                             </p>

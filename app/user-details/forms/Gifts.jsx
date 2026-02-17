@@ -177,7 +177,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                             value={currentGift.beneficiary}
                             onChange={(val) => handleGiftChange("beneficiary", val)}
                             placeholder="John Alexander Smith / Custom Add"
-                            className={`w-full !py-2.5 text-[#414651] ${errors.gift_beneficiary ? 'border-red-500' : ''}`}
+                            className={`w-full py-2.5! text-text-4 ${errors.gift_beneficiary ? 'border-red-500' : ''}`}
                         />
                         {errors.gift_beneficiary && <p className='text-red-500 text-xs mt-1'>{errors.gift_beneficiary}</p>}
                     </div>
@@ -189,7 +189,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                             value={currentGift.assetType}
                             onChange={(val) => handleGiftChange("assetType", val)}
                             placeholder="Residential Property / Bonds / Vehicle / Cryptocurrency / Trademark / Add"
-                            className={`w-full !py-2.5 text-[#414651] ${errors.gift_assetType ? 'border-red-500' : ''}`}
+                            className={`w-full py-2.5! text-text-4 ${errors.gift_assetType ? 'border-red-500' : ''}`}
                         />
                         {errors.gift_assetType && <p className='text-red-500 text-xs mt-1'>{errors.gift_assetType}</p>}
                     </div>
@@ -201,7 +201,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                             value={currentGift.giftType}
                             onChange={(val) => handleGiftChange("giftType", val)}
                             placeholder="Money Gift / Property Gift / Personal Item / Add"
-                            className={`w-full !py-2.5 text-[#414651] ${errors.gift_giftType ? 'border-red-500' : ''}`}
+                            className={`w-full py-2.5! text-text-4 ${errors.gift_giftType ? 'border-red-500' : ''}`}
                         />
                         {errors.gift_giftType && <p className='text-red-500 text-xs mt-1'>{errors.gift_giftType}</p>}
                     </div>
@@ -210,7 +210,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                         <label className='block text-sm font-medium text-text-1 mb-1.5'>Gift Description</label>
                         <input
                             type="text"
-                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                             placeholder="£0.00"
                             value={currentGift.description}
                             onChange={(e) => handleGiftChange("description", e.target.value)}
@@ -221,7 +221,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                         <label className='block text-sm font-medium text-text-1 mb-1.5'>Additional Information</label>
                         <textarea
                             rows={3}
-                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] resize-none'
+                            className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 resize-none'
                             placeholder="Additional information if any..."
                             value={currentGift.additionalInfo}
                             onChange={(e) => handleGiftChange("additionalInfo", e.target.value)}
@@ -251,7 +251,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                     <div className='flex items-center gap-3'>
                         <button
                             onClick={addGift}
-                            className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
+                            className='flex cursor-pointer items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
                         >
                             <Image src={PlusBlueIcon} alt="Add" width={18} height={18} />
                             Add
@@ -262,7 +262,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                                     removeGift(individualGifts[individualGifts.length - 1].id)
                                 }
                             }}
-                            className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
+                            className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] text-base font-semibold hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
                         >
                             <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
                             Remove
@@ -311,7 +311,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                                 value={currentDonation.charityName}
                                 onChange={(val) => handleDonationChange("charityName", val)}
                                 placeholder="British Heart Foundation / Mosque / Temple / Church / Custom Add"
-                                className={`w-full !py-2.5 text-[#414651] ${errors.donation_charityName ? 'border-red-500' : ''}`}
+                                className={`w-full py-2.5! text-text-4 ${errors.donation_charityName ? 'border-red-500' : ''}`}
                             />
                             {errors.donation_charityName && <p className='text-red-500 text-xs mt-1'>{errors.donation_charityName}</p>}
                         </div>
@@ -323,7 +323,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                                 value={currentDonation.assetType}
                                 onChange={(val) => handleDonationChange("assetType", val)}
                                 placeholder="Residential Property / Bonds / Vehicle / Cryptocurrency / Trademark / Charity Donation / Add"
-                                className={`w-full !py-2.5 text-[#414651] ${errors.donation_assetType ? 'border-red-500' : ''}`}
+                                className={`w-full py-2.5! text-text-4 ${errors.donation_assetType ? 'border-red-500' : ''}`}
                             />
                             {errors.donation_assetType && <p className='text-red-500 text-xs mt-1'>{errors.donation_assetType}</p>}
                         </div>
@@ -335,7 +335,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                                 value={currentDonation.giftType}
                                 onChange={(val) => handleDonationChange("giftType", val)}
                                 placeholder="Money Gift / Property Gift / Personal Item / Charity Donation / Add"
-                                className={`w-full !py-2.5 text-[#414651] ${errors.donation_giftType ? 'border-red-500' : ''}`}
+                                className={`w-full py-2.5! text-text-4 ${errors.donation_giftType ? 'border-red-500' : ''}`}
                             />
                             {errors.donation_giftType && <p className='text-red-500 text-xs mt-1'>{errors.donation_giftType}</p>}
                         </div>
@@ -344,7 +344,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-1 mb-1.5'>Gift Description</label>
                             <input
                                 type="text"
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680]'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7'
                                 placeholder="£0.00"
                                 value={currentDonation.description}
                                 onChange={(e) => handleDonationChange("description", e.target.value)}
@@ -355,7 +355,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                             <label className='block text-sm font-medium text-text-1 mb-1.5'>Additional Information</label>
                             <textarea
                                 rows={3}
-                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-[#717680] resize-none'
+                                className='w-full bg-white text-black border border-[#D5D7DA] rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-black placeholder:text-text-7 resize-none'
                                 placeholder="Additional information if any..."
                                 value={currentDonation.additionalInfo}
                                 onChange={(e) => handleDonationChange("additionalInfo", e.target.value)}
@@ -385,7 +385,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                         <div className='flex items-center gap-3'>
                             <button
                                 onClick={addDonation}
-                                className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
+                                className='flex cursor-pointer items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors text-sm font-bold shadow-sm'
                             >
                                 <Image src={PlusBlueIcon} alt="Add" width={18} height={18} />
                                 Add
@@ -396,7 +396,7 @@ function Gifts({ onSave, onSkip, onBack }) {
                                         removeDonation(charityDonations[charityDonations.length - 1].id)
                                     }
                                 }}
-                                className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] font-bold text-sm hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
+                                className='flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] text-base font-semibold hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
                             >
                                 <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
                                 Remove
