@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 import RecaptchaIcon from "../../../components/assets/images/RecaptchaIcon.svg";
 import EyeOpenIcon from "../../../components/assets/images/EyeOpenIcon.png";
 import EyeCloseIcon from "../../../components/assets/images/EyeCloseIcon.png";
-
+import Editor from "../../user-details/Editor";
 const validationSchema = Yup.object({
   email: Yup.string()
     .email("Invalid email format")
@@ -29,6 +29,7 @@ const validationSchema = Yup.object({
 
 function Page() {
   const router = useRouter();
+  const [isEditor, setIsEditor] = useState("editor");
   const [remember, setRember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   return (

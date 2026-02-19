@@ -3,7 +3,9 @@
 * {
   box-sizing: border-box;
 }
-
+body:has(.modal){
+  overflow: hidden;
+}
 :root {
   --background: #0000;
   --foreground: #0000;
