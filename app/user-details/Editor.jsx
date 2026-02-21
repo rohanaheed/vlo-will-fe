@@ -253,8 +253,8 @@ function Review({ onEditor, onShare }) {
           </div>
         </div>
         <div className="lg:py-24 md:py-16 py-8 w-full">
-          <div className="flex gap-6 px-4 overflow-x-auto w-full">
-            <div className="bg-[#fafafa] min-w-[250px] w-[250px] shrink-0 border-2 border-black/16 rounded-xl p-2">
+          <div className="flex md:flex-row flex-col gap-6 px-4 overflow-x-auto w-full">
+            <div className="bg-[#fafafa] md:min-w-[250px] md:w-[250px] min-w-full w-full shrink-0 border-2 border-black/16 rounded-xl p-2">
               <div className="flex items-center gap-2 min-w-[250px]">
                 <Image
                   src={ArrowBack}
@@ -313,8 +313,7 @@ function Review({ onEditor, onShare }) {
                   <Image
                     src={StampPage}
                     alt="StampPage"
-                    width={218}
-                    height={278}
+                    className="md:w-[218px] md:h-[278px] w-full h-full"
                   />
                 </div>
                 <h1 className="text-sm font-medium text-black mt-1.5">1</h1>
@@ -329,8 +328,7 @@ function Review({ onEditor, onShare }) {
                   <Image
                     src={StampPage}
                     alt="StampPage"
-                    width={218}
-                    height={278}
+                    className="md:w-[218px] md:h-[278px] w-full h-full"
                   />
                 </div>
                 <h1 className="text-sm font-medium text-black mt-1.5">2</h1>
@@ -345,9 +343,7 @@ function Review({ onEditor, onShare }) {
                   <Image
                     src={StampPage}
                     alt="StampPage"
-                    width={218}
-                    height={278}
-                    className="w-[218px] h-[278px]"
+                    className="md:w-[218px] md:h-[278px] w-full h-full"
                   />
                 </div>
                 <h1 className="text-sm font-medium text-black mt-1.5">3</h1>

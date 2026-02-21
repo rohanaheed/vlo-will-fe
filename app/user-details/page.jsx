@@ -178,7 +178,6 @@ function Page() {
         <Editor
           onEditor={() => {
             setIsEditor(false);
-            setIsDocumentSentOpen(true);
           }}
           onShare={() => setIsShareModalOpen(true)}
         />

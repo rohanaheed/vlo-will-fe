@@ -205,9 +205,7 @@ function Footer() {
       </div>
       <div className="flex justify-between bg-[#fafafa] max-sm:flex-col px-4 py-5 md:py-[48px] gap-8 whitespace-nowrap flex-wrap">
         <div>
-          <p className="text-[#717680]">
-            © 2025-26 DocNet. All rights reserved.
-          </p>
+          <p className="text-text-7">© 2025-26 DocNet. All rights reserved.</p>
         </div>
         <div className="flex items-center gap-4">
           <button className="cursor-pointer">
