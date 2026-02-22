@@ -15,7 +15,7 @@ import pages from "@/components/assets/images/PagesIcon.svg";
 import file from "@/components/assets/images/FileIcon.svg";
 import search from "@/components/assets/images/SearchIconBlack.svg";
 import copy from "@/components/assets/images/CopyIcon.svg";
-import Calendar from "@/components/assets/images/CalendarIcon.svg";
+import Calendar from "@/components/assets/images/CalendarIcon1.svg";
 import FolderIcon from "@/components/assets/images/FolderIcon.svg";
 import PDFIcon from "@/components/assets/images/PDFIcon.svg";
 import TableEyeIcon from "@/components/assets/images/TableEyeIcon.svg";
@@ -249,7 +249,7 @@ function page() {
           <div className="border border-black/16 rounded-lg md:p-6 p-3">
             <div className="flex md:items-center gap-2 justify-between whitespace-nowrap flex-col md:flex-row">
               <div className="flex items-center gap-2">
-                <button className="cursor-pointer">
+                <button className="cursor-pointer p-2 hover:bg-gray-100 rounded-full transition-colors">
                   <Image
                     src={arrowback}
                     alt="arrowback"

@@ -481,7 +481,7 @@ function Review({ onEditor, onShare }) {
             </div>
           </div>
         </div>
-        <div className="pt-24">
+        <div className="pt-8 md:pt-16 lg:pt-24">
           <Footer />
         </div>
       </div>
