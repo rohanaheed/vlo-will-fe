@@ -23,8 +23,9 @@ import TableEditIcon from "@/components/assets/images/TableEditIccon.svg";
 import DeleteIcon from "@/components/assets/images/DeleteIcon.svg";
 import TableMenuIcon from "@/components/assets/images/TableMenuIcon.svg";
 import ChevronDown from "@/components/assets/images/ChevronLeftBlack.svg";
-
+import { useRouter } from "next/navigation";
 function page() {
+  const router = useRouter();
   const [startDate, setStartDate] = useState(new Date());
   const [expandedFolders, setExpandedFolders] = useState([
     "folder-1",
@@ -249,7 +250,10 @@ function page() {
           <div className="border border-black/16 rounded-lg md:p-6 p-3">
             <div className="flex md:items-center gap-2 justify-between whitespace-nowrap flex-col md:flex-row">
               <div className="flex items-center gap-2">
-                <button className="cursor-pointer p-2 hover:bg-gray-100 rounded-full transition-colors">
+                <button
+                  onClick={() => router.push("/")}
+                  className="cursor-pointer p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
                   <Image
                     src={arrowback}
                     alt="arrowback"

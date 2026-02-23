@@ -1,10 +1,8 @@
-"use client";
-import React from "react";
 import CrossIcon from "@/components/assets/images/CrossIcon.svg";
+import ModelTickIcon from "@/components/assets/images/ModelTickIconRed.svg";
 import Image from "next/image";
-import ModelTickIcon from "@/components/assets/images/ModelTickIcon.svg";
 
-function SuccessPopup({ isOpen, onClose, heading, description, button }) {
+function SuccessRedPopup({ isOpen, onClose, heading, description, button }) {
   if (!isOpen) return null;
 
   return (
@@ -38,7 +36,7 @@ function SuccessPopup({ isOpen, onClose, heading, description, button }) {
 
           <button
             onClick={onClose}
-            className="w-full py-2.5 bg-main text-white rounded-lg font-semibold hover:bg-main/90 transition-colors cursor-pointer"
+            className="w-full py-2.5 bg-[#FF383C] text-white rounded-lg font-semibold hover:bg-[#FF383C]/90 transition-colors cursor-pointer"
           >
             {button}
           </button>
@@ -48,4 +46,4 @@ function SuccessPopup({ isOpen, onClose, heading, description, button }) {
   );
 }
 
-export default SuccessPopup;
+export default SuccessRedPopup;

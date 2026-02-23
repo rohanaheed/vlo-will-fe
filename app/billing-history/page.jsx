@@ -287,7 +287,10 @@ function page() {
       <div className="max-w-[1200px] mx-auto max-[1200px]:px-4 py-8  border-b border-black/16 md:pb-16 pb-8 lg:pb-24">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-3">
-            <button className="p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer">
+            <button
+              onClick={() => router.push("/")}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+            >
               <Image src={arrowback} alt="back" width={24} height={24} />
             </button>
             <h2 className="text-xl font-bold text-[#101828]">
@@ -442,19 +445,25 @@ function page() {
                 className="absolute right-3 top-1/2 -translate-y-1/2"
               />
             </div>
-            <div className="w-full">
+            <div className="max-md:w-full">
               <DatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 customInput={<CustomInput />}
-                wrapperClassName="w-full"
+                wrapperClassName="max-md:w-full"
               />
             </div>
             <button
               onClick={() => router.push("/billing-history/invoice-receipt")}
-              className="p-3 cursor-pointer inline-block self-end border border-black/16 rounded-lg hover:bg-gray-50 transition-colors"
+              className="p-2.5 cursor-pointer inline-block self-end border border-black/16 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              <Image src={copy} alt="print" width={22} height={22} />
+              <Image
+                src={copy}
+                alt="print"
+                width={24}
+                height={24}
+                className="min-w-6 min-h-6"
+              />
             </button>
           </div>
 
@@ -493,6 +502,8 @@ function page() {
       <SuccessPopup
         isOpen={isSuccessModalOpen}
         onClose={() => setIsSuccessModalOpen(false)}
+        heading="Card Updated Successfully"
+        description="Your payment details have been securely updated and set as default."
       />
     </div>
   );

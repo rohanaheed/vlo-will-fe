@@ -29,7 +29,15 @@ function UserHeader() {
     icon: ukflag,
   });
   const [isOpen, setIsOpen] = useState(false);
-  const [tab, setTab] = useState("document");
+  const lowerPath = pathname?.toLowerCase() || "";
+  let tab = null;
+  if (lowerPath.startsWith("/profile")) {
+    tab = "account";
+  } else if (lowerPath.startsWith("/billing-history")) {
+    tab = "billing";
+  } else if (lowerPath.startsWith("/document")) {
+    tab = "document";
+  }
   const [isScrolled, setIsScrolled] = useState(false);
   const languageOptions = [
     { label: "ENG", value: "UK", icon: ukflag },
@@ -102,18 +110,7 @@ function UserHeader() {
     };
   }, []);
 
-  useEffect(() => {
-    const lowerPath = pathname?.toLowerCase() || "";
-    if (lowerPath.startsWith("/profile")) {
-      setTab("account");
-    } else if (lowerPath.startsWith("/billing")) {
-      setTab("billing");
-    } else if (lowerPath.startsWith("/dashboard")) {
-      setTab("document");
-    } else {
-      setTab(null);
-    }
-  }, [pathname]);
+  // Removed useEffect for tab selection to avoid setState in effect
 
   const toggleDropdown = (name) => {
     setActiveDropdown(activeDropdown === name ? null : name);
@@ -126,10 +123,10 @@ function UserHeader() {
   return (
     <div>
       <main
-        className={`py-5 px-2 flex items-center fixed top-0 left-0 right-0 z-50 justify-between whitespace-nowrap gap-4 transition-all duration-300 ${isScrolled ? "bg-white/16 backdrop-blur-lg" : ""}`}
+        className={`py-5 px-2 flex items-center fixed top-0 left-0 right-0 z-50 justify-between whitespace-nowrap gap-4 transition-all duration-300 max-w-[1200px] mx-auto ${isScrolled ? "bg-white/16 backdrop-blur-lg" : ""}`}
       >
         <div className="flex items-center gap-8">
-          <button className="cursor-pointer">
+          <button onClick={() => router.push("/")} className="cursor-pointer">
             <Image src={logo} alt="logo" width={100} height={32} />
           </button>
           <div className="flex items-center gap-2 max-lg:hidden">
@@ -391,7 +388,7 @@ function UserHeader() {
                 <button
                   onClick={() => {
                     setTab("billing");
-                    router.push("/billing");
+                    router.push("/billing-history");
                     setActiveDropdown(null);
                   }}
                   className={`flex cursor-pointer items-center gap-3 p-3 mt-0.5 hover:bg-[#ECF6FF] hover:text-main hover:font-medium duration-300 w-full text-left transition-colors ${
@@ -445,18 +442,24 @@ function UserHeader() {
       >
         <div
           ref={mobileMenuRef}
-          onClick={() => router.push("/")}
           className={`p-3 sm:p-6 ${isOpen ? "translate-x-0" : "-translate-x-full"} fixed transition duration-300 ease-in-out top-0 left-0 h-full bg-main z-50 w-full sm:w-[300px]`}
         >
-          <div className="flex items-center justify-center">
+          <button
+            type="button"
+            onClick={() => {
+              setIsOpen(false);
+              router.push("/");
+            }}
+            className="flex items-center justify-center w-full"
+          >
             <Image
               src={logo}
               alt="logo"
               width={170}
               height={32}
-              className="brightness-200 invert-1 "
+              className="brightness-200 invert-1"
             />
-          </div>
+          </button>
           <div className="mt-6">
             <div className="flex items-center gap-2 justify-end md:hidden">
               <div className="flex items-center gap-2 pr-2 border-r border-white/26 cursor-pointer">
@@ -750,7 +753,7 @@ function UserHeader() {
                 <button
                   onClick={() => {
                     setTab("document");
-                    router.push("/dashboard");
+                    router.push("/document");
                     setIsOpen(false);
                     setActiveDropdown(null);
                   }}
@@ -768,7 +771,7 @@ function UserHeader() {
                 <button
                   onClick={() => {
                     setTab("billing");
-                    router.push("/billing");
+                    router.push("/billing-history");
                     setIsOpen(false);
                     setActiveDropdown(null);
                   }}
