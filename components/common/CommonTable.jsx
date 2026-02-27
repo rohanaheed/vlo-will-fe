@@ -12,12 +12,12 @@ const SortIcon = ({ direction }) => (
   >
     <path
       d="M5 0L9.33013 4.5H0.669873L5 0Z"
-      fill="white"
+      fill="currentColor"
       fillOpacity={direction === "asc" ? "1" : "0.4"}
     />
     <path
       d="M5 12L0.669873 7.5H9.33013L5 12Z"
-      fill="white"
+      fill="currentColor"
       fillOpacity={direction === "desc" ? "1" : "0.4"}
     />
   </svg>
@@ -30,6 +30,8 @@ function CommonTable({
   onSelectionChange,
   onRowClick,
   getRowClassName,
+  headerclass,
+  border,
 }) {
   const [selectedRows, setSelectedRows] = useState([]);
   const [prevData, setPrevData] = useState(data);
@@ -130,7 +132,9 @@ function CommonTable({
       <div className="overflow-x-auto rounded-lg border border-[#EAECF0]">
         <table className="w-full min-w-max border-collapse">
           <thead>
-            <tr className="bg-(--color-main) select-none text-white text-left">
+            <tr
+              className={` ${headerclass} bg-(--color-main) select-none text-white text-left`}
+            >
               {selectable && (
                 <th className="p-4 w-12 rounded-tl-lg relative flex justify-center items-center ">
                   <input
@@ -168,7 +172,9 @@ function CommonTable({
                     )}
                   </div>
                   {idx !== columns.length - 1 && (
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2 h-5 w-0.5 bg-white"></div>
+                    <div
+                      className={`${border} absolute right-0 top-1/2 -translate-y-1/2 h-5 w-0.5 bg-white`}
+                    ></div>
                   )}
                 </th>
               ))}

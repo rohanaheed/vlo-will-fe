@@ -23,6 +23,7 @@ function UserHeader() {
   const router = useRouter();
   const pathname = usePathname();
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isOpen1, setIsOpen1] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({
     label: "ENG",
     value: "UK",
@@ -51,6 +52,7 @@ function UserHeader() {
   const servicesRef = useRef(null);
   const resourcesRef = useRef(null);
   const userDropdownRef = useRef(null);
+  const desktopUserDropdownRef = useRef(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -88,16 +90,23 @@ function UserHeader() {
       ) {
         setActiveDropdown(null);
       }
+      if (
+        isOpen1 &&
+        desktopUserDropdownRef.current &&
+        !desktopUserDropdownRef.current.contains(e.target)
+      ) {
+        setIsOpen1(false);
+      }
     };
 
-    if (isOpen || activeDropdown) {
+    if (isOpen || activeDropdown || isOpen1) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, activeDropdown]);
+  }, [isOpen, activeDropdown, isOpen1]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -285,7 +294,10 @@ function UserHeader() {
           </div>
         </div>
         <div className="flex items-center gap-5">
-          <div className="flex max-md:hidden items-center gap-2 pr-2 border-r border-black/16 cursor-pointer">
+          <div
+            onClick={() => router.push("/search")}
+            className="flex max-md:hidden items-center gap-2 pr-2 border-r border-black/16 cursor-pointer"
+          >
             <Image
               src={searchIcon}
               alt="searchIcon"
@@ -307,9 +319,10 @@ function UserHeader() {
               options={languageOptions}
               value={selectedLanguage}
               onChange={setSelectedLanguage}
-              className="border-none w-auto! gap-7! bg-transparent! p-0! text-base! text-black! font-semibold!"
+              className="border-none w-auto! gap-7! !justify-left bg-transparent! p-0! text-base! text-black! font-semibold!"
               dropdownClassName={`w-full !p-0 !top-7 !text-xs !font-medium ${isScrolled ? "!bg-white !text-black" : "!bg-black/10 !backdrop-blur-lg !text-black"}`}
               buttonClassName="!hover:zinc-200 !p-1"
+              truncate={false}
             />
           </div>
           <div className="max-sm:hidden">
@@ -330,11 +343,13 @@ function UserHeader() {
               Sign Up
             </button>
           </div>
-          <div className="flex items-center gap-2 cursor-pointer relative">
+          <div
+            ref={desktopUserDropdownRef}
+            className="flex items-center gap-2 cursor-pointer relative"
+          >
             <button
-              type="button"
+              onClick={() => setIsOpen1(!isOpen1)}
               className="flex items-center gap-2 cursor-pointer"
-              onClick={() => toggleDropdown("user")}
             >
               <Image
                 src={userIcon}
@@ -344,13 +359,11 @@ function UserHeader() {
                 className="w-10 h-10"
               />
             </button>
-            {activeDropdown === "user" && (
+            {isOpen1 && (
               <div className="absolute top-12 right-0 bg-white border border-black/10 rounded-lg shadow-lg p-2 w-48 z-50 flex flex-col">
                 <button
                   onClick={() => {
-                    setTab("document");
                     router.push("/document");
-                    setActiveDropdown(null);
                   }}
                   className={`flex cursor-pointer items-center gap-3 p-3 hover:bg-[#ECF6FF] hover:text-main hover:font-medium duration-300 w-full text-left transition-colors ${
                     tab === "document" ? "bg-[#ECF6FF] text-main" : "text-black"
@@ -367,9 +380,7 @@ function UserHeader() {
                 </button>
                 <button
                   onClick={() => {
-                    setTab("account");
                     router.push("/profile");
-                    setActiveDropdown(null);
                   }}
                   className={`flex cursor-pointer items-center gap-3 p-3 mt-0.5 hover:bg-[#ECF6FF] hover:text-main hover:font-medium duration-300 w-full text-left transition-colors ${
                     tab === "account" ? "bg-[#ECF6FF] text-main" : "text-black"
@@ -387,9 +398,7 @@ function UserHeader() {
 
                 <button
                   onClick={() => {
-                    setTab("billing");
                     router.push("/billing-history");
-                    setActiveDropdown(null);
                   }}
                   className={`flex cursor-pointer items-center gap-3 p-3 mt-0.5 hover:bg-[#ECF6FF] hover:text-main hover:font-medium duration-300 w-full text-left transition-colors ${
                     tab === "billing" ? "bg-[#ECF6FF] text-main" : "text-black"
@@ -462,7 +471,10 @@ function UserHeader() {
           </button>
           <div className="mt-6">
             <div className="flex items-center gap-2 justify-end md:hidden">
-              <div className="flex items-center gap-2 pr-2 border-r border-white/26 cursor-pointer">
+              <div
+                onClick={() => router.push("/Search")}
+                className="flex items-center gap-2 pr-2 border-r border-white/26 cursor-pointer"
+              >
                 <Image
                   src={searchIcon}
                   alt="searchIcon"
@@ -484,10 +496,12 @@ function UserHeader() {
                   options={languageOptions}
                   value={selectedLanguage}
                   onChange={setSelectedLanguage}
-                  className="border-none w-auto! text-white gap-4 bg-transparent! p-0 text-base font-semibold"
+                  className="border-none w-auto! text-white! gap-4 bg-transparent! p-0 text-base font-semibold"
+                  textClassName="!text-white"
                   dropdownClassName="w-full p-0 text-white bg-white/10 backdrop-blur-lg top-7 text-xs font-medium"
                   buttonClassName="hover:bg-zinc-200 text-white hover:text-black p-1"
                   arrowClassName="invert brightness-100"
+                  truncate={false}
                 />
               </div>
               <div onClick={() => setIsOpen(false)} className="cursor-pointer">
@@ -712,7 +726,7 @@ function UserHeader() {
               </div>
             </div>
           </div>
-          <div
+          {/* <div
             className="flex items-center gap-2 cursor-pointer relative"
             ref={userDropdownRef}
           >
@@ -806,7 +820,7 @@ function UserHeader() {
                 </button>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

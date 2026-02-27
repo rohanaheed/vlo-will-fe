@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import logo from "@/components/assets/images/Logo.svg";
 import Image from "next/image";
@@ -11,7 +12,9 @@ import twitter from "@/components/assets/images/XIcon.svg";
 import instagram from "@/components/assets/images/InstaIcon.svg";
 import youtube from "@/components/assets/images/YoutubeIcon.svg";
 import pintrest from "@/components/assets/images/PintrestIcon.svg";
+import { useRouter } from "next/navigation";
 function Footer() {
+  const router = useRouter();
   return (
     <div>
       <div className="flex justify-between max-w-[1200px] mx-auto max-sm:flex-col px-4 py-5 md:py-[48px] gap-8 whitespace-nowrap flex-wrap">
@@ -156,7 +159,10 @@ function Footer() {
               </button>
             </li>
             <li>
-              <button className="text-text-5 text-sm cursor-pointer">
+              <button
+                onClick={() => router.push("/dedicated-support")}
+                className="text-text-5 text-sm cursor-pointer"
+              >
                 Help centre
               </button>
             </li>
