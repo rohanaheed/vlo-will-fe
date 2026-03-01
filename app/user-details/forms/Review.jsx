@@ -11,7 +11,7 @@ import DownloadIconBlue from "@/components/assets/images/DownloadIconBlue.svg";
 import ShareIconBlue from "@/components/assets/images/ShareIconBlue.svg";
 import AddIcon from "@/components/assets/images/AddClipboardIcon.svg";
 
-function Review({ onSave, onSkip, onBack, onEditor, onShare }) {
+function Review({ onSave, onSkip, onBack, onEditor, onShare, onDownload, onPayment }) {
   const [isActive, setIsActive] = useState("create");
 
   return (
@@ -73,7 +73,10 @@ function Review({ onSave, onSkip, onBack, onEditor, onShare }) {
             <span className="">Edit</span>
           </button>
           <button
-            onClick={() => setIsActive("download")}
+            onClick={() => {
+              setIsActive("download");
+              if (onDownload) onDownload();
+            }}
             className={`${isActive === "download" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink md:grow md:basis-[150px]`}
           >
             <Image
@@ -102,7 +105,10 @@ function Review({ onSave, onSkip, onBack, onEditor, onShare }) {
             <span>Share</span>
           </button>
           <button
-            onClick={onSave}
+            onClick={() => {
+              setIsActive("create");
+              if (onPayment) onPayment();
+            }}
             className={`${isActive === "create" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink md:grow md:basis-[230px]`}
           >
             <Image

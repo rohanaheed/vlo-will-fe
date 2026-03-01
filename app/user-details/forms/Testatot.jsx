@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, forwardRef } from 'react'
+import React, { useState, forwardRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
@@ -48,9 +48,9 @@ const CustomDateInput = forwardRef(({ value, onClick, onChange, placeholder, age
 ));
 CustomDateInput.displayName = "CustomDateInput";
 
-function Testatot({ onSave, onSkip, onBack }) {
+function Testatot({ onSave, onSkip, onBack, onDataChange, initialData }) {
     const [calendarView, setCalendarView] = useState('day')
-    const [formData, setFormData] = useState({
+    const defaultData = {
         title: "",
         fullName: "",
         otherName: "",
@@ -71,7 +71,8 @@ function Testatot({ onSave, onSkip, onBack }) {
         maritalStatus: "",
         marriageClause: "",
         declaration: false
-    })
+    }
+    const [formData, setFormData] = useState(initialData || defaultData)
 
     const titleOptions = ["Mr", "Mrs", "Ms", "Dr", "Prof", "Rev", "Other"]
     const genderOptions = ["Male", "Female", "Trans", "Other", "Prefer not to say"]
@@ -99,6 +100,16 @@ function Testatot({ onSave, onSkip, onBack }) {
     ]
 
     const [errors, setErrors] = useState({})
+
+    // Restore from initialData when navigating back
+    useEffect(() => {
+        if (initialData) setFormData(initialData)
+    }, [initialData])
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange(formData)
+    }, [formData])
 
     const handleChange = (field, value) => {
         setFormData(prev => ({ ...prev, [field]: value }))

@@ -1,14 +1,13 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
 import PlusBlueIcon from '@/components/assets/images/PlusBlueIcon.svg'
 import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
-function Gifts({ onSave, onSkip, onBack }) {
-    // Individual Gifts State
-    const [individualGifts, setIndividualGifts] = useState([])
+function Gifts({ onSave, onSkip, onBack, onDataChange, initialData }) {
+    const [individualGifts, setIndividualGifts] = useState(initialData?.giftsList || [])
     const [currentGift, setCurrentGift] = useState({
         beneficiary: "",
         assetType: "",
@@ -149,6 +148,11 @@ function Gifts({ onSave, onSkip, onBack }) {
             setErrors(prev => ({ ...prev, ...newErrors }))
         }
     }
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange({ giftsList: individualGifts, charityDonations, hasCharity })
+    }, [individualGifts, charityDonations, hasCharity])
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>

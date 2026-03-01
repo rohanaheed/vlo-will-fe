@@ -1,11 +1,11 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
 import UKFlag from '@/components/assets/images/UkFlag.svg'
 
-function Funeral({ onSave, onSkip, onBack }) {
+function Funeral({ onSave, onSkip, onBack, onDataChange, initialData }) {
     const [burialMethod, setBurialMethod] = useState(['burial'])
     const [hasLocationPreference, setHasLocationPreference] = useState('yes')
     const [cityLocation, setCityLocation] = useState('')
@@ -73,6 +73,34 @@ function Funeral({ onSave, onSkip, onBack }) {
             onSave()
         }
     }
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange({
+            burialMethod,
+            hasLocationPreference,
+            cityLocation,
+            specialRequests,
+            payFromEstate,
+            paymentPriority,
+            hasFuneralInsurance,
+            insuranceProvider,
+            policyNumber,
+            policyholderTitle,
+            policyholderName,
+            coverageAmount,
+            policyDocLocation,
+            wantOrganDonation,
+            donationType,
+            organPreferences,
+            nhsRegistered,
+            nhsReference,
+            additionalNotes
+        })
+    }, [burialMethod, hasLocationPreference, cityLocation, specialRequests, payFromEstate,
+        paymentPriority, hasFuneralInsurance, insuranceProvider, policyNumber, policyholderTitle,
+        policyholderName, coverageAmount, policyDocLocation, wantOrganDonation, donationType,
+        organPreferences, nhsRegistered, nhsReference, additionalNotes])
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>

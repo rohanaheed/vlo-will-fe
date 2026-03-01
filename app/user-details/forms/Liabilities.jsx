@@ -1,14 +1,14 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
 import PlusBlueIcon from '@/components/assets/images/PlusBlueIcon.svg'
 import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
-function Liabilities({ onSave, onSkip, onBack }) {
-    const [hasDebt, setHasDebt] = useState('yes')
-    const [liabilities, setLiabilities] = useState([])
+function Liabilities({ onSave, onSkip, onBack, onDataChange, initialData }) {
+    const [hasDebt, setHasDebt] = useState(initialData?.hasDebt || 'yes')
+    const [liabilities, setLiabilities] = useState(initialData?.liabilitiesList || [])
     const [currentLiability, setCurrentLiability] = useState({
         creditorName: "",
         debtType: "",
@@ -71,6 +71,11 @@ function Liabilities({ onSave, onSkip, onBack }) {
         }
         onSave()
     }
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange({ hasDebt, liabilitiesList: liabilities })
+    }, [hasDebt, liabilities])
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>

@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, forwardRef } from 'react'
+import React, { useState, forwardRef, useEffect } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
@@ -9,9 +9,9 @@ import PlusBlueIcon from '@/components/assets/images/PlusBlueIcon.svg'
 import UKFlag from '@/components/assets/images/UkFlag.svg'
 import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
-function Assets({ onSave, onSkip, onBack }) {
+function Assets({ onSave, onSkip, onBack, onDataChange, initialData }) {
     const [hasProperty, setHasProperty] = useState('yes')
-    const [properties, setProperties] = useState([]) // List of added properties
+    const [properties, setProperties] = useState(initialData?.assetsList || []) // List of added properties
     const [currentProperty, setCurrentProperty] = useState({
         buildingNumber: "",
         buildingName: "",
@@ -31,7 +31,7 @@ function Assets({ onSave, onSkip, onBack }) {
 
     // Bank Accounts State
     const [hasBankAccount, setHasBankAccount] = useState('yes')
-    const [bankAccounts, setBankAccounts] = useState([])
+    const [bankAccounts, setBankAccounts] = useState(initialData?.bankAccounts || [])
     const [currentBankAccount, setCurrentBankAccount] = useState({
         bankName: "",
         accountType: "",
@@ -42,7 +42,7 @@ function Assets({ onSave, onSkip, onBack }) {
 
     // Investments State
     const [hasInvestment, setHasInvestment] = useState('yes')
-    const [investments, setInvestments] = useState([])
+    const [investments, setInvestments] = useState(initialData?.investments || [])
     const [currentInvestment, setCurrentInvestment] = useState({
         companyName: "",
         investmentType: "",
@@ -53,7 +53,7 @@ function Assets({ onSave, onSkip, onBack }) {
 
     // Valuable Items State
     const [hasValuableItem, setHasValuableItem] = useState('yes')
-    const [valuableItems, setValuableItems] = useState([])
+    const [valuableItems, setValuableItems] = useState(initialData?.valuableItems || [])
     const [currentValuableItem, setCurrentValuableItem] = useState({
         category: "",
         itemDescription: "",
@@ -63,7 +63,7 @@ function Assets({ onSave, onSkip, onBack }) {
 
     // Digital Assets State
     const [hasDigitalAsset, setHasDigitalAsset] = useState('yes')
-    const [digitalAssets, setDigitalAssets] = useState([])
+    const [digitalAssets, setDigitalAssets] = useState(initialData?.digitalAssets || [])
     const [currentDigitalAsset, setCurrentDigitalAsset] = useState({
         assetType: "",
         platformName: "",
@@ -74,7 +74,7 @@ function Assets({ onSave, onSkip, onBack }) {
 
     // Intellectual Assets State
     const [hasIntellectualAsset, setHasIntellectualAsset] = useState('yes')
-    const [intellectualAssets, setIntellectualAssets] = useState([])
+    const [intellectualAssets, setIntellectualAssets] = useState(initialData?.intellectualAssets || [])
     const [currentIntellectualAsset, setCurrentIntellectualAsset] = useState({
         assetType: "",
         title: "",
@@ -261,7 +261,6 @@ function Assets({ onSave, onSkip, onBack }) {
         const newErrors = {}
         if (!currentInvestment.companyName) newErrors.companyName = "Company/Fund Name is required"
         if (!currentInvestment.investmentType) newErrors.investmentType = "Investment Type is required"
-        if (!currentInvestment.value) newErrors.value = "Value is required"
 
         setErrors(prev => ({ ...prev, ...newErrors }))
         return Object.keys(newErrors).length === 0
@@ -273,7 +272,8 @@ function Assets({ onSave, onSkip, onBack }) {
             setCurrentInvestment({
                 companyName: "",
                 investmentType: "",
-                value: "",
+                accountPolicyNumber: "",
+                managedBy: "",
                 additionalInfo: ""
             })
             setErrors({})
@@ -468,6 +468,19 @@ function Assets({ onSave, onSkip, onBack }) {
             // Scroll to top or first error could be good but let's start with blocking
         }
     }
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange({
+            assetsList: properties,
+            bankAccounts,
+            investments,
+            valuableItems,
+            digitalAssets,
+            intellectualAssets
+        })
+    }, [properties, bankAccounts, investments, valuableItems, digitalAssets, intellectualAssets])
+
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>

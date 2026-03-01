@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, forwardRef } from 'react'
+import React, { useState, forwardRef, useEffect } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
@@ -47,9 +47,9 @@ const CustomDateInput = forwardRef(({ value, onClick, onChange, placeholder, age
 ));
 CustomDateInput.displayName = "CustomDateInput";
 
-function Beneficiaries({ onSave, onSkip, onBack }) {
-    const [hasChildren, setHasChildren] = useState(true)
-    const [beneficiaries, setBeneficiaries] = useState([])
+function Beneficiaries({ onSave, onSkip, onBack, onDataChange, initialData }) {
+    const [hasChildren, setHasChildren] = useState(initialData?.hasChildren ?? true)
+    const [beneficiaries, setBeneficiaries] = useState(initialData?.beneficiariesList || [])
     const [formData, setFormData] = useState({
         title: "",
         fullName: "",
@@ -450,6 +450,18 @@ function Beneficiaries({ onSave, onSkip, onBack }) {
             if (newErrors.guardian_global) setGuardianErrors(prev => ({ ...prev, global: newErrors.guardian_global }));
         }
     }
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange({
+            hasChildren,
+            beneficiariesList: beneficiaries,
+            beneficiaryDetailsList,
+            charityList,
+            isTrustee,
+            trusteePowers
+        })
+    }, [hasChildren, beneficiaries, beneficiaryDetailsList, charityList, isTrustee, trusteePowers])
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>

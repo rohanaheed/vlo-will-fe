@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
@@ -10,7 +10,7 @@ import UKFlag from '@/components/assets/images/UkFlag.svg'
 import PlusBlueIcon from '@/components/assets/images/PlusBlueIcon.svg'
 import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
-function Witnesses({ onSave, onSkip, onBack }) {
+function Witnesses({ onSave, onSkip, onBack, onDataChange, initialData }) {
     // Testator's Signature
     const [testatorTitle, setTestatorTitle] = useState('Mr')
     const [testatorName, setTestatorName] = useState('')
@@ -49,6 +49,14 @@ function Witnesses({ onSave, onSkip, onBack }) {
 
     const [beneficiaryConfirm, setBeneficiaryConfirm] = useState('yes')
 
+    // Extra witnesses (beyond the mandatory 2)
+    const [extraWitnesses, setExtraWitnesses] = useState([])
+    const [extraWitnessForm, setExtraWitnessForm] = useState({
+        title: 'Mr', name: '', buildingNumber: '', buildingName: '', street: '',
+        town: '', city: '', county: '', postcode: '', country: { label: 'United Kingdom', value: 'United Kingdom', icon: UKFlag },
+        signature: '', occupation: ''
+    })
+
     const [errors, setErrors] = useState({})
 
     const titleOptions = ['Mr', 'Mrs', 'Ms', 'Dr']
@@ -79,6 +87,45 @@ function Witnesses({ onSave, onSkip, onBack }) {
             onSave()
         }
     }
+
+    const addExtraWitness = () => {
+        if (!extraWitnessForm.name) return
+        setExtraWitnesses(prev => [...prev, { ...extraWitnessForm, id: Date.now() }])
+        setExtraWitnessForm({
+            title: 'Mr', name: '', buildingNumber: '', buildingName: '', street: '',
+            town: '', city: '', county: '', postcode: '', country: { label: 'United Kingdom', value: 'United Kingdom', icon: UKFlag },
+            signature: '', occupation: ''
+        })
+    }
+
+    const removeExtraWitness = (id) => {
+        setExtraWitnesses(prev => prev.filter(w => w.id !== id))
+    }
+
+    const buildAddress = (bNum, bName, street, town, city, county, postcode, country) =>
+        [bNum, bName, street, town, city, county, postcode, country?.label || country]
+            .filter(Boolean).join(', ')
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange({
+            testator: { title: testatorTitle, fullName: testatorName, date: testatorDate },
+            witness1: {
+                title: witness1Title, fullName: witness1Name, signature: witness1Signature,
+                address: buildAddress(witness1BuildingNumber, witness1BuildingName, witness1Street, witness1Town, witness1City, witness1County, witness1Postcode, witness1Country),
+                occupation: witness1Occupation
+            },
+            witness2: {
+                title: witness2Title, fullName: witness2Name, signature: witness2Signature,
+                address: buildAddress(witness2BuildingNumber, witness2BuildingName, witness2Street, witness2Town, witness2City, witness2County, witness2Postcode, witness2Country),
+                occupation: witness2Occupation
+            },
+            extraWitnesses
+        })
+    }, [testatorTitle, testatorName, testatorDate,
+        witness1Title, witness1Name, witness1Signature, witness1BuildingNumber, witness1BuildingName, witness1Street, witness1Town, witness1City, witness1County, witness1Postcode, witness1Country, witness1Occupation,
+        witness2Title, witness2Name, witness2Signature, witness2BuildingNumber, witness2BuildingName, witness2Street, witness2Town, witness2City, witness2County, witness2Postcode, witness2Country, witness2Occupation,
+        extraWitnesses])
 
     const CustomDateInput = React.forwardRef(({ value, onClick }, ref) => (
         <div className='relative w-full' onClick={onClick} ref={ref}>
@@ -496,21 +543,29 @@ function Witnesses({ onSave, onSkip, onBack }) {
                             </div>
                         </div>
 
-                        {/* Add/Remove Buttons */}
+                        {/* Extra Witnesses List */}
+                        {extraWitnesses.length > 0 && (
+                            <div className='space-y-2 mt-4'>
+                                {extraWitnesses.map((w, i) => (
+                                    <div key={w.id} className='flex items-center justify-between bg-white border border-[#D5D7DA] rounded-lg px-4 py-2'>
+                                        <span className='text-sm text-text-1 font-medium'>{`Witness ${i + 3}: ${w.title} ${w.name}`}</span>
+                                        <button type='button' onClick={() => removeExtraWitness(w.id)} className='text-red-500 hover:text-red-700'>
+                                            <Image src={CrossRedIcon} alt="Remove" width={16} height={16} />
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* Add Additional Witness */}
                         <div className='flex items-center gap-4 mt-4'>
                             <button
                                 type='button'
+                                onClick={addExtraWitness}
                                 className='flex cursor-pointer text-base font-semibold items-center gap-2 px-8.5 py-2.5 border border-[#003966] text-[#003966] rounded-lg hover:bg-[#F0F7FF] transition-colors shadow-sm'
                             >
                                 <Image src={PlusBlueIcon} alt="Add" width={18} height={18} />
                                 Add
-                            </button>
-                            <button
-                                type='button'
-                                className='flex items-center gap-2 px-5.5 py-2.5 rounded-lg border border-[#FDA29B] text-[#D92D20] text-base font-semibold hover:bg-red-50 transition-colors shadow-sm cursor-pointer'
-                            >
-                                <Image src={CrossRedIcon} alt="Remove" width={18} height={18} />
-                                Remove
                             </button>
                         </div>
 
