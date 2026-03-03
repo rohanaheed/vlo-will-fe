@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
@@ -7,10 +7,10 @@ import UKFlag from '@/components/assets/images/UkFlag.svg'
 import PlusBlueIcon from '@/components/assets/images/PlusBlueIcon.svg'
 import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
-function Executors({ onSave, onSkip, onBack }) {
+function Executors({ onSave, onSkip, onBack, onDataChange, initialData }) {
     const [executorType, setExecutorType] = useState('individual')
     const [appointAlternate, setAppointAlternate] = useState(true)
-    const [executorsList, setExecutorsList] = useState([])
+    const [executorsList, setExecutorsList] = useState(initialData?.executorsList || [])
     const [errors, setErrors] = useState({})
 
     const initialFormData = {
@@ -109,6 +109,11 @@ function Executors({ onSave, onSkip, onBack }) {
         }
         onSave()
     }
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange({ executorType, executorsList })
+    }, [executorsList, executorType])
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>

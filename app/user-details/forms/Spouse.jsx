@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, forwardRef } from 'react'
+import React, { useState, forwardRef, useEffect } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
@@ -48,9 +48,9 @@ const CustomDateInput = forwardRef(({ value, onClick, onChange, placeholder, age
 ));
 CustomDateInput.displayName = "CustomDateInput";
 
-function Spouse({ onSave, onSkip, onBack }) {
-    const [hasSpouse, setHasSpouse] = useState(true)
-    const [spouseList, setSpouseList] = useState([])
+function Spouse({ onSave, onSkip, onBack, onDataChange, initialData }) {
+    const [hasSpouse, setHasSpouse] = useState(initialData?.hasSpouse ?? true)
+    const [spouseList, setSpouseList] = useState(initialData?.spouseList || [])
     const initialFormData = {
         title: "",
         fullName: "",
@@ -134,6 +134,11 @@ function Spouse({ onSave, onSkip, onBack }) {
         }
         onSave()
     }
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange({ hasSpouse, spouseList })
+    }, [hasSpouse, spouseList])
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>

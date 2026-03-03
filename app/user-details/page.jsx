@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useCallback } from "react";
 import UserHeader from "@/components/common/UserHeader";
 import Footer from "@/components/common/Footer";
 import FAQ from "@/components/common/FAQ";
@@ -11,8 +11,9 @@ import StampPaper from "@/components/assets/images/StampPaper1.svg";
 import Image from "next/image";
 import ProgressBar from "@/components/common/ProgressBar";
 import ExpandIcon from "@/components/assets/images/ExpandIcon.svg";
-import { useState } from "react";
 import Testatot from "./forms/Testatot";
+import WillPreview from "./preview/WillPreview";
+import { generateWillPDF } from "./utils/generateWillPDF";
 import Executors from "./forms/Executors";
 import Spouse from "./forms/Spouse";
 import Beneficiaries from "./forms/Beneficiaries";
@@ -40,6 +41,10 @@ function Page() {
   const [tab, setTab] = useState("overview");
   const [tab1, settab1] = useState("testator");
   const [isEditor, setIsEditor] = useState(false);
+  // Will liveData and saved steps
+  const [liveData, setLiveData] = useState(null);
+  const [savedSteps, setSavedSteps] = useState({});
+
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [completedSteps, setCompletedSteps] = useState([]);
   const [willLocation, setWillLocation] = useState("England");
@@ -86,6 +91,10 @@ function Page() {
 
   const handleSave = () => {
     const currentIndex = getCurrentStepIndex();
+    const currentStep = steps[currentIndex];
+    // Persist live data for this step
+    setSavedSteps(prev => ({ ...prev, [currentStep]: liveData || prev[currentStep] || {} }));
+    setLiveData(null);
     if (currentIndex < steps.length - 1) {
       setCompletedSteps((prev) => [...new Set([...prev, currentIndex])]);
       settab1(steps[currentIndex + 1]);
@@ -94,6 +103,10 @@ function Page() {
 
   const handleSkip = () => {
     const currentIndex = getCurrentStepIndex();
+    const currentStep = steps[currentIndex];
+    // Mark as skipped (null = excluded from PDF)
+    setSavedSteps(prev => ({ ...prev, [currentStep]: null }));
+    setLiveData(null);
     if (currentIndex < steps.length - 1) {
       settab1(steps[currentIndex + 1]);
     }
@@ -101,8 +114,27 @@ function Page() {
 
   const handleBack = () => {
     const currentIndex = getCurrentStepIndex();
+    const currentStep = steps[currentIndex];
+    // Save current live data before going back
+    if (liveData) {
+      setSavedSteps(prev => ({ ...prev, [currentStep]: liveData }));
+    }
+    setLiveData(null);
     if (currentIndex > 0) {
       settab1(steps[currentIndex - 1]);
+    }
+  };
+
+  const handleDataChange = useCallback((data) => {
+    setLiveData(data);
+  }, []);
+
+  const handlePaymentConfirm = async () => {
+    setIsPaymentModalOpen(false);
+    try {
+      await generateWillPDF(savedSteps, willLocation);
+    } catch (err) {
+      console.error('PDF generation failed:', err);
     }
   };
 
@@ -215,6 +247,8 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["testator"]}
                 />
               )}
               {tab1 === "executor" && (
@@ -222,6 +256,8 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["executor"]}
                 />
               )}
               {tab1 === "spouse" && (
@@ -229,6 +265,8 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["spouse"]}
                 />
               )}
               {tab1 === "beneficiaries" && (
@@ -236,6 +274,8 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["beneficiaries"]}
                 />
               )}
               {tab1 === "assets" && (
@@ -243,6 +283,8 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["assets"]}
                 />
               )}
               {tab1 === "liabilities" && (
@@ -250,6 +292,8 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["liabilities"]}
                 />
               )}
               {tab1 === "gifts" && (
@@ -257,6 +301,8 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["gifts"]}
                 />
               )}
               {tab1 === "residual" && (
@@ -264,6 +310,8 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["residual"]}
                 />
               )}
               {tab1 === "funeral" && (
@@ -271,6 +319,8 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["funeral"]}
                 />
               )}
               {tab1 === "witnesses" && (
@@ -278,240 +328,189 @@ function Page() {
                   onSave={handleSave}
                   onSkip={handleSkip}
                   onBack={handleBack}
+                  onDataChange={handleDataChange}
+                  initialData={savedSteps["witnesses"]}
                 />
               )}
               {tab1 === "review" && (
-                <Review
-                  onSave={handleSave}
-                  onSkip={handleSkip}
-                  onBack={handleBack}
-                  onEditor={() => setIsEditor(true)}
-                  onShare={() => setIsShareFeedbackModalOpen(true)}
-                />
-              )}
-
-              <div className="bg-[#fafafa] border border-black/16 rounded-2xl">
-                <div className="flex items-center justify-between bg-white  p-4 rounded-t-2xl shadow-lg">
-                  <div className="flex items-center  gap-1 cursor-pointer">
-                    <p className="text-xs text-black">Update Preview</p>
-                    <Image src={Refresh} alt="refresh" width={16} height={16} />
-                  </div>
-                  <div onClick={toggleFullScreen} className="cursor-pointer">
-                    <Image
-                      src={ExpandIcon}
-                      alt="refresh"
-                      width={16}
-                      height={16}
-                    />
-                  </div>
-                </div>
-                <div className="overflow-hidden flex justify-center items-center bg-[#fafafa] transition-all ">
-                  <div
-                    style={{
-                      transform: `scale(${zoom / 100}) rotate(${rotation}deg)`,
-                      transition: "transform 0.3s ease",
-                      transformOrigin: "center center",
-                    }}
-                    className="w-full h-full flex items-center justify-center px-4"
-                  >
-                    <Image
-                      src={StampPaper}
-                      alt="stamp"
-                      width={1000}
-                      height={1000}
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
-                </div>
-                <div className="bg-white p-4 rounded-b-2xl flex items-center justify-center gap-4 z-10 relative">
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={handleZoomOut}
-                      className="font-bold text-2xl text-text-5hover:text-black cursor-pointer"
-                    >
-                      -
-                    </button>
-                    <span className="text-sm text-text-4 font-semibold w-12 text-center">
-                      {zoom}%
-                    </span>
-                    <button
-                      onClick={handleZoomIn}
-                      className="font-bold text-2xl text-text-5hover:text-black cursor-pointer"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div className="w-px h-6 bg-[#BDBDC7]"></div>
-                  <div className="flex items-center gap-4">
-                    <Image
-                      src={UpDownIcon}
-                      alt="resize"
-                      width={24}
-                      height={24}
-                      className="cursor-pointer hover:opacity-80"
-                      onClick={() => {
-                        setZoom(100);
-                        setRotation(0);
-                      }}
-                    />
-                    <Image
-                      src={RotateIcon}
-                      alt="rotate"
-                      width={24}
-                      height={24}
-                      className="cursor-pointer hover:opacity-80"
-                      onClick={handleRotate}
-                    />
-                  </div>
-                  <div className="w-px h-6 bg-[#BDBDC7]"></div>
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={handlePrevPage}
-                      disabled={page === 1}
-                      className={`transition-opacity ${page === 1 ? "opacity-30 cursor-not-allowed" : "hover:opacity-80"}`}
-                    >
-                      <Image
-                        src={FillArrowLeftIcon}
-                        alt="prev"
-                        width={24}
-                        height={24}
+                <>
+                  <Review
+                    onSave={handleSave}
+                    onSkip={handleSkip}
+                    onBack={handleBack}
+                    onEditor={() => setIsEditor(true)}
+                    onShare={() => setIsShareFeedbackModalOpen(true)}
+                    onDownload={handlePaymentConfirm}
+                    onPayment={() => setIsPaymentModalOpen(true)}
+                  />
+                  {/* Full merged will preview at review step */}
+                  <div className="bg-[#fafafa] border border-black/16 rounded-2xl sticky top-4 mt-0">
+                    <div className="flex items-center justify-between bg-white p-4 rounded-t-2xl shadow-lg">
+                      <p className="text-xs font-semibold text-black">Final Will Preview</p>
+                      <div onClick={toggleFullScreen} className="cursor-pointer">
+                        <Image src={ExpandIcon} alt="expand" width={16} height={16} />
+                      </div>
+                    </div>
+                    <div className="overflow-y-auto max-h-[75vh] p-4">
+                      <WillPreview
+                        currentStep="review"
+                        liveData={null}
+                        savedSteps={savedSteps}
+                        mode="review"
                       />
-                    </button>
-                    <span className="text-sm text-text-4 font-semibold">
-                      {page} / {totalPages}
-                    </span>
-                    <button
-                      onClick={handleNextPage}
-                      disabled={page === totalPages}
-                      className={`rotate-180 transition-opacity ${page === totalPages ? "opacity-30 cursor-not-allowed" : "hover:opacity-80"}`}
-                    >
-                      <Image
-                        src={FillArrowLeftIcon}
-                        alt="next"
-                        width={24}
-                        height={24}
-                      />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Full Screen Overlay */}
-                {isFullScreen && (
-                  <div className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-center p-4">
-                    <div className="absolute top-4 right-4 z-60">
+                    </div>
+                    {/* Download button — disabled until payment */}
+                    <div className="bg-white p-4 rounded-b-2xl border-t border-black/10">
                       <button
-                        onClick={toggleFullScreen}
-                        className="text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors"
+                        onClick={() => setIsPaymentModalOpen(true)}
+                        className="w-full flex items-center justify-center gap-2 bg-main text-white font-semibold text-sm px-4 py-2.5 rounded-lg hover:bg-main/90 transition-colors cursor-pointer"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={2}
-                          stroke="currentColor"
-                          className="w-6 h-6"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                          <path fillRule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z" clipRule="evenodd" />
                         </svg>
+                        Complete Payment to Download PDF
                       </button>
                     </div>
-                    <div className="w-full h-full flex-1 overflow-auto flex items-center justify-center relative">
-                      <div
-                        style={{
-                          transform: `scale(${zoom / 100}) rotate(${rotation}deg)`,
-                          transition: "transform 0.3s ease",
-                          transformOrigin: "center center",
-                        }}
-                        className="max-w-[90%] max-h-[80vh]"
-                      >
-                        <Image
-                          src={StampPaper}
-                          alt="stamp"
-                          width={800}
-                          height={800}
-                          className="object-contain w-auto h-auto max-w-full max-h-full"
-                        />
-                      </div>
-                    </div>
-                    {/* Full Screen Toolbar */}
-                    <div className="bg-white p-4 rounded-2xl flex items-center gap-6 mt-4 shadow-xl">
-                      <div className="flex items-center gap-4">
-                        <button
-                          onClick={handleZoomOut}
-                          className="font-bold text-2xl text-text-5hover:text-black cursor-pointer"
-                        >
-                          -
-                        </button>
-                        <span className="text-sm text-text-4 font-semibold w-12 text-center">
-                          {zoom}%
-                        </span>
-                        <button
-                          onClick={handleZoomIn}
-                          className="font-bold text-2xl text-text-5hover:text-black cursor-pointer"
-                        >
-                          +
-                        </button>
-                      </div>
-                      <div className="w-px h-6 bg-[#E9EAEB]"></div>
-                      <div className="flex items-center gap-4">
-                        <Image
-                          src={UpDownIcon}
-                          alt="resize"
-                          width={20}
-                          height={20}
-                          className="cursor-pointer hover:opacity-80"
-                          onClick={() => {
-                            setZoom(100);
-                            setRotation(0);
-                          }}
-                        />
-                        <Image
-                          src={RotateIcon}
-                          alt="rotate"
-                          width={20}
-                          height={20}
-                          className="cursor-pointer hover:opacity-80"
-                          onClick={handleRotate}
-                        />
-                      </div>
-                      <div className="w-px h-6 bg-[#E9EAEB]"></div>
-                      <div className="flex items-center gap-4">
-                        <button
-                          onClick={handlePrevPage}
-                          disabled={page === 1}
-                          className={`transition-opacity ${page === 1 ? "opacity-30 cursor-not-allowed" : "hover:opacity-80"}`}
-                        >
-                          <Image
-                            src={FillArrowLeftIcon}
-                            alt="prev"
-                            width={24}
-                            height={24}
-                          />
-                        </button>
-                        <span className="text-sm text-text-4 font-semibold">
-                          {page} / {totalPages}
-                        </span>
-                        <button
-                          onClick={handleNextPage}
-                          disabled={page === totalPages}
-                          className={`rotate-180 transition-opacity ${page === totalPages ? "opacity-30 cursor-not-allowed" : "hover:opacity-80"}`}
-                        >
-                          <Image
-                            src={FillArrowLeftIcon}
-                            alt="next"
-                            width={24}
-                            height={24}
-                          />
-                        </button>
-                      </div>
+                  </div>
+                </>
+              )}
+
+              {/* Live Will Preview Panel */}
+              {tab1 !== "review" && (
+                <div className="bg-[#fafafa] border border-black/16 rounded-2xl sticky top-4">
+                  <div className="flex items-center justify-between bg-white p-4 rounded-t-2xl shadow-lg">
+                    <p className="text-xs font-semibold text-black">Live Preview</p>
+                    <div onClick={toggleFullScreen} className="cursor-pointer">
+                      <Image src={ExpandIcon} alt="expand" width={16} height={16} />
                     </div>
                   </div>
-                )}
-              </div>
+                  <div className="overflow-y-auto max-h-[75vh] p-4">
+                    <WillPreview
+                      currentStep={tab1}
+                      liveData={liveData}
+                      savedSteps={savedSteps}
+                      mode="step"
+                    />
+                  </div>
+
+                  {/* Full Screen Overlay */}
+                  {isFullScreen && (
+                    <div className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-center p-4">
+                      <div className="absolute top-4 right-4 z-60">
+                        <button
+                          onClick={toggleFullScreen}
+                          className="text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                      <div className="w-full h-full flex-1 overflow-auto flex items-center justify-center relative">
+                        <div
+                          style={{
+                            transform: `scale(${zoom / 100}) rotate(${rotation}deg)`,
+                            transition: "transform 0.3s ease",
+                            transformOrigin: "center center",
+                          }}
+                          className="max-w-[90%] max-h-[80vh]"
+                        >
+                          <Image
+                            src={StampPaper}
+                            alt="stamp"
+                            width={800}
+                            height={800}
+                            className="object-contain w-auto h-auto max-w-full max-h-full"
+                          />
+                        </div>
+                      </div>
+                      {/* Full Screen Toolbar */}
+                      <div className="bg-white p-4 rounded-2xl flex items-center gap-6 mt-4 shadow-xl">
+                        <div className="flex items-center gap-4">
+                          <button
+                            onClick={handleZoomOut}
+                            className="font-bold text-2xl text-text-5hover:text-black cursor-pointer"
+                          >
+                            -
+                          </button>
+                          <span className="text-sm text-text-4 font-semibold w-12 text-center">
+                            {zoom}%
+                          </span>
+                          <button
+                            onClick={handleZoomIn}
+                            className="font-bold text-2xl text-text-5hover:text-black cursor-pointer"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <div className="w-px h-6 bg-[#E9EAEB]"></div>
+                        <div className="flex items-center gap-4">
+                          <Image
+                            src={UpDownIcon}
+                            alt="resize"
+                            width={20}
+                            height={20}
+                            className="cursor-pointer hover:opacity-80"
+                            onClick={() => {
+                              setZoom(100);
+                              setRotation(0);
+                            }}
+                          />
+                          <Image
+                            src={RotateIcon}
+                            alt="rotate"
+                            width={20}
+                            height={20}
+                            className="cursor-pointer hover:opacity-80"
+                            onClick={handleRotate}
+                          />
+                        </div>
+                        <div className="w-px h-6 bg-[#E9EAEB]"></div>
+                        <div className="flex items-center gap-4">
+                          <button
+                            onClick={handlePrevPage}
+                            disabled={page === 1}
+                            className={`transition-opacity ${page === 1 ? "opacity-30 cursor-not-allowed" : "hover:opacity-80"}`}
+                          >
+                            <Image
+                              src={FillArrowLeftIcon}
+                              alt="prev"
+                              width={24}
+                              height={24}
+                            />
+                          </button>
+                          <span className="text-sm text-text-4 font-semibold">
+                            {page} / {totalPages}
+                          </span>
+                          <button
+                            onClick={handleNextPage}
+                            disabled={page === totalPages}
+                            className={`rotate-180 transition-opacity ${page === totalPages ? "opacity-30 cursor-not-allowed" : "hover:opacity-80"}`}
+                          >
+                            <Image
+                              src={FillArrowLeftIcon}
+                              alt="next"
+                              width={24}
+                              height={24}
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
             {tab1 === "testator" && (
               <div className="md:mb-24 mx-4 mb-8 max-w-[1200px] min-[1200px]:mx-auto bg-[#fafafa] rounded-2xl p-6 mt-8">

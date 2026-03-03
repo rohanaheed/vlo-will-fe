@@ -1,13 +1,13 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Refresh from '@/components/assets/images/RefreshIcon.svg'
 import Image from 'next/image'
 import Commondropdown from '@/components/common/Commondropdown1.jsx'
 import PlusBlueIcon from '@/components/assets/images/PlusBlueIcon.svg'
 import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
-function Residual({ onSave, onSkip, onBack }) {
-    const [residueList, setResidueList] = useState([])
+function Residual({ onSave, onSkip, onBack, onDataChange, initialData }) {
+    const [residueList, setResidueList] = useState(initialData?.residueList || [])
     const [currentResidue, setCurrentResidue] = useState({
         fullName: "",
         relationship: "",
@@ -66,6 +66,11 @@ function Residual({ onSave, onSkip, onBack }) {
         }
         onSave()
     }
+
+    // Emit live data for preview
+    useEffect(() => {
+        if (onDataChange) onDataChange({ residueList })
+    }, [residueList])
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>
