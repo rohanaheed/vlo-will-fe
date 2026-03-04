@@ -881,7 +881,7 @@ function Page() {
             />
           </div>
         </div>
-        <div className=" px-4 md:my-24 ">
+        <div className=" px-4 lg:my-24 md:my-16 my-12 ">
           <div className="bg-[#FAFAFA] rounded-2xl py-8 p-4">
             <div className="max-w-[768px] mx-auto">
               <div className="flex items-center justify-center relative mt-10">

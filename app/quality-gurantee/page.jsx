@@ -25,7 +25,7 @@ function page() {
               <h1 className="text-3xl md:text-5xl lg:text-5xl font-semibold text-text-1 mb-6">
                 Your Trust. Our Commitment.
               </h1>
-              <p className="text-text-5 text-lg md:text-xl max-w-4xl mx-auto">
+              <p className="text-text-5 text-lg md:text-xl mx-auto">
                 At LawNest, we're committed to providing accurate, reliable, and
                 easy-to-use legal documents you can depend on. Every template we
                 offer is reviewed by legal professionals and crafted to meet the

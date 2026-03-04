@@ -182,7 +182,10 @@ function Footer() {
               </button>
             </li>
             <li>
-              <button className="text-text-5 text-sm cursor-pointer">
+              <button
+                onClick={() => router.push("/privacy")}
+                className="text-text-5 text-sm cursor-pointer"
+              >
                 Privacy
               </button>
             </li>
