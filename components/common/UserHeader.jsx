@@ -204,7 +204,9 @@ function UserHeader() {
                 >
                   <li>
                     <button
-                      onClick={closeDropdown}
+                      onClick={() => {
+                        closeDropdown();
+                      }}
                       className="w-full text-left hover:bg-zinc-400 p-2 cursor-pointer"
                     >
                       Services
@@ -285,6 +287,7 @@ function UserHeader() {
 
             <div className="">
               <button
+                onClick={() => router.push("/about")}
                 type="button"
                 className="flex items-center gap-2 cursor-pointer relative"
               >
@@ -699,6 +702,7 @@ function UserHeader() {
                 <button
                   onClick={() => {
                     setIsOpen(false);
+                    router.push("/about");
                   }}
                   type="button"
                   className="flex items-center gap-2 cursor-pointer relative hover:bg-white/10 transition-all duration-300 p-2 rounded-lg w-full"

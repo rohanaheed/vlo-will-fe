@@ -488,7 +488,7 @@ function Page() {
         </div>
       </div>
       <div className="bg-main text-center pt-12 md:pt-24 pb-40">
-        <div className="max-w-md mx-auto">
+        <div className="max-w-[768px] mx-auto">
           <h1 className="text-center lg:text-[36px] md:text-2xl text-xl font-semibold text-white">
             DocNet by the Numbers
           </h1>

@@ -109,7 +109,10 @@ function Footer() {
           <h3 className="text-main text-sm font-semibold">Company</h3>
           <ul className="flex flex-col gap-4 mt-4">
             <li>
-              <button className="text-text-5 text-sm cursor-pointer">
+              <button
+                onClick={() => router.push("/about")}
+                className="text-text-5 text-sm cursor-pointer"
+              >
                 About us
               </button>
             </li>
