@@ -18,16 +18,14 @@ function Page() {
     <div>
       <UserHeader />
       <main>
-        <div className="bg-[#FFFFFF] p-4 pt-20 md:pt-32 pb-6 md:pb-12 lg:pb-20">
+        <div className="bg-[url('@/components/assets/images/Background.svg')] p-4 pt-25 md:pt-30 pb-5 md:pb-10 bg-cover bg-center">
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center">
-              <p className="text-main font-semibold mb-3 text-sm">
-                Dedicated Support
-              </p>
-              <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold text-text-1 mb-6">
+              <p className="text-main font-semibold mb-3">Dedicated Support</p>
+              <h1 className="text-3xl md:text-5xl lg:text-5xl font-semibold text-text-1 mb-6">
                 We're Here to Help — Every Step of the Way
               </h1>
-              <p className="text-text-5 text-base md:text-lg max-w-4xl mx-auto leading-relaxed">
+              <p className="text-text-5 text-lg md:text-xl mx-auto">
                 Whether you're creating your first document or managing your
                 subscription, our support team is ready to assist. Chat, email,
                 or call us — we'll make sure you get the help you need quickly

@@ -200,7 +200,7 @@ function Page() {
 
         {/* Featured Guides Section */}
         <div className="mx-auto">
-          <div className="grid grid-cols-1 min-[1001px]:grid-cols-2 min-[1001px]:pl-4">
+          <div className="grid grid-cols-1 min-[1001px]:grid-cols-2">
             <div className="flex-1 flex justify-center h-full min-[1001px]:min-h-[720px] relative min-[1001px]:order-last">
               <Image
                 src={Guidence}
@@ -209,7 +209,7 @@ function Page() {
                 className="object-cover h-full w-full max-md:max-w-[500px]"
               />
             </div>
-            <div className="w-full min-[1001px]:max-w-[640px] max-[1001px]:px-4 min-[1001px]:mr-30 h-full flex flex-col justify-center items-start ml-auto max-[1000px]:mx-auto max-[1000px]:px-4 max-[1000px]:py-10">
+            <div className="flex-1 max-[1000px]:w-full min-[1001px]:max-w-[640px] max-[1001px]:px-4 min-[1001px]:mr-30 h-full flex flex-col justify-center items-start ml-auto max-[1000px]:mx-auto max-[1000px]:px-4 max-[1000px]:py-10 min-[1001px]:pl-4">
               <div className="flex items-center">
                 <h2 className="text-2xl md:text-4xl text-left font-semibold text-text-1 mb-8">
                   Featured Guides
@@ -262,7 +262,7 @@ function Page() {
 
         {/* Tools and Checklists Section */}
         <div className="">
-          <div className="grid grid-cols-1 min-[1001px]:grid-cols-2 min-[1001px]:pr-4">
+          <div className="grid grid-cols-1 min-[1001px]:grid-cols-2">
             <div className="flex-1 flex justify-center h-full min-[1001px]:min-h-[720px] relative">
               <Image
                 src={Check}
@@ -271,7 +271,7 @@ function Page() {
                 className="object-cover h-full w-full max-md:max-w-[500px]"
               />
             </div>
-            <div className="w-full min-[1001px]:max-w-[640px] min-[1001px]:px-4 min-[1301px]:ml-30 h-full flex flex-col justify-center items-start ml-auto max-[1000px]:mx-auto max-[1000px]:px-4 max-[1000px]:py-10">
+            <div className="flex-1 max-[1000px]:w-full min-[1001px]:max-w-[640px] min-[1001px]:px-4 min-[1301px]:ml-30 h-full flex flex-col justify-center items-start ml-auto max-[1000px]:mx-auto max-[1000px]:px-4 max-[1000px]:py-10 min-[1001px]:pr-4">
               <p className="text-main font-semibold mb-2.5">
                 Legal Tools & Resources
               </p>
@@ -321,7 +321,7 @@ function Page() {
                 className="object-cover h-full w-full max-md:max-w-[500px]"
               />
             </div>
-            <div className="w-full min-[1001px]:max-w-[640px] min-[1001px]:px-4 min-[1001px]:mr-30 h-full flex flex-col justify-center items-start ml-auto max-[1000px]:mx-auto max-[1000px]:px-4 max-[1000px]:py-10">
+            <div className="flex-1 max-[1000px]:w-full min-[1001px]:max-w-[640px] min-[1001px]:px-4 min-[1001px]:mr-30 h-full flex flex-col justify-center items-start ml-auto max-[1000px]:mx-auto max-[1000px]:px-4 max-[1000px]:py-10 min-[1001px]:pl-4">
               <p className="text-main font-semibold mb-2.5">
                 Educational Blog / Insights
               </p>

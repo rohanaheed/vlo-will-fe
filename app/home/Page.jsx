@@ -488,7 +488,7 @@ function Page() {
         </div>
       </div>
       <div className="bg-main text-center pt-12 md:pt-24 pb-40">
-        <div className="max-w-md mx-auto">
+        <div className="max-w-[768px] mx-auto">
           <h1 className="text-center lg:text-[36px] md:text-2xl text-xl font-semibold text-white">
             DocNet by the Numbers
           </h1>
@@ -881,7 +881,7 @@ function Page() {
             />
           </div>
         </div>
-        <div className=" px-4 md:my-24 ">
+        <div className=" px-4 lg:my-24 md:my-16 my-12 ">
           <div className="bg-[#FAFAFA] rounded-2xl py-8 p-4">
             <div className="max-w-[768px] mx-auto">
               <div className="flex items-center justify-center relative mt-10">
