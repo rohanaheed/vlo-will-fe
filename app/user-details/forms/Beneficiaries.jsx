@@ -146,8 +146,8 @@ function Beneficiaries({ onSave, onSkip, onBack, onDataChange, initialData }) {
     }
 
     // Guardian State
-    const [guardians, setGuardians] = useState([])
-    const [hasBackupGuardian, setHasBackupGuardian] = useState(null)
+    const [guardians, setGuardians] = useState(initialData?.guardiansList || [])
+    const [hasBackupGuardian, setHasBackupGuardian] = useState(initialData?.hasBackupGuardian ?? null)
     const [guardianErrors, setGuardianErrors] = useState({})
 
     const initialGuardianState = {
@@ -172,16 +172,16 @@ function Beneficiaries({ onSave, onSkip, onBack, onDataChange, initialData }) {
     const [guardianForm, setGuardianForm] = useState({ ...initialGuardianState })
 
     // Backup Guardian State
-    const [backupGuardians, setBackupGuardians] = useState([])
+    const [backupGuardians, setBackupGuardians] = useState(initialData?.backupGuardiansList || [])
     const [backupGuardianErrors, setBackupGuardianErrors] = useState({})
     const [backupGuardianForm, setBackupGuardianForm] = useState({ ...initialGuardianState })
-    const [isAlternateGuardian, setIsAlternateGuardian] = useState(false)
+    const [isAlternateGuardian, setIsAlternateGuardian] = useState(initialData?.isAlternateGuardian ?? false)
 
     // Trustee State
-    const [isTrustee, setIsTrustee] = useState(false)
-    const [trusteeForm, setTrusteeForm] = useState({ ...initialGuardianState })
+    const [isTrustee, setIsTrustee] = useState(initialData?.isTrustee ?? false)
+    const [trusteeForm, setTrusteeForm] = useState(initialData?.trusteeDetails && Object.keys(initialData.trusteeDetails).length > 0 ? initialData.trusteeDetails : { ...initialGuardianState })
     const [trusteeErrors, setTrusteeErrors] = useState({})
-    const [trusteePowers, setTrusteePowers] = useState({
+    const [trusteePowers, setTrusteePowers] = useState(initialData?.trusteePowers && Object.keys(initialData.trusteePowers).length > 0 ? initialData.trusteePowers : {
         allPowers: false,
         management: false,
         investment: false,
@@ -198,9 +198,9 @@ function Beneficiaries({ onSave, onSkip, onBack, onDataChange, initialData }) {
     })
 
     // Charity State
-    const [hasCharitableGifts, setHasCharitableGifts] = useState(false)
-    const [beneficiaryDetailsList, setBeneficiaryDetailsList] = useState([])
-    const [charityList, setCharityList] = useState([])
+    const [hasCharitableGifts, setHasCharitableGifts] = useState(initialData?.hasCharitableGifts ?? false)
+    const [beneficiaryDetailsList, setBeneficiaryDetailsList] = useState(initialData?.beneficiaryDetailsList || [])
+    const [charityList, setCharityList] = useState(initialData?.charityList || [])
 
     // Form state for Beneficiary Details
     const [beneficiaryDetailsForm, setBeneficiaryDetailsForm] = useState({
@@ -456,12 +456,18 @@ function Beneficiaries({ onSave, onSkip, onBack, onDataChange, initialData }) {
         if (onDataChange) onDataChange({
             hasChildren,
             beneficiariesList: beneficiaries,
+            guardiansList: guardians,
+            backupGuardiansList: backupGuardians,
+            hasBackupGuardian,
             beneficiaryDetailsList,
             charityList,
+            hasCharitableGifts,
+            isAlternateGuardian,
             isTrustee,
+            trusteeDetails: trusteeForm,
             trusteePowers
         })
-    }, [hasChildren, beneficiaries, beneficiaryDetailsList, charityList, isTrustee, trusteePowers])
+    }, [hasChildren, beneficiaries, guardians, backupGuardians, hasBackupGuardian, beneficiaryDetailsList, charityList, hasCharitableGifts, isAlternateGuardian, isTrustee, trusteeForm, trusteePowers])
 
     return (
         <div className='bg-[#FAFAFA] rounded-lg p-6'>

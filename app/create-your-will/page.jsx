@@ -11,10 +11,29 @@ import StampPaper from '@/components/assets/images/StampPaper.svg'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { createWill } from '../services/willService'
+import Loader from '../../components/common/Loader'
 
 function Page() {
     const [tab, setTab] = useState("overview")
+    const [loading, setLoading] = useState(false)
     const router = useRouter()
+
+    const startWill = async () => {
+        try {
+            setLoading(true)
+            const res = await createWill({
+                will_type: "general"
+            })
+            console.log(res)
+            router.push(`/user-details?willId=${res.data.will.id}`)
+        } catch (error) {
+            console.log(error, error.message)
+        } finally {
+            setLoading(false)
+        }
+    }
+
     const questions = [
         {
             id: 1,
@@ -60,9 +79,9 @@ function Page() {
                             <p className='text-text-5 text-sm md:text-base lg:text-xl'>
                                 Takes less than 10 minutes. Create, customise, and download instantly.
                             </p>
-                            <button onClick={() => router.push('/user-details')} 
-                             className='max-md:w-full self-end text-sm md:text-base lg:text-xl cursor-pointer bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
-                                Start Document <span className='text-lg md:text-xl lg:text-2xl'>(£29)</span>
+                            <button onClick={startWill} disabled={loading}
+                                className='max-md:w-full self-end text-sm md:text-base lg:text-xl cursor-pointer bg-[#0B2C4F] text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50'>
+                                {loading ? <Loader /> : <>Start Document <span className='text-lg md:text-xl lg:text-2xl'>(£29)</span></>}
                             </button>
 
                         </div>
@@ -129,9 +148,9 @@ function Page() {
                             </li>
                         </ul>
                         <button
-                            onClick={() => router.push('/user-details')}
-                            className='max-md:w-full mt-6 self-end text-sm md:text-base lg:text-xl cursor-pointer bg-[#0B2C4F] cursor pointer text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity'>
-                            Start Document <span className='text-lg md:text-xl lg:text-2xl'>(£29)</span>
+                            onClick={startWill} disabled={loading}
+                            className='max-md:w-full mt-6 self-end text-sm md:text-base lg:text-xl cursor-pointer bg-[#0B2C4F] text-white p-3 mb-2 rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50'>
+                            {loading ? <Loader /> : <>Start Document <span className='text-lg md:text-xl lg:text-2xl'>(£29)</span></>}
                         </button>
                         <p className='text-text-5 md:text-lg lg:text-xl mt-2'>*
                             Takes less than 10 minutes. Create, customise, and download instantly.
