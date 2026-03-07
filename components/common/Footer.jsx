@@ -137,7 +137,10 @@ function Footer() {
               </button>
             </li>
             <li>
-              <button className="text-text-5 text-sm cursor-pointer">
+              <button
+                onClick={() => router.push("/contact-us")}
+                className="text-text-5 text-sm cursor-pointer"
+              >
                 Contact Us
               </button>
             </li>
@@ -147,12 +150,18 @@ function Footer() {
           <h3 className="text-main text-sm font-semibold">Resources</h3>
           <ul className="flex flex-col gap-4 mt-4">
             <li>
-              <button className="text-text-5 text-sm cursor-pointer">
+              <button
+                onClick={() => router.push("/blogs")}
+                className="text-text-5 text-sm cursor-pointer"
+              >
                 Blog
               </button>
             </li>
             <li>
-              <button className="text-text-5 text-sm cursor-pointer">
+              <button
+                onClick={() => router.push("/newsletter")}
+                className="text-text-5 text-sm cursor-pointer"
+              >
                 Newsletter
               </button>
             </li>

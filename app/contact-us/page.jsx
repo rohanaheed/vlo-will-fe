@@ -236,7 +236,7 @@ const ContactUs = () => {
                   </label>
                   <div
                     onClick={handleUploadClick}
-                    className="w-full border border border-black/16  rounded-lg px-4 py-6 text-center cursor-pointer flex flex-col items-center justify-center gap-2 transition-colors shadow"
+                    className="w-full border border-black/16  rounded-lg px-4 py-6 text-center cursor-pointer flex flex-col items-center justify-center gap-2 transition-colors shadow"
                   >
                     <input
                       type="file"
@@ -245,7 +245,7 @@ const ContactUs = () => {
                       className="hidden"
                       accept=".doc,.docx,.pdf,.jpg,.jpeg,.png,.gif"
                     />
-                    <div className="bg-linear-to-b from-[#003366] to-transparent rounded-full p-0.25 w-10 h-10 flex items-center justify-center">
+                    <div className="bg-linear-to-b from-main to-transparent rounded-full p-0.25 w-10 h-10 flex items-center justify-center">
                       <div className="bg-white rounded-full w-full h-full flex items-center justify-center">
                         <div className="bg-main rounded-full p-2 w-7 h-7 flex items-center justify-center">
                           <Image
