@@ -10,7 +10,7 @@ import UKFlag from '@/components/assets/images/UkFlag.svg'
 import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
 function Assets({ onSave, onSkip, onBack, onDataChange, initialData }) {
-    const [hasProperty, setHasProperty] = useState('yes')
+    const [hasProperty, setHasProperty] = useState(initialData?.hasProperty === false ? 'no' : 'yes')
     const [properties, setProperties] = useState(initialData?.assetsList || []) // List of added properties
     const [currentProperty, setCurrentProperty] = useState({
         buildingNumber: "",
@@ -30,7 +30,7 @@ function Assets({ onSave, onSkip, onBack, onDataChange, initialData }) {
     })
 
     // Bank Accounts State
-    const [hasBankAccount, setHasBankAccount] = useState('yes')
+    const [hasBankAccount, setHasBankAccount] = useState(initialData?.hasBankAccount === false ? 'no' : 'yes')
     const [bankAccounts, setBankAccounts] = useState(initialData?.bankAccounts || [])
     const [currentBankAccount, setCurrentBankAccount] = useState({
         bankName: "",
@@ -41,7 +41,7 @@ function Assets({ onSave, onSkip, onBack, onDataChange, initialData }) {
     })
 
     // Investments State
-    const [hasInvestment, setHasInvestment] = useState('yes')
+    const [hasInvestment, setHasInvestment] = useState(initialData?.hasInvestment === false ? 'no' : 'yes')
     const [investments, setInvestments] = useState(initialData?.investments || [])
     const [currentInvestment, setCurrentInvestment] = useState({
         companyName: "",
@@ -52,7 +52,7 @@ function Assets({ onSave, onSkip, onBack, onDataChange, initialData }) {
     })
 
     // Valuable Items State
-    const [hasValuableItem, setHasValuableItem] = useState('yes')
+    const [hasValuableItem, setHasValuableItem] = useState(initialData?.hasValuableItem === false ? 'no' : 'yes')
     const [valuableItems, setValuableItems] = useState(initialData?.valuableItems || [])
     const [currentValuableItem, setCurrentValuableItem] = useState({
         category: "",
@@ -62,7 +62,7 @@ function Assets({ onSave, onSkip, onBack, onDataChange, initialData }) {
     })
 
     // Digital Assets State
-    const [hasDigitalAsset, setHasDigitalAsset] = useState('yes')
+    const [hasDigitalAsset, setHasDigitalAsset] = useState(initialData?.hasDigitalAsset === false ? 'no' : 'yes')
     const [digitalAssets, setDigitalAssets] = useState(initialData?.digitalAssets || [])
     const [currentDigitalAsset, setCurrentDigitalAsset] = useState({
         assetType: "",
@@ -73,7 +73,7 @@ function Assets({ onSave, onSkip, onBack, onDataChange, initialData }) {
     })
 
     // Intellectual Assets State
-    const [hasIntellectualAsset, setHasIntellectualAsset] = useState('yes')
+    const [hasIntellectualAsset, setHasIntellectualAsset] = useState(initialData?.hasIntellectualAsset === false ? 'no' : 'yes')
     const [intellectualAssets, setIntellectualAssets] = useState(initialData?.intellectualAssets || [])
     const [currentIntellectualAsset, setCurrentIntellectualAsset] = useState({
         assetType: "",
@@ -472,14 +472,20 @@ function Assets({ onSave, onSkip, onBack, onDataChange, initialData }) {
     // Emit live data for preview
     useEffect(() => {
         if (onDataChange) onDataChange({
+            hasProperty: hasProperty === 'yes',
             assetsList: properties,
+            hasBankAccount: hasBankAccount === 'yes',
             bankAccounts,
+            hasInvestment: hasInvestment === 'yes',
             investments,
+            hasValuableItem: hasValuableItem === 'yes',
             valuableItems,
+            hasDigitalAsset: hasDigitalAsset === 'yes',
             digitalAssets,
+            hasIntellectualAsset: hasIntellectualAsset === 'yes',
             intellectualAssets
         })
-    }, [properties, bankAccounts, investments, valuableItems, digitalAssets, intellectualAssets])
+    }, [hasProperty, properties, hasBankAccount, bankAccounts, hasInvestment, investments, hasValuableItem, valuableItems, hasDigitalAsset, digitalAssets, hasIntellectualAsset, intellectualAssets])
 
 
     return (

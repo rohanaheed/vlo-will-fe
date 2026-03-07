@@ -6,7 +6,7 @@ import Commondropdown from '@/components/common/Commondropdown1.jsx'
 import PlusBlueIcon from '@/components/assets/images/PlusBlueIcon.svg'
 import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
-function Gifts({ onSave, onSkip, onBack, onDataChange, initialData }) {
+function Gifts({ onSave, onSkip, onBack, onDataChange, initialData, savedSteps }) {
     const [individualGifts, setIndividualGifts] = useState(initialData?.giftsList || [])
     const [currentGift, setCurrentGift] = useState({
         beneficiary: "",
@@ -17,8 +17,8 @@ function Gifts({ onSave, onSkip, onBack, onDataChange, initialData }) {
     })
 
     // Charity Donations State
-    const [hasCharity, setHasCharity] = useState('yes')
-    const [charityDonations, setCharityDonations] = useState([])
+    const [hasCharity, setHasCharity] = useState(initialData?.hasCharity || 'yes')
+    const [charityDonations, setCharityDonations] = useState(initialData?.charityDonations || [])
     const [currentDonation, setCurrentDonation] = useState({
         charityName: "",
         assetType: "",
@@ -29,8 +29,34 @@ function Gifts({ onSave, onSkip, onBack, onDataChange, initialData }) {
 
     const [errors, setErrors] = useState({})
 
-    // Options
-    const beneficiaryOptions = ["John Alexander Smith", "Add New"]
+    // Beneficiary
+    const beneficiaryData = savedSteps?.beneficiaries || {}
+    const childrenNames = (beneficiaryData.beneficiariesList || [])
+        .map(b => [b.title, b.fullName].filter(Boolean).join(' '))
+        .filter(Boolean)
+    const otherBenNames = (beneficiaryData.beneficiaryDetailsList || [])
+        .map(b => [b.title, b.fullName].filter(Boolean).join(' '))
+        .filter(Boolean)
+    const beneficiaryOptions = [...new Set([...childrenNames, ...otherBenNames])].length > 0
+        ? [...new Set([...childrenNames, ...otherBenNames]), "Add New"]
+        : ["Add New"]
+
+    const savedCharityNames = (beneficiaryData.charityList || [])
+        .map(c => c.charityName)
+        .filter(Boolean)
+    const charityOptions = savedCharityNames.length > 0
+        ? [...new Set(savedCharityNames), "Other", "Add"]
+        : [
+            "British Heart Foundation",
+            "Cancer Research UK",
+            "Red Cross",
+            "Mosque",
+            "Temple",
+            "Church",
+            "Other",
+            "Add"
+        ]
+
     const assetTypeOptions = [
         "Residential Property",
         "Bank Account",
@@ -43,16 +69,6 @@ function Gifts({ onSave, onSkip, onBack, onDataChange, initialData }) {
         "Add"
     ]
     const giftTypeOptions = ["Money Gift", "Property Gift", "Personal Item", "Add"]
-    const charityOptions = [
-        "British Heart Foundation",
-        "Cancer Research UK",
-        "Red Cross",
-        "Mosque",
-        "Temple",
-        "Church",
-        "Other",
-        "Add"
-    ]
 
     const handleGiftChange = (field, value) => {
         setCurrentGift(prev => ({ ...prev, [field]: value }))

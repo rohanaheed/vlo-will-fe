@@ -11,7 +11,7 @@ import DownloadIconBlue from "@/components/assets/images/DownloadIconBlue.svg";
 import ShareIconBlue from "@/components/assets/images/ShareIconBlue.svg";
 import AddIcon from "@/components/assets/images/AddClipboardIcon.svg";
 
-function Review({ onSave, onSkip, onBack, onEditor, onShare, onDownload, onPayment }) {
+function Review({ onSave, onSkip, onBack, onEditor, onShare, onDownload, onPayment, isPaid, onCreateWill }) {
   const [isActive, setIsActive] = useState("create");
 
   return (
@@ -74,19 +74,21 @@ function Review({ onSave, onSkip, onBack, onEditor, onShare, onDownload, onPayme
           </button>
           <button
             onClick={() => {
+              if (!isPaid) return;
               setIsActive("download");
               if (onDownload) onDownload();
             }}
-            className={`${isActive === "download" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink md:grow md:basis-[150px]`}
+            disabled={!isPaid}
+            className={`${!isPaid ? "opacity-50 cursor-not-allowed border-gray-300 text-gray-400" : isActive === "download" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white cursor-pointer"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors w-full md:max-w-[230px] md:shrink md:grow md:basis-[150px]`}
           >
             <Image
               src={DownloadIconBlue}
               alt="Download"
               width={20}
               height={20}
-              className={`${isActive === "download" ? "invert brightness-0" : "group-hover:invert group-hover:brightness-0"}`}
+              className={`${!isPaid ? "opacity-50" : isActive === "download" ? "invert brightness-0" : "group-hover:invert group-hover:brightness-0"}`}
             />
-            <span className="">Download Pdf</span>
+            <span className="">{isPaid ? "Download Pdf" : "Download Pdf (Pay first)"}</span>
           </button>
           <button
             onClick={() => {
@@ -106,19 +108,21 @@ function Review({ onSave, onSkip, onBack, onEditor, onShare, onDownload, onPayme
           </button>
           <button
             onClick={() => {
+              if (!isPaid) return;
               setIsActive("create");
-              if (onPayment) onPayment();
+              if (onCreateWill) onCreateWill();
             }}
-            className={`${isActive === "create" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors cursor-pointer w-full md:max-w-[230px] md:shrink md:grow md:basis-[230px]`}
+            disabled={!isPaid}
+            className={`${!isPaid ? "opacity-50 cursor-not-allowed border-gray-300 text-gray-400" : isActive === "create" ? "bg-main text-white border-main" : "text-main border-main hover:bg-main hover:text-white cursor-pointer"} group flex items-center font-semibold justify-center gap-2 px-4 py-2.5 border-2 rounded-lg transition-colors w-full md:max-w-[230px] md:shrink md:grow md:basis-[230px]`}
           >
             <Image
               src={AddIcon}
               alt="Create"
               width={24}
               height={24}
-              className={`${isActive === "create" ? "invert brightness-0" : "brightness-0 group-hover:invert"}`}
+              className={`${!isPaid ? "opacity-50" : isActive === "create" ? "invert brightness-0" : "brightness-0 group-hover:invert"}`}
             />
-            Create My Will (28)
+            {isPaid ? "Create My Will" : "Create My Will (Pay first)"}
           </button>
         </div>
 

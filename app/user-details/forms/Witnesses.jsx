@@ -12,45 +12,45 @@ import CrossRedIcon from '@/components/assets/images/CrossRedIcon.svg'
 
 function Witnesses({ onSave, onSkip, onBack, onDataChange, initialData }) {
     // Testator's Signature
-    const [testatorTitle, setTestatorTitle] = useState('Mr')
-    const [testatorName, setTestatorName] = useState('')
-    const [testatorDate, setTestatorDate] = useState(null)
-    const [hasWitnesses, setHasWitnesses] = useState('yes')
+    const [testatorTitle, setTestatorTitle] = useState(initialData?.testator?.title || 'Mr')
+    const [testatorName, setTestatorName] = useState(initialData?.testator?.fullName || '')
+    const [testatorDate, setTestatorDate] = useState(initialData?.testator?.date ? new Date(initialData.testator.date) : null)
+    const [hasWitnesses, setHasWitnesses] = useState(initialData?.hasWitnesses || 'yes')
 
     // Witness 1
-    const [witness1Title, setWitness1Title] = useState('Mr')
-    const [witness1Name, setWitness1Name] = useState('')
-    const [witness1BuildingNumber, setWitness1BuildingNumber] = useState('')
-    const [witness1BuildingName, setWitness1BuildingName] = useState('')
-    const [witness1Street, setWitness1Street] = useState('')
-    const [witness1Town, setWitness1Town] = useState('')
-    const [witness1City, setWitness1City] = useState('')
-    const [witness1County, setWitness1County] = useState('')
-    const [witness1Postcode, setWitness1Postcode] = useState('')
-    const [witness1Country, setWitness1Country] = useState({ label: "United Kingdom", value: "United Kingdom", icon: UKFlag })
-    const [witness1Address, setWitness1Address] = useState('')
-    const [witness1Occupation, setWitness1Occupation] = useState('')
-    const [witness1Signature, setWitness1Signature] = useState('')
+    const [witness1Title, setWitness1Title] = useState(initialData?.witness1?.title || 'Mr')
+    const [witness1Name, setWitness1Name] = useState(initialData?.witness1?.fullName || '')
+    const [witness1BuildingNumber, setWitness1BuildingNumber] = useState(initialData?.witness1?.buildingNumber || '')
+    const [witness1BuildingName, setWitness1BuildingName] = useState(initialData?.witness1?.buildingName || '')
+    const [witness1Street, setWitness1Street] = useState(initialData?.witness1?.street || '')
+    const [witness1Town, setWitness1Town] = useState(initialData?.witness1?.town || '')
+    const [witness1City, setWitness1City] = useState(initialData?.witness1?.city || '')
+    const [witness1County, setWitness1County] = useState(initialData?.witness1?.county || '')
+    const [witness1Postcode, setWitness1Postcode] = useState(initialData?.witness1?.postcode || '')
+    const [witness1Country, setWitness1Country] = useState(initialData?.witness1?.country || { label: "United Kingdom", value: "United Kingdom", icon: UKFlag })
+    const [witness1Address, setWitness1Address] = useState(initialData?.witness1?.address || '')
+    const [witness1Occupation, setWitness1Occupation] = useState(initialData?.witness1?.occupation || '')
+    const [witness1Signature, setWitness1Signature] = useState(initialData?.witness1?.signature || '')
 
     // Witness 2
-    const [witness2Title, setWitness2Title] = useState('Mr')
-    const [witness2Name, setWitness2Name] = useState('')
-    const [witness2BuildingNumber, setWitness2BuildingNumber] = useState('')
-    const [witness2BuildingName, setWitness2BuildingName] = useState('')
-    const [witness2Street, setWitness2Street] = useState('')
-    const [witness2Town, setWitness2Town] = useState('')
-    const [witness2City, setWitness2City] = useState('')
-    const [witness2County, setWitness2County] = useState('')
-    const [witness2Postcode, setWitness2Postcode] = useState('')
-    const [witness2Country, setWitness2Country] = useState({ label: "United Kingdom", value: "United Kingdom", icon: UKFlag })
-    const [witness2Address, setWitness2Address] = useState('')
-    const [witness2Occupation, setWitness2Occupation] = useState('')
-    const [witness2Signature, setWitness2Signature] = useState('')
+    const [witness2Title, setWitness2Title] = useState(initialData?.witness2?.title || 'Mr')
+    const [witness2Name, setWitness2Name] = useState(initialData?.witness2?.fullName || '')
+    const [witness2BuildingNumber, setWitness2BuildingNumber] = useState(initialData?.witness2?.buildingNumber || '')
+    const [witness2BuildingName, setWitness2BuildingName] = useState(initialData?.witness2?.buildingName || '')
+    const [witness2Street, setWitness2Street] = useState(initialData?.witness2?.street || '')
+    const [witness2Town, setWitness2Town] = useState(initialData?.witness2?.town || '')
+    const [witness2City, setWitness2City] = useState(initialData?.witness2?.city || '')
+    const [witness2County, setWitness2County] = useState(initialData?.witness2?.county || '')
+    const [witness2Postcode, setWitness2Postcode] = useState(initialData?.witness2?.postcode || '')
+    const [witness2Country, setWitness2Country] = useState(initialData?.witness2?.country || { label: "United Kingdom", value: "United Kingdom", icon: UKFlag })
+    const [witness2Address, setWitness2Address] = useState(initialData?.witness2?.address || '')
+    const [witness2Occupation, setWitness2Occupation] = useState(initialData?.witness2?.occupation || '')
+    const [witness2Signature, setWitness2Signature] = useState(initialData?.witness2?.signature || '')
 
-    const [beneficiaryConfirm, setBeneficiaryConfirm] = useState('yes')
+    const [beneficiaryConfirm, setBeneficiaryConfirm] = useState(initialData?.beneficiaryConfirm || 'yes')
 
     // Extra witnesses (beyond the mandatory 2)
-    const [extraWitnesses, setExtraWitnesses] = useState([])
+    const [extraWitnesses, setExtraWitnesses] = useState(initialData?.extraWitnesses || [])
     const [extraWitnessForm, setExtraWitnessForm] = useState({
         title: 'Mr', name: '', buildingNumber: '', buildingName: '', street: '',
         town: '', city: '', county: '', postcode: '', country: { label: 'United Kingdom', value: 'United Kingdom', icon: UKFlag },
@@ -110,22 +110,30 @@ function Witnesses({ onSave, onSkip, onBack, onDataChange, initialData }) {
     useEffect(() => {
         if (onDataChange) onDataChange({
             testator: { title: testatorTitle, fullName: testatorName, date: testatorDate },
+            hasWitnesses,
             witness1: {
                 title: witness1Title, fullName: witness1Name, signature: witness1Signature,
+                buildingNumber: witness1BuildingNumber, buildingName: witness1BuildingName,
+                street: witness1Street, town: witness1Town, city: witness1City,
+                county: witness1County, postcode: witness1Postcode, country: witness1Country,
                 address: buildAddress(witness1BuildingNumber, witness1BuildingName, witness1Street, witness1Town, witness1City, witness1County, witness1Postcode, witness1Country),
                 occupation: witness1Occupation
             },
             witness2: {
                 title: witness2Title, fullName: witness2Name, signature: witness2Signature,
+                buildingNumber: witness2BuildingNumber, buildingName: witness2BuildingName,
+                street: witness2Street, town: witness2Town, city: witness2City,
+                county: witness2County, postcode: witness2Postcode, country: witness2Country,
                 address: buildAddress(witness2BuildingNumber, witness2BuildingName, witness2Street, witness2Town, witness2City, witness2County, witness2Postcode, witness2Country),
                 occupation: witness2Occupation
             },
-            extraWitnesses
+            extraWitnesses,
+            beneficiaryConfirm
         })
-    }, [testatorTitle, testatorName, testatorDate,
+    }, [testatorTitle, testatorName, testatorDate, hasWitnesses,
         witness1Title, witness1Name, witness1Signature, witness1BuildingNumber, witness1BuildingName, witness1Street, witness1Town, witness1City, witness1County, witness1Postcode, witness1Country, witness1Occupation,
         witness2Title, witness2Name, witness2Signature, witness2BuildingNumber, witness2BuildingName, witness2Street, witness2Town, witness2City, witness2County, witness2Postcode, witness2Country, witness2Occupation,
-        extraWitnesses])
+        extraWitnesses, beneficiaryConfirm])
 
     const CustomDateInput = React.forwardRef(({ value, onClick }, ref) => (
         <div className='relative w-full' onClick={onClick} ref={ref}>

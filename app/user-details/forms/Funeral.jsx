@@ -6,28 +6,28 @@ import Commondropdown from '@/components/common/Commondropdown1.jsx'
 import UKFlag from '@/components/assets/images/UkFlag.svg'
 
 function Funeral({ onSave, onSkip, onBack, onDataChange, initialData }) {
-    const [burialMethod, setBurialMethod] = useState(['burial'])
-    const [hasLocationPreference, setHasLocationPreference] = useState('yes')
-    const [cityLocation, setCityLocation] = useState('')
-    const [specialRequests, setSpecialRequests] = useState('')
-    const [payFromEstate, setPayFromEstate] = useState('yes')
-    const [paymentPriority, setPaymentPriority] = useState('')
-    const [hasFuneralInsurance, setHasFuneralInsurance] = useState('yes')
-    const [insuranceProvider, setInsuranceProvider] = useState('')
-    const [policyNumber, setPolicyNumber] = useState('')
-    const [policyholderTitle, setPolicyholderTitle] = useState('Mr')
-    const [policyholderName, setPolicyholderName] = useState('')
-    const [coverageAmount, setCoverageAmount] = useState('')
-    const [phoneCode, setPhoneCode] = useState({ label: "+44", value: "+44", icon: UKFlag })
-    const [telephone, setTelephone] = useState('')
-    const [email, setEmail] = useState('')
-    const [websiteUrl, setWebsiteUrl] = useState('')
-    const [policyDocLocation, setPolicyDocLocation] = useState('')
+    const [burialMethod, setBurialMethod] = useState(initialData?.burialMethod || ['burial'])
+    const [hasLocationPreference, setHasLocationPreference] = useState(initialData?.hasLocationPreference || 'yes')
+    const [cityLocation, setCityLocation] = useState(initialData?.cityLocation || '')
+    const [specialRequests, setSpecialRequests] = useState(initialData?.specialRequests || '')
+    const [payFromEstate, setPayFromEstate] = useState(initialData?.payFromEstate || 'yes')
+    const [paymentPriority, setPaymentPriority] = useState(initialData?.paymentPriority || '')
+    const [hasFuneralInsurance, setHasFuneralInsurance] = useState(initialData?.hasFuneralInsurance || 'yes')
+    const [insuranceProvider, setInsuranceProvider] = useState(initialData?.insuranceProvider || '')
+    const [policyNumber, setPolicyNumber] = useState(initialData?.policyNumber || '')
+    const [policyholderTitle, setPolicyholderTitle] = useState(initialData?.policyholderTitle || 'Mr')
+    const [policyholderName, setPolicyholderName] = useState(initialData?.policyholderName || '')
+    const [coverageAmount, setCoverageAmount] = useState(initialData?.coverageAmount || '')
+    const [phoneCode, setPhoneCode] = useState(initialData?.phoneCode || { label: "+44", value: "+44", icon: UKFlag })
+    const [telephone, setTelephone] = useState(initialData?.telephone || '')
+    const [email, setEmail] = useState(initialData?.email || '')
+    const [websiteUrl, setWebsiteUrl] = useState(initialData?.websiteUrl || '')
+    const [policyDocLocation, setPolicyDocLocation] = useState(initialData?.policyDocLocation || '')
 
     // Organ Donation
-    const [wantOrganDonation, setWantOrganDonation] = useState('yes')
-    const [donationType, setDonationType] = useState('specific')
-    const [organPreferences, setOrganPreferences] = useState({
+    const [wantOrganDonation, setWantOrganDonation] = useState(initialData?.wantOrganDonation || 'yes')
+    const [donationType, setDonationType] = useState(initialData?.donationType || 'specific')
+    const [organPreferences, setOrganPreferences] = useState(initialData?.organPreferences || {
         heart: 'yes',
         lungs: 'yes',
         kidneys: 'yes',
@@ -37,9 +37,9 @@ function Funeral({ onSave, onSkip, onBack, onDataChange, initialData }) {
         tissue: 'yes',
         smallBowel: 'yes'
     })
-    const [nhsRegistered, setNhsRegistered] = useState('yes')
-    const [nhsReference, setNhsReference] = useState('')
-    const [additionalNotes, setAdditionalNotes] = useState('')
+    const [nhsRegistered, setNhsRegistered] = useState(initialData?.nhsRegistered || 'yes')
+    const [nhsReference, setNhsReference] = useState(initialData?.nhsReference || '')
+    const [additionalNotes, setAdditionalNotes] = useState(initialData?.additionalNotes || '')
 
     const [errors, setErrors] = useState({})
 
@@ -89,6 +89,10 @@ function Funeral({ onSave, onSkip, onBack, onDataChange, initialData }) {
             policyholderTitle,
             policyholderName,
             coverageAmount,
+            phoneCode,
+            telephone,
+            email,
+            websiteUrl,
             policyDocLocation,
             wantOrganDonation,
             donationType,
@@ -99,7 +103,8 @@ function Funeral({ onSave, onSkip, onBack, onDataChange, initialData }) {
         })
     }, [burialMethod, hasLocationPreference, cityLocation, specialRequests, payFromEstate,
         paymentPriority, hasFuneralInsurance, insuranceProvider, policyNumber, policyholderTitle,
-        policyholderName, coverageAmount, policyDocLocation, wantOrganDonation, donationType,
+        policyholderName, coverageAmount, phoneCode, telephone, email, websiteUrl,
+        policyDocLocation, wantOrganDonation, donationType,
         organPreferences, nhsRegistered, nhsReference, additionalNotes])
 
     return (
