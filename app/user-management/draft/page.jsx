@@ -117,7 +117,7 @@ function AllUser({ setSelectedUser }) {
               className={`w-1.5 h-1.5 rounded-full ${row.planAction === "Upgrade" ? "bg-[#17B26A]" : "bg-[#F04438]"}`}
             ></div>
             <span
-              className={`text-xs ${row.planAction === "Upgrade" ? "text-[#414651]" : "text-[#414651]"}`}
+              className={`text-xs ${row.planAction === "Upgrade" ? "text-text-4" : "text-text-4"}`}
             >
               {row.planAction}
             </span>
@@ -137,7 +137,7 @@ function AllUser({ setSelectedUser }) {
               className={`w-1.5 h-1.5 rounded-full ${row.subscriptionStatus === "Paid" ? "bg-[#17B26A]" : "bg-[#F04438]"}`}
             ></div>
             <span
-              className={`text-xs ${row.subscriptionStatus === "Paid" ? "text-[#414651]" : "text-[#414651]"}`}
+              className={`text-xs ${row.subscriptionStatus === "Paid" ? "text-text-4" : "text-text-4"}`}
             >
               {row.subscriptionStatus}
             </span>
@@ -194,7 +194,7 @@ function AllUser({ setSelectedUser }) {
             options={statusOptions}
             value={row.status}
             onChange={(selected) => console.log("Status changed:", selected)}
-            className={`!w-[171px] !h-[30px] !rounded-full !py-[6px] !px-[10px] !gap-[10px] font-medium text-xs !border-0 !flex !items-center !justify-between whitespace-nowrap ${getStatusStyle(row.status)}`}
+            className={`w-[171px]! h-[30px]! rounded-full! py-[6px]! px-[10px]! gap-[10px]! font-medium text-xs border-0 flex items-center justify-between whitespace-nowrap ${getStatusStyle(row.status)}`}
             dropdownClassName="!w-full"
             direction={index >= 5 ? "up" : "down"}
             iconClassName={

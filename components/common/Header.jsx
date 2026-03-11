@@ -91,28 +91,28 @@ function Header({ title }) {
             <h1 className="text-sm font-bold">{formatDate(currentDate)}</h1>
           </div>
           <div className="flex items-center gap-3 max-md:hidden">
-            <div className="rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center">
+            <div className="rounded-full cursor-pointer bg-(--color-main) h-8 w-8 flex items-center justify-center">
               <Image src={Searchicon} width={16} height={16} alt="media" />
             </div>
             <div
               onClick={() => router.push("/notification")}
-              className="relative cursor-pointer rounded-full h-8 w-8 bg-[var(--color-main)] flex items-center justify-center"
+              className="relative cursor-pointer rounded-full h-8 w-8 bg-(--color-main) flex items-center justify-center"
             >
               <Image src={Bell} width={16} height={16} alt="media" />
               <span className="bg-[#FF0000] h-4.5 w-4.5 text-[10px] absolute top-0 right-0 translate-x-1 font-bold rounded-full p-0.5 flex justify-center items-center text-white">
                 12
               </span>
             </div>
-            <div className="rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center">
+            <div className="rounded-full cursor-pointer bg-(--color-main) h-8 w-8 flex items-center justify-center">
               <Image src={Phone} width={14} height={16} alt="media" />
             </div>
-            <div className="rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center">
+            <div className="rounded-full cursor-pointer bg-(--color-main) h-8 w-8 flex items-center justify-center">
               <Image src={Mail} width={16} height={16} alt="media" />
             </div>
-            <div className="rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center">
+            <div className="rounded-full cursor-pointer bg-(--color-main) h-8 w-8 flex items-center justify-center">
               <Image src={Setting} width={16} height={16} alt="media" />
             </div>
-            <div className="rounded-full cursor-pointer bg-[var(--color-main)] h-8 w-8 flex items-center justify-center">
+            <div className="rounded-full cursor-pointer bg-(--color-main) h-8 w-8 flex items-center justify-center">
               <Image src={Add} width={16} height={16} alt="media" />
             </div>
             <div className="flex items-center gap-2 cursor-pointer">
@@ -138,7 +138,7 @@ function Header({ title }) {
       {/* Sidebar (slides independently) */}
       <div
         ref={sidebarRef}
-        className={`fixed z-11 p-4 left-0 top-0 bottom-0 h-screen w-75 transform transition-transform duration-300 bg-[var(--color-main)] ${isOpen ? "max-lg:translate-x-0" : "max-lg:-translate-x-full"}`}
+        className={`fixed z-11 p-4 left-0 top-0 bottom-0 h-screen w-75 transform transition-transform duration-300 bg-(--color-main) ${isOpen ? "max-lg:translate-x-0" : "max-lg:-translate-x-full"}`}
       >
         <div className="p-4 ">
           <Image src={Logo} width={212} height={56} alt="media" />
@@ -150,17 +150,17 @@ function Header({ title }) {
                   router.push(item.path);
                 }}
                 key={index}
-                className={`flex group transition-all duration-300 hover:bg-white hover:text-[var(--color-main)] p-4 py-2 flex items-center gap-2 rounded-lg items-center gap-2 cursor-pointer ${activeLink === item.path ? "bg-white text-[var(--color-main)]" : "text-white"}`}
+                className={`flex group transition-all duration-300 hover:bg-white hover:text-(--color-main) p-4 py-2 rounded-lg items-center gap-2 cursor-pointer ${activeLink === item.path ? "bg-white text-[--color-main]" : "text-white"}`}
               >
                 <Image
                   src={item.icon}
                   width={24}
                   height={24}
                   alt="media"
-                  className={`group-hover:invert-1 group-hover:brightness-100 transition-all duration-300 ${activeLink === item.path ? "text-[var(--color-main)]" : "invert brightness-0"}`}
+                  className={`group-hover:invert-1 group-hover:brightness-100 transition-all duration-300 ${activeLink === item.path ? "text-(--color-main)" : "invert brightness-0"}`}
                 />
                 <p
-                  className={`text-sm font-bold ${activeLink === item.path ? "text-[var(--color-main)] font-bold" : ""}`}
+                  className={`text-sm font-bold ${activeLink === item.path ? "text-(--color-main) font-bold" : ""}`}
                 >
                   {item.title}
                 </p>

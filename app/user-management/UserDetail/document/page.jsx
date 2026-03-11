@@ -3,62 +3,29 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import OverviewDocumenticon from "@/components/assets/images/OverviewDocumenticon.svg";
 import ArrowUpGreen from "@/components/assets/images/ArrowUpGreen.svg";
-import SearchIconGray from "@/components/assets/images/SearchIconGray.svg";
+import SearchIconGray from "@/components/assets/images/SearchIconBlack.svg";
 import CalendarIcon from "@/components/assets/images/CalendarIcon.svg";
 import CopyIcon from "@/components/assets/images/CopyIcon.svg";
 import TableEyeIcon from "@/components/assets/images/TableEyeIcon.svg";
 import DownloadIcon from "@/components/assets/images/DownloadIcon.svg";
 import CommonTable from "@/components/common/CommonTable";
-
-const FolderIcon = () => (
-  <svg
-    width="24"
-    height="20"
-    viewBox="0 0 24 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M20 20H4C2.89543 20 2 19.1046 2 18V6H22V18C22 19.1046 21.1046 20 20 20Z"
-      fill="#FFC107"
-    />
-    <path
-      d="M22 6H2V4C2 2.89543 2.89543 2 4 2H9.17157C9.70201 2 10.2107 2.21071 10.5858 2.58579L12.5858 4.58579C12.9609 4.96086 13.4696 5.17157 14 5.17157H20C21.1046 5.17157 22 6.06614 22 7.17157V6Z"
-      fill="#F4B400"
-    />
-  </svg>
-);
-
-const PdfIcon = () => (
-  <svg
-    width="20"
-    height="24"
-    viewBox="0 0 20 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M12 2V6C12 6.55228 12.4477 7 13 7H17"
-      stroke="#F04438"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M12 2H5C3.89543 2 3 2.89543 3 4V20C3 21.1046 3.89543 22 5 22H15C16.1046 22 17 21.1046 17 20V7L12 2Z"
-      stroke="#F04438"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <text x="6" y="17" fill="#F04438" fontSize="6px" fontWeight="bold">
-      PDF
-    </text>
-  </svg>
-);
+import FolderIcon from "@/components/assets/images/FolderIcon.svg";
+import PDFIcon from "@/components/assets/images/PDFIcon.svg";
 
 function Page() {
   const dateInputRef = useRef(null);
+  const [netrevenuebutton, setNetrevenuebutton] = React.useState("Yearly");
+  const [expandedFolders, setExpandedFolders] = React.useState({
+    "Default Bundle Section": true,
+    "Family Case": true,
+  });
+
+  const toggleFolder = (folderName) => {
+    setExpandedFolders((prev) => ({
+      ...prev,
+      [folderName]: !prev[folderName],
+    }));
+  };
 
   const columns = [
     {
@@ -66,28 +33,38 @@ function Page() {
       accessor: "name",
       sortable: true,
       render: (row) => (
-        <div className={`flex items-center gap-3 ${row.isChild ? "pl-8" : ""}`}>
-          {row.type === "folder" ? <FolderIcon /> : <PdfIcon />}
+        <div className={`flex items-center gap-2 ${row.isChild ? "pl-8" : ""}`}>
+          {row.type === "folder" ? (
+            <div
+              className="flex items-center gap-1.5 cursor-pointer"
+              onClick={() => toggleFolder(row.name)}
+            >
+              <svg
+                className={`w-4 h-4 text-[#1A2232] transition-transform duration-200 ${expandedFolders[row.name] ? "rotate-0" : "-rotate-90"}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+              <Image src={FolderIcon} alt="folder" width={32} height={32} />
+            </div>
+          ) : (
+            <Image src={PDFIcon} alt="pdf" width={32} height={32} />
+          )}
           <span
-            className={`text-sm font-medium ${row.type === "folder" ? "text-[#1A2232]" : "text-[#404040]"}`}
+            className={`text-sm font-semibold ${row.type === "folder" ? "text-black cursor-pointer" : "text-[#404040]"}`}
+            onClick={
+              row.type === "folder" ? () => toggleFolder(row.name) : undefined
+            }
           >
             {row.name}
           </span>
-          {row.type === "folder" && (
-            <svg
-              className="w-4 h-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          )}
         </div>
       ),
     },
@@ -96,7 +73,9 @@ function Page() {
       accessor: "product",
       sortable: true,
       render: (row) => (
-        <span className="text-sm text-[#404040]">{row.product}</span>
+        <span className="text-sm text-[#404040] font-medium">
+          {row.product}
+        </span>
       ),
     },
     {
@@ -104,7 +83,9 @@ function Page() {
       accessor: "createdDate",
       sortable: true,
       render: (row) => (
-        <span className="text-sm text-[#404040]">{row.createdDate}</span>
+        <span className="text-sm text-[#404040] font-medium">
+          {row.createdDate}
+        </span>
       ),
     },
     {
@@ -113,10 +94,10 @@ function Page() {
       sortable: true,
       render: (row) => (
         <span
-          className={`px-4 py-1 inline-block text-center rounded-full text-xs font-medium w-28 ${
+          className={`px-4 py-1.5 inline-block text-center rounded-full text-xs font-semibold w-28 ${
             row.status === "Completed"
-              ? "bg-[#17B26A] text-white"
-              : "bg-[#98A2B3] text-white"
+              ? "bg-[#34C759] text-white"
+              : "bg-[#A0A0A0] text-white"
           }`}
         >
           {row.status}
@@ -139,7 +120,7 @@ function Page() {
     },
   ];
 
-  const data = [
+  const allData = [
     {
       id: 1,
       name: "Default Bundle Section",
@@ -153,6 +134,7 @@ function Page() {
       name: "Articles of Incorporation",
       type: "file",
       isChild: true,
+      parentName: "Default Bundle Section",
       product: "Immigration",
       createdDate: "01/02/2025",
       status: "Completed",
@@ -162,6 +144,7 @@ function Page() {
       name: "Articles of Incorporation",
       type: "file",
       isChild: true,
+      parentName: "Default Bundle Section",
       product: "Criminal",
       createdDate: "01/02/2025",
       status: "Draft",
@@ -171,6 +154,7 @@ function Page() {
       name: "Articles of Incorporation",
       type: "file",
       isChild: true,
+      parentName: "Default Bundle Section",
       product: "Document Bundle",
       createdDate: "01/02/2025",
       status: "Completed",
@@ -180,6 +164,7 @@ function Page() {
       name: "Articles of Incorporation",
       type: "file",
       isChild: true,
+      parentName: "Default Bundle Section",
       product: "Family",
       createdDate: "01/02/2025",
       status: "Draft",
@@ -197,6 +182,7 @@ function Page() {
       name: "Articles of Incorporation",
       type: "file",
       isChild: true,
+      parentName: "Family Case",
       product: "Criminal",
       createdDate: "01/02/2025",
       status: "Draft",
@@ -206,6 +192,7 @@ function Page() {
       name: "Articles of Incorporation",
       type: "file",
       isChild: true,
+      parentName: "Family Case",
       product: "Document Bundle",
       createdDate: "01/02/2025",
       status: "Completed",
@@ -215,6 +202,7 @@ function Page() {
       name: "Articles of Incorporation",
       type: "file",
       isChild: true,
+      parentName: "Family Case",
       product: "Family",
       createdDate: "01/02/2025",
       status: "Draft",
@@ -224,6 +212,7 @@ function Page() {
       name: "Articles of Incorporation",
       type: "file",
       isChild: true,
+      parentName: "Family Case",
       product: "Immigration",
       createdDate: "01/02/2025",
       status: "Completed",
@@ -233,11 +222,19 @@ function Page() {
       name: "Articles of Incorporation",
       type: "file",
       isChild: true,
+      parentName: "Family Case",
       product: "Criminal",
       createdDate: "01/02/2025",
       status: "Draft",
     },
   ];
+
+  const data = React.useMemo(() => {
+    return allData.filter((row) => {
+      if (!row.isChild) return true;
+      return expandedFolders[row.parentName];
+    });
+  }, [expandedFolders]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -246,13 +243,13 @@ function Page() {
       {/* Stats Card */}
       <div className="border border-black/16 rounded-2xl p-6 bg-white flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="bg-[#B5850B] p-4 rounded-2xl">
+          <div className="bg-[#B38B00] p-2.5 rounded-full border-8 border-[#9A7200]">
             <Image
               src={OverviewDocumenticon}
               alt="documents"
-              width={32}
-              height={32}
-              className="brightness-0 invert"
+              width={44}
+              height={44}
+              className=""
             />
           </div>
           <div>
@@ -272,17 +269,39 @@ function Page() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
-          {["Yearly", "Quarterly", "Monthly", "Weekly", "24 hours"].map(
-            (tab) => (
-              <button
-                key={tab}
-                className="px-4 py-2 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-50 cursor-pointer"
-              >
-                {tab}
-              </button>
-            ),
-          )}
+        <div className="overflow-x-auto scrollbar-thin">
+          <div className="flex items-center w-fit border border-[#D5D7DA] rounded-[11px] whitespace-nowrap">
+            <button
+              onClick={() => setNetrevenuebutton("Yearly")}
+              className={`${netrevenuebutton === "Yearly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+            >
+              Yearly
+            </button>
+            <button
+              onClick={() => setNetrevenuebutton("Quarterly")}
+              className={`${netrevenuebutton === "Quarterly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+            >
+              Quarterly
+            </button>
+            <button
+              onClick={() => setNetrevenuebutton("Monthly")}
+              className={`${netrevenuebutton === "Monthly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setNetrevenuebutton("Weekly")}
+              className={`${netrevenuebutton === "Weekly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+            >
+              Weekly
+            </button>
+            <button
+              onClick={() => setNetrevenuebutton("24 hours")}
+              className={`${netrevenuebutton === "24 hours" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+            >
+              24 hours
+            </button>
+          </div>
         </div>
       </div>
 
@@ -292,35 +311,36 @@ function Page() {
           <input
             type="text"
             placeholder="Search..."
-            className="w-full focus:border-black border text-base border-black/16 outline-0 p-4 py-3 pr-12 rounded-lg"
+            className="w-full focus:border-black border text-base border-black/16 outline-0 p-4 py-2.75 pr-12 rounded-lg"
           />
           <div className="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-4">
             <Image src={SearchIconGray} alt="search" width={20} height={20} />
           </div>
         </div>
 
-        <div className="relative flex items-center min-w-[200px]">
-          <div
-            className="absolute top-1/2 -translate-y-1/2 left-4 cursor-pointer"
-            onClick={() => dateInputRef.current?.showPicker()}
-          >
+        <div
+          className="relative flex items-center min-w-[180px] cursor-pointer"
+          onClick={() => dateInputRef.current?.showPicker()}
+        >
+          <div className="absolute left-3 z-10 pointer-events-none">
             <Image src={CalendarIcon} alt="calendar" width={20} height={20} />
           </div>
           <input
             type="date"
             ref={dateInputRef}
-            className="w-full text-[#404040] focus:border-black border text-base border-black/16 outline-0 py-3 pl-14 pr-4 rounded-lg [&::-webkit-calendar-picker-indicator]:hidden"
+            className="w-full text-[#404040] focus:border-black border text-sm border-black/16 outline-0 py-3.25 pl-10 pr-3 rounded-lg cursor-pointer bg-white relative
+            [&::-webkit-calendar-picker-indicator]:hidden"
             defaultValue="2025-09-01"
           />
         </div>
 
-        <button className="p-3 border border-[#D5D7DA] rounded-lg hover:bg-(--color-main) hover:text-white group transition-all cursor-pointer">
+        <button className="p-2.75 border border-[#D5D7DA] rounded-lg hover:bg-(--color-main) hover:text-white group transition-all cursor-pointer">
           <Image
             src={CopyIcon}
             alt="export"
             width={24}
             height={24}
-            className="group-hover:brightness-0 group-hover:invert transition-all"
+            className="group-hover:brightness-0 min-h-6 min-w-6 group-hover:invert transition-all"
           />
         </button>
       </div>

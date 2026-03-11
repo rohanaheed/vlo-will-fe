@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import copyIcon from "@/components/assets/images/CopyIcon.svg";
-import searchIcon from "@/components/assets/images/SearchIconGray.svg";
+import searchIcon from "@/components/assets/images/SearchIconBlack.svg";
 import CommonTable from "@/components/common/CommonTable";
 import visaIcon from "@/components/assets/images/Visa.svg";
 import stripeIcon from "@/components/assets/images/Stripe.svg";
@@ -34,7 +34,7 @@ function Page() {
             <div
               className={`w-1.5 h-1.5 rounded-full ${row.paymentStatus === "Paid" ? "bg-[#17B26A]" : "bg-[#D92D20]"}`}
             ></div>
-            <span className="text-xs font-medium text-[#414651]">
+            <span className="text-xs font-medium text-text-4">
               {row.paymentStatus}
             </span>
           </div>
@@ -233,7 +233,7 @@ function Page() {
           <input
             type="text"
             placeholder=" Search"
-            className="w-full focus:border-black border text-base border-black/16 outline-0 p-4 py-3 pr-12 rounded-lg"
+            className="w-full focus:border-black border text-base border-black/16 outline-0 p-4 py-2.75 pr-12 rounded-lg"
           />
           <div className="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-4">
             <Image src={searchIcon} alt="media" width={20} height={20} />
@@ -251,11 +251,11 @@ function Page() {
             ref={dateInputRef}
             name=""
             id=""
-            className="w-full text-[#404040] focus:border-black border text-base border-black/16 outline-0 py-2.75 pt-3.25 pr-0 pl-14 rounded-lg [&::-webkit-calendar-picker-indicator]:hidden text-center"
+            className="w-full text-[#404040] focus:border-black border text-base border-black/16 outline-0 py-2.25 pt-3.25 pr-0 pl-14 rounded-lg [&::-webkit-calendar-picker-indicator]:hidden text-center"
             style={{ colorScheme: "light" }}
           />
         </div>
-        <div className="group inline-block self-end border border-[#D5D7DA] p-3 rounded-lg cursor-pointer hover:bg-main hover:text-white transition-colors">
+        <div className="group inline-block self-end border border-[#D5D7DA] p-2.75 rounded-lg cursor-pointer hover:bg-main hover:text-white transition-colors">
           <Image
             src={copyIcon}
             alt="media"
