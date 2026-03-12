@@ -334,7 +334,7 @@ function Page() {
           />
         </div>
 
-        <button className="p-2.75 border border-[#D5D7DA] rounded-lg hover:bg-(--color-main) hover:text-white group transition-all cursor-pointer">
+        <button className="p-2.75 border outline-0 inline-flex self-end border-[#D5D7DA] rounded-lg hover:bg-(--color-main) hover:border-(--color-main) hover:text-white group transition-all cursor-pointer">
           <Image
             src={CopyIcon}
             alt="export"

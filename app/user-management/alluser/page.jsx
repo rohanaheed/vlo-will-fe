@@ -209,7 +209,7 @@ function AllUser({ setSelectedUser }) {
       accessor: "action",
       render: (row) => (
         <div className="flex items-center gap-2 ">
-          <button className="w-8 h-8 p-2 flex items-center justify-center border border-[#D5D7DA] rounded-lg bg-white hover:bg-gray-50 cursor-pointer">
+          <button className="w-8 h-8 p-2 flex items-center justify-center border border-[#D5D7DA] rounded-lg bg-white outline-0 hover:bg-(--color-main) hover:border-(--color-main) hover:text-white cursor-pointer group transition-all">
             <Image src={TableCopyicon} alt="copy" width={16} height={16} />
           </button>
           <button className="w-8 h-8 p-2 flex items-center justify-center border border-[#D5D7DA] rounded-lg bg-white hover:bg-gray-50 cursor-pointer">
@@ -434,7 +434,7 @@ function AllUser({ setSelectedUser }) {
             </p>
           </div>
 
-          <div className="group max-sm:self-end border border-[#D5D7DA] p-1.75 rounded-lg cursor-pointer hover:bg-main hover:text-white transition-all">
+          <div className="group max-sm:self-end border border-[#D5D7DA] p-1.75 rounded-lg cursor-pointer outline-0 hover:bg-(--color-main) hover:border-(--color-main) hover:text-white transition-all">
             <Image
               src={CopyIcon}
               alt="media"

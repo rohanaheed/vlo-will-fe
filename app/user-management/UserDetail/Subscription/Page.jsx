@@ -294,7 +294,7 @@ function Page() {
             style={{ colorScheme: "light" }}
           />
         </div>
-        <div className="group inline-block self-end border border-[#D5D7DA] p-2.75 rounded-lg cursor-pointer hover:bg-(--color-main) hover:text-white transition-colors">
+        <div className="group inline-block self-end border border-[#D5D7DA] p-2.75 rounded-lg cursor-pointer hover:bg-(--color-main) hover:border-(--color-main) hover:text-white transition-colors">
           <Image
             src={copyIcon}
             alt="media"
