@@ -254,18 +254,20 @@ const ViewDetail = ({ ticket, onBack }) => {
               </h3>
             </div>
             <div className="pt-4 md:pt-6">
-              {timeline.map((item, i) => (
-                <ul key={i} className="space-y-4 list-disc">
-                  <li className="flex items-start gap-2 text-base text-text-1 font-bold">
-                    <span className="text-text-4 text-regular flex items-center">
-                      {item.date} :
-                    </span>
-                    <span className="text-text-4 text-regular">
-                      {item.activity}
-                    </span>
+              <ul className="space-y-4 list-disc ml-6">
+                {timeline.map((item, i) => (
+                  <li key={i} className="text-base text-text-1 font-bold">
+                    <div className="flex items-start gap-2">
+                      <span className="text-text-4 text-regular flex items-center whitespace-nowrap">
+                        {item.date} :
+                      </span>
+                      <span className="text-text-4 text-regular">
+                        {item.activity}
+                      </span>
+                    </div>
                   </li>
-                </ul>
-              ))}
+                ))}
+              </ul>
             </div>
           </div>
 
