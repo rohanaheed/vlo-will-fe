@@ -11,7 +11,7 @@ import Logo from "../../../components/assets/images/Logo.svg";
 import sliderbg from "../../../components/assets/images/SliderBg1.png";
 import Slider from "../../../components/common/slider";
 import Loader from "../../../components/common/Loader";
-import { loginApi } from "../../services/authService";
+import { adminLoginApi } from "../../services/adminAuthService";
 import EyeOpenIcon from "../../../components/assets/images/EyeOpenIcon.png";
 import EyeCloseIcon from "../../../components/assets/images/EyeCloseIcon.png";
 
@@ -41,13 +41,13 @@ function Page() {
                         validationSchema={validationSchema}
                         onSubmit={async (values, { setSubmitting, setFieldError }) => {
                             try {
-                                const res = await loginApi({
+                                const res = await adminLoginApi({
                                     ...values,
                                     remember_me: remember,
                                 });
                                 console.log("token", res);
-                                localStorage.setItem("userInfo", JSON.stringify(res.data));
-                                router.push("/dashboard");
+                                localStorage.setItem("adminInfo", JSON.stringify(res?.data ?? res));
+                                router.push("/admin/dashboard");
                             } catch (error) {
                                 console.log("abc", error, error.message);
                                 // API error handling
