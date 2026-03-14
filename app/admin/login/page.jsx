@@ -27,8 +27,6 @@ const validationSchema = Yup.object({
 
 function Page() {
     const router = useRouter();
-    const [isEditor, setIsEditor] = useState("editor");
-    const [remember, setRember] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     return (
         <div className="flex h-screen w-full overflow-hidden">
@@ -43,14 +41,10 @@ function Page() {
                             try {
                                 const res = await adminLoginApi({
                                     ...values,
-                                    remember_me: remember,
                                 });
-                                console.log("token", res);
                                 localStorage.setItem("adminInfo", JSON.stringify(res?.data ?? res));
                                 router.push("/admin/dashboard");
                             } catch (error) {
-                                console.log("abc", error, error.message);
-                                // API error handling
                                 if (error.response?.data?.error.message) {
                                     setFieldError("email", error.response?.data?.error.message);
                                 } else {
