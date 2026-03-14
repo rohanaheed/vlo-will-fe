@@ -1,22 +1,20 @@
 "use client";
 import React, { useState } from "react";
-import * as Yup from "yup"; // used when validating with a pre-built solution
+import * as Yup from "yup";
 import Image from "next/image";
-import Logo from "../../../components/assets/images/Logo.svg";
-import sliderbg from "../../../components/assets/images/SliderBg1.png";
-import Slider from "../../../components/common/slider";
 import { useRouter } from "next/navigation";
 import { Formik, Form, Field } from "formik";
 import { ErrorMessage } from "formik";
+import toast from "react-hot-toast";
+
+import Logo from "../../../components/assets/images/Logo.svg";
+import sliderbg from "../../../components/assets/images/SliderBg1.png";
+import Slider from "../../../components/common/slider";
 import Loader from "../../../components/common/Loader";
 import { loginApi } from "../../services/authService";
-import GoogleIcon from "../../../components/assets/images/GoogleIcon.svg";
-import LoginWithGoogle from "../../../components/common/LoginWithGoogle";
-import toast from "react-hot-toast";
-import RecaptchaIcon from "../../../components/assets/images/RecaptchaIcon.svg";
 import EyeOpenIcon from "../../../components/assets/images/EyeOpenIcon.png";
 import EyeCloseIcon from "../../../components/assets/images/EyeCloseIcon.png";
-import Editor from "../../user-details/Editor";
+
 const validationSchema = Yup.object({
     email: Yup.string()
         .email("Invalid email format")
@@ -145,7 +143,7 @@ function Page() {
                                             className="text-xs md:text-sm font-medium  text-[#FF383C]"
                                         />
                                     </div>
-                                    
+
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
