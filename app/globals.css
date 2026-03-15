@@ -65,3 +65,9 @@ body {
     }
   }
 }
+.bg {
+  background: url('@/components/assets/images/Background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
