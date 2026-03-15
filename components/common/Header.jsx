@@ -20,7 +20,7 @@ function Header({ title }) {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
     const sidebarRef = useRef(null)
-    const Sliderdata = [{ title: "Dashboard", icon: DashboardIcon, path: "/" },
+    const Sliderdata = [{ title: "Dashboard", icon: DashboardIcon, path: "/admin/dashboard" },
     { title: "User Management", icon: SliderUser, path: "/admin/user-management" }
 
     ]
