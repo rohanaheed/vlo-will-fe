@@ -21,7 +21,7 @@ function Header({ title }) {
     const [isOpen, setIsOpen] = useState(false)
     const sidebarRef = useRef(null)
     const Sliderdata = [{ title: "Dashboard", icon: DashboardIcon, path: "/" },
-    { title: "User Management", icon: SliderUser, path: "/user-management" }
+    { title: "User Management", icon: SliderUser, path: "/admin/user-management" }
 
     ]
     const [currentDate, setCurrentDate] = useState(null)

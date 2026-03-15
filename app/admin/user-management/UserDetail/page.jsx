@@ -2,8 +2,8 @@
 "use client"
 import { useState } from 'react'
 import React from 'react'
-import ArrowBack from '../../../components/assets/images/ArrowBack.svg'
-import UserIcon from '../../../components/assets/images/UserIcon.svg'
+import ArrowBack from '../../../../components/assets/images/ArrowBack.svg'
+import UserIcon from '../../../../components/assets/images/UserIcon.svg'
 import Overview from './overview/page'
 import Subscription from './Subscription/Page'
 import Invoice from './Invoice/page'
