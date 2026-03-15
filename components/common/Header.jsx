@@ -15,6 +15,7 @@ import User from "../assets/images/User.svg";
 import ChevronDown from "../assets/images/CheveronDownGray.svg";
 import DashboardIcon from "../assets/images/DashboardIcon.svg";
 import SliderUser from "../assets/images/SliderUser.svg";
+import SubscriptionIcon from "../assets/images/SubscriptionIcon.svg";
 function Header({ title }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,7 @@ function Header({ title }) {
   const Sliderdata = [
     { title: "Dashboard", icon: DashboardIcon, path: "/" },
     { title: "User Management", icon: SliderUser, path: "/user-management" },
+    { title: "Subscription", icon: SubscriptionIcon, path: "/subscription" },
   ];
   const [currentDate, setCurrentDate] = useState(null);
   const pathname = usePathname();

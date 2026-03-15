@@ -69,7 +69,7 @@ function Page() {
             />
           </div>
           <div className="flex flex-col">
-            <span className="text-[#181D27] font-medium text-sm">
+            <span className="text-text-1 font-medium text-sm">
               {row.cardTitle}
             </span>
             <span className="text-[#535862] text-sm">{row.cardExpiry}</span>

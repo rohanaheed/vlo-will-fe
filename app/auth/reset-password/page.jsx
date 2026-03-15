@@ -27,11 +27,12 @@ function Page() {
             <div className="shadow border border-[#00AD62] rounded-lg p-3 justify-center inline-flex mx-auto">
               <Image src={Check} width={28} height={28} alt="media" />
             </div>
-            <h1 className="text-lg md:text-[30px] text-center font-semibold text-[#181D27] mt-6">
-              Password reset successfully! 
+            <h1 className="text-lg md:text-[30px] text-center font-semibold text-text-1 mt-6">
+              Password reset successfully!
             </h1>
             <p className="text-sm md:text-base text-[#535862] text-center mt-3">
-              Your password has been successfully reset. Click below to log in magically.
+              Your password has been successfully reset. Click below to log in
+              magically.
             </p>
             <div className="flex w-full justify-between mt-8">
               <button

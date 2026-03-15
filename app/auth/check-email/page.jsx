@@ -27,7 +27,7 @@ function Page() {
             <div className="shadow border border-[#E9EAEB] rounded-lg p-3 justify-center inline-flex mx-auto">
               <Image src={Email} width={28} height={28} alt="media" />
             </div>
-            <h1 className="text-lg md:text-[30px] text-center font-semibold text-[#181D27] mt-6">
+            <h1 className="text-lg md:text-[30px] text-center font-semibold text-text-1 mt-6">
               Check your email
             </h1>
             <p className="text-sm md:text-base text-[#535862] text-center mt-3">
@@ -36,7 +36,10 @@ function Page() {
             <p className="text-sm md:text-base text-[#535862] text-center mt-3">
               olivia@untitledui.com{" "}
             </p>
-            <button onClick={()=>router.push("/Account/VerficationOtp")} className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5">
+            <button
+              onClick={() => router.push("/Account/VerficationOtp")}
+              className="bg-[var(--color-main)] hover:bg-[var(--color-main)]/85 transition cursor-pointer w-full mt-6 font-semibold text-white border-2 border-[var(--color-main)] rounded-lg p-2.5"
+            >
               Open email app
             </button>
             <div className="mt-8">

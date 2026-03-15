@@ -5,7 +5,7 @@ import CloseIcon from "../assets/images/CloseIcon.svg";
 function DeletePopup({ heading, onClose, onConfirm, pera, button }) {
   return (
     <div className="fixed inset-0 bg-black/20 backdrop-blur-lg flex justify-center items-center z-100 p-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-[480px] p-6 text-black">
+      <div className="bg-white rounded-2xl shadow-xl w-full md:max-w-[480px] p-6 text-black">
         <div className="flex justify-between items-center mb-5">
           <h2 className="text-lg font-semibold text-black">{heading}</h2>
           <button

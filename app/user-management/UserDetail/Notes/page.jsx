@@ -236,8 +236,10 @@ function Page() {
       )}
       {isSuccessOpen && (
         <SuccessfullDeletePopup
-          pera="Your note has been deleted successfully."
+          pera="Note has been deleted successfully."
           onClose={() => setIsSuccessOpen(false)}
+          heading="Deleted Successfully"
+          button="Closed"
         />
       )}
     </div>

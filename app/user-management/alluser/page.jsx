@@ -97,7 +97,7 @@ function AllUser({ setSelectedUser }) {
             className="rounded-full"
           />
           <div className="flex flex-col">
-            <span className="font-semibold text-[#181D27] text-sm">
+            <span className="font-semibold text-text-1 text-sm">
               {row.name}
             </span>
             <span className="text-xs text-[#404040]">{row.email}</span>

@@ -273,31 +273,31 @@ function Page() {
           <div className="flex items-center w-fit border border-[#D5D7DA] rounded-[11px] whitespace-nowrap">
             <button
               onClick={() => setNetrevenuebutton("Yearly")}
-              className={`${netrevenuebutton === "Yearly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+              className={`${netrevenuebutton === "Yearly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-text-7 border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
             >
               Yearly
             </button>
             <button
               onClick={() => setNetrevenuebutton("Quarterly")}
-              className={`${netrevenuebutton === "Quarterly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+              className={`${netrevenuebutton === "Quarterly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-text-7 border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
             >
               Quarterly
             </button>
             <button
               onClick={() => setNetrevenuebutton("Monthly")}
-              className={`${netrevenuebutton === "Monthly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+              className={`${netrevenuebutton === "Monthly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-text-7 border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
             >
               Monthly
             </button>
             <button
               onClick={() => setNetrevenuebutton("Weekly")}
-              className={`${netrevenuebutton === "Weekly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+              className={`${netrevenuebutton === "Weekly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-text-7 border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
             >
               Weekly
             </button>
             <button
               onClick={() => setNetrevenuebutton("24 hours")}
-              className={`${netrevenuebutton === "24 hours" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+              className={`${netrevenuebutton === "24 hours" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-text-7 border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
             >
               24 hours
             </button>
