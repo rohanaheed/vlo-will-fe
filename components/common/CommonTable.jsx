@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import ArrowDown from "../../components/assets/images/ChevronLeftBlack.svg";
 // Simple sort icon if not available in assets
-const SortIcon = ({ direction }) => (
+const SortIcon = ({ direction, color = "white" }) => (
   <svg
     width="10"
     height="12"
@@ -12,12 +12,12 @@ const SortIcon = ({ direction }) => (
   >
     <path
       d="M5 0L9.33013 4.5H0.669873L5 0Z"
-      fill="currentColor"
+      fill={color}
       fillOpacity={direction === "asc" ? "1" : "0.4"}
     />
     <path
       d="M5 12L0.669873 7.5H9.33013L5 12Z"
-      fill="currentColor"
+      fill={color}
       fillOpacity={direction === "desc" ? "1" : "0.4"}
     />
   </svg>
@@ -28,10 +28,11 @@ function CommonTable({
   data,
   selectable = false,
   onSelectionChange,
-  onRowClick,
-  getRowClassName,
-  headerclass,
-  border,
+  headerClassName = "bg-(--color-main)",
+  headerTextClassName = "text-white",
+  headerSeparatorClassName = "bg-white",
+  sortIconColor = "white",
+  bodyTextClassName = "text-text-4",
 }) {
   const [selectedRows, setSelectedRows] = useState([]);
   const [prevData, setPrevData] = useState(data);
@@ -133,7 +134,7 @@ function CommonTable({
         <table className="w-full min-w-max border-collapse">
           <thead>
             <tr
-              className={` ${headerclass} bg-(--color-main) select-none text-white text-left`}
+              className={`${headerClassName} ${headerTextClassName} select-none text-left`}
             >
               {selectable && (
                 <th className="p-4 w-12 rounded-tl-lg relative flex justify-center items-center ">
@@ -168,12 +169,13 @@ function CommonTable({
                             ? sortConfig.direction
                             : null
                         }
+                        color={sortIconColor}
                       />
                     )}
                   </div>
                   {idx !== columns.length - 1 && (
                     <div
-                      className={`${border} absolute right-0 top-1/2 -translate-y-1/2 h-5 w-0.5 bg-white`}
+                      className={`absolute right-0 top-1/2 -translate-y-1/2 h-5 w-0.5 ${headerSeparatorClassName}`}
                     ></div>
                   )}
                 </th>
@@ -189,8 +191,7 @@ function CommonTable({
               return (
                 <tr
                   key={rowIndex}
-                  onClick={() => onRowClick && onRowClick(row, rowIndex)}
-                  className={`${isSelected ? "bg-[#F9FAFB]" : ""} hover:bg-[#F9FAFB] ${getRowClassName ? getRowClassName(row, rowIndex) : ""}`}
+                  className={`${isSelected ? "bg-[#F9FAFB]" : ""} hover:bg-[#F9FAFB]`}
                 >
                   {selectable && (
                     <td className="p-4 w-12">
@@ -205,7 +206,7 @@ function CommonTable({
                   {columns.map((col, colIndex) => (
                     <td
                       key={colIndex}
-                      className="p-4 text-[14px] font-medium leading-[20px] tracking-[-0.006em] text-[#404040] align-middle text-left"
+                      className={`p-4 text-[14px] font-medium leading-[20px] tracking-[-0.006em] ${bodyTextClassName} align-middle text-left`}
                     >
                       {col.render
                         ? col.render(row, rowIndex)

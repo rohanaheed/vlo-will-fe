@@ -1,22 +1,18 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import FillArrowDown from "../../components/assets/images/ChevronLeftBlack.svg";
+import FillArrowDown from "../../components/assets/images/FillArrowDownBlack.svg";
 import Image from "next/image";
 
 function Commondropdown({
   options,
-  imageClassName,
-  arrowClassName,
-  buttonClassName,
-  textClassName,
   value,
   onChange,
   placeholder = "Select",
   className,
   dropdownClassName,
-  renderSelected,
-  renderOption,
-  truncate = true,
+  leftIcon,
+  rightIcon,
+  textColor = "text-text-3",
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -37,34 +33,29 @@ function Commondropdown({
     <div className={`relative`} ref={dropdownRef}>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className={`${className} border w-full border-[#D5D7DA] gap-2 bg-white rounded-lg px-3.5 py-2.25 flex items-center justify-between cursor-pointer`}
+        className={`w-full text-black border-[#D5D7DA] gap-2 bg-white rounded-lg px-3.5 py-2.25 flex items-center justify-between cursor-pointer border ${className}`}
       >
-        <div
-          className={`flex items-center gap-2 ${truncate ? "min-w-0 flex-1" : ""}`}
-        >
-          {renderSelected && value ? (
-            renderSelected(value)
-          ) : (
-            <>
-              {value && typeof value === "object" && value.icon && (
-                <Image
-                  src={value.icon}
-                  alt="icon"
-                  width={20}
-                  height={20}
-                  className={`${imageClassName} rounded-full object-cover`}
-                />
+        <div className="flex items-center gap-2">
+          {leftIcon && (
+            <div className="shrink-0 flex items-center justify-center">
+              {typeof leftIcon === "function" ? (
+                leftIcon()
+              ) : (
+                <Image src={leftIcon} alt="icon" width={22} height={16} />
               )}
-              <span
-                className={`text-sm ${truncate ? "truncate" : ""} ${value ? textClassName || "text-black" : "text-text-7"}`}
-              >
-                {value
-                  ? typeof value === "object"
-                    ? value.label
-                    : value
-                  : placeholder}
-              </span>
-            </>
+            </div>
+          )}
+          <span className={`text-sm ${textColor}`}>
+            {value
+              ? typeof value === "object"
+                ? value.label
+                : value
+              : placeholder}
+          </span>
+          {rightIcon && (
+            <div className="shrink-0 flex items-center justify-center">
+              {typeof rightIcon === "function" ? rightIcon() : rightIcon}
+            </div>
           )}
         </div>
         <Image
@@ -72,7 +63,7 @@ function Commondropdown({
           alt="arrow"
           width={20}
           height={20}
-          className={`transition-transform duration-200 ${isOpen ? "rotate-90" : "-rotate-90"} ${arrowClassName}`}
+          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </div>
 
@@ -88,31 +79,23 @@ function Commondropdown({
                   onChange(option);
                   setIsOpen(false);
                 }}
-                style={
-                  option?.value === value?.value ? { color: "#000000" } : {}
-                }
-                className={`${buttonClassName} px-3.5 py-2.5 text-sm hover:bg-zinc-200 cursor-pointer transition-colors flex items-center gap-2 text-black`}
+                className={`px-3.5 py-3.5 text-sm ${textColor} hover:bg-gray-50 cursor-pointer transition-colors flex items-center gap-2`}
               >
-                {renderOption ? (
-                  renderOption(option)
-                ) : (
-                  <>
-                    {typeof option === "object" && option.icon && (
-                      <Image
-                        src={option.icon}
-                        alt="icon"
-                        width={20}
-                        height={20}
-                        className={`${imageClassName} rounded-full object-cover`}
-                      />
-                    )}
-                    {typeof option === "object" ? option.label : option}
-                  </>
+                {typeof option === "object" && option.icon && (
+                  <div className="shrink-0 flex items-center justify-center">
+                    <Image
+                      src={option.icon}
+                      alt="icon"
+                      width={20}
+                      height={14}
+                    />
+                  </div>
                 )}
+                {typeof option === "object" ? option.label : option}
               </div>
             ))
           ) : (
-            <div className="px-3.5 py-2.5 text-sm text-text-7 text-center">
+            <div className={`px-3.5 py-2.5 text-sm ${textColor} text-center`}>
               No options found
             </div>
           )}

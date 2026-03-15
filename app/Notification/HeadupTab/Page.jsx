@@ -20,141 +20,205 @@ const mockData = [
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:24 AM",
     customer: { name: "Amy Diaz", email: "testing@gmail.com", avatar: user1 },
-    business: { name: "Legal Law Firm", domain: "getwarpspeed.com", icon: BusinessIcon },
+    business: {
+      name: "Legal Law Firm",
+      domain: "getwarpspeed.com",
+      icon: BusinessIcon,
+    },
     eventType: "Churn Risk",
     message: "Usage dropped by 70% compared to last month",
     priority: "High",
-    actionLabel: "View Profile"
+    actionLabel: "View Profile",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
-    customer: { name: "Natalia González", email: "contrastai.com", avatar: user2 },
-    business: { name: "ContrastAI", domain: "contrastai.com", icon: BusinessIcon1 },
+    customer: {
+      name: "Natalia González",
+      email: "contrastai.com",
+      avatar: user2,
+    },
+    business: {
+      name: "ContrastAI",
+      domain: "contrastai.com",
+      icon: BusinessIcon1,
+    },
     eventType: "Signup Abandonment",
     message: "Usage dropped by 70% compared to last month",
     priority: "Medium",
-    actionLabel: "Send Reminder"
+    actionLabel: "Send Reminder",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
-    customer: { name: "Jennifer Hernandez", email: "testing@gmail.com", avatar: user3 },
-    business: { name: "Convergence", domain: "convergence.io", icon: BusinessIcon2 },
+    customer: {
+      name: "Jennifer Hernandez",
+      email: "testing@gmail.com",
+      avatar: user3,
+    },
+    business: {
+      name: "Convergence",
+      domain: "convergence.io",
+      icon: BusinessIcon2,
+    },
     eventType: "Payment Failure",
     message: "Usage dropped by 70% compared to last month",
     priority: "High",
-    actionLabel: "Retry Payment"
+    actionLabel: "Retry Payment",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "testing@gmail.com", avatar: user1 },
-    business: { name: "Warpspeed", domain: "getwarpspeed.com", icon: BusinessIcon },
+    business: {
+      name: "Warpspeed",
+      domain: "getwarpspeed.com",
+      icon: BusinessIcon,
+    },
     eventType: "Status",
     message: "Usage dropped by 70% compared to last month",
     priority: "Low",
-    actionLabel: "View History"
+    actionLabel: "View History",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "contrastai.com", avatar: user2 },
-    business: { name: "ContrastAI", domain: "contrastai.com", icon: BusinessIcon1 },
+    business: {
+      name: "ContrastAI",
+      domain: "contrastai.com",
+      icon: BusinessIcon1,
+    },
     eventType: "Renewal Pending",
     message: "Usage dropped by 70% compared to last month",
     priority: "Lowest",
-    actionLabel: "Contact Now"
+    actionLabel: "Contact Now",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "testing@gmail.com", avatar: user3 },
-    business: { name: "Convergence", domain: "convergence.io", icon: BusinessIcon2 },
+    business: {
+      name: "Convergence",
+      domain: "convergence.io",
+      icon: BusinessIcon2,
+    },
     eventType: "Churn Risk",
     message: "Usage dropped by 70% compared to last month",
     priority: "Critical",
-    actionLabel: "View Profile"
+    actionLabel: "View Profile",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "convergence.io", avatar: user3 },
-    business: { name: "Convergence", domain: "convergence.io", icon: BusinessIcon2 },
+    business: {
+      name: "Convergence",
+      domain: "convergence.io",
+      icon: BusinessIcon2,
+    },
     eventType: "Signup Abandonment",
     message: "Usage dropped by 70% compared to last month",
     priority: "Low",
-    actionLabel: "Send Reminder"
+    actionLabel: "Send Reminder",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "getwarpspeed.com", avatar: user1 },
-    business: { name: "Warpspeed", domain: "getwarpspeed.com", icon: BusinessIcon },
+    business: {
+      name: "Warpspeed",
+      domain: "getwarpspeed.com",
+      icon: BusinessIcon,
+    },
     eventType: "Payment Failure",
     message: "Usage dropped by 70% compared to last month",
     priority: "Medium",
-    actionLabel: "Retry Payment"
+    actionLabel: "Retry Payment",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "testing@gmail.com", avatar: user2 },
-    business: { name: "ContrastAI", domain: "contrastai.com", icon: BusinessIcon1 },
+    business: {
+      name: "ContrastAI",
+      domain: "contrastai.com",
+      icon: BusinessIcon1,
+    },
     eventType: "Status",
     message: "Usage dropped by 70% compared to last month",
     priority: "Lowest",
-    actionLabel: "View History"
+    actionLabel: "View History",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "testing@gmail.com", avatar: user3 },
-    business: { name: "Convergence", domain: "convergence.io", icon: BusinessIcon2 },
+    business: {
+      name: "Convergence",
+      domain: "convergence.io",
+      icon: BusinessIcon2,
+    },
     eventType: "Renewal Pending",
     message: "Usage dropped by 70% compared to last month",
     priority: "Critical",
-    actionLabel: "Contact Now"
+    actionLabel: "Contact Now",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "testing@gmail.com", avatar: user1 },
-    business: { name: "ContrastAI", domain: "contrastai.com", icon: BusinessIcon1 },
+    business: {
+      name: "ContrastAI",
+      domain: "contrastai.com",
+      icon: BusinessIcon1,
+    },
     eventType: "Churn Risk",
     message: "Usage dropped by 70% compared to last month",
     priority: "High",
-    actionLabel: "View Profile"
+    actionLabel: "View Profile",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "testing@gmail.com", avatar: user2 },
-    business: { name: "ContrastAI", domain: "contrastai.com", icon: BusinessIcon1 },
+    business: {
+      name: "ContrastAI",
+      domain: "contrastai.com",
+      icon: BusinessIcon1,
+    },
     eventType: "Signup Abandonment",
     message: "Usage dropped by 70% compared to last month",
     priority: "Medium",
-    actionLabel: "Send Reminder"
+    actionLabel: "Send Reminder",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "testing@gmail.com", avatar: user3 },
-    business: { name: "Convergence", domain: "convergence.io", icon: BusinessIcon2 },
+    business: {
+      name: "Convergence",
+      domain: "convergence.io",
+      icon: BusinessIcon2,
+    },
     eventType: "Payment Failure",
     message: "Usage dropped by 70% compared to last month",
     priority: "High",
-    actionLabel: "Retry Payment"
+    actionLabel: "Retry Payment",
   },
   {
     alertId: "HU-1021",
     dateTime: "17/01/2025, 10:00 PM",
     customer: { name: "Zula Adebe", email: "testing@gmail.com", avatar: user1 },
-    business: { name: "Convergence", domain: "convergence.io", icon: BusinessIcon2 },
+    business: {
+      name: "Convergence",
+      domain: "convergence.io",
+      icon: BusinessIcon2,
+    },
     eventType: "Status",
     message: "Usage dropped by 70% compared to last month",
     priority: "Low",
-    actionLabel: "View History"
+    actionLabel: "View History",
   },
   {
     alertId: "HU-1021",
@@ -164,16 +228,16 @@ const mockData = [
     eventType: "Renewal Pending",
     message: "Usage dropped by 70% compared to last month",
     priority: "Critical",
-    actionLabel: "Contact Now"
-  }
+    actionLabel: "Contact Now",
+  },
 ];
 
 const priorityColors = {
-  Critical: "bg-[#D32F2F] text-white",     // Custom Red
-  High: "bg-[#F57C00] text-white",         // Custom Orange
-  Medium: "bg-[#FBC02D] text-white",       // Custom Yellow
-  Low: "bg-[#388E3C] text-white",          // Custom Green
-  Lowest: "bg-[#1976D2] text-white",       // Custom Blue
+  Critical: "bg-[#D32F2F] text-white", // Custom Red
+  High: "bg-[#F57C00] text-white", // Custom Orange
+  Medium: "bg-[#FBC02D] text-white", // Custom Yellow
+  Low: "bg-[#388E3C] text-white", // Custom Green
+  Lowest: "bg-[#1976D2] text-white", // Custom Blue
 };
 
 function Page() {
@@ -190,7 +254,11 @@ function Page() {
       header: "Alert ID",
       accessor: "alertId",
       sortable: true,
-      render: (row) => <span className="text-[#344054] text-[14px] font-medium">{row.alertId}</span>
+      render: (row) => (
+        <span className="text-[#344054] text-[14px] font-medium">
+          {row.alertId}
+        </span>
+      ),
     },
     {
       header: "Date/Time",
@@ -200,16 +268,17 @@ function Page() {
         const dateString = row.dateTime;
         if (!dateString) return 0;
         // Parse "17/01/2025, 10:00 PM"
-        const [datePart, timePart] = dateString.split(', ');
-        const [day, month, year] = datePart.split('/');
-        let [time, modifier] = timePart.split(' ');
-        let [hours, minutes] = time.split(':');
+        const [datePart, timePart] = dateString.split(", ");
+        const [day, month, year] = datePart.split("/");
+        let [time, modifier] = timePart.split(" ");
+        let [hours, minutes] = time.split(":");
 
-        if (modifier === 'PM' && hours !== '12') hours = parseInt(hours, 10) + 12;
-        if (modifier === 'AM' && hours === '12') hours = 0;
+        if (modifier === "PM" && hours !== "12")
+          hours = parseInt(hours, 10) + 12;
+        if (modifier === "AM" && hours === "12") hours = 0;
 
         return new Date(year, month - 1, day, hours, minutes).getTime();
-      }
+      },
     },
     {
       header: "Customer",
@@ -220,11 +289,20 @@ function Page() {
         <div className="flex items-center gap-3">
           {/* Placeholder for Avatar if Image fails or is static */}
           <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden shrink-0">
-            <Image src={row.customer.avatar} width={32} height={32} alt={row.customer.name} />
+            <Image
+              src={row.customer.avatar}
+              width={32}
+              height={32}
+              alt={row.customer.name}
+            />
           </div>
           <div className="flex flex-col text-left">
-            <span className="text-[14px] font-semibold text-[#1A2232]">{row.customer.name}</span>
-            <span className="text-[12px] font-normal tracking-[-0.006em] text-[#404040]">{row.customer.email}</span>
+            <span className="text-[14px] font-semibold text-[#1A2232]">
+              {row.customer.name}
+            </span>
+            <span className="text-[12px] font-normal tracking-[-0.006em] text-[#404040]">
+              {row.customer.email}
+            </span>
           </div>
         </div>
       ),
@@ -236,39 +314,76 @@ function Page() {
       render: (row) => (
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded-full border border-gray-100 shrink-0">
-            <Image src={row.business.icon} width={20} height={20} alt={row.business.name} />
+            <Image
+              src={row.business.icon}
+              width={20}
+              height={20}
+              alt={row.business.name}
+            />
           </div>
           <div className="flex flex-col text-left">
-            <span className="text-[14px] font-semibold text-[#1A2232]">{row.business.name}</span>
-            <span className="text-[12px] font-normal tracking-[-0.006em] text-[#404040]">{row.business.domain}</span>
+            <span className="text-[14px] font-semibold text-[#1A2232]">
+              {row.business.name}
+            </span>
+            <span className="text-[12px] font-normal tracking-[-0.006em] text-[#404040]">
+              {row.business.domain}
+            </span>
           </div>
         </div>
       ),
     },
     { header: "Event Type", accessor: "eventType", sortable: true },
-    { header: "Message", accessor: "message", sortable: true, render: (row) => <span className="truncate max-w-xs block" title={row.message}>{row.message}</span> },
+    {
+      header: "Message",
+      accessor: "message",
+      sortable: true,
+      render: (row) => (
+        <span className="truncate max-w-xs block" title={row.message}>
+          {row.message}
+        </span>
+      ),
+    },
     {
       header: "Priority",
       accessor: "priority",
       sortable: true,
       sortValue: (row) => {
         // Custom Rank for Priority
-        const ranks = { "Critical": 0, "High": 1, "Medium": 2, "Low": 3, "Lowest": 4 };
+        const ranks = { Critical: 0, High: 1, Medium: 2, Low: 3, Lowest: 4 };
         return ranks[row.priority] ?? 99;
       },
       render: (row) => (
         <span
-          className={`flex items-center justify-center w-25 h-7.5 gap-2.5 rounded-[100px] py-1.5 px-1.5 font-semibold text-[14px] leading-[1.6] ${priorityColors[row.priority] || "bg-gray-100 text-gray-700"
-            }`}
+          className={`flex items-center justify-center w-25 h-7.5 gap-2.5 rounded-[100px] py-1.5 px-1.5 font-semibold text-[14px] leading-[1.6] ${
+            priorityColors[row.priority] || "bg-gray-100 text-gray-700"
+          }`}
         >
           {row.priority === "Critical" && (
-            <Image src={DoubleArrowDown} alt="critical" width={10} height={10} className="brightness-0 invert rotate-180" />
+            <Image
+              src={DoubleArrowDown}
+              alt="critical"
+              width={10}
+              height={10}
+              className="brightness-0 invert rotate-180"
+            />
           )}
           {(row.priority === "High" || row.priority === "Low") && (
-            <Image src={ArrowUpwhite} alt="up" width={10} height={10} className="brightness-0 invert" />
+            <Image
+              src={ArrowUpwhite}
+              alt="up"
+              width={10}
+              height={10}
+              className="brightness-0 invert"
+            />
           )}
           {(row.priority === "Medium" || row.priority === "Lowest") && (
-            <Image src={DoubleArrowDown} alt="down" width={10} height={10} className="brightness-0 invert" />
+            <Image
+              src={DoubleArrowDown}
+              alt="down"
+              width={10}
+              height={10}
+              className="brightness-0 invert"
+            />
           )}
           {row.priority}
         </span>
@@ -277,7 +392,7 @@ function Page() {
     {
       header: "Action",
       render: (row) => (
-        <button className="flex items-center justify-center w-34.75 h-7.5 border border-[#D0D5DD] bg-white text-[#414651] text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+        <button className="flex items-center justify-center w-34.75 h-7.5 border border-[#D0D5DD] bg-white text-text-4 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
           {row.actionLabel || "View Profile"}
         </button>
       ),
@@ -291,13 +406,27 @@ function Page() {
           Notifications List
         </h1>
         <div className="flex items-center gap-2 max-sm:self-end">
-          <div className="group flex items-center gap-2 border border-[#D5D7DA] p-3 px-4 rounded-lg cursor-pointer hover:bg-[var(--color-main)] hover:text-white transition-colors">
-            <Image src={CustomizeIcon} alt="customize" width={20} height={20} className="group-hover:brightness-0 group-hover:invert transition-colors" />
-            <p className="text-sm font-semibold text-black group-hover:text-white transition-colors">Customize</p>
+          <div className="group flex items-center gap-2 border border-[#D5D7DA] p-3 px-4 rounded-lg cursor-pointer hover:bg-(--color-main) hover:text-white transition-colors">
+            <Image
+              src={CustomizeIcon}
+              alt="customize"
+              width={20}
+              height={20}
+              className="group-hover:brightness-0 group-hover:invert transition-colors"
+            />
+            <p className="text-sm font-semibold text-black group-hover:text-white transition-colors">
+              Customize
+            </p>
           </div>
 
-          <div className="group border border-[#D5D7DA] p-2.5 rounded-lg cursor-pointer hover:bg-[var(--color-main)] hover:text-white transition-colors">
-            <Image src={Copyicon} alt="media" width={24} height={24} className="min-w-6 group-hover:brightness-0 group-hover:invert transition-colors" />
+          <div className="group border border-[#D5D7DA] p-2.5 rounded-lg cursor-pointer outline-0 hover:bg-(--color-main) hover:border-(--color-main) hover:text-white transition-colors">
+            <Image
+              src={Copyicon}
+              alt="media"
+              width={24}
+              height={24}
+              className="min-w-6 group-hover:brightness-0 group-hover:invert transition-colors"
+            />
           </div>
         </div>
       </div>
@@ -312,7 +441,6 @@ function Page() {
             <Image src={SearchIconGray} alt="media" width={20} height={20} />
           </div>
         </div>
-
 
         <div className="flex max-[800px]:flex-col gap-4 sm:gap-6 w-full md:w-auto md:justify-end">
           <div className="flex max-[800px]:flex-col min-[800px]:items-center gap-2">

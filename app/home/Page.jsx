@@ -98,7 +98,7 @@ function Page() {
     <>
       <div className=" bg-white">
         <UserHeader />
-        <div className="bg-[url('@/components/assets/images/Background.svg')] p-4 pt-20 md:pt-30 pb-18 md:pb-24 bg-cover bg-center">
+        <div className="bg-[url('@/components/assets/images/SliderBg1.svg')] p-4 pt-20 md:pt-30 pb-18 md:pb-24 bg-cover bg-center">
           <div className="max-w-[1200px] mx-auto  max-lg:flex flex-col-reverse lg:grid grid-cols-[1fr_560px] gap-8">
             <div className="">
               <h1 className="text-[20px] md:text-[40px] lg:text-[60px] font-semi-bold text-main">

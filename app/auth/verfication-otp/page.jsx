@@ -46,7 +46,7 @@ function Page() {
             <div className="shadow border border-[#E9EAEB] rounded-lg p-3 justify-center inline-flex mx-auto">
               <Image src={Lock} width={28} height={28} alt="media" />
             </div>
-            <h1 className="text-lg md:text-[30px] text-center font-semibold text-[#181D27] mt-6">
+            <h1 className="text-lg md:text-[30px] text-center font-semibold text-text-1 mt-6">
               Enter OTP
             </h1>
             <p className="text-sm md:text-base text-[#535862] text-center mt-3">
@@ -60,7 +60,7 @@ function Page() {
               {otp.map((data, index) => (
                 <React.Fragment key={index}>
                   <input
-                    className="w-10 h-10 md:w-12 md:h-14 border border-[#D0D5DD] rounded-lg text-center text-lg md:text-2xl font-semibold text-[#181D27] focus:outline-none focus:border-[var(--color-main)] focus:ring-1 focus:ring-[var(--color-main)] transition-all"
+                    className="w-10 h-10 md:w-12 md:h-14 border border-[#D0D5DD] rounded-lg text-center text-lg md:text-2xl font-semibold text-text-1 focus:outline-none focus:border-[var(--color-main)] focus:ring-1 focus:ring-[var(--color-main)] transition-all"
                     type="text"
                     maxLength="1"
                     ref={(el) => (inputRefs.current[index] = el)}
@@ -69,12 +69,16 @@ function Page() {
                     onKeyDown={(e) => handleKeyDown(e, index)}
                   />
                   {index === 2 && (
-                    <span className="text-[#D0D5DD] text-xl md:text-2xl font-light mx-0.5 md:mx-1">—</span>
+                    <span className="text-[#D0D5DD] text-xl md:text-2xl font-light mx-0.5 md:mx-1">
+                      —
+                    </span>
                   )}
                 </React.Fragment>
               ))}
             </div>
-            <p className="text-sm text-[#FF0000] mt-1">Invalid OTP. Please try again.</p>
+            <p className="text-sm text-[#FF0000] mt-1">
+              Invalid OTP. Please try again.
+            </p>
 
             <div className="mt-8">
               <p className="text-sm text-[#535862] text-center">
