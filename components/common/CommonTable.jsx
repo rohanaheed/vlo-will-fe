@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import ArrowDown from "../../components/assets/images/ChevronLeftBlack.svg";
+import ArrowDown from "@/components/assets/images/ChevronLeftBlack.svg";
 // Simple sort icon if not available in assets
 const SortIcon = ({ direction, color = "white" }) => (
   <svg

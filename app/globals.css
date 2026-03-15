@@ -18,7 +18,8 @@ body:has(.modal){
   --color-text-1: #181818;
   --color-text-5: #535862;
   --color-text-3: #333333;
-
+  --color-text-2: #212121;
+  --color-text-8: #828282;
 }
 
 @media (prefers-color-scheme: dark) {

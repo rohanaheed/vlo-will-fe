@@ -9,10 +9,14 @@ function Commondropdown({
   onChange,
   placeholder = "Select",
   className,
+  triggerClassName,
   dropdownClassName,
   leftIcon,
   rightIcon,
+  iconClassName,
   textColor = "text-text-3",
+  optionTextColor = "text-black",
+  direction = "down",
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -30,10 +34,10 @@ function Commondropdown({
   }, []);
 
   return (
-    <div className={`relative`} ref={dropdownRef}>
+    <div className={`relative ${className}`} ref={dropdownRef}>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full text-black border-[#D5D7DA] gap-2 bg-white rounded-lg px-3.5 py-2.25 flex items-center justify-between cursor-pointer border ${className}`}
+        className={`w-full text-black border-[#D5D7DA] gap-2 flex items-center justify-between cursor-pointer border ${!triggerClassName?.includes("bg-") ? "bg-white" : ""} ${!triggerClassName?.includes("rounded-") ? "rounded-lg" : ""} px-3.5 py-2.25 ${triggerClassName}`}
       >
         <div className="flex items-center gap-2">
           {leftIcon && (
@@ -63,13 +67,13 @@ function Commondropdown({
           alt="arrow"
           width={20}
           height={20}
-          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""} ${iconClassName}`}
         />
       </div>
 
       {isOpen && (
         <div
-          className={`${dropdownClassName} absolute top-full w-full whitespace-nowrap left-0 right-0 mt-1 bg-white border border-[#D5D7DA] rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto`}
+          className={`${dropdownClassName} absolute ${direction === "up" ? "bottom-full mb-1" : "top-full mt-1"} w-full whitespace-nowrap left-0 right-0 bg-white border border-[#D5D7DA] rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto`}
         >
           {options && options.length > 0 ? (
             options.map((option, index) => (
@@ -79,7 +83,7 @@ function Commondropdown({
                   onChange(option);
                   setIsOpen(false);
                 }}
-                className={`px-3.5 py-3.5 text-sm ${textColor} hover:bg-gray-50 cursor-pointer transition-colors flex items-center gap-2`}
+                className={`px-3.5 py-3.5 text-sm ${optionTextColor} hover:bg-gray-50 cursor-pointer transition-colors flex items-center gap-2`}
               >
                 {typeof option === "object" && option.icon && (
                   <div className="shrink-0 flex items-center justify-center">

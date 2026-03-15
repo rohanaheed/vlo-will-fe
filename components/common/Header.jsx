@@ -16,18 +16,74 @@ import ChevronDown from "../assets/images/CheveronDownGray.svg";
 import DashboardIcon from "../assets/images/DashboardIcon.svg";
 import SliderUser from "../assets/images/SliderUser.svg";
 import SubscriptionIcon from "../assets/images/SubscriptionIcon.svg";
+import DocumentManegment from "../assets/images/DocumentManegment.svg";
+import Accounts from "../assets/images/Accounts.svg";
+import Billing from "../assets/images/Billing.svg";
+import Reconciliation from "../assets/images/Reconciliation.svg";
+import Accounting from "../assets/images/Accounting.svg";
+import Financial from "../assets/images/Finincial.svg";
+import ChevronTopBlue from "../assets/images/ChevronTopBlue.svg";
 function Header({ title }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const sidebarRef = useRef(null);
   const Sliderdata = [
     { title: "Dashboard", icon: DashboardIcon, path: "/admin/dashboard" },
-    { title: "User Management", icon: SliderUser, path: "/admin/user-management" },
-    { title: "Subscription", icon: SubscriptionIcon, path: "/admin/subscription" },
+    {
+      title: "User Management",
+      icon: SliderUser,
+      path: "/admin/user-management",
+    },
+    {
+      title: "Subscription",
+      icon: SubscriptionIcon,
+      path: "/admin/subscription",
+    },
+    {
+      title: "Document Management",
+      icon: DocumentManegment,
+      path: "/admin/document-manegment",
+    },
+    {
+      title: "Accounts",
+      icon: Accounts,
+      path: "/admin/accounts",
+      subItems: [
+        { title: "Billing", icon: Billing, path: "/admin/accounts/billing" },
+        {
+          title: "Reconciliation",
+          icon: Reconciliation,
+          path: "/admin/accounts/reconciliation",
+        },
+        {
+          title: "Accounting",
+          icon: Accounting,
+          path: "/admin/accounts/accounting",
+        },
+        {
+          title: "Financial Insights",
+          icon: Financial,
+          path: "/admin/accounts/financial-insights",
+        },
+      ],
+    },
   ];
   const [currentDate, setCurrentDate] = useState(null);
   const pathname = usePathname();
   const [activeLink, setActiveLink] = useState(pathname); // Initialize with pathname
+  const [expandedMenu, setExpandedMenu] = useState(null);
+
+  useEffect(() => {
+    if (pathname) {
+      setActiveLink(pathname);
+      // Auto-expand menu if path matches sub-item
+      Sliderdata.forEach((item) => {
+        if (item.subItems?.some((sub) => sub.path === pathname)) {
+          setExpandedMenu(item.title);
+        }
+      });
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (pathname) {
@@ -145,29 +201,84 @@ function Header({ title }) {
         <div className="p-4 ">
           <Image src={Logo} width={212} height={56} alt="media" />
           <div className="mt-5 flex flex-col gap-2">
-            {Sliderdata.map((item, index) => (
-              <div
-                onClick={() => {
-                  setActiveLink(item.path);
-                  router.push(item.path);
-                }}
-                key={index}
-                className={`flex group transition-all duration-300 hover:bg-white hover:text-(--color-main) p-4 py-2 rounded-lg items-center gap-2 cursor-pointer ${activeLink === item.path ? "bg-white text-[--color-main]" : "text-white"}`}
-              >
-                <Image
-                  src={item.icon}
-                  width={24}
-                  height={24}
-                  alt="media"
-                  className={`group-hover:invert-1 group-hover:brightness-100 transition-all duration-300 ${activeLink === item.path ? "text-(--color-main)" : "invert brightness-0"}`}
-                />
-                <p
-                  className={`text-sm font-bold ${activeLink === item.path ? "text-(--color-main) font-bold" : ""}`}
-                >
-                  {item.title}
-                </p>
-              </div>
-            ))}
+            {Sliderdata.map((item, index) => {
+              const hasSubItems = item.subItems && item.subItems.length > 0;
+              const isExpanded = expandedMenu === item.title;
+              const isActive =
+                activeLink === item.path ||
+                item.subItems?.some((sub) => sub.path === activeLink);
+
+              return (
+                <div key={index} className="flex flex-col gap-1">
+                  <div
+                    onClick={() => {
+                      if (hasSubItems) {
+                        setExpandedMenu(isExpanded ? null : item.title);
+                      } else {
+                        setActiveLink(item.path);
+                        router.push(item.path);
+                      }
+                    }}
+                    className={`flex group transition-all duration-300 hover:bg-white hover:text-(--color-main) p-4 py-2 rounded-lg items-center justify-between cursor-pointer ${isActive ? "bg-white text-[--color-main]" : "text-white"}`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={item.icon}
+                        width={24}
+                        height={24}
+                        alt="media"
+                        className={`group-hover:invert-1 group-hover:brightness-100 transition-all duration-300 ${isActive ? "text-(--color-main)" : "invert brightness-0"}`}
+                      />
+                      <p
+                        className={`text-sm font-bold ${isActive ? "text-(--color-main) font-bold" : ""}`}
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                    {hasSubItems && (
+                      <Image
+                        src={isActive ? ChevronTopBlue : ChevronTopBlue}
+                        width={16}
+                        height={16}
+                        alt="chevron"
+                        className={`transition-transform duration-300 ${isExpanded ? "rotate-0" : "rotate-180"} ${!isActive ? "" : "invert-0 brightness-100"}`}
+                      />
+                    )}
+                  </div>
+
+                  {hasSubItems && isExpanded && (
+                    <div className="flex flex-col gap-1 mt-1">
+                      {item.subItems.map((sub, subIndex) => {
+                        const isSubActive = activeLink === sub.path;
+                        return (
+                          <div
+                            key={subIndex}
+                            onClick={() => {
+                              setActiveLink(sub.path);
+                              router.push(sub.path);
+                            }}
+                            className={`flex items-center gap-2 p-4 py-2 pl-10 rounded-lg cursor-pointer transition-all duration-300 hover:bg-white/10 ${isSubActive ? "bg-black/20 text-white" : "text-white/70"}`}
+                          >
+                            <Image
+                              src={sub.icon}
+                              width={20}
+                              height={20}
+                              alt="sub-icon"
+                              className={`transition-all duration-300 invert brightness-0 ${isSubActive ? "opacity-100" : "opacity-70"}`}
+                            />
+                            <p
+                              className={`text-sm font-semibold ${isSubActive ? "text-white" : ""}`}
+                            >
+                              {sub.title}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

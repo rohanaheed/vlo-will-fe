@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import FillArrowDown from "../../components/assets/images/FillArrowDown.svg";
+import FillArrowDown from "../../components/assets/images/ChevronDown.svg";
 import Image from "next/image";
 
 function Commondropdown({
@@ -45,8 +45,8 @@ function Commondropdown({
         <Image
           src={FillArrowDown}
           alt="arrow"
-          width={20}
-          height={20}
+          width={16}
+          height={16}
           className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""} ${iconClassName}`}
         />
       </div>

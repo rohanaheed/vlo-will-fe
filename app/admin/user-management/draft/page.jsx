@@ -4,7 +4,7 @@ import Image from "next/image";
 import CustomizeIcon from "@/components/assets/images/CustomizeIcon.svg";
 import CopyIcon from "@/components/assets/images/CopyIcon.svg";
 import SearchIconGray from "@/components/assets/images/SearchIconGray.svg";
-import Commondropdown from "@/components/common/Commondropdown";
+import Commondropdown1 from "@/components/common/Commondropdown1";
 import CustomDateRangePicker from "@/components/common/CustomDateRangePicker";
 import CommonTable from "@/components/common/CommonTable";
 
@@ -190,11 +190,12 @@ function AllUser({ setSelectedUser }) {
       accessor: "status",
       render: (row, index) => (
         <div className="w-[171px]">
-          <Commondropdown
+          <Commondropdown1
             options={statusOptions}
             value={row.status}
             onChange={(selected) => console.log("Status changed:", selected)}
-            className={`w-[171px]! h-[30px]! rounded-full! py-[6px]! px-[10px]! gap-[10px]! font-medium text-xs border-0 flex items-center justify-between whitespace-nowrap ${getStatusStyle(row.status)}`}
+            className="w-[171px]!"
+            triggerClassName={`w-full! h-[30px]! rounded-full! py-[6px]! px-[10px]! gap-[10px]! font-medium text-xs border-0 flex items-center justify-between whitespace-nowrap ${getStatusStyle(row.status)}`}
             dropdownClassName="!w-full"
             direction={index >= 5 ? "up" : "down"}
             iconClassName={
@@ -468,7 +469,7 @@ function AllUser({ setSelectedUser }) {
             <p className="text-sm font-medium whitespace-nowrap">
               Subscription Status:
             </p>
-            <Commondropdown
+            <Commondropdown1
               options={subscriptionStatusOptions}
               value={subscriptionStatus}
               onChange={setSubscriptionStatus}
