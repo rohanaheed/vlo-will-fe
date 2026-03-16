@@ -33,6 +33,7 @@ function CommonTable({
   headerSeparatorClassName = "bg-white",
   sortIconColor = "white",
   bodyTextClassName = "text-text-4",
+  showPagination = true,
 }) {
   const [selectedRows, setSelectedRows] = useState([]);
   const [prevData, setPrevData] = useState(data);
@@ -123,10 +124,12 @@ function CommonTable({
 
   // Pagination Logic
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
-  const currentData = sortedData.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
-  );
+  const currentData = showPagination
+    ? sortedData.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage,
+      )
+    : sortedData;
 
   return (
     <div className="w-full">
@@ -221,46 +224,48 @@ function CommonTable({
       </div>
 
       {/* Pagination */}
-      <div className="flex mt-6 items-center justify-between">
-        <p className="text-sm font-medium text-[#404040]">
-          Showing {currentData.length} results
-        </p>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            disabled={currentPage === 1}
-            className="p-2 w-8 h-8 border cursor-pointer border-[#9E9E9E] rounded-lg disabled:opacity-50 hover:bg-gray-50"
-          >
-            <Image src={ArrowDown} alt="arrow" width={16} height={16} />
-          </button>
-          {[...Array(totalPages)].map((_, i) => (
+      {showPagination && (
+        <div className="flex mt-6 items-center justify-between">
+          <p className="text-sm font-medium text-[#404040]">
+            Showing {currentData.length} results
+          </p>
+          <div className="flex items-center gap-2">
             <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={`w-8 h-8 cursor-pointer border rounded-lg text-sm font-medium ${
-                currentPage === i + 1
-                  ? "bg-(--color-main) text-white border-transparent"
-                  : "text-black hover:text-white border-[#9E9E9E] hover:bg-(--color-main)"
-              }`}
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="p-2 w-8 h-8 border cursor-pointer border-[#9E9E9E] rounded-lg disabled:opacity-50 hover:bg-gray-50"
             >
-              {i + 1}
+              <Image src={ArrowDown} alt="arrow" width={16} height={16} />
             </button>
-          ))}
-          <button
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
-            className="p-2 w-8 h-8 cursor-pointer border border-[#9E9E9E] rounded-lg disabled:opacity-50 hover:bg-gray-50"
-          >
-            <Image
-              src={ArrowDown}
-              alt="arrow"
-              width={16}
-              height={16}
-              className="rotate-180"
-            />
-          </button>
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`w-8 h-8 cursor-pointer border rounded-lg text-sm font-medium ${
+                  currentPage === i + 1
+                    ? "bg-(--color-main) text-white border-transparent"
+                    : "text-black hover:text-white border-[#9E9E9E] hover:bg-(--color-main)"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="p-2 w-8 h-8 cursor-pointer border border-[#9E9E9E] rounded-lg disabled:opacity-50 hover:bg-gray-50"
+            >
+              <Image
+                src={ArrowDown}
+                alt="arrow"
+                width={16}
+                height={16}
+                className="rotate-180"
+              />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
