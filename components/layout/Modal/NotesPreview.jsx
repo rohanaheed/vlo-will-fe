@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import CloseIcon from "../assets/images/CloseIcon.svg";
+import CloseIcon from "@/components/assets/images/CloseIcon.svg";
 
 function NotesPreview({ note, onClose }) {
   if (!note) return null;

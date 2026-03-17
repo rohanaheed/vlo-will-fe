@@ -1,7 +1,7 @@
 import React from "react";
-import DeleteTick from "../assets/images/DeleteTick.svg";
+import DeleteTick from "@/components/assets/images/DeleteTick.svg";
 import Image from "next/image";
-import CloseIcon from "../assets/images/CloseIcon.svg";
+import CloseIcon from "@/components/assets/images/CloseIcon.svg";
 function SuccessfullDeletePopup({ heading, onClose, pera, button }) {
   return (
     <div>

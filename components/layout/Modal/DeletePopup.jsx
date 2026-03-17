@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import CloseIcon from "../assets/images/CloseIcon.svg";
+import CloseIcon from "../../assets/images/CloseIcon.svg";
 
 function DeletePopup({ heading, onClose, onConfirm, pera, button }) {
   return (

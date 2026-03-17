@@ -10,10 +10,10 @@ import DeleteIcon from "@/components/assets/images/DeleteIcon.svg";
 import UserIcon from "@/components/assets/images/UserIcon.svg";
 import CommonTable from "@/components/common/CommonTable";
 import PlusIcon from "@/components/assets/images/PlusIcon.svg";
-import Notes from "@/components/common/Notes";
-import NotesPreview from "@/components/common/NotesPreview";
-import DeletePopup from "@/components/common/DeletePopup";
-import SuccessfullDeletePopup from "@/components/common/SuccessfullDeletePopup";
+import Notes from "@/components/layout/Modal/Notes";
+import NotesPreview from "@/components/layout/Modal/NotesPreview";
+import DeletePopup from "@/components/layout/Modal/DeletePopup";
+import SuccessfullDeletePopup from "@/components/layout/Modal/SuccessfullDeletePopup";
 function Page() {
   const dateInputRef = useRef(null);
   const [isNotesOpen, setIsNotesOpen] = useState(false);

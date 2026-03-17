@@ -23,6 +23,10 @@ import Reconciliation from "../assets/images/Reconciliation.svg";
 import Accounting from "../assets/images/Accounting.svg";
 import Financial from "../assets/images/Finincial.svg";
 import ChevronTopBlue from "../assets/images/ChevronTopBlue.svg";
+import ReportsAndAnalyticsIcon from "../assets/images/Reports&AnalyticsIcon.svg";
+import GeneralFaq from "../assets/images/GeneralFaq.svg";
+import CustomerSupportIcon from "../assets/images/CustomerSupportIcon.svg";
+
 function Header({ title }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -66,6 +70,21 @@ function Header({ title }) {
           path: "/admin/accounts/financial-insights",
         },
       ],
+    },
+    {
+      title: "Reports & Analytics",
+      icon: ReportsAndAnalyticsIcon,
+      path: "/admin/reports-&-analytics",
+    },
+    {
+      title: "General FAQ",
+      icon: GeneralFaq,
+      path: "/admin/general-faq",
+    },
+    {
+      title: "Customer Support",
+      icon: CustomerSupportIcon,
+      path: "/admin/customer-support",
     },
   ];
   const [currentDate, setCurrentDate] = useState(null);
@@ -241,7 +260,7 @@ function Header({ title }) {
                         width={16}
                         height={16}
                         alt="chevron"
-                        className={`transition-transform duration-300 ${isExpanded ? "rotate-0" : "rotate-180"} ${!isActive ? "" : "invert-0 brightness-100"}`}
+                        className={`transition-all duration-300 ${isExpanded ? "rotate-0" : "rotate-180"} ${isActive ? "" : "invert brightness-0"} group-hover:invert-0 group-hover:brightness-100`}
                       />
                     )}
                   </div>
@@ -257,12 +276,12 @@ function Header({ title }) {
                               setActiveLink(sub.path);
                               router.push(sub.path);
                             }}
-                            className={`flex items-center gap-2 p-4 py-2 pl-10 rounded-lg cursor-pointer transition-all duration-300 hover:bg-white/10 ${isSubActive ? "bg-black/20 text-white" : "text-white/70"}`}
+                            className={`flex items-center text-sm gap-2 p-4 py-2 pl-8 rounded-lg cursor-pointer transition-all duration-300 hover:bg-white/10 ${isSubActive ? "bg-white/10 text-white" : "text-white/70"}`}
                           >
                             <Image
                               src={sub.icon}
-                              width={20}
-                              height={20}
+                              width={24}
+                              height={24}
                               alt="sub-icon"
                               className={`transition-all duration-300 invert brightness-0 ${isSubActive ? "opacity-100" : "opacity-70"}`}
                             />
