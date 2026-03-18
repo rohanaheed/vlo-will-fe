@@ -26,6 +26,7 @@ import ChevronTopBlue from "../assets/images/ChevronTopBlue.svg";
 import ReportsAndAnalyticsIcon from "../assets/images/Reports&AnalyticsIcon.svg";
 import GeneralFaq from "../assets/images/GeneralFaq.svg";
 import CustomerSupportIcon from "../assets/images/CustomerSupportIcon.svg";
+import SupportAndFeedbackIcon from "../assets/images/Support&FeedbackIcon.svg";
 
 function Header({ title }) {
   const router = useRouter();
@@ -85,6 +86,11 @@ function Header({ title }) {
       title: "Customer Support",
       icon: CustomerSupportIcon,
       path: "/admin/customer-support",
+    },
+    {
+      title: "Support & Feedback",
+      icon: SupportAndFeedbackIcon,
+      path: "/admin/support-&-feedback",
     },
   ];
   const [currentDate, setCurrentDate] = useState(null);
@@ -241,13 +247,17 @@ function Header({ title }) {
                     className={`flex group transition-all duration-300 hover:bg-white hover:text-(--color-main) p-4 py-2 rounded-lg items-center justify-between cursor-pointer ${isActive ? "bg-white text-[--color-main]" : "text-white"}`}
                   >
                     <div className="flex items-center gap-2">
-                      <Image
-                        src={item.icon}
-                        width={24}
-                        height={24}
-                        alt="media"
-                        className={`group-hover:invert-1 group-hover:brightness-100 transition-all duration-300 ${isActive ? "text-(--color-main)" : "invert brightness-0"}`}
+                      <div
+                        style={{
+                          maskImage: `url(${item.icon.src})`,
+                          WebkitMaskImage: `url(${item.icon.src})`,
+                          maskRepeat: "no-repeat",
+                          maskPosition: "center",
+                          maskSize: "contain",
+                        }}
+                        className={`w-6 h-6 transition-all duration-300 ${isActive ? "bg-(--color-main)" : "bg-white"} group-hover:bg-(--color-main)`}
                       />
+
                       <p
                         className={`text-sm font-bold ${isActive ? "text-(--color-main) font-bold" : ""}`}
                       >
@@ -278,13 +288,17 @@ function Header({ title }) {
                             }}
                             className={`flex items-center text-sm gap-2 p-4 py-2 pl-8 rounded-lg cursor-pointer transition-all duration-300 hover:bg-white/10 ${isSubActive ? "bg-white/10 text-white" : "text-white/70"}`}
                           >
-                            <Image
-                              src={sub.icon}
-                              width={24}
-                              height={24}
-                              alt="sub-icon"
-                              className={`transition-all duration-300 invert brightness-0 ${isSubActive ? "opacity-100" : "opacity-70"}`}
+                            <div
+                              style={{
+                                maskImage: `url(${sub.icon.src})`,
+                                WebkitMaskImage: `url(${sub.icon.src})`,
+                                maskRepeat: "no-repeat",
+                                maskPosition: "center",
+                                maskSize: "contain",
+                              }}
+                              className={`w-6 h-6 transition-all duration-300 bg-white ${isSubActive ? "opacity-100" : "opacity-70"}`}
                             />
+
                             <p
                               className={`text-sm font-semibold ${isSubActive ? "text-white" : ""}`}
                             >

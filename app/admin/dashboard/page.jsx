@@ -274,31 +274,31 @@ function Dashboard() {
                 <div className="flex items-center w-fit border border-[#D5D7DA] rounded-[11px] whitespace-nowrap">
                   <button
                     onClick={() => setGrowthbutton("Yearly")}
-                    className={`${growthbutton === "Yearly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${growthbutton === "Yearly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     Yearly
                   </button>
                   <button
                     onClick={() => setGrowthbutton("Quarterly")}
-                    className={`${growthbutton === "Quarterly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${growthbutton === "Quarterly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     Quarterly
                   </button>
                   <button
                     onClick={() => setGrowthbutton("Monthly")}
-                    className={`${growthbutton === "Monthly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${growthbutton === "Monthly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     Monthly
                   </button>
                   <button
                     onClick={() => setGrowthbutton("Weekly")}
-                    className={`${growthbutton === "Weekly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${growthbutton === "Weekly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     Weekly
                   </button>
                   <button
                     onClick={() => setGrowthbutton("24 hours")}
-                    className={`${growthbutton === "24 hours" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${growthbutton === "24 hours" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     24 hours
                   </button>
@@ -320,7 +320,7 @@ function Dashboard() {
                     />
                   </div>
                   <div>
-                    <p className="text-[#414651] text-sm font-medium"> 2.4%</p>
+                    <p className="text-text-4 text-sm font-medium"> 2.4%</p>
                   </div>
                 </div>
               </div>
@@ -396,31 +396,31 @@ function Dashboard() {
                   <div className="flex items-center w-fit border border-[#D5D7DA] rounded-[11px] whitespace-nowrap">
                     <button
                       onClick={() => setNetrevenuebutton("Yearly")}
-                      className={`${netrevenuebutton === "Yearly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                      className={`${netrevenuebutton === "Yearly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                     >
                       Yearly
                     </button>
                     <button
                       onClick={() => setNetrevenuebutton("Quarterly")}
-                      className={`${netrevenuebutton === "Quarterly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                      className={`${netrevenuebutton === "Quarterly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                     >
                       Quarterly
                     </button>
                     <button
                       onClick={() => setNetrevenuebutton("Monthly")}
-                      className={`${netrevenuebutton === "Monthly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                      className={`${netrevenuebutton === "Monthly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                     >
                       Monthly
                     </button>
                     <button
                       onClick={() => setNetrevenuebutton("Weekly")}
-                      className={`${netrevenuebutton === "Weekly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                      className={`${netrevenuebutton === "Weekly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                     >
                       Weekly
                     </button>
                     <button
                       onClick={() => setNetrevenuebutton("24 hours")}
-                      className={`${netrevenuebutton === "24 hours" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                      className={`${netrevenuebutton === "24 hours" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                     >
                       24 hours
                     </button>
@@ -443,7 +443,7 @@ function Dashboard() {
                     />
                   </div>
                   <div>
-                    <p className="text-[#414651] text-sm font-medium"> 2.4%</p>
+                    <p className="text-text-4 text-sm font-medium"> 2.4%</p>
                   </div>
                 </div>
               </div>
@@ -518,31 +518,31 @@ function Dashboard() {
                 <div className="flex items-center w-fit border border-[#D5D7DA] rounded-[11px] whitespace-nowrap">
                   <button
                     onClick={() => setSubscriptionRevenuebutton("Yearly")}
-                    className={`${subscriptionRevenuebutton === "Yearly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${subscriptionRevenuebutton === "Yearly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     Yearly
                   </button>
                   <button
                     onClick={() => setSubscriptionRevenuebutton("Quarterly")}
-                    className={`${subscriptionRevenuebutton === "Quarterly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${subscriptionRevenuebutton === "Quarterly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     Quarterly
                   </button>
                   <button
                     onClick={() => setSubscriptionRevenuebutton("Monthly")}
-                    className={`${subscriptionRevenuebutton === "Monthly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${subscriptionRevenuebutton === "Monthly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     Monthly
                   </button>
                   <button
                     onClick={() => setSubscriptionRevenuebutton("Weekly")}
-                    className={`${subscriptionRevenuebutton === "Weekly" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${subscriptionRevenuebutton === "Weekly" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     Weekly
                   </button>
                   <button
                     onClick={() => setSubscriptionRevenuebutton("24 hours")}
-                    className={`${subscriptionRevenuebutton === "24 hours" ? "bg-white text-[#414651] border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
+                    className={`${subscriptionRevenuebutton === "24 hours" ? "bg-white text-text-4 border-[#D5D7DA]" : "text-[#717680] border-transparent"} rounded-[9px] p-2 font-bold border text-sm cursor-pointer`}
                   >
                     24 hours
                   </button>

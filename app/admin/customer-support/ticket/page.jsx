@@ -13,6 +13,7 @@ import DotMenuIcon from "@/components/assets/images/DotMenuIcon.svg";
 import SearchIcon from "@/components/assets/images/SearchIcon.svg";
 import CommonTable from "@/components/common/CommonTable";
 import ArrowFillDownWhite from "@/components/assets/images/ArrowFillDownWhite.svg";
+import AssignTicketPopup from "@/components/layout/Modal/AssignTicketPopup";
 
 const ViewDetail = ({ ticket, onBack }) => {
   const attachmentColumns = [
@@ -132,6 +133,7 @@ const ViewDetail = ({ ticket, onBack }) => {
 
   const [messages, setMessages] = useState(initialConversation);
   const [inputValue, setInputValue] = useState("");
+  const [isAssignPopupOpen, setIsAssignPopupOpen] = useState(false);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
@@ -537,9 +539,13 @@ const ViewDetail = ({ ticket, onBack }) => {
                     <button className="bg-main max-md:w-full text-white px-5 py-2.25 rounded-full text-sm hover:bg-main/85 transition-all cursor-pointer">
                       Merge Ticket
                     </button>
-                    <button className="bg-main max-md:w-full text-white px-5 py-2.25 rounded-full text-sm hover:bg-main/85 transition-all cursor-pointer">
+                    <button
+                      onClick={() => setIsAssignPopupOpen(true)}
+                      className="bg-main max-md:w-full text-white px-5 py-2.25 rounded-full text-sm hover:bg-main/85 transition-all cursor-pointer"
+                    >
                       Assign Ticket
                     </button>
+
                     <div className="relative group max-md:w-full">
                       <button className="bg-main max-md:w-full justify-center text-white px-5 py-2.25 rounded-full text-sm hover:bg-main/85 transition-all cursor-pointer flex items-center gap-2">
                         Update Status
@@ -563,6 +569,15 @@ const ViewDetail = ({ ticket, onBack }) => {
           </div>
         </div>
       </div>
+      {isAssignPopupOpen && (
+        <AssignTicketPopup
+          onClose={() => setIsAssignPopupOpen(false)}
+          onSave={(data) => {
+            console.log("Assigned:", data);
+            setIsAssignPopupOpen(false);
+          }}
+        />
+      )}
     </div>
     // </div>
   );
